@@ -1,0 +1,891 @@
+---
+title: "Études qualitatives sur le web (netnographie)"
+subtitle: "Introduction à la netnographie + outillage R & Python"
+author:
+  - name: "Olivier Caron"
+    affiliations: "Paris Dauphine - PSL"
+format:
+  ubd-revealjs:
+    self-contained: false
+    chalkboard: true
+    transition: fade
+    auto-stretch: false
+    width: 1250
+    height: 760
+    toc: false
+    toc-depth: 1
+    code-block-height: 700px
+execute:
+  echo: true
+bibliography: refs.bib
+revealjs-plugins:
+  - editable
+filters:
+  - editable
+---
+
+## Objectif général du cours
+
+**Études qualitatives sur le web (M2 Marketing Digital, 22h, 3 ECTS)**
+
+**Objectif global :** savoir conduire une analyse textuelle sur un corpus.
+
+::: callout-note
+### Compétences visées
+
+1.  Constituer un corpus pertinent
+2.  Connaître et appliquer les principales procédures d’analyse :
+    -   pré-traitement du corpus
+    -   annotations
+    -   analyses de fréquences & co-occurrences
+    -   sentiment analysis
+    -   topic modeling
+3.  Utiliser **R** et/ou **Python** pour conduire l’analyse
+4.  Restituer les résultats de manière structurée, reproductible et actionnable
+:::
+
+------------------------------------------------------------------------
+
+## Planning du cours
+
+| Date                | Horaire      | Durée  | Remarques          |
+|---------------------|--------------|--------|--------------------|
+| Lundi 08/09/2025    | 9h – 12h     | 3h     | Séance 1           |
+| Mardi 09/09/2025    | 9h – 12h     | 3h     | Séance 2           |
+| Mardi 09/09/2025    | 13h – 17h    | 4h     | Séance 3           |
+| Lundi 15/09/2025    | 9h – 12h     | 3h     | Séance 4           |
+| Mercredi 17/09/2025 | 9h – 12h     | 3h     | Séance 5           |
+| Mercredi 17/09/2025 | 13h – 17h    | 4h     | Séance 6           |
+| Vendredi 19/09/2025 | **9h – 11h** | **2h** | Séance 7 (clôture) |
+
+**Total : 22h**
+
+------------------------------------------------------------------------
+
+## Évaluation & projet final
+
+::: {.callout-important title="Projet final"}
+-   Évaluation **commune** avec l’UE *Stratégies de distribution à l’ère du cross-canal*
+-   Travail en **groupes de 2–3 étudiants**
+-   Projet : **netnographie appliquée à une enseigne de distribution**
+:::
+
+::::: columns
+::: {.column width="50%"}
+**À faire**
+
+-   Collecte & analyse d’avis clients en ligne
+-   Production d’**insights** & de **recommandations**
+-   Mobilisation des cadres théoriques vus dans l'UE Stratégies de distribution
+:::
+
+::: {.column width="50%"}
+**Livrables**
+
+-   Rapport **Quarto HTML**
+-   **Exposé de 15 minutes**
+:::
+:::::
+
+------------------------------------------------------------------------
+
+## Qu'est-ce que la Netnographie ?
+
+:::::: columns
+:::: {.column width="70%"}
+-   Adaptation de l’ethnographie au **monde numérique**
+-   Analyse des **cultures, normes, significations, artefacts** en ligne
+-   Approche qualitative articulable avec NLP
+
+::: callout-note
+**Une des références** : Kozinets, R. V. (2015). Netnography: redefined. sage.
+:::
+::::
+
+::: {.column width="30%"}
+![](images/clipboard-1875965750.png){width="50%"} ![](images/clipboard-537793007.png){width="50%"}
+:::
+::::::
+
+------------------------------------------------------------------------
+
+## Exemple fondateur : le café en ligne (Kozinets, 2002)
+
+:::::: columns
+:::: {.column width="45%"}
+-   **Terrain** : newsgroup **\<alt.coffee\>** (Usenet)
+-   **Communauté** : passionnés de café
+-   Participants : insiders, experts, touristes de passage
+-   Discussions : espresso, Starbucks, machines, rituels
+
+::: callout-note
+Cette étude a montré que les communautés en ligne pouvaient être étudiées comme de véritables **terrains ethnographiques**.
+:::
+::::
+
+::: {.column width="55%"}
+![](images/clipboard-3811131651.png){width="100%"}
+:::
+::::::
+
+::: notes
+-   Insister : au début des années 2000, ces forums Usenet sont des espaces pionniers.
+-   Kozinets choisit le café car c’est un **produit culturel et identitaire** → passions, débats, pratiques quotidiennes.
+-   Important : les catégories de participants (insiders, devotees, touristes, minglers) → typologie d’engagement.
+-   Transition : ce terrain lui permet de dégager des **insights socioculturels** sur la consommation de café artisanal.
+:::
+
+------------------------------------------------------------------------
+
+## Constats de l’article - 1/2
+
+-   **Distinction & statut** *(Bourdieu)*
+    -   Le vocabulaire (barista, crema, *god shot*, PID…) sert de **marqueur d’expertise**.
+    -   **Boundary work** : les membres corrigent et excluent les novices → distinction insiders / touristes.
+    -   L’équipement (moulins, machines pros) = **signal de capital culturel et technique**.
+-   **Trajectoires de consommation**
+    -   Chemin typique : café commodité → espresso artisanal → machines coûteuses.
+    -   **Effet Diderot** : achat d’un objet de qualité entraîne une **cascade d’achats complémentaires** (moulin, tamper, balance, eau filtrée).
+    -   Logique d’**escalade** : montée en gamme + rationalisation (“il faut ça pour bien faire”).
+
+------------------------------------------------------------------------
+
+## Constats de l’article - 2/2
+
+-   **Authenticité vs commodification**
+    -   Starbucks = symbole de **standardisation** (McDonaldisation, goût formaté).
+    -   Artisanat = **authenticité** (origine, torréfaction, gestes, transparence).
+    -   Débat : démocratisation de la culture café vs banalisation.
+-   **Dimension quasi religieuse**
+    -   **Rituels** (purge, tassage, pré-infusion), objets sacrés (tamper, machine).
+    -   Métaphores sacrées : la quête du *“god shot”* = expérience de grâce.
+    -   Construction d’une **mythologie** communautaire : “révélation” gustative, quête initiatique.
+
+::: {.callout-note title="Référence"}
+Kozinets, R. V. (2002). *The field behind the screen: Using netnography for marketing research in online communities*. *Journal of Marketing Research, 39*(1), 61–72. https://doi.org/10.1509/jmkr.39.1.61.18935
+:::
+
+::: notes
+:::
+
+------------------------------------------------------------------------
+
+## De l’analyse au profil des participants
+
+-   **Insiders** : membres très actifs, co-construisent la culture et la légitimité du groupe\
+-   **Devotees** : passionnés du sujet, mais moins interactifs socialement\
+-   **Minglers** : aiment l’interaction sociale, mais peu attachés au thème central\
+-   **Tourists** : de passage, observent sans réel engagement
+
+::: {.callout-note title="À retenir"}
+Cette **typologie** issue de *alt.coffee* montre comment les **niveaux d’engagement** structurent la vie d’une communauté en ligne.
+:::
+
+## Repères historiques et statut scientifique
+
+-   Méthode reconnue dans les recherches en marketing & consommation digitale
+-   Inscrite dans les méthodes qualitatives orientées **sens & contexte**
+
+### Redéfinition contemporaine (Kozinets, 2015)
+
+:::: {style="font-size:0.8em"}
+> *“A specific set of related data collection, analysis, ethical and representational research practices, where a significant amount of the data collected and participant-observational research conducted originates in and manifests through the data shared freely on the Internet, including mobile applications.”*\
+> — Kozinets (2015, p. 80)
+
+::: {.callout-note title="Conclusion"}
+La netnographie n’est pas qu’une observation en ligne :\
+c’est un **ensemble cohérent de pratiques méthodologiques et éthiques**, adapté aux réseaux sociaux et aux usages mobiles.
+:::
+::::
+
+------------------------------------------------------------------------
+
+## Quand utiliser la netnographie ?
+
+\
+\
+
+-   Comprendre **motivations, routines, valeurs** des consommateurs en ligne\
+    \
+-   Explorer **insights VoC**, controverses, parcours, usages\
+    \
+-   Complémentaire du **social listening** volumétrique → vise la **profondeur** de l'analyse
+
+------------------------------------------------------------------------
+
+## Étapes clés - *Kozinets (2002)*
+
+::::: columns
+::: {.column width="50%" style="font-size:0.8em"}
+1.  **Entrée culturelle**
+    -   Définir la question de recherche\
+    -   Identifier les communautés pertinentes (trafic, richesse, interactivité)\
+    -   Comprendre la culture du forum (langage, normes, acteurs)
+2.  **Collecte et analyse des données**
+    -   Collecter les posts + écrire des *notes de terrain*\
+    -   Classer et coder les données (messages thématiques vs sociaux)\
+    -   Analyser et comparer les catégories émergentes
+3.  **Assurer une interprétation crédible**
+    -   Vérifier la cohérence interne (les résultats reflètent bien les données)\
+    -   Triangulation avec d’autres sources ou cadres théoriques\
+    -   Mettre en évidence les **symboles, récits et significations** portés par la communauté\
+:::
+
+::: {.column width="50%"}
+4.  **Mener une recherche éthique**
+    -   Transparence du chercheur (s’identifier, annoncer ses intentions)\
+    -   Anonymisation/pseudonymisation des données\
+    -   Demander la permission avant de citer des verbatims
+5.  **Validation auprès des membres** (*member checks*)
+    -   Partager les résultats avec la communauté\
+    -   Recueillir retours pour affiner l’interprétation\
+:::
+:::::
+
+------------------------------------------------------------------------
+
+## Avantages & limites
+
+::::: columns
+::: {.column width="50%"}
+**Avantages**\
+- Accès direct aux conversations **in situ numériques**\
+- Traces longitudinales (archives, historiques de forums)\
+- Faible intrusion\
+- Données riches, spontanées, peu coûteuses
+:::
+
+::: {.column width="50%"}
+**Limites**\
+- **Fiabilité des identités** : impossible de vérifier qui parle vraiment\
+- **Représentativité discutable** : biais d’auto-sélection, voix dominantes\
+- Moins de **profondeur contextuelle** que l’ethnographie classique\
+- **Présence de bots / modération** qui influencent les échanges\
+- **Dépendance aux plateformes** : accès (API, CGU), formats, disparition des contenus\
+- Contraintes **éthiques** : consentement, anonymisation, permission de citer
+:::
+:::::
+
+------------------------------------------------------------------------
+
+## Éthique & RGPD
+
+::::::: columns
+:::: {.column width="50%"}
+::: {.callout-important title="Repères éthiques"}
+-   **Ne pas nuire** : protéger les communautés et les individus observés.\
+-   **Public ≠ éthiquement public** : le fait qu’un forum soit accessible ne signifie pas que ses membres acceptent d’être étudiés.\
+-   **Transparence adaptée** : plus l’espace est privé (groupes fermés, Discord, Facebook), plus la demande d’autorisation/consentement est nécessaire.\
+-   **Ressources** :
+    -   *AoIR Ethical Guidelines 3.0* (2019)\
+    -   *CNIL* — guides pratiques sur le RGPD
+:::
+::::
+
+:::: {.column width="50%" style="font-size:0.8em"}
+::: {.callout-note title="Les 6 principes du RGPD (CNIL)"}
+1.  **Finalité** : ne collecter que pour un objectif précis et légitime.\
+2.  **Minimisation** : limiter la collecte aux seules données nécessaires.\
+3.  **Exactitude** : s’assurer que les données sont correctes et mises à jour.\
+4.  **Limitation de conservation** : ne pas garder indéfiniment, prévoir une durée claire.\
+5.  **Intégrité & confidentialité** : sécuriser techniquement et organisationnellement.\
+6.  **Responsabilisation** (*accountability*) : être en mesure de démontrer la conformité à tout moment.\
+:::
+::::
+:::::::
+
+------------------------------------------------------------------------
+
+## De la netnographie… aux outils
+
+::::: columns
+::: {.column width="60%" style="font-size:0.8em"}
+**Netnographie = comprendre les cultures en ligne**
+
+-   Approche qualitative → **profondeur & sens**\
+-   Observation, immersion, interprétation\
+-   Inscription dans les méthodes qualitatives\
+:::
+
+::: {.column width="40%"}
+**Mais** :
+
+-   Besoin de systématiser et de passer à l’échelle\
+-   Multiplier les données (posts, avis, tweets, forums)
+:::
+:::::
+
+::: {.callout-note title="Prochaine étape"}
+Découverte des **outils numériques (R & Python)**\
+→ collection des données, prétraitement, annotation, analyse de corpus... → visualisation et restitution
+:::
+
+# Outils du cours {.transition-slide-ubdblue}
+
+## R et Python : deux langages incontournables
+
+-   **R** : spécialisé en statistiques, data science et analyse textuelle\
+-   **Python** : plus généraliste, très utilisé en IA, web et NLP\
+-   Les deux sont **gratuits, open-source** et ont de **grandes communautés**
+
+::: callout-note
+**Packages (R)** ou **Modules (Python)** = extensions prêtes à l’emploi.\
+→ Exemple :\
+- R : `tidyverse`, `ggplot2`\
+- Python : `pandas`, `scikit-learn`, `nltk`
+:::
+
+------------------------------------------------------------------------
+
+## Qu’est-ce qu’un IDE ?
+
+**IDE** = Integrated Development Environment = Environnement de développement intégré
+
+### Un logiciel qui regroupe tout ce qu’il faut pour programmer :
+
+-   Écrire du code\
+-   Exécuter le code pas à pas\
+-   Visualiser les données et graphiques\
+-   Gérer les fichiers d’un projet
+-   Installer et utiliser des packages/modules
+-   Débuguer le code
+
+------------------------------------------------------------------------
+
+## Quelques IDE populaires
+
+-   **RStudio** → dédié à R, simple et pédagogique\
+-   **VS Code** → léger, extensible (R + Python et autres langages)\
+-   **Positron** → nouveau projet des créateurs de RStudio (multi-langages)\
+-   **PyCharm** → puissant pour Python
+
+::: callout-note
+👉 Pour commencer : **RStudio** (si R) ou **VS Code** (si Python).\
+Ensuite, chacun choisira selon ses besoins.
+:::
+
+## Documents reproductibles : pourquoi et comment ? 1/2
+
+-   **Problème classique** :
+    -   Le texte est dans Word/PowerPoint\
+    -   Le code dans un script séparé (R, Python)\
+    -   Les graphiques dans des fichiers à part\
+        → Risque : **incohérences, copier-coller, perte de temps**
+
+### Concept clé
+
+-   Un **document reproductible** = texte, code et résultats (graphiques, tableaux) **réunis dans un même fichier**.\
+-   À chaque rendu : le code est **réexécuté** → résultats toujours à jour.
+
+### Avantages
+
+-   Transparence & traçabilité\
+-   Gain de temps (pas de copier-coller)\
+-   Partage et collaboration facilités
+
+## Documents reproductibles : pourquoi et comment ? 2/2
+
+::: callout-note
+C’est ce besoin de **mixer texte + code + résultats** qui a conduit à l’apparition de :\
+- **RMarkdown** (R, puis Python/Julia)\
+- **Jupyter Notebook** (plutôt Python, interactif)\
+- **Quarto** (standard plus récent, multi-langages, multi-supports : HTML, PDF, slides, livres)
+:::
+
+## Quarto
+
+![](images/clipboard-3797935743.png){width="80%" fig-align="center"}
+
+## Jupyter Notebook
+
+![](images/clipboard-1792291619.png){width="65%" fig-align="center"}
+
+## Formats de données textuelles
+
+\
+\
+- Les corpus textuels peuvent venir de **sources très différentes**\
+- Chaque format a ses **avantages et limites**\
+- L’important : savoir **les reconnaître et les charger**
+
+------------------------------------------------------------------------
+
+## Le CSV (Comma-Separated Values)
+
+::: callout-note
+-   Format texte tabulaire, le plus universel.\
+-   Facile à ouvrir dans Excel, R, Python, etc.\
+-   Moins efficace pour les gros volumes de données.
+-   Délimiteurs possibles : `,` (virgule), `;` (point-virgule), `\t` (tabulation)
+:::
+
+``` csv
+id,text,score
+1,"Très bon produit, livraison rapide",5
+2,"Qualité médiocre, je ne recommande pas",1
+```
+
+## Json (JavaScript Object Notation)
+
+::: callout-note
+-   Format texte structuré, hiérarchique, très utilisé pour les API web.
+-   Idéal pour les données imbriquées (ex. : tweets avec métadonnées).
+:::
+
+``` {.json style="font-size:0.85em"}
+[
+  {
+    "id": 1,
+    "auteur": "Alice",
+    "texte": "Super café, très bonne ambiance et service rapide.",
+    "score": 5,
+    "date": "2023-09-12"
+  },
+  {
+    "id": 2,
+    "auteur": "Julien",
+    "texte": "Qualité moyenne, prix trop élevés pour ce que c’est.",
+    "score": 2,
+    "date": "2023-09-14"
+  },
+]
+```
+
+## Charger un fichier de données
+
+\
+\
+
+::::: columns
+::: {.column width="50%" style="font-size:0.65em"}
+### Chemin absolu
+
+-   Adresse complète depuis la racine de l’ordinateur\
+-   Exemple :
+    -   `C:/Users/Olivier/Documents/data/allocine_reviews.csv` (Windows)\
+    -   `/Users/Olivier/Documents/data/allocine_reviews.csv` (Mac/Linux)\
+-   ✅ Toujours exact\
+-   ❌ Varie selon la machine, moins portable
+:::
+
+::: {.column width="50%" style="font-size:0.85em"}
+### Chemin relatif
+
+-   Adresse **par rapport au projet courant**\
+-   Exemple :
+    -   `data/allocine_reviews.csv`\
+-   ✅ Portable et pratique pour partager un projet\
+-   ❌ Dépend de l’organisation des dossiers
+:::
+:::::
+
+::: {.callout-tip title="Bonne pratique"}
+👉 Créer un dossier **data/** dans le projet et utiliser un **chemin relatif** pour tous les fichiers CSV.
+:::
+
+------------------------------------------------------------------------
+
+## Depuis l'interface Rstudio (R) ⚠️ non reproductible avec Quarto
+
+-   Dans RStudio :
+
+    -   Menu **Environment** (en haut à droite)\
+    -   Bouton **Import Dataset**\
+    -   Choisir **From Text (base)** ou **From Text (readr)**
+
+![](images/clipboard-446625356.png){width="45%" fig-align="center"}
+
+------------------------------------------------------------------------
+
+## Le **tidyverse** en R
+
+-   Collection de packages conçus pour rendre **la manipulation des données plus simple et cohérente**.\
+-   Principes :
+    -   Données organisées en **tables** (*data frames*).\
+    -   Chaque **colonne = variable**, chaque **ligne = observation**.\
+    -   Syntaxe claire grâce à l’opérateur **pipe** (`|>` ou `%>%`).
+
+### Principaux packages
+
+-   **readr** → importer des fichiers (CSV, TSV…)\
+-   **dplyr** → manipuler les données (filtrer, trier, transformer)\
+-   **tidyr** → réorganiser les tables\
+-   **ggplot2** → visualisation\
+-   **stringr** → travailler sur du texte\
+-   **tidytext** → analyser du texte
+
+## Tydiverse
+
+![](images/clipboard-2778146906.png)
+
+## Utiliser une fonction : R vs Python
+
+::::: columns
+::: {.column width="50%"}
+### 🟦 R — Packages
+
+1.  Installer le package (une seule fois).\
+2.  Charger le package à chaque nouvelle session.\
+3.  Appeler la fonction fournie par ce package.
+
+Exemple : le package **stringr** contient des fonctions pour manipuler des chaînes de caractères (longueur, remplacement, etc.).\
+
+**Utilisation** : `library(stringr)` puis `str_length("Bonjour")` pour la longueur de "Bonjour".
+:::
+
+::: {.column width="50%"}
+### 🐍 Python — Modules
+
+1.  Installer le module ou package (une seule fois, via `pip` ou `conda`).\
+2.  Importer le module dans votre script ou notebook.\
+3.  Appeler la fonction disponible dans ce module.\
+
+Exemple : le module **numpy** propose des fonctions mathématiques (racine carrée, moyenne, etc.).\
+**Utilisation** : `import numpy as np` puis `np.sqrt(16)` pour la racine carrée de 16.
+:::
+:::::
+
+## Charger un fichier {.scrollable transition="slide"}
+
+::: panel-tabset
+### R
+
+```{r}
+#| echo: true
+#| eval: true
+#| out-width: 100%
+#| fig-align: center
+#| fig-width: 10
+#| fig-height: 3.8
+
+# Exemple en R : ouvrir un CSV
+library(readr)
+
+# Chemin relatif (bonne pratique)
+avis <- read_csv("data/allocine_reviews.csv")
+
+```
+
+### Python
+
+```{python}
+#| echo: true
+#| eval: false
+#| out-width: 100%
+#| fig-align: center
+#| fig-width: 10
+#| fig-height: 3.8
+
+# Exemple en Python : ouvrir un CSV
+import pandas as pd
+
+# Chemin relatif
+avis = pd.read_csv("data/allocine_reviews.csv")
+
+```
+
+### Résultat
+
+```{r}
+#| echo: false
+#| eval: true
+library(knitr)
+knitr::kable(avis)
+```
+:::
+
+------------------------------------------------------------------------
+
+## Manipuler les données tabulaires
+
+-   **Filtrer** les lignes selon une condition (`filter()` en R, `df[df['col'] > val]` en Python)\
+-   **Sélectionner** des colonnes spécifiques (`select()` en R, `df[['col1', 'col2']]` en Python)\
+-   **Créer** de nouvelles colonnes (`mutate()` en R, `df['new_col'] = ...` en Python)\
+-   **Résumer** les données par groupe (`group_by()` + `summarize()` en R, `df.groupby('col').agg(...)` en Python)\
+
+### Système de "pipe"
+
+-   Avec **magrittr** (`%>%`) ou le pipe natif (`|>`), on peut enchaîner plusieurs opérations (`filter()`, `mutate()`, `summarize()`) de façon lisible
+
+::: callout-note
+👉 Tidyverse = boîte à outils essentielle pour **préparer et analyser un corpus textuel**.
+:::
+
+------------------------------------------------------------------------
+
+## Dplyr Cheatsheet
+
+::: reveal-slide
+<iframe src="documents/data_transformation_dplyr.pdf" width="110%" height="750px">
+
+</iframe>
+:::
+
+------------------------------------------------------------------------
+
+## Cheatsheet Python
+
+![](images/clipboard-3332750472.png){width="72%" fig-align="center"}
+
+------------------------------------------------------------------------
+
+## Cheatsheet R Tidyverse
+
+![](images/clipboard-2802726622.png){width="70%" fig-align="center"}
+
+## Récupérer des données en ligne depuis un site web
+
+-   **Web scraping** = extraction automatisée de données depuis des pages web\
+-   Utile pour collecter des avis, commentaires, posts, etc.\
+-   Nécessite de comprendre la structure **HTML** d’une page web
+-   Respecter les **CGU** du site et les **aspects éthiques** (robots.txt, anonymisation)
+
+::: callout-note
+👉 Toujours vérifier les conditions d’utilisation du site avant de scraper. Le fichier robots.txt indique ce qui est autorisé ou non.
+:::
+
+## Comprendre le HTML
+
+:::::: columns
+::: {.column width="60%"}
+### Qu’est-ce que le HTML ?
+
+-   **HyperText Markup Language**\
+-   Langage de balisage utilisé pour **structurer les pages web**\
+-   Les navigateurs lisent le HTML pour afficher texte, images, liens…
+
+### Structure de base
+
+-   **Balises** = éléments entourés de `< >`\
+-   S’ouvrent `<p>` et se ferment `</p>`\
+-   Organisation hiérarchique en **arborescence** (DOM : Document Object Model)\
+:::
+
+:::: {.column width="40%"}
+### Exemples utiles
+
+-   `<h1>` → titre\
+-   `<p>` → paragraphe\
+-   `<a>` → lien\
+-   `<div>` → section, bloc de page
+
+::: {.callout-note title="À retenir"}
+Le HTML ≠ langage de programmation,\
+c’est un **langage de structure**.\
+C’est ce qu’on “scrape” pour collecter les avis.
+:::
+::::
+::::::
+
+## Inspection du site web - Fnac
+
+[![](images/clipboard-44474281.png){width="90%" fig-align="center"}](https://fr.trustpilot.com/review/www.fnac.com)
+
+## Inspection du site web - Decathlon
+
+[![](images/clipboard-3609763666.png){width="90%" fig-align="center"}](https://www.decathlon.fr/r/tente-gonflable-de-camping-air-seconds-5-2-fetb-5-places-2-chambres/_/R-p-324972?mc=8584565)
+
+## Exemple de scraping statique (plus simple)
+
+::::: columns
+::: {.column width="50%"}
+- Pour des pages **simples** où le contenu est directement dans le HTML  
+- Utiliser des packages comme **rvest** (R) ou **BeautifulSoup** (Python)
+- Voir script `test_scrap_marketing_jobs.R`
+
+### Étapes
+
+1. Télécharger le HTML de la page  
+2. Analyser la structure (balises, classes CSS)  
+3. Extraire les éléments souhaités (ex. avis, notes)  
+4. Sauvegarder les données (CSV, JSON)  
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-902722709.png){fig-align="center" width="95%"}
+:::
+:::::
+
+## Réponses d’une requête HTTP
+
+:::::: columns
+::: {.column width="60%"}
+### Qu’est-ce qu’un code HTTP ?
+
+-   Quand on envoie une **requête** à un serveur (page web, API…),\
+    celui-ci renvoie une **réponse**.\
+-   Cette réponse contient :
+    -   le **contenu** (HTML, JSON, fichier…),
+    -   un **code de statut** indiquant si tout s’est bien passé.
+
+### Codes fréquents
+
+-   **200 OK** → la requête a réussi ✅\
+-   **301 / 302** → redirection 🔀\
+-   **403** → accès interdit 🔒\
+-   **404** → page non trouvée ❌\
+-   **500** → erreur interne du serveur 💥
+:::
+
+:::: {.column width="40%"}
+::: {.callout-note title="À retenir"}
+Les codes HTTP sont comme des **panneaux de signalisation** :\
+ils indiquent l’état de la route entre **l'utilisateur** et le **serveur** .
+
+![](images/clipboard-1049580635.png){width="100%"}
+:::
+::::
+::::::
+
+## Qu’est-ce qu’une API ?
+
+:::::: columns
+::: {.column width="60%" style="font-size:0.65em"}
+### Définition
+
+-   **API** = *Application Programming Interface*\
+-   Une **interface** qui permet à deux systèmes informatiques de communiquer\
+-   L’API définit :
+    -   quelles données sont disponibles,\
+    -   comment les demander,\
+    -   dans quel format elles seront renvoyées (souvent JSON).\
+:::
+
+:::: {.column width="40%" style="font-size:0.65em"}
+::: {.callout-note title="Analogie"}
+Une API fonctionne comme **un menu de restaurant** :\
+- le menu = les services disponibles,\
+- la commande = la requête,\
+- le plat servi = la réponse de l’API.
+:::
+::::
+
+![](images/clipboard-874427102.png){fig-align="center" width="65%"}
+::::::
+
+------------------------------------------------------------------------
+
+## Pourquoi utiliser une API ?
+
+:::::: columns
+::: {.column width="50%"}
+### Avantages
+
+-   Données **structurées** (JSON, XML, CSV).\
+-   Informations **fiables et cohérentes**.\
+-   Accès possible depuis différents supports : site web, application mobile, outils internes.\
+-   Plus rapide et plus robuste que le scraping HTML.\
+:::
+
+:::: {.column width="50%"}
+::: {.callout-important title="Comparaison"}
+-   **Scraping** = recopier ce qui s’affiche à l’écran.\
+-   **API** = demander directement au serveur les données brutes.
+
+👉 L’API est **plus simple** à exploiter dès qu’elle est disponible.
+:::
+::::
+::::::
+
+## Utiliser l’API sous-jacente (plus robuste) 1/2
+
+![](images/clipboard-283255231.png)
+
+## Utiliser l’API sous-jacente (plus robuste) 2/2
+
+Beaucoup de sites chargent les avis via une **API JSON** en arrière-plan.\
+On peut la repérer via l’onglet **Network** de DevTools. Voir script `test_scrap_api_decathlon.ipynb`
+
+Exemple Decathlon (avis produit `8584565`) : <https://www.decathlon.fr/fr/ajax/nfs/openvoice/reviews/product/8584565?range=0-9>
+
+-   Paramètre `range=0-9` → renvoie les 10 premiers avis\
+-   On peut incrémenter `range=10-19`, `20-29`, etc. pour paginer\
+-   La réponse est un **JSON** structuré et facile à manipuler en Python
+
+## L’avenir du code : avec les LLMs
+
+:::::: columns
+::: {.column width="50%" style="font-size:0.75em"}
+### Pourquoi utiliser les LLMs ?
+
+-   Outils comme **ChatGPT, Claude, Gemini, Mistral** facilitent la génération de code.\
+-   Gain de temps sur les tâches répétitives (import, nettoyage, visualisation).\
+-   Permettent d’explorer rapidement plusieurs approches.
+
+### Ce qui reste essentiel
+
+-   **Comprendre les concepts** : API, packages, fonctions, corpus, tokenisation, sentiment, topics…\
+-   Être capable de **lire et comprendre** un script généré.\
+-   Savoir écrire un peu de code pour **dialoguer efficacement** avec les LLMs.
+
+### L’avenir
+
+-   Les métiers de demain demanderont plus de **pilotage des IA** que d’écriture manuelle de code.\
+-   Votre valeur ajoutée = **esprit critique**, **capacité d’interprétation** et **rigueur méthodologique**.\
+:::
+
+:::: {.column width="50%"}
+\
+\
+![](images/clipboard-986880177.png){fig-align="center" width="100%"}
+
+::: {.callout-tip title="À retenir"}
+Apprenez les bases,\
+mais pensez déjà à **coder avec les LLMs** et leur utilisation est encouragée.
+:::
+::::
+::::::
+
+------------------------------------------------------------------------
+
+## Annexes — Commandes utiles Quarto
+
+::: callout-tip
+### Créer un projet avec un template
+
+``` bash
+quarto use template haziqj/quarto-revealjs-ubd
+```
+
+#### Générer un rapport
+
+``` bash
+quarto render fichier.qmd
+```
+
+#### Aperçu (live reload)
+
+``` bash
+quarto preview fichier.qmd
+```
+
+#### Export PDF
+
+``` bash
+quarto render fichier.qmd --to pdf
+```
+
+#### Export PowerPoint
+
+``` bash
+quarto render fichier.qmd --to pptx
+```
+:::
+
+## Raccourcis reveal.js
+
+ `O` → **Overview** (vue d’ensemble des slides)  
+- `B` → **Écran noir** (pause, coupure visuelle)  
+- `←` / `→` → Naviguer **slide précédente/suivante**  
+- `↑` / `↓` → Naviguer **dans les sous-slides**  
+- `F` → **Plein écran**  
+- `ESC` → **Quitter le mode plein écran**  
+- `S` → **Mode présentateur** (affiche notes, timer, preview)  
+- `.` → Écran **noir** (équivalent `B`)  
+- `,` → Écran **blanc** (utile si besoin)  
+
+::: {.callout-note title="Astuce"}
+Le plus pratique en cours :  
+- `O` pour retrouver sa slide d’un coup  
+- `S` pour voir ses notes en parallèle  
+:::

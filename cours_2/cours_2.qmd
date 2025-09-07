@@ -1,0 +1,50 @@
+---
+title: "Études qualitatives sur le web (netnographie)"
+subtitle: "Introduction au NLP/TALN - Traitement des données textuelles"
+author:
+  - name: "Olivier Caron"
+    affiliations: "Paris Dauphine - PSL"
+format:
+  ubd-revealjs:
+    self-contained: false
+    chalkboard: true
+    transition: fade
+    auto-stretch: false
+    width: 1250
+    height: 760
+    toc: false
+    toc-depth: 1
+    code-block-height: 700px
+execute:
+  echo: true
+bibliography: refs.bib
+revealjs-plugins:
+  - editable
+filters:
+  - editable
+---
+
+
+## Pré-traitement du corpus
+
+\
+
+### Pourquoi nettoyer les données textuelles ?
+
+-   Les textes bruts (avis, tweets, posts) contiennent du **bruit** : ponctuation, chiffres, emojis, urls…\
+-   Le nettoyage améliore la qualité des analyses (fréquences, co-occurrences, modèles).\
+-   **Objectif** : obtenir un corpus standardisé, cohérent et exploitable.
+
+------------------------------------------------------------------------
+
+## Pré-traitement : opérations courantes
+
+-   Passage en **minuscules**\
+-   Suppression de la **ponctuation / chiffres / urls**\
+-   Suppression des **stopwords** (*mots vides* : le, la, de, un…)\
+-   **Stemming** : réduire les mots à leur racine (*ex. aimer, aimait → aim*)\
+-   **Lemmatisation** : réduire les mots à leur forme canonique (*aimait → aimer*)
+
+::: callout-note
+👉 Ces étapes peuvent être adaptées selon la recherche : ne pas trop nettoyer au risque de perdre du sens ou des informations.
+:::
