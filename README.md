@@ -8,13 +8,14 @@ Ce dépôt contient les supports de cours (slides **Quarto / reveal.js**) et les
 
 | Séance | Thème | Slides | Scripts associés |
 |--------|-------|--------|------------------|
-| **Séance 1** | Introduction & **Netnographie** | [📑 cours_1.html](https://oliviercaron.github.io/etudes_qualitatives_web/cours_1/cours_1.html) | [scraping_test.R](https://github.com/oliviercaron/etudes_qualitatives_web/blob/main/cours_1/scraping_test.R) <br> [test_scrap_api_decathlon.ipynb](https://github.com/oliviercaron/etudes_qualitatives_web/blob/main/cours_1/test_scrap_api_decathlon.ipynb) <br> [test_scrap_marketing_jobs.R](https://github.com/oliviercaron/etudes_qualitatives_web/blob/main/cours_1/test_scrap_marketing_jobs.R) |
-| **Séance 2** | Introduction à **R / Python / Quarto** & traitement des données | [📑 cours_2.html](https://oliviercaron.github.io/etudes_qualitatives_web/cours_2/cours_2.html) | *(aucun script pour le moment)* |
-| **Séance 3** | **Scraping** des données en ligne (statique & dynamique) | *(à venir)* | |
+| **Séance 1** | Introduction & **Netnographie** | [📑 cours_1.html](https://oliviercaron.github.io/etudes_qualitatives_web/cours_1/cours_1.html) | *(aucun script pour le moment)* |
+| **Séance 2** | Introduction à **R / Python / Quarto** & traitement des données | [📑 cours_1.html](https://oliviercaron.github.io/etudes_qualitatives_web/cours_1/cours_1.html) | *(aucun script pour le moment)* |
+| **Séance 3** | **Scraping** des données en ligne (statique & dynamique) | *(à venir)* | [scraping_test.R](https://github.com/oliviercaron/etudes_qualitatives_web/blob/main/cours_1/scraping_test.R) <br> [test_scrap_api_decathlon.ipynb](https://github.com/oliviercaron/etudes_qualitatives_web/blob/main/cours_1/test_scrap_api_decathlon.ipynb) <br> [test_scrap_marketing_jobs.R](https://github.com/oliviercaron/etudes_qualitatives_web/blob/main/cours_1/test_scrap_marketing_jobs.R) |
 | **Séance 4** | **Analyse exploratoire** & statistiques lexicales | *(à venir)* | |
 | **Séance 5** | **Analyse de sentiment** (dictionnaires & ML supervisé) | *(à venir)* | |
 | **Séance 6** | **Topic modeling & représentations vectorielles** (LDA, STM, embeddings) | *(à venir)* | |
 | **Séance 7** | **Transformers & LLMs** appliqués au marketing digital | *(à venir)* | |
+
 
 ---
 
