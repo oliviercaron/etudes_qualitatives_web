@@ -1,0 +1,74 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+## Quarto
+
+### Titre 3
+
+**Analyse 1** : Il s'agit d'une communauté de ....
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+## Chargement des données
+
+Chargement du package readr
+
+```{r}
+library(tidyverse)
+```
+
+### Ouverture du fichier de données csv
+
+```{r}
+readr::read_csv("data/allocine_reviews.csv")
+
+avis_allocine <- read_csv("data/allocine_reviews.csv")
+```
+
+## Ouverture du fichier de données service public
+
+```{r}
+avis_spp_paris <- read_csv("data/spp_reviews.csv") %>%
+  filter(intitule_departement_usager == "Paris") %>%
+  select(id_experience, intitule_departement_usager, ressenti_usager)
+```
+
+### Proportion d'usager parisien dans les avis
+
+![](images/clipboard-3540714191.png)
+
+```{r}
+table(avis_spp$intitule_departement_usager)
+```
+
+## Sélection des colonnes importantes
+
+```{r}
+
+
+```
+
+```{r}
+list.files()
+```
+
+```{r}
+1 + 1
+cat("bonjour")
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
