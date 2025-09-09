@@ -20,7 +20,11 @@ Ce dépôt contient les supports de cours (slides **Quarto / reveal.js**) et les
 
 - [Fundamentals of Data Visualization – Claus O. Wilke](https://clauswilke.com/dataviz/)  
 - [Modern Data Visualization with R – Robert Kabacoff](https://rkabacoff.github.io/datavis/)  
-- [Data Visualization: A practical introduction – Kieran Healy](https://socviz.co/index.html#preface)  
+- [Data Visualization: A practical introduction – Kieran Healy](https://socviz.co/index.html#preface)
+
+## Cheatsheets des packages importants : 
+
+- [Cheat Sheets - Posit](https://rstudio.github.io/cheatsheets/)
 
 ---
 
