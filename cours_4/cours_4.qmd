@@ -1,0 +1,240 @@
+---
+title: "Études qualitatives sur le web (netnographie)"
+subtitle: "Introduction au NLP/TALN - Traitement des données textuelles"
+author:
+  - name: "Olivier Caron"
+    affiliations: "Paris Dauphine - PSL"
+format:
+  ubd-revealjs:
+    self-contained: false
+    chalkboard: true
+    transition: fade
+    auto-stretch: false
+    width: 1250
+    height: 760
+    toc: false
+    toc-depth: 1
+    code-block-height: 700px
+execute:
+  echo: true
+bibliography: refs.bib
+revealjs-plugins:
+  - editable
+filters:
+  - editable
+---
+
+## Révolution du texte : production & lecture
+
+-   Explosion de la **production textuelle** (posts, avis, tweets, articles scientifiques).\
+-   Conséquence : **impossible de tout lire** → besoin d’automatisation.\
+-   **Révolution de la lecture** : moteurs de recherche, curation, algorithmes de recommandation.
+
+::: callout-note
+👉 En marketing digital : les consommateurs produisent massivement du texte (avis, posts, hashtags).
+:::
+
+------------------------------------------------------------------------
+
+## Le rôle du NLP/TAL
+
+-   **NLP = Traitement Automatique du Langage**\
+-   Fonctions principales :
+    -   Détection de langue\
+    -   Analyse de sentiments / émotions\
+    -   Extraction de sujets (topic modeling)\
+    -   Analyse syntaxique et relations entre mots\
+    -   Détection d’intentions, tonalités
+
+::: callout-tip
+👉 Pour la netnographie : permet d’exploiter des corpus immenses de conversations en ligne.
+:::
+
+------------------------------------------------------------------------
+
+## Héritages : linguistique et informatique
+
+-   Le NLP s’appuie sur deux champs académiques :
+    -   **Linguistique** : structures et usages du langage\
+    -   **Informatique** : traitement et automatisation\
+-   Deux visions :
+    -   Langue comme **structure** (systèmes, règles)\
+    -   Langage comme **usage** (interaction, pragmatique)
+
+------------------------------------------------------------------------
+
+## Saussure : Langage, Langue, Parole
+
+-   **Langage** : faculté universelle et innée de communication\
+-   **Langue** : système de signes et de règles partagé par une communauté\
+-   **Parole** : usage individuel de la langue (style, variation)\
+-   **Texte** : transcription de la parole
+
+::: callout-note
+👉 En marketing : distinguer ce qui relève du système (hashtags, codes de communauté) vs. la créativité individuelle (mèmes, styles).
+:::
+
+------------------------------------------------------------------------
+
+## Chomsky : Syntaxe et grammaire générative
+
+-   Une grammaire générative → produire une infinité de phrases à partir d’un nombre fini de règles.\
+-   Analyse centrée sur la **compétence linguistique**.\
+-   Héritages :
+    -   **Arbres syntaxiques (Tesnière)**\
+    -   **Treebanks modernes** pour entraînement des parsers
+
+::: callout-tip
+👉 Applications marketing : modèles génératifs (GPT) produisant du contenu syntaxiquement correct mais parfois **absurde** → question de sens et pertinence.
+:::
+
+------------------------------------------------------------------------
+
+## Firth & Zipf : Sémantique distributionnelle
+
+-   **Firth (1957)** : “You shall know a word by the company it keeps”\
+    → un mot prend sens dans ses co-occurrences.\
+-   **Zipf** : lois de fréquence du langage.\
+-   Héritages : analyse de co-occurrences, lexicométrie.
+
+::: callout-note
+👉 En netnographie : étudier les **mots qui apparaissent ensemble** dans des avis ou tweets pour comprendre les associations autour d’une marque.
+:::
+
+------------------------------------------------------------------------
+
+## Jakobson : Fonctions du langage
+
+-   Fonctions de la communication :
+    -   **Référentielle** : décrire le monde (ex. un avis factuel).\
+    -   **Expressive** : exprimer une émotion (ex. “j’adore ce produit !”).\
+    -   **Conative** : influencer le destinataire (ex. “achetez-le !”).\
+    -   **Phatique** : maintenir le contact (ex. “allo ? vous êtes là ?”).\
+    -   **Métalinguistique** : parler du code (ex. hashtags explicatifs).\
+    -   **Poétique** : forme créative (ex. slogans, jeux de mots).
+
+::: callout-tip
+👉 Marketing digital = art de combiner **expressif + conatif + poétique** dans les campagnes.
+:::
+
+------------------------------------------------------------------------
+
+## Austin : Théorie des actes de langage
+
+-   Un énoncé ne décrit pas seulement, il **agit** :
+    -   **Locutoire** : énoncé correct (ex. “y a-t-il du sel ?”)\
+    -   **Illocutoire** : intention (→ “passe-moi le sel”)\
+    -   **Perlocutoire** : effet sur l’autre (il donne la salière)
+
+::: callout-note
+👉 En marketing : un post de consommateur **influence** les autres → langage comme acte.
+:::
+
+------------------------------------------------------------------------
+
+## Genette : Intertextualité
+
+-   Un texte prend sens dans ses **références aux autres textes** :
+    -   Citations, hashtags, memes, bibliographies.\
+    -   Effet palimpseste : accumulation de couches de sens.
+
+::: callout-tip
+👉 En netnographie : un avis ou un post doit être analysé dans son **écosystème discursif** (réponses, partages, hashtags).
+:::
+
+------------------------------------------------------------------------
+
+## Nouvelles méthodologies (Humphreys & Wang 2018)
+
+1.  Formulation de la question de recherche\
+2.  Définition des construits\
+3.  Récolte des données\
+4.  Opérationnalisation des construits\
+5.  Analyse et interprétation\
+6.  Validation des résultats
+
+::: callout-note
+👉 En netnographie digitale : permet de passer du **scraping** brut à une **recherche rigoureuse**.
+:::
+
+------------------------------------------------------------------------
+
+## Applications en sciences sociales et marketing
+
+-   **Sociologie** : Word2Vec et classes sociales (Kozlowski et al. 2019).\
+-   **Psychologie** : dictionnaires LIWC (Pennebaker) pour analyser les émotions.\
+-   **Marketing & Management** :
+    -   Analyse de sentiment en finance.\
+    -   Recherche consommateur (Humphreys & Wang 2018).\
+    -   Organisation et éthique (Lock & Seele 2015, Kobayashi et al. 2018).
+
+------------------------------------------------------------------------
+
+## Conclusion
+
+-   Le **texte** est devenu une matière première massive.\
+-   Le NLP/TAL permet :
+    -   De nouveaux terrains (avis, réseaux sociaux, forums).\
+    -   De nouvelles méthodes (analyse lexicale, syntaxique, sémantique, pragmatique).\
+    -   De nouveaux objets (discours de marque, avis, interactions).
+
+::: callout-tip
+👉 Pour le marketing digital et la netnographie : comprendre que **le langage est à la fois structure, sens et action**.
+:::
+
+------------------------------------------------------------------------
+
+## Pré-traitement du corpus
+
+\
+
+### Pourquoi nettoyer les données textuelles ?
+
+-   Les textes bruts (avis, tweets, posts) contiennent du **bruit** : ponctuation, chiffres, emojis, urls…\
+-   Le nettoyage améliore la qualité des analyses (fréquences, co-occurrences, modèles).\
+-   **Objectif** : obtenir un corpus standardisé, cohérent et exploitable.
+
+------------------------------------------------------------------------
+
+## Pré-traitement : opérations courantes
+
+-   Passage en **minuscules**\
+-   Suppression de la **ponctuation / chiffres / urls**\
+-   Suppression des **stopwords** (*mots vides* : le, la, de, un…)\
+-   **Stemming** : réduire les mots à leur racine (*ex. aimer, aimait → aim*)\
+-   **Lemmatisation** : réduire les mots à leur forme canonique (*aimait → aimer*)
+
+::: callout-note
+👉 Ces étapes peuvent être adaptées selon la recherche : ne pas trop nettoyer au risque de perdre du sens ou des informations.
+:::
+
+------------------------------------------------------------------------
+
+## Analyse en dépendances syntaxiques (Dependency Parsing) 1/3
+
+L’**analyse en dépendances syntaxiques** est une étape du traitement automatique du langage naturel (TALN) qui vise à représenter la structure d’une phrase à partir des **relations de dépendance entre mots**.\
+Elle est généralement formalisée sous forme de **graphes orientés** (souvent en arbres), où :
+
+-   les **nœuds** correspondent aux mots (*tokens*),\
+-   les **arcs** représentent les relations syntaxiques (par ex. *nsubj* = sujet, *obj* = objet, *det* = déterminant).
+
+## Analyse en dépendances syntaxiques (Dependency Parsing) 2/3
+
+Cette approche permet d’identifier qui fait quoi dans une phrase et de modéliser des structures grammaticales complexes.\
+Elle est largement utilisée dans des applications comme :
+
+-   l’**extraction d’information** (entités et relations),\
+-   le **résumé automatique** et la **recherche d’information**,\
+-   l’**analyse des discours** sur les réseaux sociaux.
+
+Un cadre de référence majeur pour cette tâche est le projet [**Universal Dependencies**](https://universaldependencies.org), qui propose des annotations cohérentes pour de nombreuses langues.
+
+## Analyse en dépendances syntaxiques (Dependency Parsing) 3/3
+
+![](images/clipboard-2484643215.png)
+
+## Exemple code
+
+[**Voir l’exemple de code ici**](https://oliviercaron.github.io/systematic_lit_review/annotations.html#part-of-speech-tagging-with-udpipe-straka-strakova-2017-tokenizing)
+
+[![Exemple de code udpipe](images/clipboard-3249784408.png)](https://oliviercaron.github.io/systematic_lit_review/annotations.html#part-of-speech-tagging-with-udpipe-straka-strakova-2017-tokenizing)
