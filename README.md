@@ -16,7 +16,11 @@ Ce dépôt contient les supports de cours (slides **Quarto / reveal.js**) et les
 | **Séance 6** | **Topic modeling & représentations vectorielles** (LDA, STM, embeddings) | [📑 cours_6.html](https://oliviercaron.github.io/etudes_qualitatives_web/cours_6/cours_6.html) | |
 | **Séance 7** | **Transformers & LLMs** appliqués au marketing digital | [📑 cours_7.html](https://oliviercaron.github.io/etudes_qualitatives_web/cours_7/cours_7.html) | |
 
+## 📊 Ressources complémentaires : Visualisation de données
 
+- [Fundamentals of Data Visualization – Claus O. Wilke](https://clauswilke.com/dataviz/)  
+- [Modern Data Visualization with R – Robert Kabacoff](https://rkabacoff.github.io/datavis/)  
+- [Data Visualization: A practical introduction – Kieran Healy](https://socviz.co/index.html#preface)  
 
 ---
 
