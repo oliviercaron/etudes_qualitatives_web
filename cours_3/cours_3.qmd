@@ -68,24 +68,34 @@ C’est ce qu’on “scrape” pour collecter les avis.
 ::::
 ::::::
 
-## SSR vs SPA & API cachée
 
+## Deux architectures fréquentes
 :::: columns
-::: {.column width="55%"}
-### Deux architectures fréquentes
-- **SSR** (Server-Side Rendering) : HTML **complet** livré par le serveur → scraping simple.  
-- **SPA** (Single Page App) : HTML initial minimal, contenu chargé via **JavaScript** → penser **API sous-jacente**.  
+::: {.column width="55%" style="font-size:0.85em"}
+
+
+- **SSR** (*Server-Side Rendering*) : le serveur renvoie une page HTML **complète**.  
+  → Scraping direct possible (ex. `requests + BeautifulSoup`, `rvest`).  
+
+- **CSR** (*Client-Side Rendering*, souvent via une **SPA** comme React/Vue/Angular) :  
+  le serveur envoie un HTML **minimal**, et le contenu est chargé ensuite par **JavaScript**.  
+  → Le scraping classique ne voit pas ces données → il faut exploiter l’**API interne**.
 :::
-::: {.column width="45%"}
+::: {.column width="45%" style="font-size:0.85em"}
 ### Réflexe DevTools
-- Onglet **Network** (XHR/Fetch) pour repérer les **endpoints JSON**.  
-- Examiner **params** (pagination, filtres), **headers**, **auth** éventuelle.  
+- Onglet **Network** → repérer les requêtes **XHR / Fetch** qui récupèrent du **JSON**.  
+- Ces requêtes révèlent souvent une **API interne** (non documentée) que la page utilise.  
+- Examiner les **params** (pagination, filtres), les **headers** (User-Agent, cookies),  
+  et vérifier une éventuelle **authentification**.  
 :::
 ::::
 
-::: callout-tip
-Si une page « ne contient rien » côté HTML, **inspecter l’API** qui remplit la page.  
-C’est souvent **plus stable** que le DOM.
+::: {.callout-tip title="Astuce" style="font-size:0.75em"}
+Si le HTML semble « vide », ce n’est pas un bug :  
+la page est rendue en **CSR**.  
+
+👉 Observer l’onglet **Network** permet d’identifier l’**API interne** utilisée par le site,  
+souvent plus **stable** et **propre** à exploiter que le DOM.
 :::
 
 
@@ -122,17 +132,20 @@ C’est souvent **plus stable** que le DOM.
 
 :::: columns
 
-::: {.column width="60%"}
+::: {.column width="50%" style="font-size:0.95em"}
 ### Pourquoi les sélecteurs sont essentiels ?
+\
 
-- Lorsqu’on scrape, il faut **indiquer au programme où chercher**.  
+- Lorsqu’on scrape, il faut **indiquer au programme où chercher**.\
+\
 - Deux outils principaux :  
   - **CSS selectors** : utilisés aussi dans le design web (`.classe`, `#id`, `div > p`).  
   - **XPath** : langage plus puissant, qui décrit le chemin dans l’arborescence HTML.  
 :::
 
-::: {.column width="40%"}
+::: {.column width="50%" style="font-size:1em"}
 ### Exemples rapides
+\
 
 - CSS : `div.review p.text` → récupère le texte des avis.  
 - XPath : `//div[@class='review']//p[@class='text']`  
@@ -142,17 +155,17 @@ C’est souvent **plus stable** que le DOM.
 
 ::::  
 
-## Rendre ses sélecteurs robustes
+## Rendre ses sélecteurs robustes (en cas d’automatisation)
 
-- Préférer des **classes sémantiques** stables (ex. `data-*`).  
+- Préférer des **classes sémantiques** stables (ex. attributs `data-*`).  
 - Éviter les sélecteurs trop **fragiles** (`nth-child`).  
 - Mettre en place un **plan B** : CSS **et** XPath.  
-- **Versionner** ses sélecteurs (notes de changement).  
+- **Documenter et versionner** ses sélecteurs (notes de changement).  
 
-::: callout-important
-Mettre en place des **tests de fumée** : vérifier régulièrement qu’un petit échantillon s’extrait encore (alerte si 0 résultat).
+::: {.callout-important title="Attention" style="font-size:0.8em"}
+Mettre en place des **tests de fumée** : vérifier régulièrement qu’un petit échantillon s’extrait encore.  
+👉 Déclencher une alerte si **0 résultat**.
 :::
-
 
 ## Réponses d’une requête HTTP
 
@@ -371,6 +384,9 @@ Rester du côté « responsable » : ne pas dégrader les services, ne pas outre
 ---
 
 ## À retenir
+\
+
+\
 
 ::: callout-note
 - **Selenium/Playwright** = des robots qui se font passer pour un utilisateur.  
@@ -408,8 +424,8 @@ Rester du côté « responsable » : ne pas dégrader les services, ne pas outre
 ![](images/clipboard-986880177.png){fig-align="center" width="100%"}
 
 ::: {.callout-tip title="À retenir"}
-Apprenez les bases,\
-mais pensez déjà à **coder avec les LLMs** et leur utilisation est encouragée.
+Apprenez les bases, mais pensez déjà à **coder avec les LLMs**.\
+Leur utilisation est encouragée dans ce cours.
 :::
 ::::
 ::::::
