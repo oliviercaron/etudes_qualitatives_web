@@ -28,6 +28,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="cours_4_files/libs/revealjs/dist/theme/quarto-7305b09eb733fa85903ef661c69bedac.css">
   <link href="cours_4_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -167,67 +232,23 @@ Olivier Caron
 </div>
 </div>
 </section>
-<section id="le-rôle-du-nlptal" class="slide level2">
-<h2>Le rôle du NLP/TAL</h2>
-<ul>
-<li><strong>NLP = Traitement Automatique du Langage</strong><br>
-</li>
-<li>Fonctions principales :
-<ul>
-<li>Détection de langue<br>
-</li>
-<li>Analyse de sentiments / émotions<br>
-</li>
-<li>Extraction de sujets (topic modeling)<br>
-</li>
-<li>Analyse syntaxique et relations entre mots<br>
-</li>
-<li>Détection d’intentions, tonalités</li>
-</ul></li>
-</ul>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p>👉 Pour la netnographie : permet d’exploiter des corpus immenses de conversations en ligne.</p>
-</div>
-</div>
-</div>
+<section>
+<section id="fondements-théoriques-du-langage-pour-la-netnographie" class="title-slide slide level1 transition-slide-ubdblue center">
+<h1>Fondements théoriques du langage pour la netnographie</h1>
+
 </section>
-<section id="héritages-linguistique-et-informatique" class="slide level2">
-<h2>Héritages : linguistique et informatique</h2>
-<ul>
-<li>Le NLP s’appuie sur deux champs académiques :
-<ul>
-<li><strong>Linguistique</strong> : structures et usages du langage<br>
-</li>
-<li><strong>Informatique</strong> : traitement et automatisation<br>
-</li>
-</ul></li>
-<li>Deux visions :
-<ul>
-<li>Langue comme <strong>structure</strong> (systèmes, règles)<br>
-</li>
-<li>Langage comme <strong>usage</strong> (interaction, pragmatique)</li>
-</ul></li>
-</ul>
-</section>
-<section id="saussure-langage-langue-parole" class="slide level2">
-<h2>Saussure : Langage, Langue, Parole</h2>
-<ul>
-<li><strong>Langage</strong> : faculté universelle et innée de communication<br>
-</li>
-<li><strong>Langue</strong> : système de signes et de règles partagé par une communauté<br>
-</li>
-<li><strong>Parole</strong> : usage individuel de la langue (style, variation)<br>
-</li>
-<li><strong>Texte</strong> : transcription de la parole</li>
-</ul>
+<section id="deux-perspectives-qui-se-complètent" class="slide level2">
+<h2>Deux perspectives qui se complètent</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="perspective-structuraliste">Perspective <strong>structuraliste</strong></h3>
+<p>La langue comme <strong>système</strong> (catégories, oppositions, règles).<br>
+Finalité : décrire l’<strong>architecture</strong> qui stabilise les usages.</p>
+</div><div class="column" style="width:50%;">
+<h3 id="perspective-pragmatique-usage">Perspective <strong>pragmatique / usage</strong></h3>
+<p>Le langage comme <strong>activité</strong> située et sociale.<br>
+Finalité : comprendre <strong>ce que fait</strong> un message et comment il circule.</p>
+</div></div>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -237,25 +258,26 @@ Olivier Caron
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>👉 En marketing : distinguer ce qui relève du système (hashtags, codes de communauté) vs.&nbsp;la créativité individuelle (mèmes, styles).</p>
+<p>Ces perspectives s’articulent : la <strong>structure</strong> rend les énoncés intelligibles ; l’<strong>usage</strong> leur donne portée et effets.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="chomsky-syntaxe-et-grammaire-générative" class="slide level2">
-<h2>Chomsky : Syntaxe et grammaire générative</h2>
+<section id="saussure-système-de-signes-et-niveaux-danalyse" class="slide level2">
+<h2>Saussure : système de signes et niveaux d’analyse</h2>
+<div class="columns">
+<div class="column" style="width:58%;">
 <ul>
-<li>Une grammaire générative → produire une infinité de phrases à partir d’un nombre fini de règles.<br>
+<li><strong>Langage</strong> : capacité humaine de signifier.<br>
 </li>
-<li>Analyse centrée sur la <strong>compétence linguistique</strong>.<br>
+<li><strong>Langue</strong> : <strong>code partagé</strong> (unités, oppositions, règles).<br>
 </li>
-<li>Héritages :
-<ul>
-<li><strong>Arbres syntaxiques (Tesnière)</strong><br>
+<li><strong>Parole</strong> : réalisation <strong>située</strong> de la langue (style, variations).<br>
 </li>
-<li><strong>Treebanks modernes</strong> pour entraînement des parsers</li>
-</ul></li>
+<li><strong>Texte</strong> : matérialisation de la parole (post, avis, thread).</li>
 </ul>
+<p><strong>Conséquence</strong> : distinguer conventions <strong>collectives</strong> (formats, hashtags, routines) et innovations <strong>singulières</strong> (mèmes, détournements).</p>
+</div><div class="column" style="width:42%;">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -265,21 +287,39 @@ Olivier Caron
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>👉 Applications marketing : modèles génératifs (GPT) produisant du contenu syntaxiquement correct mais parfois <strong>absurde</strong> → question de sens et pertinence.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="firth-zipf-sémantique-distributionnelle" class="slide level2">
-<h2>Firth &amp; Zipf : Sémantique distributionnelle</h2>
+<p><strong>Notions clés</strong></p>
 <ul>
-<li><strong>Firth (1957)</strong> : “You shall know a word by the company it keeps”<br>
-→ un mot prend sens dans ses co-occurrences.<br>
+<li>La <strong>valeur</strong> d’un signe dépend des <strong>différences</strong> avec les autres signes.<br>
 </li>
-<li><strong>Zipf</strong> : lois de fréquence du langage.<br>
-</li>
-<li>Héritages : analyse de co-occurrences, lexicométrie.</li>
+<li>Le <strong>système</strong> donne un cadre ; l’<strong>usage</strong> l’actualise et l’infléchit.</li>
 </ul>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="chomsky-tesnière-structure-dépendances-générativité" class="slide level2">
+<h2>Chomsky &amp; Tesnière : structure, dépendances, générativité</h2>
+<div class="columns">
+<div class="column" style="font-size:0.75em">
+<p><br>
+</p>
+<ul>
+<li><strong>Grammaire générative</strong> : un ensemble <strong>fini de règles</strong> → une infinité d’énoncés.<br>
+</li>
+<li><strong>Compétence</strong> (connaissance implicite) vs <strong>performance</strong> (usage effectif).<br>
+</li>
+<li><strong>Arbres</strong> (constituants/dépendances) : qui gouverne qui ? quelle <strong>portée</strong> pour la négation, les modaux, les intensifs ?</li>
+</ul>
+<h3 id="apport-interprétatif">Apport interprétatif</h3>
+<p><br>
+La structure <strong>module</strong> le sens :</p>
+<ul>
+<li>“pas <strong>vraiment</strong> satisfaisant” ≠ “<strong>vraiment</strong> pas satisfaisant”.<br>
+</li>
+<li>Les relations syntaxiques révèlent <strong>cibles</strong> (produit, marque, service) et <strong>attributs</strong> (prix, qualité, délai).</li>
+</ul>
+</div><div class="column" style="width:43%;">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -289,108 +329,89 @@ Olivier Caron
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>👉 En netnographie : étudier les <strong>mots qui apparaissent ensemble</strong> dans des avis ou tweets pour comprendre les associations autour d’une marque.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="jakobson-fonctions-du-langage" class="slide level2">
-<h2>Jakobson : Fonctions du langage</h2>
+<p><strong>Indicateurs récurrents</strong></p>
 <ul>
-<li>Fonctions de la communication :
-<ul>
-<li><strong>Référentielle</strong> : décrire le monde (ex. un avis factuel).<br>
+<li>Négation<br>
 </li>
-<li><strong>Expressive</strong> : exprimer une émotion (ex. “j’adore ce produit !”).<br>
+<li>Modalité (“il faudrait”, “on doit”)<br>
 </li>
-<li><strong>Conative</strong> : influencer le destinataire (ex. “achetez-le !”).<br>
+<li>Intensité (“très”, “trop”, “vraiment”)<br>
 </li>
-<li><strong>Phatique</strong> : maintenir le contact (ex. “allo ? vous êtes là ?”).<br>
-</li>
-<li><strong>Métalinguistique</strong> : parler du code (ex. hashtags explicatifs).<br>
-</li>
-<li><strong>Poétique</strong> : forme créative (ex. slogans, jeux de mots).</li>
-</ul></li>
+<li>Comparaison (“plus/moins que”)</li>
 </ul>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p>👉 Marketing digital = art de combiner <strong>expressif + conatif + poétique</strong> dans les campagnes.</p>
 </div>
 </div>
 </div>
+</div></div>
 </section>
-<section id="austin-théorie-des-actes-de-langage" class="slide level2">
-<h2>Austin : Théorie des actes de langage</h2>
-<ul>
-<li>Un énoncé ne décrit pas seulement, il <strong>agit</strong> :
-<ul>
-<li><strong>Locutoire</strong> : énoncé correct (ex. “y a-t-il du sel ?”)<br>
-</li>
-<li><strong>Illocutoire</strong> : intention (→ “passe-moi le sel”)<br>
-</li>
-<li><strong>Perlocutoire</strong> : effet sur l’autre (il donne la salière)</li>
-</ul></li>
-</ul>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>👉 En marketing : un post de consommateur <strong>influence</strong> les autres → langage comme acte.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="genette-intertextualité" class="slide level2">
-<h2>Genette : Intertextualité</h2>
-<ul>
-<li>Un texte prend sens dans ses <strong>références aux autres textes</strong> :
-<ul>
-<li>Citations, hashtags, memes, bibliographies.<br>
-</li>
-<li>Effet palimpseste : accumulation de couches de sens.</li>
-</ul></li>
-</ul>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p>👉 En netnographie : un avis ou un post doit être analysé dans son <strong>écosystème discursif</strong> (réponses, partages, hashtags).</p>
-</div>
-</div>
-</div>
-</section>
-<section id="nouvelles-méthodologies-humphreys-wang-2018" class="slide level2">
-<h2>Nouvelles méthodologies (Humphreys &amp; Wang 2018)</h2>
+<section id="jakobson-fonctions-du-langage-et-formats-de-message" class="slide level2">
+<h2>Jakobson : fonctions du langage et formats de message</h2>
+<p>Les messages combinent des <strong>fonctions</strong> avec des dominantes variables :</p>
 <ol type="1">
-<li>Formulation de la question de recherche<br>
+<li><strong>Référentielle</strong> — informer sur le monde (faits, caractéristiques).<br>
 </li>
-<li>Définition des construits<br>
+<li><strong>Expressive</strong> — manifester une attitude ou une émotion.<br>
 </li>
-<li>Récolte des données<br>
+<li><strong>Conative</strong> — orienter le destinataire (inciter, solliciter).<br>
 </li>
-<li>Opérationnalisation des construits<br>
+<li><strong>Phatique</strong> — ouvrir/entretenir le canal d’échange.<br>
 </li>
-<li>Analyse et interprétation<br>
+<li><strong>Métalinguistique</strong> — expliciter le code (définitions, balises).<br>
 </li>
-<li>Validation des résultats</li>
+<li><strong>Poétique</strong> — valoriser la forme (style, rime, mème, slogan).</li>
 </ol>
+<p>Les <strong>genres</strong> (unboxing, SAV, teasing, témoignage) stabilisent des combinaisons de fonctions.</p>
+</section>
+<section id="austin-le-langage-comme-action" class="slide level2">
+<h2>Austin : le langage comme action</h2>
+<blockquote>
+<p>“Dire, c’est <strong>faire</strong>.”</p>
+</blockquote>
+<div class="columns">
+<div class="column" style="width:58%;">
+<ul>
+<li><strong>Locutoire</strong> : forme et contenu littéral.<br>
+</li>
+<li><strong>Illocutoire</strong> : <strong>acte</strong> réalisé (remercier, promettre, blâmer, recommander, alerter…).<br>
+</li>
+<li><strong>Perlocutoire</strong> : <strong>effet</strong> produit (convaincre, mobiliser, dissuader, apaiser…).</li>
+</ul>
+<p>Un énoncé <strong>évalue</strong> et <strong>agit</strong> : il oriente l’échange, peut enclencher des réponses, amplifier ou clore une discussion.</p>
+</div><div class="column" style="width:42%;">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Indices</strong></p>
+<ul>
+<li>Verbes et formules illocutoires (“je recommande / déconseille”)<br>
+</li>
+<li>Traces perlocutoires (réponses, relais, reconfigurations du fil)</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="firth-harris-le-sens-par-les-contextes" class="slide level2">
+<h2>Firth &amp; Harris : le sens par les contextes</h2>
+<blockquote>
+<p>“You shall know a word by the <strong>company</strong> it keeps.” — <em>J. R. Firth</em></p>
+</blockquote>
+<div class="columns">
+<div class="column" style="width:57%;">
+<ul>
+<li><strong>Hypothèse distributionnelle</strong> : des mots partageant des <strong>contextes</strong> présentent des <strong>proximités de sens</strong>.<br>
+</li>
+<li>Le <strong>voisinage</strong> (cooccurrences, fenêtres, dépendances) caractérise les <strong>associations</strong> : par exemple <em>qualité</em> ↔︎ <em>premium</em>, <em>prix</em> ↔︎ <em>juste</em> / <em>trop</em>.</li>
+</ul>
+<p><strong>Conséquence</strong> : le sens <strong>relationnel</strong> se lit dans les <strong>profils de contexte</strong> (collocations, patrons d’usage, régularités de voisinage).</p>
+</div><div class="column" style="width:43%;">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -400,42 +421,37 @@ Olivier Caron
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>👉 En netnographie digitale : permet de passer du <strong>scraping</strong> brut à une <strong>recherche rigoureuse</strong>.</p>
+<p><strong>Pratiques d’observation</strong></p>
+<ul>
+<li>Repérer cooccurrences fortes<br>
+</li>
+<li>Identifier collocations (“service client”, “trop + adjectif”)<br>
+</li>
+<li>Suivre les patrons relationnels stables</li>
+</ul>
 </div>
 </div>
 </div>
+</div></div>
 </section>
-<section id="applications-en-sciences-sociales-et-marketing" class="slide level2">
-<h2>Applications en sciences sociales et marketing</h2>
+<section id="zipf-fréquences-longue-traîne-et-visibilité" class="slide level2">
+<h2>Zipf : fréquences, longue traîne et visibilité</h2>
+<div class="columns">
+<div class="column" style="width:58%;">
 <ul>
-<li><strong>Sociologie</strong> : Word2Vec et classes sociales (Kozlowski et al.&nbsp;2019).<br>
+<li><strong>Loi de Zipf</strong> : quelques formes <strong>très fréquentes</strong>, une <strong>longue traîne</strong> de rares.<br>
 </li>
-<li><strong>Psychologie</strong> : dictionnaires LIWC (Pennebaker) pour analyser les émotions.<br>
-</li>
-<li><strong>Marketing &amp; Management</strong> :
+<li><strong>Effets</strong> :
 <ul>
-<li>Analyse de sentiment en finance.<br>
+<li>Les unités <strong>structurelles</strong> dominent la volumétrie (colle du discours).<br>
 </li>
-<li>Recherche consommateur (Humphreys &amp; Wang 2018).<br>
+<li>Les éléments <strong>distinctifs</strong> se situent souvent en <strong>fréquence moyenne</strong>.<br>
 </li>
-<li>Organisation et éthique (Lock &amp; Seele 2015, Kobayashi et al.&nbsp;2018).</li>
+<li>Les <strong>signaux faibles</strong> (rares) portent innovations et codes internes.</li>
 </ul></li>
 </ul>
-</section>
-<section id="conclusion" class="slide level2">
-<h2>Conclusion</h2>
-<ul>
-<li>Le <strong>texte</strong> est devenu une matière première massive.<br>
-</li>
-<li>Le NLP/TAL permet :
-<ul>
-<li>De nouveaux terrains (avis, réseaux sociaux, forums).<br>
-</li>
-<li>De nouvelles méthodes (analyse lexicale, syntaxique, sémantique, pragmatique).<br>
-</li>
-<li>De nouveaux objets (discours de marque, avis, interactions).</li>
-</ul></li>
-</ul>
+<p>La fréquence informe moins sur l’“importance” que sur le <strong>rôle</strong> (structurel, distinctif, émergent).</p>
+</div><div class="column" style="width:42%;">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -445,10 +461,220 @@ Olivier Caron
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>👉 Pour le marketing digital et la netnographie : comprendre que <strong>le langage est à la fois structure, sens et action</strong>.</p>
+<p><strong>Question directrice</strong><br>
+Que dit la <strong>position fréquentielle</strong> d’une forme sur sa fonction discursive et sa place dans le répertoire d’une communauté ?</p>
 </div>
 </div>
 </div>
+</div></div>
+</section>
+<section id="genette-textes-en-réseau-transtextualité" class="slide level2">
+<h2>Genette : textes en réseau (transtextualité)</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li><strong>Intertextualité</strong> : citations, allusions, réemplois (hashtags, duos, stitches).<br>
+</li>
+<li><strong>Paratexte</strong> : titraille, visuels, émojis, alt-text, légendes, tags.<br>
+</li>
+<li><strong>Métatexte</strong> : commentaires et critiques d’autres textes.<br>
+</li>
+<li><strong>Hypertexte</strong> : transformations/variations (parodie, remix, détournement).<br>
+</li>
+<li><strong>Architexte</strong> : appartenance à un <strong>genre</strong> (unboxing, SAV, témoignage, teasing).</li>
+</ul>
+<p>Un message s’<strong>inscrit</strong> dans des <strong>chaînes</strong> : références et paratexte orientent sa lecture et sa circulation.</p>
+</div><div class="column" style="width:40%;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Indices de réseau</strong></p>
+<ul>
+<li>Mentions, citations, formats de reprise<br>
+</li>
+<li>Rôle du layout et des métadonnées dans l’orientation interprétative</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="schéma-intégré-dinterprétation" class="title-slide slide level1 transition-slide-ubdteal center">
+<h1>Schéma intégré d’interprétation</h1>
+
+</section>
+<section id="de-la-forme-à-leffet-grille-de-lecture-unifiée" class="slide level2">
+<h2>De la forme à l’effet : grille de lecture unifiée</h2>
+<div class="columns">
+<div class="column" style="width:62%;">
+<ol type="1">
+<li><strong>Structure</strong> <em>(Saussure, Chomsky)</em> : catégories, dépendances, portée (négation, modalités, intensité).<br>
+</li>
+<li><strong>Fonctions</strong> <em>(Jakobson)</em> : dominante communicative et format.<br>
+</li>
+<li><strong>Contexte lexical</strong> <em>(Firth, Harris)</em> : cooccurrences, collocations, patrons relationnels.<br>
+</li>
+<li><strong>Distribution</strong> <em>(Zipf)</em> : fréquences, longue traîne, signaux faibles / distinctifs.<br>
+</li>
+<li><strong>Actes &amp; effets</strong> <em>(Austin)</em> : nature de l’acte et traces perlocutoires dans l’échange.<br>
+</li>
+<li><strong>Réseaux de textes</strong> <em>(Genette)</em> : références, paratexte, genres, trajectoires.</li>
+</ol>
+</div><div class="column" style="width:38%;">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>Finalité : produire une interprétation <strong>cohérente</strong> d’un corpus en articulant règles, usages, relations sémantiques, actes et inscriptions intertextuelles.</p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="typologie-croisée-repères-dannotation" class="slide level2 smaller">
+<h2>Typologie croisée (repères d’annotation)</h2>
+<p><br>
+</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dimension</th>
+<th>Indices typiques</th>
+<th>Lecture</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Structure</strong></td>
+<td>négation, modalité, intensif, dépendances</td>
+<td>portée de l’évaluation ; cible/attribut</td>
+</tr>
+<tr class="even">
+<td><strong>Fonctions</strong></td>
+<td>items expressifs/conatifs/poétiques</td>
+<td>rôle communicatif dominant</td>
+</tr>
+<tr class="odd">
+<td><strong>Contexte</strong></td>
+<td>cooccurrences, collocations</td>
+<td>associations et oppositions sémantiques</td>
+</tr>
+<tr class="even">
+<td><strong>Distribution</strong></td>
+<td>fréquences / raretés</td>
+<td>structurel vs distinctif ; émergent vs routinier</td>
+</tr>
+<tr class="odd">
+<td><strong>Actes / effets</strong></td>
+<td>verbes illocutoires, traces perlocutoires</td>
+<td>recommandation, alerte, mobilisation…</td>
+</tr>
+<tr class="even">
+<td><strong>Réseaux</strong></td>
+<td>citations, hashtags, formats</td>
+<td>ancrage intertextuel ; architexte mobilisé</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="études-guidées-exemples" class="slide level2">
+<h2>Études guidées (exemples)</h2>
+<div>
+<ul>
+<li class="fragment">“Service impeccable, livraison rapide. Je recommande.”<br>
+<strong>Fonctions</strong> : expressive + conative ; <strong>Acte</strong> : recommandation ; <strong>Structure</strong> : cibles <em>service/logistique</em> ; <strong>Réseau</strong> : format <em>avis court</em>.</li>
+<li class="fragment">“Trop cher pour la qualité proposée.”<br>
+<strong>Structure</strong> : intensification + comparaison implicite ; <strong>Contexte</strong> : collocation “trop cher” ; <strong>Acte</strong> : dissuasion ; <strong>Distribution</strong> : expression fréquente ou niche selon la communauté.</li>
+<li class="fragment">“#NewDrop demain. Qui est chaud ? 👀”<br>
+<strong>Fonctions</strong> : phatique + conative + poétique ; <strong>Acte</strong> : mobilisation ; <strong>Paratexte</strong> : hashtag, émojis ; <strong>Architexte</strong> : teasing de lancement.</li>
+</ul>
+</div>
+</section>
+<section id="limites-et-précautions-dinterprétation" class="slide level2">
+<h2>Limites et précautions d’interprétation</h2>
+<ul>
+<li><strong>Ironie / sarcasme / polyphonie</strong> : contrastes forme–contenu, indices paratextuels.<br>
+</li>
+<li><strong>Genres hybrides</strong> : brouillage des fonctions selon le format.<br>
+</li>
+<li><strong>Dynamiques communautaires</strong> : normes mouvantes, cycles d’attention.<br>
+</li>
+<li><strong>Biais d’observation</strong> : moments chauds, invisibilités (lurkers).<br>
+</li>
+<li><strong>Éthique</strong> : respect des espaces, consentements, anonymisation.</li>
+</ul>
+</section></section>
+<section>
+<section id="de-la-théorie-à-la-méthodologie" class="title-slide slide level1 transition-slide-ubdyellow center">
+<h1>De la théorie… à la méthodologie</h1>
+
+</section>
+<section id="roadmap-humphreys-wang-2018-12" class="slide level2">
+<h2>Roadmap Humphreys &amp; Wang (2018) 1/2</h2>
+<h3 id="étapes">Étapes</h3>
+<div>
+<ul>
+<li class="fragment"><strong>1. Research question</strong> — formuler une question adaptée à l’analyse textuelle</li>
+<li class="fragment"><strong>2. Construct identification</strong> — identifier les construits (émotion, influence, statut, etc.)</li>
+<li class="fragment"><strong>3. Data collection</strong> — collecter les corpus (posts, avis, threads)</li>
+<li class="fragment"><strong>4. Operationalization</strong> — transformer les construits en indicateurs (dictionnaires, modèles)</li>
+<li class="fragment"><strong>5. Interpretation &amp; analysis</strong> — relier résultats et théorie (comparaison, corrélation, prédiction)</li>
+<li class="fragment"><strong>6. Validation</strong> — vérifier robustesse (multi-opérationnalisation, triangulation, hold-out sample)</li>
+</ul>
+</div>
+</section>
+<section id="roadmap-humphreys-wang-2018-22" class="slide level2">
+<h2>Roadmap Humphreys &amp; Wang (2018) 2/2</h2>
+<p><img data-src="images/clipboard-1874408983.png" class="quarto-figure quarto-figure-center" style="width:100.0%"> {.fragment}</p>
+</section>
+<section id="apports-principaux-de-la-démarche" class="slide level2">
+<h2>Apports principaux de la démarche</h2>
+<ul>
+<li><strong>Découverte</strong> : révéler des régularités invisibles à l’œil humain<br>
+</li>
+<li><strong>Précision</strong> : mesurer avec impartialité à grande échelle<br>
+</li>
+<li><strong>Validité écologique</strong> : analyser des discours en contexte naturel<br>
+</li>
+<li><strong>Multi-niveaux</strong> : individus, dyades, groupes, cultures<br>
+</li>
+<li><strong>Guidelines méthodologiques</strong> : dictionnaires, échantillonnage, validation, analyse de données textuelles clairsemées</li>
+</ul>
+</section>
+<section id="points-dancrage" class="slide level2">
+<h2>Points d’ancrage</h2>
+<ul>
+<li><strong>Structuraliste</strong> : la langue comme <strong>système</strong> (formes, oppositions, dépendances).<br>
+</li>
+<li><strong>Pragmatique / usage</strong> : le message comme <strong>action</strong> située (fonctions, actes, effets).<br>
+</li>
+<li><strong>Distribution / contexte</strong> : le sens comme <strong>relation</strong> (voisinages, collocations, patrons).<br>
+</li>
+<li><strong>Réseaux de textes</strong> : la signification comme <strong>inscription</strong> sociale (intertextes, paratextes, genres).</li>
+</ul>
+<p><strong>Chaîne d’analyse</strong> : <strong>Structure → Fonction → Contexte → Distribution → Acte → Réseau</strong>.</p>
+</section></section>
+<section>
+<section id="de-la-théorie-à-la-pratique" class="title-slide slide level1 transition-slide-ubdyellow center">
+<h1>De la théorie… à la pratique</h1>
+
 </section>
 <section id="pré-traitement-du-corpus" class="slide level2">
 <h2>Pré-traitement du corpus</h2>
@@ -490,6 +716,469 @@ Olivier Caron
 </div>
 </div>
 </section>
+<section id="représentation-bag-of-words" class="slide level2">
+<h2>Représentation : “Bag-of-Words”</h2>
+<div class="columns">
+<div class="column" style="font-size:1em">
+<h3 id="le-principe">Le principe</h3>
+<ul>
+<li>Une fois le texte nettoyé, il faut le transformer en chiffres pour que la machine puisse le traiter.</li>
+<li>Le modèle <strong>“sac de mots” (BoW)</strong> est la méthode la plus simple :
+<ul>
+<li>On représente un document uniquement par les mots qu’il contient.</li>
+<li>L’<strong>ordre des mots</strong> et la grammaire sont volontairement <strong>ignorés</strong>.</li>
+</ul></li>
+<li>Cette approche permet de créer une <strong>Matrice Document-Terme (DTM)</strong>.</li>
+</ul>
+</div><div class="column" style="font-size:0.55em">
+<div title="Exemple de DTM">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Exemple de DTM</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Corpus :</strong></p>
+<ul>
+<li>D1: “Produit <strong>excellent et</strong> pas cher”</li>
+<li>D2: “Produit <strong>médiocre et</strong> très cher”</li>
+<li>D3: “Produit <strong>excellent et</strong> vraiment pas cher”</li>
+<li>D4: “Produit <strong>médiocre et</strong> assez cher”</li>
+</ul>
+<p><strong>Matrice (DTM) :</strong></p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 12%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">produit</th>
+<th style="text-align: center;">excellent</th>
+<th style="text-align: center;">médiocre</th>
+<th style="text-align: center;">cher</th>
+<th style="text-align: center;">pas</th>
+<th style="text-align: center;">très</th>
+<th style="text-align: center;">vraiment</th>
+<th style="text-align: center;">assez</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>D1</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>D2</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>D3</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>D4</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<p>Chaque ligne est un <strong>vecteur</strong> qui représente un document.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="pondération-des-termes-tf-idf" class="slide level2">
+<h2>Pondération des termes : TF-IDF</h2>
+<div class="columns">
+<div class="column" style="font-size:0.85em">
+<h3 id="lintuition">L’intuition</h3>
+<p>La fréquence brute (compter les mots) est limitée. Le <strong>TF-IDF</strong> est une pondération plus intelligente qui vise à faire ressortir les mots <strong>spécifiques</strong> d’un document.</p>
+<ul>
+<li><strong>TF (Term Frequency)</strong> : poids d’un mot dans <strong>un</strong> document. Un mot fréquent est important <em>pour ce document</em>.</li>
+<li><strong>IDF (Inverse Document Frequency)</strong> : poids d’un mot dans <strong>tout</strong> le corpus. Un mot présent partout (ex: “le”, “produit”) est peu informatif, donc son poids est faible.</li>
+</ul>
+<p>Un <strong>TF-IDF élevé</strong> signale un mot-clé caractéristique.</p>
+</div><div class="column" style="font-size:0.75em">
+<div title="Les formules">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Les formules</strong></p>
+</div>
+<div class="callout-content">
+<p>Pour un terme <span class="math inline">\(t\)</span> dans un document <span class="math inline">\(d\)</span> au sein d’un corpus <span class="math inline">\(D\)</span> :</p>
+<ul>
+<li><p><strong>Fréquence du terme (TF)</strong> : <span class="math inline">\(TF(t,d) = \frac{\text{nombre de fois où } t \text{ apparaît dans } d}{\text{nombre total de mots dans } d}\)</span></p></li>
+<li><p><strong>Fréquence inverse de document (IDF)</strong> : <span class="math inline">\(IDF(t,D) = \log\left(\frac{\text{nombre total de documents}}{\text{nombre de documents contenant } t}\right)\)</span></p></li>
+<li><p><strong>Score TF-IDF</strong> : <span class="math inline">\(TFIDF(t,d,D) = TF(t,d) \times IDF(t,D)\)</span></p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="statistiques-lexicales-exploratoires" class="slide level2">
+<h2>Statistiques lexicales exploratoires</h2>
+<div class="columns">
+<div class="column" style="font-size:0.85em">
+<h3 id="sentir-le-corpus">“Sentir” le corpus</h3>
+<p>Avant toute analyse complexe, des indicateurs simples permettent de comprendre la nature des données :</p>
+<ul>
+<li><strong>Fréquences de mots</strong> :
+<ul>
+<li>Quels sont les termes les plus utilisés (hors <em>stopwords</em>) -&gt; donne une idée des thèmes dominants.</li>
+<li>Visualisation : <strong>nuage de mots</strong>.</li>
+</ul></li>
+<li><strong>Hapax Legomena</strong> :
+<ul>
+<li>Mots n’apparaissant qu’<strong>une seule fois</strong> dans tout le corpus.</li>
+<li>Souvent 30-50% du vocabulaire (selon taille corpus). Ils peuvent être du bruit (fautes de frappe) ou des signaux faibles (jargon émergent).</li>
+</ul></li>
+</ul>
+</div><div class="column" style="font-size:0.75em">
+<h3 id="richesse-du-vocabulaire-ttr-cttr-mattr-maas">Richesse du vocabulaire (TTR, CTTR, MATTR, Maas…)</h3>
+<p><br>
+</p>
+<ul>
+<li><strong>Diversité lexicale (TTR)</strong> :
+<ul>
+<li>Mesure la richesse du vocabulaire utilisé dans un texte.</li>
+<li>Le <em>Type-Token Ratio</em> est le calcul le plus simple.</li>
+</ul></li>
+</ul>
+<div title="Formule du TTR">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Formule du TTR</strong></p>
+</div>
+<div class="callout-content">
+<p><span class="math display">\[ TTR = \frac{\text{Nombre de mots uniques (types)}}{\text{Nombre total de mots (tokens)}} \]</span> Un TTR proche de 1 indique un vocabulaire très varié ; un TTR faible un langage répétitif.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="approfondir-la-diversité-lexicale" class="slide level2">
+<h2>Approfondir la diversité lexicale</h2>
+<div class="columns">
+<div class="column" style="font-size:0.85em">
+<h3 id="au-delà-du-ttr">Au-delà du TTR</h3>
+<p>Le <strong>Type-Token Ratio (TTR)</strong> est un bon début, mais faiblesse majeure -&gt; très sensible à la longueur du texte. Un texte plus long aura mécaniquement un TTR plus faible car on est forcé de répéter des mots.</p>
+<p><br>
+&nbsp;</p>
+<h3 id="mesures-plus-robustes">Mesures plus robustes</h3>
+<p><br>
+<br>
+</p>
+<p>Pour comparer des textes de longueurs différentes, on utilise des indicateurs plus avancés comme le <strong>MTLD</strong> (Measure of Textual Lexical Diversity).</p>
+<ul>
+<li><strong>Principe</strong> : L’algorithme calcule le TTR moyen sur des segments consécutifs du texte, ce qui le rend indépendant de la longueur totale.</li>
+</ul>
+</div><div class="column" style="width:45%;">
+<div title="Applications en Netnographie" style="font-size:0.9em">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Applications en Netnographie</strong></p>
+</div>
+<div class="callout-content">
+<p>Analyser la diversité lexicale permet de :</p>
+<ul>
+<li><strong>Profiler des auteurs</strong> : un vocabulaire pauvre et répétitif peut être un indice de spams ou de faux avis générés automatiquement.</li>
+<li><strong>Caractériser une communauté</strong> : un jargon riche et varié est souvent le signe d’une communauté d’experts ou de passionnés.</li>
+<li><strong>Segmenter des retours clients</strong> : les commentaires très riches lexicalement peuvent contenir des insights plus détaillés que les commentaires laconiques.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="mesurer-la-lisibilité-du-texte-readability" class="slide level2">
+<h2>Mesurer la lisibilité du texte (Readability)</h2>
+<p>La lisibilité mesure la <strong>facilité de lecture et de compréhension</strong> d’un texte. Elle ne dépend pas seulement de la richesse du vocabulaire, mais aussi de la complexité syntaxique.</p>
+<div class="columns">
+<div class="column" style="font-size:0.85em">
+<h3 id="les-deux-piliers-de-la-complexité">Les deux piliers de la complexité</h3>
+<p>La plupart des scores de lisibilité se basent sur deux variables simples :</p>
+<ol type="1">
+<li><strong>Complexité sémantique</strong> : longueur des mots (en syllabes ou en caractères). Des mots longs sont considérés comme plus difficiles.</li>
+<li><strong>Complexité syntaxique</strong> : longueur des phrases (en nombre de mots). Des phrases longues sont plus complexes à analyser pour le lecteur.</li>
+</ol>
+<p>Le score le plus célèbre en anglais est le <strong>Flesch-Kincaid Reading Ease</strong>.</p>
+</div><div class="column" style="font-size:0.75em">
+<div title="Scores &amp; Applications" style="font-size:0.75em">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Scores &amp; Applications</strong></p>
+</div>
+<div class="callout-content">
+<h3 id="formule-générale">Formule générale</h3>
+<p>La plupart des scores suivent une logique de ce type : <span class="math inline">\(Score = A - (B \times \frac{\text{mots}}{\text{phrase}}) - (C \times \frac{\text{syllabes}}{\text{mot}})\)</span></p>
+<h3 id="utilité-en-marketing">Utilité en marketing</h3>
+<ul>
+<li><strong>Auditer le contenu de marque</strong> : le langage utilisé sur un site web ou les réseaux sociaux est-il adapté à la cible ? Est-il trop simple ? Trop jargonnant ?</li>
+<li><strong>Analyser l’audience</strong> : le niveau de langage des consommateurs dans leurs avis peut-il révéler leur niveau d’expertise ?</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="lisibilité-en-français-les-outils-spécifiques" class="slide level2">
+<h2>Lisibilité en français : les outils spécifiques</h2>
+<div class="columns">
+<div class="column" style="font-size:0.85em">
+<h3 id="kandel-moles-ladaptation-de-flesch">Kandel &amp; Moles : l’adaptation de Flesch</h3>
+<p>C’est la formule historique (1958) et la plus directe pour le français. Le principe est le même que pour l’anglais : combiner la longueur des mots et des phrases.</p>
+<ul>
+<li><strong>Score de 0 à 100</strong> :
+<ul>
+<li><strong>Score élevé (&gt; 70)</strong> : texte facile à lire.</li>
+<li><strong>Score bas (&lt; 40)</strong> : texte difficile (technique, académique).</li>
+</ul></li>
+</ul>
+<div title="La formule pour le français" style="font-size:0.60em">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>La formule pour le français</strong></p>
+</div>
+<div class="callout-content">
+<p>Le score est calculé ainsi :</p>
+<p><span class="math inline">\(Score = 207 - (1.015 \times \text{longueur moyenne des phrases})\)</span> <span class="math inline">\(- (73.6 \times \text{nombre moyen de syllabes par mot})\)</span></p>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="font-size:0.70em">
+<h3 id="alternative-et-pratique-moderne">Alternative et pratique moderne</h3>
+<ul>
+<li><strong>Indice de Gunning Fog</strong> :
+<ul>
+<li>Une autre approche qui se base sur le pourcentage de <strong>“mots complexes”</strong> (généralement 3 syllabes ou plus).</li>
+<li>Le score estime le <strong>nombre d’années d’études</strong> nécessaires pour comprendre le texte.</li>
+</ul></li>
+<li><strong>Outils NLP actuels</strong> :
+<ul>
+<li>Aujourd’hui, on utilise des bibliothèques Python pour faire ces calculs.</li>
+<li><strong><code>pyphen</code></strong> : pour compter les syllabes en français.</li>
+<li><strong><code>textstat</code></strong> : pour calculer directement les scores de lisibilité.<br>
+</li>
+<li>En <strong>R</strong> : les packages comme <code>quanteda</code> ou <code>koRpus</code> offrent aussi ces fonctionnalités.</li>
+</ul></li>
+</ul>
+<div title="A retenir" style="font-size:1em">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>A retenir</strong></p>
+</div>
+<div class="callout-content">
+<p>Le principe reste le même : un texte simple = mots courts + phrases courtes. Les formules pour le français ne font que calibrer cette idée aux particularités statistiques de notre langue.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="analyse-de-co-occurrences-et-collocations" class="slide level2">
+<h2>Analyse de co-occurrences et collocations</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<h3 id="le-sens-par-lassociation">Le sens par l’association</h3>
+<p>On dépasse le “sac de mots” pour analyser <strong>quels mots apparaissent ensemble</strong>.</p>
+<ul>
+<li><strong>Co-occurrence</strong> : deux mots qui apparaissent fréquemment dans un même contexte (ex: phrase, fenêtre de 5 mots).
+<ul>
+<li>Permet de créer des <strong>graphes de mots</strong> pour visualiser les clusters thématiques.</li>
+</ul></li>
+<li><strong>Collocation</strong> : une co-occurrence si forte qu’elle forme une expression presque figée.
+<ul>
+<li>Ex: “service client”, “rapport qualité-prix”.</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:45%;">
+<div title="Mesurer la force d'association" style="font-size:0.9em">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Mesurer la force d’association</strong></p>
+</div>
+<div class="callout-content">
+<p>On peut quantifier si une co-occurrence est due au hasard ou à un lien sémantique fort. Le <strong>Pointwise Mutual Information (PMI)</strong> est une mesure courante.</p>
+<p><span class="math inline">\(PMI(x,y) = \log_2\left(\frac{P(x,y)}{P(x)P(y)}\right)\)</span></p>
+<ul>
+<li><span class="math inline">\(P(x,y)\)</span> : probabilité de voir x et y ensemble.</li>
+<li><span class="math inline">\(P(x)P(y)\)</span> : probabilité de les voir ensemble si leur apparition était indépendante.</li>
+</ul>
+<p>Un PMI élevé suggère un lien sémantique fort.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="analyse-de-keyness-mots-clés" class="slide level2">
+<h2>Analyse de “Keyness” (mots-clés)</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<h3 id="quest-ce-qui-différencie-deux-discours">Qu’est-ce qui différencie deux discours ?</h3>
+<ul>
+<li>La <strong>Keyness</strong> identifie les mots <strong>statistiquement sur-représentés</strong> dans un corpus A par rapport à un corpus de référence B.</li>
+<li>C’est une méthode puissante pour <strong>caractériser et comparer</strong> des ensembles de textes.</li>
+<li><strong>Applications</strong> :
+<ul>
+<li>Avis 5★ vs 1★ : Quels mots sont “clés” pour les clients satisfaits ?</li>
+<li>Tweets avant vs après une crise : quel vocabulaire a émergé ?</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div title="Principe statistique" style="font-size:0.7em">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Principe statistique</strong></p>
+</div>
+<div class="callout-content">
+<p>Pour chaque mot, on construit un tableau de contingence :</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;"><strong>Corpus A (cible)</strong></th>
+<th style="text-align: center;"><strong>Corpus B (réf.)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Freq. mot X</strong></td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Freq. autres mots</strong></td>
+<td style="text-align: center;">c</td>
+<td style="text-align: center;">d</td>
+</tr>
+</tbody>
+</table>
+<p>Tests possibles :<br>
+- <span class="math inline">\(\chi^2\)</span> : intuitif mais sensible aux faibles effectifs.<br>
+- <strong>Log-Likelihood</strong> <span class="math inline">\(G^2\)</span> : plus robuste, devenu la référence (ex. <em>AntConc</em>, <code>quanteda</code>).</p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="annotation-morphosyntaxique-pos-tagging" class="slide level2">
+<h2>Annotation morphosyntaxique (POS Tagging)</h2>
+<p>L’étiquetage morphosyntaxique (POS Tagging) attribue à chaque mot sa <strong>catégorie grammaticale</strong> (nom, verbe, adjectif, adverbe, etc.).</p>
+<p><u>Le</u>/<span class="bg" style="--col: #325494">DET</span> <u>produit</u>/<span class="bg" style="--col: #58DDB3">NOM</span> <u>est</u>/<span class="bg" style="--col: #B10F2E">VERBE</span> <u>vraiment</u>/<span class="bg" style="--col: #999999">ADV</span> <u>excellent</u>/<span class="bg" style="--col: #F5C946">ADJ</span></p>
+<div class="columns">
+<div class="column" style="font-size:0.8em">
+<h3 id="à-quoi-ça-sert">À quoi ça sert ?</h3>
+<ul>
+<li><strong>Filtrer l’information</strong> :
+<ul>
+<li>Extraire les <strong>adjectifs</strong> pour analyser les qualificatifs d’un produit.</li>
+<li>Isoler les <strong>noms propres</strong> pour détecter les entités.</li>
+</ul></li>
+<li><strong>Préparer le traitement</strong> :
+<ul>
+<li>Indispensable pour une bonne <strong>lemmatisation</strong> (ex: “port” → <em>porter</em> vs <em>port</em>).</li>
+<li>Utile aussi pour la <strong>stemmatisation</strong> (ex: “jouer”, “jouait”, “jouera” → <em>jou</em>).</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div title="Le standard Universal Dependencies" style="font-size:0.9em">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Le standard Universal Dependencies</strong></p>
+</div>
+<div class="callout-content">
+<p>Le projet <strong>Universal Dependencies (UD)</strong> propose un jeu d’étiquettes unifié (17 catégories principales) pour de nombreuses langues. Cela facilite l’utilisation d’outils multilingues comme spaCy ou UDPipe.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
 <section id="analyse-en-dépendances-syntaxiques-dependency-parsing-13" class="slide level2">
 <h2>Analyse en dépendances syntaxiques (Dependency Parsing) 1/3</h2>
 <p>L’<strong>analyse en dépendances syntaxiques</strong> est une étape du traitement automatique du langage naturel (TALN) qui vise à représenter la structure d’une phrase à partir des <strong>relations de dépendance entre mots</strong>.<br>
@@ -526,10 +1215,137 @@ Elle est largement utilisée dans des applications comme :</p>
 <figcaption>Exemple de code udpipe</figcaption>
 </figure>
 </div>
-
-<script> window._input_file = "---\n" + "title: \"Études qualitatives sur le web (netnographie)\"\n" + "subtitle: \"Introduction au NLP/TALN - Traitement des données textuelles\"\n" + "author:\n" + "  - name: \"Olivier Caron\"\n" + "    affiliations: \"Paris Dauphine - PSL\"\n" + "format:\n" + "  ubd-revealjs:\n" + "    self-contained: false\n" + "    chalkboard: true\n" + "    transition: fade\n" + "    auto-stretch: false\n" + "    width: 1250\n" + "    height: 760\n" + "    toc: false\n" + "    toc-depth: 1\n" + "    code-block-height: 700px\n" + "execute:\n" + "  echo: true\n" + "bibliography: refs.bib\n" + "revealjs-plugins:\n" + "  - editable\n" + "filters:\n" + "  - editable\n" + "---\n" + "\n" + "## Révolution du texte : production & lecture\n" + "\n" + "-   Explosion de la **production textuelle** (posts, avis, tweets, articles scientifiques).\\n" + "-   Conséquence : **impossible de tout lire** → besoin d’automatisation.\\n" + "-   **Révolution de la lecture** : moteurs de recherche, curation, algorithmes de recommandation.\n" + "\n" + "::: callout-note\n" + "👉 En marketing digital : les consommateurs produisent massivement du texte (avis, posts, hashtags).\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Le rôle du NLP/TAL\n" + "\n" + "-   **NLP = Traitement Automatique du Langage**\\n" + "-   Fonctions principales :\n" + "    -   Détection de langue\\n" + "    -   Analyse de sentiments / émotions\\n" + "    -   Extraction de sujets (topic modeling)\\n" + "    -   Analyse syntaxique et relations entre mots\\n" + "    -   Détection d’intentions, tonalités\n" + "\n" + "::: callout-tip\n" + "👉 Pour la netnographie : permet d’exploiter des corpus immenses de conversations en ligne.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Héritages : linguistique et informatique\n" + "\n" + "-   Le NLP s’appuie sur deux champs académiques :\n" + "    -   **Linguistique** : structures et usages du langage\\n" + "    -   **Informatique** : traitement et automatisation\\n" + "-   Deux visions :\n" + "    -   Langue comme **structure** (systèmes, règles)\\n" + "    -   Langage comme **usage** (interaction, pragmatique)\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Saussure : Langage, Langue, Parole\n" + "\n" + "-   **Langage** : faculté universelle et innée de communication\\n" + "-   **Langue** : système de signes et de règles partagé par une communauté\\n" + "-   **Parole** : usage individuel de la langue (style, variation)\\n" + "-   **Texte** : transcription de la parole\n" + "\n" + "::: callout-note\n" + "👉 En marketing : distinguer ce qui relève du système (hashtags, codes de communauté) vs. la créativité individuelle (mèmes, styles).\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Chomsky : Syntaxe et grammaire générative\n" + "\n" + "-   Une grammaire générative → produire une infinité de phrases à partir d’un nombre fini de règles.\\n" + "-   Analyse centrée sur la **compétence linguistique**.\\n" + "-   Héritages :\n" + "    -   **Arbres syntaxiques (Tesnière)**\\n" + "    -   **Treebanks modernes** pour entraînement des parsers\n" + "\n" + "::: callout-tip\n" + "👉 Applications marketing : modèles génératifs (GPT) produisant du contenu syntaxiquement correct mais parfois **absurde** → question de sens et pertinence.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Firth & Zipf : Sémantique distributionnelle\n" + "\n" + "-   **Firth (1957)** : “You shall know a word by the company it keeps”\\n" + "    → un mot prend sens dans ses co-occurrences.\\n" + "-   **Zipf** : lois de fréquence du langage.\\n" + "-   Héritages : analyse de co-occurrences, lexicométrie.\n" + "\n" + "::: callout-note\n" + "👉 En netnographie : étudier les **mots qui apparaissent ensemble** dans des avis ou tweets pour comprendre les associations autour d’une marque.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Jakobson : Fonctions du langage\n" + "\n" + "-   Fonctions de la communication :\n" + "    -   **Référentielle** : décrire le monde (ex. un avis factuel).\\n" + "    -   **Expressive** : exprimer une émotion (ex. “j’adore ce produit !”).\\n" + "    -   **Conative** : influencer le destinataire (ex. “achetez-le !”).\\n" + "    -   **Phatique** : maintenir le contact (ex. “allo ? vous êtes là ?”).\\n" + "    -   **Métalinguistique** : parler du code (ex. hashtags explicatifs).\\n" + "    -   **Poétique** : forme créative (ex. slogans, jeux de mots).\n" + "\n" + "::: callout-tip\n" + "👉 Marketing digital = art de combiner **expressif + conatif + poétique** dans les campagnes.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Austin : Théorie des actes de langage\n" + "\n" + "-   Un énoncé ne décrit pas seulement, il **agit** :\n" + "    -   **Locutoire** : énoncé correct (ex. “y a-t-il du sel ?”)\\n" + "    -   **Illocutoire** : intention (→ “passe-moi le sel”)\\n" + "    -   **Perlocutoire** : effet sur l’autre (il donne la salière)\n" + "\n" + "::: callout-note\n" + "👉 En marketing : un post de consommateur **influence** les autres → langage comme acte.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Genette : Intertextualité\n" + "\n" + "-   Un texte prend sens dans ses **références aux autres textes** :\n" + "    -   Citations, hashtags, memes, bibliographies.\\n" + "    -   Effet palimpseste : accumulation de couches de sens.\n" + "\n" + "::: callout-tip\n" + "👉 En netnographie : un avis ou un post doit être analysé dans son **écosystème discursif** (réponses, partages, hashtags).\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Nouvelles méthodologies (Humphreys & Wang 2018)\n" + "\n" + "1.  Formulation de la question de recherche\\n" + "2.  Définition des construits\\n" + "3.  Récolte des données\\n" + "4.  Opérationnalisation des construits\\n" + "5.  Analyse et interprétation\\n" + "6.  Validation des résultats\n" + "\n" + "::: callout-note\n" + "👉 En netnographie digitale : permet de passer du **scraping** brut à une **recherche rigoureuse**.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Applications en sciences sociales et marketing\n" + "\n" + "-   **Sociologie** : Word2Vec et classes sociales (Kozlowski et al. 2019).\\n" + "-   **Psychologie** : dictionnaires LIWC (Pennebaker) pour analyser les émotions.\\n" + "-   **Marketing & Management** :\n" + "    -   Analyse de sentiment en finance.\\n" + "    -   Recherche consommateur (Humphreys & Wang 2018).\\n" + "    -   Organisation et éthique (Lock & Seele 2015, Kobayashi et al. 2018).\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Conclusion\n" + "\n" + "-   Le **texte** est devenu une matière première massive.\\n" + "-   Le NLP/TAL permet :\n" + "    -   De nouveaux terrains (avis, réseaux sociaux, forums).\\n" + "    -   De nouvelles méthodes (analyse lexicale, syntaxique, sémantique, pragmatique).\\n" + "    -   De nouveaux objets (discours de marque, avis, interactions).\n" + "\n" + "::: callout-tip\n" + "👉 Pour le marketing digital et la netnographie : comprendre que **le langage est à la fois structure, sens et action**.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Pré-traitement du corpus\n" + "\n" + "\\n" + "\n" + "### Pourquoi nettoyer les données textuelles ?\n" + "\n" + "-   Les textes bruts (avis, tweets, posts) contiennent du **bruit** : ponctuation, chiffres, emojis, urls…\\n" + "-   Le nettoyage améliore la qualité des analyses (fréquences, co-occurrences, modèles).\\n" + "-   **Objectif** : obtenir un corpus standardisé, cohérent et exploitable.\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Pré-traitement : opérations courantes\n" + "\n" + "-   Passage en **minuscules**\\n" + "-   Suppression de la **ponctuation / chiffres / urls**\\n" + "-   Suppression des **stopwords** (*mots vides* : le, la, de, un…)\\n" + "-   **Stemming** : réduire les mots à leur racine (*ex. aimer, aimait → aim*)\\n" + "-   **Lemmatisation** : réduire les mots à leur forme canonique (*aimait → aimer*)\n" + "\n" + "::: callout-note\n" + "👉 Ces étapes peuvent être adaptées selon la recherche : ne pas trop nettoyer au risque de perdre du sens ou des informations.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Analyse en dépendances syntaxiques (Dependency Parsing) 1/3\n" + "\n" + "L’**analyse en dépendances syntaxiques** est une étape du traitement automatique du langage naturel (TALN) qui vise à représenter la structure d’une phrase à partir des **relations de dépendance entre mots**.\\n" + "Elle est généralement formalisée sous forme de **graphes orientés** (souvent en arbres), où :\n" + "\n" + "-   les **nœuds** correspondent aux mots (*tokens*),\\n" + "-   les **arcs** représentent les relations syntaxiques (par ex. *nsubj* = sujet, *obj* = objet, *det* = déterminant).\n" + "\n" + "## Analyse en dépendances syntaxiques (Dependency Parsing) 2/3\n" + "\n" + "Cette approche permet d’identifier qui fait quoi dans une phrase et de modéliser des structures grammaticales complexes.\\n" + "Elle est largement utilisée dans des applications comme :\n" + "\n" + "-   l’**extraction d’information** (entités et relations),\\n" + "-   le **résumé automatique** et la **recherche d’information**,\\n" + "-   l’**analyse des discours** sur les réseaux sociaux.\n" + "\n" + "Un cadre de référence majeur pour cette tâche est le projet [**Universal Dependencies**](https://universaldependencies.org), qui propose des annotations cohérentes pour de nombreuses langues.\n" + "\n" + "## Analyse en dépendances syntaxiques (Dependency Parsing) 3/3\n" + "\n" + "![](images/clipboard-2484643215.png)\n" + "\n" + "## Exemple code\n" + "\n" + "[**Voir l’exemple de code ici**](https://oliviercaron.github.io/systematic_lit_review/annotations.html#part-of-speech-tagging-with-udpipe-straka-strakova-2017-tokenizing)\n" + "\n" + "[![Exemple de code udpipe](images/clipboard-3249784408.png)](https://oliviercaron.github.io/systematic_lit_review/annotations.html#part-of-speech-tagging-with-udpipe-straka-strakova-2017-tokenizing)"</script>
-<script> window._input_filename = 'C:\Users\Olivier\Documents\GitHub\etudes_qualitatives_web\cours_4\cours_4.qmd'</script>
 </section>
+<section id="reconnaissance-dentités-nommées-ner" class="slide level2">
+<h2>Reconnaissance d’Entités Nommées (NER)</h2>
+<div class="columns">
+<div class="column" style="font-size:0.75em">
+<h3 id="identifier-le-de-qui-de-quoi">Identifier le “de qui / de quoi”</h3>
+<p>La <strong>NER (Named Entity Recognition)</strong> détecte et classe automatiquement les <strong>entités du monde réel</strong> mentionnées dans un texte.</p>
+<p><br>
+<br>
+</p>
+<ul>
+<li><span class="bg" style="--col: #325494">PER</span> : Personnes<br>
+</li>
+<li><span class="bg" style="--col: #58DDB3">ORG</span> : Organisations (marques, entreprises)<br>
+</li>
+<li><span class="bg" style="--col: #F5C946">LOC</span> : Lieux (villes, pays)<br>
+</li>
+<li><span class="bg" style="--col: #B10F2E">DATE</span> : Dates, heures<br>
+</li>
+<li><span class="bg" style="--col: #8A2BE2">MISC</span> : Divers (produits, événements…) voir <a href="https://github.com/urchade/GLiNER">GliNER</a> aux prochains cours</li>
+</ul>
+<p><br>
+<br>
+</p>
+</div><div class="column" style="width:45%;">
+<div title="Applications en netnographie">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Applications en netnographie</strong></p>
+</div>
+<div class="callout-content">
+<p>Quelques idées :</p>
+<ul>
+<li><strong>Veille concurrentielle</strong> : lister automatiquement les marques concurrentes (ORG) citées.</li>
+<li><strong>Détection d’influenceurs</strong> : repérer les personnes (PER) qui animent les conversations.</li>
+<li><strong>Analyse géo-localisée</strong> : identifier les lieux (LOC) où se concentrent les discussions.</li>
+<li><strong>Tracking produits</strong> : repérer les références spécifiques (MISC) dans les conversations.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div><p><u><span class="bg" style="--col: #325494">Jean Dupont</span></u> travaille chez <u><span class="bg" style="--col: #58DDB3">Google</span></u> à <u><span class="bg" style="--col: #F5C946">Paris</span></u> depuis <u><span class="bg" style="--col: #B10F2E">2023</span></u>.</p>
+</div>
+</section>
+<section id="gestion-des-variations-fuzzy-matching" class="slide level2">
+<h2>Gestion des variations : fuzzy matching</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<h3 id="gérer-le-bruit-textuel">Gérer le “bruit” textuel</h3>
+<p>Les textes web sont pleins de <strong>variations</strong> : fautes de frappe, accents manquants, abréviations.</p>
+<ul>
+<li>Le <strong>fuzzy matching</strong> (correspondance approximative) regroupe des chaînes de caractères similaires.</li>
+<li>La <strong>Distance de Levenshtein</strong> (ou distance d’édition) est la méthode la plus connue.
+<ul>
+<li>Elle calcule le <strong>nombre minimal d’opérations</strong> (insertion, suppression, substitution) pour passer d’un mot à un autre.</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:45%;">
+<div title="Exemple concret" style="font-size:0.8em">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Exemple concret</strong></p>
+</div>
+<div class="callout-content">
+<p>Comment regrouper les mentions d’une marque ?</p>
+<ul>
+<li><code>"Decathlon"</code></li>
+<li><code>"Décathlon"</code></li>
+<li><code>"decathalon"</code></li>
+<li><code>"décahlon"</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(stringdist)</span>
+<span id="cb1-2"><a href=""></a></span>
+<span id="cb1-3"><a href=""></a>s1 <span class="ot">&lt;-</span> <span class="st">"Décathlon"</span></span>
+<span id="cb1-4"><a href=""></a>s2 <span class="ot">&lt;-</span> <span class="st">"decathalon"</span></span>
+<span id="cb1-5"><a href=""></a></span>
+<span id="cb1-6"><a href=""></a>distance <span class="ot">&lt;-</span> <span class="fu">stringdist</span>(s1, s2, <span class="at">method =</span> <span class="st">"lv"</span>)</span>
+<span id="cb1-7"><a href=""></a><span class="fu">cat</span>(<span class="st">"Distance de Levenshtein entre"</span>, s1, <span class="st">"et"</span>, s2, <span class="st">"="</span>, distance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Distance de Levenshtein entre Décathlon et decathalon = 3</code></pre>
+</div>
+</div>
+<p>La distance de Levenshtein entre <code>"Décathlon"</code> et <code>"decathalon"</code> est de <strong>3</strong> (D→d, é→e, + insertion de “a”).</p>
+<p>En fixant un seuil de distance faible (ex: ≤ 2), on peut automatiquement considérer que ces variantes désignent la <strong>même entité</strong>. C’est essentiel pour fiabiliser les comptages.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<ul>
+<li>Le <strong>texte</strong> est devenu une matière première massive.<br>
+</li>
+<li>Le NLP/TAL permet :
+<ul>
+<li>De nouveaux terrains (avis, réseaux sociaux, forums).<br>
+</li>
+<li>De nouvelles méthodes (analyse lexicale, syntaxique, sémantique, pragmatique).<br>
+</li>
+<li>De nouveaux objets (discours de marque, avis, interactions).</li>
+</ul></li>
+</ul>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>👉 Pour le marketing digital et la netnographie : comprendre que <strong>le langage est à la fois structure, sens et action</strong>.</p>
+</div>
+</div>
+</div>
+
+<script> window._input_file = "---\n" + "title: \"Études qualitatives sur le web (netnographie)\"\n" + "subtitle: \"Introduction au NLP/TALN - Traitement des données textuelles\"\n" + "author:\n" + "  - name: \"Olivier Caron\"\n" + "    affiliations: \"Paris Dauphine - PSL\"\n" + "format:\n" + "  ubd-revealjs:\n" + "    self-contained: false\n" + "    chalkboard: true\n" + "    transition: fade\n" + "    auto-stretch: false\n" + "    width: 1250\n" + "    height: 760\n" + "    toc: false\n" + "    toc-depth: 1\n" + "    code-block-height: 700px\n" + "execute:\n" + "  echo: true\n" + "bibliography: refs.bib\n" + "revealjs-plugins:\n" + "  - editable\n" + "filters:\n" + "  - editable\n" + "---\n" + "\n" + "## Révolution du texte : production & lecture\n" + "\n" + "-   Explosion de la **production textuelle** (posts, avis, tweets, articles scientifiques).\\n" + "-   Conséquence : **impossible de tout lire** → besoin d’automatisation.\\n" + "-   **Révolution de la lecture** : moteurs de recherche, curation, algorithmes de recommandation.\n" + "\n" + "::: callout-note\n" + "👉 En marketing digital : les consommateurs produisent massivement du texte (avis, posts, hashtags).\n" + ":::\n" + "\n" + "# Fondements théoriques du langage pour la netnographie {.transition-slide-ubdblue}\n" + "\n" + "## Deux perspectives qui se complètent\n" + "\n" + ":::: {.columns}\n" + "::: {.column width=\"50%\"}\n" + "### Perspective **structuraliste**\n" + "La langue comme **système** (catégories, oppositions, règles).  \n" + "Finalité : décrire l’**architecture** qui stabilise les usages.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### Perspective **pragmatique / usage**\n" + "Le langage comme **activité** située et sociale.  \n" + "Finalité : comprendre **ce que fait** un message et comment il circule.\n" + ":::\n" + "::::\n" + "\n" + "::: callout-note\n" + "Ces perspectives s’articulent : la **structure** rend les énoncés intelligibles ; l’**usage** leur donne portée et effets.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Saussure : système de signes et niveaux d’analyse\n" + "\n" + ":::: {.columns}\n" + "::: {.column width=\"58%\"}\n" + "-   **Langage** : capacité humaine de signifier.\\n" + "-   **Langue** : **code partagé** (unités, oppositions, règles).\\n" + "-   **Parole** : réalisation **située** de la langue (style, variations).\\n" + "-   **Texte** : matérialisation de la parole (post, avis, thread).\n" + "\n" + "**Conséquence** : distinguer conventions **collectives** (formats, hashtags, routines) et innovations **singulières** (mèmes, détournements).\n" + ":::\n" + "\n" + ":::: {.column width=\"42%\"}\n" + "::: callout-tip\n" + "**Notions clés**\n" + "\n" + "-   La **valeur** d’un signe dépend des **différences** avec les autres signes.\\n" + "-   Le **système** donne un cadre ; l’**usage** l’actualise et l’infléchit.\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Chomsky & Tesnière : structure, dépendances, générativité\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"57%\" style=\"font-size:0.75em\"}\n" + "\\n" + "\n" + "-   **Grammaire générative** : un ensemble **fini de règles** → une infinité d’énoncés.\\n" + "-   **Compétence** (connaissance implicite) vs **performance** (usage effectif).\\n" + "-   **Arbres** (constituants/dépendances) : qui gouverne qui ? quelle **portée** pour la négation, les modaux, les intensifs ?\n" + "\n" + "### Apport interprétatif\n" + "\n" + "\\n" + "La structure **module** le sens :\n" + "\n" + "-   “pas **vraiment** satisfaisant” ≠ “**vraiment** pas satisfaisant”.\\n" + "-   Les relations syntaxiques révèlent **cibles** (produit, marque, service) et **attributs** (prix, qualité, délai).\n" + ":::\n" + "\n" + ":::: {.column width=\"43%\"}\n" + "::: callout-note\n" + "**Indicateurs récurrents**\n" + "\n" + "-   Négation\\n" + "-   Modalité (“il faudrait”, “on doit”)\\n" + "-   Intensité (“très”, “trop”, “vraiment”)\\n" + "-   Comparaison (“plus/moins que”)\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Jakobson : fonctions du langage et formats de message\n" + "\n" + "Les messages combinent des **fonctions** avec des dominantes variables :\n" + "\n" + "1.  **Référentielle** — informer sur le monde (faits, caractéristiques).\\n" + "2.  **Expressive** — manifester une attitude ou une émotion.\\n" + "3.  **Conative** — orienter le destinataire (inciter, solliciter).\\n" + "4.  **Phatique** — ouvrir/entretenir le canal d’échange.\\n" + "5.  **Métalinguistique** — expliciter le code (définitions, balises).\\n" + "6.  **Poétique** — valoriser la forme (style, rime, mème, slogan).\n" + "\n" + "Les **genres** (unboxing, SAV, teasing, témoignage) stabilisent des combinaisons de fonctions.\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Austin : le langage comme action\n" + "\n" + "> “Dire, c’est **faire**.”\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"58%\"}\n" + "-   **Locutoire** : forme et contenu littéral.\\n" + "-   **Illocutoire** : **acte** réalisé (remercier, promettre, blâmer, recommander, alerter…).\\n" + "-   **Perlocutoire** : **effet** produit (convaincre, mobiliser, dissuader, apaiser…).\n" + "\n" + "Un énoncé **évalue** et **agit** : il oriente l’échange, peut enclencher des réponses, amplifier ou clore une discussion.\n" + ":::\n" + "\n" + ":::: {.column width=\"42%\"}\n" + "::: callout-important\n" + "**Indices**\n" + "\n" + "-   Verbes et formules illocutoires (“je recommande / déconseille”)\\n" + "-   Traces perlocutoires (réponses, relais, reconfigurations du fil)\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Firth & Harris : le sens par les contextes\n" + "\n" + "> “You shall know a word by the **company** it keeps.” — *J. R. Firth*\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"57%\"}\n" + "-   **Hypothèse distributionnelle** : des mots partageant des **contextes** présentent des **proximités de sens**.\\n" + "-   Le **voisinage** (cooccurrences, fenêtres, dépendances) caractérise les **associations** : par exemple *qualité* ↔ *premium*, *prix* ↔ *juste* / *trop*.\n" + "\n" + "**Conséquence** : le sens **relationnel** se lit dans les **profils de contexte** (collocations, patrons d’usage, régularités de voisinage).\n" + ":::\n" + "\n" + ":::: {.column width=\"43%\"}\n" + "::: callout-note\n" + "**Pratiques d’observation**\n" + "\n" + "-   Repérer cooccurrences fortes\\n" + "-   Identifier collocations (“service client”, “trop + adjectif”)\\n" + "-   Suivre les patrons relationnels stables\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Zipf : fréquences, longue traîne et visibilité\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"58%\"}\n" + "-   **Loi de Zipf** : quelques formes **très fréquentes**, une **longue traîne** de rares.\\n" + "-   **Effets** :\n" + "    -   Les unités **structurelles** dominent la volumétrie (colle du discours).\\n" + "    -   Les éléments **distinctifs** se situent souvent en **fréquence moyenne**.\\n" + "    -   Les **signaux faibles** (rares) portent innovations et codes internes.\n" + "\n" + "La fréquence informe moins sur l’“importance” que sur le **rôle** (structurel, distinctif, émergent).\n" + ":::\n" + "\n" + ":::: {.column width=\"42%\"}\n" + "::: callout-tip\n" + "**Question directrice**\\n" + "Que dit la **position fréquentielle** d’une forme sur sa fonction discursive et sa place dans le répertoire d’une communauté ?\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Genette : textes en réseau (transtextualité)\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"60%\"}\n" + "-   **Intertextualité** : citations, allusions, réemplois (hashtags, duos, stitches).\\n" + "-   **Paratexte** : titraille, visuels, émojis, alt-text, légendes, tags.\\n" + "-   **Métatexte** : commentaires et critiques d’autres textes.\\n" + "-   **Hypertexte** : transformations/variations (parodie, remix, détournement).\\n" + "-   **Architexte** : appartenance à un **genre** (unboxing, SAV, témoignage, teasing).\n" + "\n" + "Un message s’**inscrit** dans des **chaînes** : références et paratexte orientent sa lecture et sa circulation.\n" + ":::\n" + "\n" + ":::: {.column width=\"40%\"}\n" + "::: callout-note\n" + "**Indices de réseau**\n" + "\n" + "-   Mentions, citations, formats de reprise\\n" + "-   Rôle du layout et des métadonnées dans l’orientation interprétative\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "# Schéma intégré d’interprétation {.transition-slide-ubdteal}\n" + "\n" + "## De la forme à l’effet : grille de lecture unifiée\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"62%\"}\n" + "1.  **Structure** *(Saussure, Chomsky)* : catégories, dépendances, portée (négation, modalités, intensité).\\n" + "2.  **Fonctions** *(Jakobson)* : dominante communicative et format.\\n" + "3.  **Contexte lexical** *(Firth, Harris)* : cooccurrences, collocations, patrons relationnels.\\n" + "4.  **Distribution** *(Zipf)* : fréquences, longue traîne, signaux faibles / distinctifs.\\n" + "5.  **Actes & effets** *(Austin)* : nature de l’acte et traces perlocutoires dans l’échange.\\n" + "6.  **Réseaux de textes** *(Genette)* : références, paratexte, genres, trajectoires.\n" + ":::\n" + "\n" + ":::: {.column width=\"38%\"}\n" + "::: callout-important\n" + "Finalité : produire une interprétation **cohérente** d’un corpus en articulant règles, usages, relations sémantiques, actes et inscriptions intertextuelles.\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Typologie croisée (repères d’annotation) {.smaller}\n" + "\\n" + "\n" + "| Dimension | Indices typiques | Lecture |\n" + "|------------------------|------------------------|------------------------|\n" + "| **Structure** | négation, modalité, intensif, dépendances | portée de l’évaluation ; cible/attribut |\n" + "| **Fonctions** | items expressifs/conatifs/poétiques | rôle communicatif dominant |\n" + "| **Contexte** | cooccurrences, collocations | associations et oppositions sémantiques |\n" + "| **Distribution** | fréquences / raretés | structurel vs distinctif ; émergent vs routinier |\n" + "| **Actes / effets** | verbes illocutoires, traces perlocutoires | recommandation, alerte, mobilisation… |\n" + "| **Réseaux** | citations, hashtags, formats | ancrage intertextuel ; architexte mobilisé |\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Études guidées (exemples)\n" + "\n" + "::: incremental\n" + "-   “Service impeccable, livraison rapide. Je recommande.”\\n" + "    **Fonctions** : expressive + conative ; **Acte** : recommandation ; **Structure** : cibles *service/logistique* ; **Réseau** : format *avis court*.\n" + "-   “Trop cher pour la qualité proposée.”\\n" + "    **Structure** : intensification + comparaison implicite ; **Contexte** : collocation “trop cher” ; **Acte** : dissuasion ; **Distribution** : expression fréquente ou niche selon la communauté.\n" + "-   “#NewDrop demain. Qui est chaud ? 👀”\\n" + "    **Fonctions** : phatique + conative + poétique ; **Acte** : mobilisation ; **Paratexte** : hashtag, émojis ; **Architexte** : teasing de lancement.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Limites et précautions d’interprétation\n" + "\n" + "-   **Ironie / sarcasme / polyphonie** : contrastes forme–contenu, indices paratextuels.\\n" + "-   **Genres hybrides** : brouillage des fonctions selon le format.\\n" + "-   **Dynamiques communautaires** : normes mouvantes, cycles d’attention.\\n" + "-   **Biais d’observation** : moments chauds, invisibilités (lurkers).\\n" + "-   **Éthique** : respect des espaces, consentements, anonymisation.\n" + "\n" + "# De la théorie… à la méthodologie {.transition-slide-ubdyellow}\n" + "\n" + "## Roadmap Humphreys & Wang (2018) 1/2\n" + "\n" + "### Étapes\n" + "::: {.incremental}\n" + "- **1. Research question** — formuler une question adaptée à l’analyse textuelle\n" + "- **2. Construct identification** — identifier les construits (émotion, influence, statut, etc.)\n" + "- **3. Data collection** — collecter les corpus (posts, avis, threads)\n" + "- **4. Operationalization** — transformer les construits en indicateurs (dictionnaires, modèles)\n" + "- **5. Interpretation & analysis** — relier résultats et théorie (comparaison, corrélation, prédiction)\n" + "- **6. Validation** — vérifier robustesse (multi-opérationnalisation, triangulation, hold-out sample)\n" + ":::\n" + "\n" + "## Roadmap Humphreys & Wang (2018) 2/2\n" + "\n" + "![](images/clipboard-1874408983.png){fig-align=\"center\" width=\"100%\"} {.fragment}\n" + "\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Apports principaux de la démarche\n" + "\n" + "-   **Découverte** : révéler des régularités invisibles à l’œil humain\\n" + "-   **Précision** : mesurer avec impartialité à grande échelle\\n" + "-   **Validité écologique** : analyser des discours en contexte naturel\\n" + "-   **Multi-niveaux** : individus, dyades, groupes, cultures\\n" + "-   **Guidelines méthodologiques** : dictionnaires, échantillonnage, validation, analyse de données textuelles clairsemées\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Points d’ancrage\n" + "\n" + "-   **Structuraliste** : la langue comme **système** (formes, oppositions, dépendances).\\n" + "-   **Pragmatique / usage** : le message comme **action** située (fonctions, actes, effets).\\n" + "-   **Distribution / contexte** : le sens comme **relation** (voisinages, collocations, patrons).\\n" + "-   **Réseaux de textes** : la signification comme **inscription** sociale (intertextes, paratextes, genres).\n" + "\n" + "**Chaîne d’analyse** : **Structure → Fonction → Contexte → Distribution → Acte → Réseau**.\n" + "\n" + "\n" + "# De la théorie… à la pratique {.transition-slide-ubdyellow}\n" + "\n" + "## Pré-traitement du corpus\n" + "\n" + "\\n" + "\n" + "### Pourquoi nettoyer les données textuelles ?\n" + "\n" + "-   Les textes bruts (avis, tweets, posts) contiennent du **bruit** : ponctuation, chiffres, emojis, urls…\\n" + "-   Le nettoyage améliore la qualité des analyses (fréquences, co-occurrences, modèles).\\n" + "-   **Objectif** : obtenir un corpus standardisé, cohérent et exploitable.\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Pré-traitement : opérations courantes\n" + "\n" + "-   Passage en **minuscules**\\n" + "-   Suppression de la **ponctuation / chiffres / urls**\\n" + "-   Suppression des **stopwords** (*mots vides* : le, la, de, un…)\\n" + "-   **Stemming** : réduire les mots à leur racine (*ex. aimer, aimait → aim*)\\n" + "-   **Lemmatisation** : réduire les mots à leur forme canonique (*aimait → aimer*)\n" + "\n" + "::: callout-note\n" + "👉 Ces étapes peuvent être adaptées selon la recherche : ne pas trop nettoyer au risque de perdre du sens ou des informations.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Représentation : \"Bag-of-Words\"\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"30%\" style=\"font-size:1em\"}\n" + "### Le principe\n" + "\n" + "-   Une fois le texte nettoyé, il faut le transformer en chiffres pour que la machine puisse le traiter.\n" + "-   Le modèle **\"sac de mots\" (BoW)** est la méthode la plus simple :\n" + "    -   On représente un document uniquement par les mots qu'il contient.\n" + "    -   L'**ordre des mots** et la grammaire sont volontairement **ignorés**.\n" + "-   Cette approche permet de créer une **Matrice Document-Terme (DTM)**.\n" + ":::\n" + "\n" + ":::: {.column width=\"70%\" style=\"font-size:0.55em\"}\n" + "::: {.callout-note title=\"Exemple de DTM\"}\n" + "**Corpus :**\n" + "\n" + "-   D1: \"Produit **excellent et** pas cher\"\n" + "-   D2: \"Produit **médiocre et** très cher\"\n" + "-   D3: \"Produit **excellent et** vraiment pas cher\"\n" + "-   D4: \"Produit **médiocre et** assez cher\"\n" + "\n" + "**Matrice (DTM) :**\n" + "\n" + "|        | produit | excellent | médiocre | cher | pas | très | vraiment | assez |\n" + "|:-------|:-------:|:---------:|:--------:|:----:|:---:|:----:|:--------:|:-----:|\n" + "| **D1** |    1    |     1     |    0     |  1   |  1  |  0   |    0     |   0   |\n" + "| **D2** |    1    |     0     |    1     |  1   |  0  |  1   |    0     |   0   |\n" + "| **D3** |    1    |     1     |    0     |  1   |  1  |  0   |    1     |   0   |\n" + "| **D4** |    1    |     0     |    1     |  1   |  0  |  0   |    0     |   1   |\n" + "\n" + "Chaque ligne est un **vecteur** qui représente un document.\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Pondération des termes : TF-IDF\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"50%\" style=\"font-size:0.85em\"}\n" + "### L'intuition\n" + "\n" + "La fréquence brute (compter les mots) est limitée. Le **TF-IDF** est une pondération plus intelligente qui vise à faire ressortir les mots **spécifiques** d'un document.\n" + "\n" + "-   **TF (Term Frequency)** : poids d'un mot dans **un** document. Un mot fréquent est important *pour ce document*.\n" + "-   **IDF (Inverse Document Frequency)** : poids d'un mot dans **tout** le corpus. Un mot présent partout (ex: \"le\", \"produit\") est peu informatif, donc son poids est faible.\n" + "\n" + "Un **TF-IDF élevé** signale un mot-clé caractéristique.\n" + ":::\n" + "\n" + ":::: {.column width=\"50%\" style=\"font-size:0.75em\"}\n" + "::: {.callout-note title=\"Les formules\"}\n" + "Pour un terme $t$ dans un document $d$ au sein d'un corpus $D$ :\n" + "\n" + "-   **Fréquence du terme (TF)** : $TF(t,d) = \frac{\text{nombre de fois où } t \text{ apparaît dans } d}{\text{nombre total de mots dans } d}$\n" + "\n" + "-   **Fréquence inverse de document (IDF)** : $IDF(t,D) = \log\left(\frac{\text{nombre total de documents}}{\text{nombre de documents contenant } t}\right)$\n" + "\n" + "-   **Score TF-IDF** : $TFIDF(t,d,D) = TF(t,d) \times IDF(t,D)$\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Statistiques lexicales exploratoires\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"50%\" style=\"font-size:0.85em\"}\n" + "### \"Sentir\" le corpus\n" + "\n" + "Avant toute analyse complexe, des indicateurs simples permettent de comprendre la nature des données :\n" + "\n" + "-   **Fréquences de mots** :\n" + "    -   Quels sont les termes les plus utilisés (hors *stopwords*) -\> donne une idée des thèmes dominants.\n" + "    -   Visualisation : **nuage de mots**.\n" + "-   **Hapax Legomena** :\n" + "    -   Mots n'apparaissant qu'**une seule fois** dans tout le corpus.\n" + "    -   Souvent 30-50% du vocabulaire (selon taille corpus). Ils peuvent être du bruit (fautes de frappe) ou des signaux faibles (jargon émergent).\n" + ":::\n" + "\n" + ":::: {.column width=\"50%\" style=\"font-size:0.75em\"}\n" + "### Richesse du vocabulaire (TTR, CTTR, MATTR, Maas...)\n" + "\n" + "\\n" + "\n" + "-   **Diversité lexicale (TTR)** :\n" + "    -   Mesure la richesse du vocabulaire utilisé dans un texte.\n" + "    -   Le *Type-Token Ratio* est le calcul le plus simple.\n" + "\n" + "::: {.callout-note title=\"Formule du TTR\"}\n" + "$$ TTR = \frac{\text{Nombre de mots uniques (types)}}{\text{Nombre total de mots (tokens)}} $$ Un TTR proche de 1 indique un vocabulaire très varié ; un TTR faible un langage répétitif.\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Approfondir la diversité lexicale\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"55%\" style=\"font-size:0.85em\"}\n" + "### Au-delà du TTR\n" + "\n" + "Le **Type-Token Ratio (TTR)** est un bon début, mais faiblesse majeure -\> très sensible à la longueur du texte. Un texte plus long aura mécaniquement un TTR plus faible car on est forcé de répéter des mots.\n" + "\n" + "\\n" + " \n" + "\n" + "### Mesures plus robustes\n" + "\n" + "\\n" + "\\n" + "\n" + "Pour comparer des textes de longueurs différentes, on utilise des indicateurs plus avancés comme le **MTLD** (Measure of Textual Lexical Diversity).\n" + "\n" + "-   **Principe** : L'algorithme calcule le TTR moyen sur des segments consécutifs du texte, ce qui le rend indépendant de la longueur totale.\n" + ":::\n" + "\n" + ":::: {.column width=\"45%\"}\n" + "::: {.callout-tip title=\"Applications en Netnographie\" style=\"font-size:0.9em\"}\n" + "Analyser la diversité lexicale permet de :\n" + "\n" + "-   **Profiler des auteurs** : un vocabulaire pauvre et répétitif peut être un indice de spams ou de faux avis générés automatiquement.\n" + "-   **Caractériser une communauté** : un jargon riche et varié est souvent le signe d'une communauté d'experts ou de passionnés.\n" + "-   **Segmenter des retours clients** : les commentaires très riches lexicalement peuvent contenir des insights plus détaillés que les commentaires laconiques.\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Mesurer la lisibilité du texte (Readability)\n" + "\n" + "La lisibilité mesure la **facilité de lecture et de compréhension** d'un texte. Elle ne dépend pas seulement de la richesse du vocabulaire, mais aussi de la complexité syntaxique.\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"50%\" style=\"font-size:0.85em\"}\n" + "### Les deux piliers de la complexité\n" + "\n" + "La plupart des scores de lisibilité se basent sur deux variables simples :\n" + "\n" + "1.  **Complexité sémantique** : longueur des mots (en syllabes ou en caractères). Des mots longs sont considérés comme plus difficiles.\n" + "2.  **Complexité syntaxique** : longueur des phrases (en nombre de mots). Des phrases longues sont plus complexes à analyser pour le lecteur.\n" + "\n" + "Le score le plus célèbre en anglais est le **Flesch-Kincaid Reading Ease**.\n" + ":::\n" + "\n" + ":::: {.column width=\"50%\" style=\"font-size:0.75em\"}\n" + "::: {.callout-note title=\"Scores & Applications\" style=\"font-size:0.75em\"}\n" + "### Formule générale\n" + "\n" + "La plupart des scores suivent une logique de ce type : $Score = A - (B \times \frac{\text{mots}}{\text{phrase}}) - (C \times \frac{\text{syllabes}}{\text{mot}})$\n" + "\n" + "### Utilité en marketing\n" + "\n" + "-   **Auditer le contenu de marque** : le langage utilisé sur un site web ou les réseaux sociaux est-il adapté à la cible ? Est-il trop simple ? Trop jargonnant ?\n" + "-   **Analyser l'audience** : le niveau de langage des consommateurs dans leurs avis peut-il révéler leur niveau d'expertise ?\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Lisibilité en français : les outils spécifiques\n" + "\n" + "::::::: columns\n" + ":::: {.column width=\"55%\" style=\"font-size:0.85em\"}\n" + "### Kandel & Moles : l'adaptation de Flesch\n" + "\n" + "C'est la formule historique (1958) et la plus directe pour le français. Le principe est le même que pour l'anglais : combiner la longueur des mots et des phrases.\n" + "\n" + "-   **Score de 0 à 100** :\n" + "    -   **Score élevé (\> 70)** : texte facile à lire.\n" + "    -   **Score bas (\< 40)** : texte difficile (technique, académique).\n" + "\n" + "::: {.callout-note title=\"La formule pour le français\" style=\"font-size:0.60em\"}\n" + "Le score est calculé ainsi :\n" + "\n" + "$Score = 207 - (1.015 \times \text{longueur moyenne des phrases})$ $- (73.6 \times \text{nombre moyen de syllabes par mot})$\n" + ":::\n" + "::::\n" + "\n" + ":::: {.column width=\"45%\" style=\"font-size:0.70em\"}\n" + "### Alternative et pratique moderne\n" + "\n" + "-   **Indice de Gunning Fog** :\n" + "    -   Une autre approche qui se base sur le pourcentage de **\"mots complexes\"** (généralement 3 syllabes ou plus).\n" + "    -   Le score estime le **nombre d'années d'études** nécessaires pour comprendre le texte.\n" + "-   **Outils NLP actuels** :\n" + "    -   Aujourd'hui, on utilise des bibliothèques Python pour faire ces calculs.\n" + "    -   **`pyphen`** : pour compter les syllabes en français.\n" + "    -   **`textstat`** : pour calculer directement les scores de lisibilité.\\n" + "    -   En **R** : les packages comme `quanteda` ou `koRpus` offrent aussi ces fonctionnalités.\n" + "\n" + "::: {.callout-tip title=\"A retenir\" style=\"font-size:1em\"}\n" + "Le principe reste le même : un texte simple = mots courts + phrases courtes. Les formules pour le français ne font que calibrer cette idée aux particularités statistiques de notre langue.\n" + ":::\n" + "::::\n" + ":::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Analyse de co-occurrences et collocations\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"55%\"}\n" + "### Le sens par l'association\n" + "\n" + "On dépasse le \"sac de mots\" pour analyser **quels mots apparaissent ensemble**.\n" + "\n" + "-   **Co-occurrence** : deux mots qui apparaissent fréquemment dans un même contexte (ex: phrase, fenêtre de 5 mots).\n" + "    -   Permet de créer des **graphes de mots** pour visualiser les clusters thématiques.\n" + "-   **Collocation** : une co-occurrence si forte qu'elle forme une expression presque figée.\n" + "    -   Ex: \"service client\", \"rapport qualité-prix\".\n" + ":::\n" + "\n" + ":::: {.column width=\"45%\"}\n" + "::: {.callout-important title=\"Mesurer la force d'association\" style=\"font-size:0.9em\"}\n" + "On peut quantifier si une co-occurrence est due au hasard ou à un lien sémantique fort. Le **Pointwise Mutual Information (PMI)** est une mesure courante.\n" + "\n" + "$PMI(x,y) = \log_2\left(\frac{P(x,y)}{P(x)P(y)}\right)$\n" + "\n" + "-   $P(x,y)$ : probabilité de voir x et y ensemble.\n" + "-   $P(x)P(y)$ : probabilité de les voir ensemble si leur apparition était indépendante.\n" + "\n" + "Un PMI élevé suggère un lien sémantique fort.\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Analyse de \"Keyness\" (mots-clés)\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"60%\"}\n" + "### Qu'est-ce qui différencie deux discours ?\n" + "\n" + "-   La **Keyness** identifie les mots **statistiquement sur-représentés** dans un corpus A par rapport à un corpus de référence B.\n" + "-   C'est une méthode puissante pour **caractériser et comparer** des ensembles de textes.\n" + "-   **Applications** :\n" + "    -   Avis 5★ vs 1★ : Quels mots sont \"clés\" pour les clients satisfaits ?\n" + "    -   Tweets avant vs après une crise : quel vocabulaire a émergé ?\n" + ":::\n" + "\n" + ":::: {.column width=\"40%\"}\n" + "::: {.callout-note title=\"Principe statistique\" style=\"font-size:0.7em\"}\n" + "Pour chaque mot, on construit un tableau de contingence :\n" + "\n" + "|                       | **Corpus A (cible)** | **Corpus B (réf.)** |\n" + "|:----------------------|:--------------------:|:-------------------:|\n" + "| **Freq. mot X**       |          a           |          b          |\n" + "| **Freq. autres mots** |          c           |          d          |\n" + "\n" + "Tests possibles :\\n" + "- $\chi^2$ : intuitif mais sensible aux faibles effectifs.\\n" + "- **Log-Likelihood** $G^2$ : plus robuste, devenu la référence (ex. *AntConc*, `quanteda`).\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Annotation morphosyntaxique (POS Tagging)\n" + "\n" + "L'étiquetage morphosyntaxique (POS Tagging) attribue à chaque mot sa **catégorie grammaticale** (nom, verbe, adjectif, adverbe, etc.).\n" + "\n" + "<u>Le</u>/[DET]{.bg style=\"--col: #325494\"} <u>produit</u>/[NOM]{.bg style=\"--col: #58DDB3\"} <u>est</u>/[VERBE]{.bg style=\"--col: #B10F2E\"} <u>vraiment</u>/[ADV]{.bg style=\"--col: #999999\"} <u>excellent</u>/[ADJ]{.bg style=\"--col: #F5C946\"}\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"50%\" style=\"font-size:0.8em\"}\n" + "### À quoi ça sert ?\n" + "\n" + "-   **Filtrer l'information** :\n" + "    -   Extraire les **adjectifs** pour analyser les qualificatifs d'un produit.\n" + "    -   Isoler les **noms propres** pour détecter les entités.\n" + "-   **Préparer le traitement** :\n" + "    -   Indispensable pour une bonne **lemmatisation** (ex: \"port\" → *porter* vs *port*).\n" + "    -   Utile aussi pour la **stemmatisation** (ex: \"jouer\", \"jouait\", \"jouera\" → *jou*).\n" + ":::\n" + "\n" + ":::: {.column width=\"50%\"}\n" + "::: {.callout-note title=\"Le standard Universal Dependencies\" style=\"font-size:0.9em\"}\n" + "Le projet **Universal Dependencies (UD)** propose un jeu d'étiquettes unifié (17 catégories principales) pour de nombreuses langues. Cela facilite l'utilisation d'outils multilingues comme spaCy ou UDPipe.\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "## Analyse en dépendances syntaxiques (Dependency Parsing) 1/3\n" + "\n" + "L’**analyse en dépendances syntaxiques** est une étape du traitement automatique du langage naturel (TALN) qui vise à représenter la structure d’une phrase à partir des **relations de dépendance entre mots**.\\n" + "Elle est généralement formalisée sous forme de **graphes orientés** (souvent en arbres), où :\n" + "\n" + "-   les **nœuds** correspondent aux mots (*tokens*),\\n" + "-   les **arcs** représentent les relations syntaxiques (par ex. *nsubj* = sujet, *obj* = objet, *det* = déterminant).\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Analyse en dépendances syntaxiques (Dependency Parsing) 2/3\n" + "\n" + "Cette approche permet d’identifier qui fait quoi dans une phrase et de modéliser des structures grammaticales complexes.\\n" + "Elle est largement utilisée dans des applications comme :\n" + "\n" + "-   l’**extraction d’information** (entités et relations),\\n" + "-   le **résumé automatique** et la **recherche d’information**,\\n" + "-   l’**analyse des discours** sur les réseaux sociaux.\n" + "\n" + "Un cadre de référence majeur pour cette tâche est le projet [**Universal Dependencies**](https://universaldependencies.org), qui propose des annotations cohérentes pour de nombreuses langues.\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Analyse en dépendances syntaxiques (Dependency Parsing) 3/3\n" + "\n" + "![](images/clipboard-2484643215.png)\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Exemple code\n" + "\n" + "[**Voir l’exemple de code ici**](https://oliviercaron.github.io/systematic_lit_review/annotations.html#part-of-speech-tagging-with-udpipe-straka-strakova-2017-tokenizing)\n" + "\n" + "[![Exemple de code udpipe](images/clipboard-3249784408.png)](https://oliviercaron.github.io/systematic_lit_review/annotations.html#part-of-speech-tagging-with-udpipe-straka-strakova-2017-tokenizing)\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Reconnaissance d'Entités Nommées (NER)\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"55%\" style=\"font-size:0.75em\"}\n" + "### Identifier le \"de qui / de quoi\"\n" + "\n" + "La **NER (Named Entity Recognition)** détecte et classe automatiquement les **entités du monde réel** mentionnées dans un texte.\n" + "\n" + "\\n" + "\\n" + "\n" + "-   [PER]{.bg style=\"--col: #325494\"} : Personnes\\n" + "-   [ORG]{.bg style=\"--col: #58DDB3\"} : Organisations (marques, entreprises)\\n" + "-   [LOC]{.bg style=\"--col: #F5C946\"} : Lieux (villes, pays)\\n" + "-   [DATE]{.bg style=\"--col: #B10F2E\"} : Dates, heures\\n" + "-   [MISC]{.bg style=\"--col: #8A2BE2\"} : Divers (produits, événements...) voir [GliNER](https://github.com/urchade/GLiNER) aux prochains cours\n" + "\n" + "\\n" + "\\n" + ":::\n" + "\n" + ":::: {.column width=\"45%\"}\n" + "::: {.callout-tip title=\"Applications en netnographie\"}\n" + "Quelques idées :\n" + "\n" + "-   **Veille concurrentielle** : lister automatiquement les marques concurrentes (ORG) citées.\n" + "-   **Détection d'influenceurs** : repérer les personnes (PER) qui animent les conversations.\n" + "-   **Analyse géo-localisée** : identifier les lieux (LOC) où se concentrent les discussions.\n" + "-   **Tracking produits** : repérer les références spécifiques (MISC) dans les conversations.\n" + ":::\n" + "::::\n" + "\n" + "<u>[Jean Dupont]{.bg style=\"--col: #325494\"}</u> travaille chez <u>[Google]{.bg style=\"--col: #58DDB3\"}</u> à <u>[Paris]{.bg style=\"--col: #F5C946\"}</u> depuis <u>[2023]{.bg style=\"--col: #B10F2E\"}</u>.\n" + "::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Gestion des variations : fuzzy matching\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"55%\"}\n" + "### Gérer le \"bruit\" textuel\n" + "\n" + "Les textes web sont pleins de **variations** : fautes de frappe, accents manquants, abréviations.\n" + "\n" + "-   Le **fuzzy matching** (correspondance approximative) regroupe des chaînes de caractères similaires.\n" + "-   La **Distance de Levenshtein** (ou distance d'édition) est la méthode la plus connue.\n" + "    -   Elle calcule le **nombre minimal d'opérations** (insertion, suppression, substitution) pour passer d'un mot à un autre.\n" + ":::\n" + "\n" + ":::: {.column width=\"45%\"}\n" + "::: {.callout-important title=\"Exemple concret\" style=\"font-size:0.8em\"}\n" + "Comment regrouper les mentions d'une marque ?\n" + "\n" + "-   `\"Decathlon\"`\n" + "-   `\"Décathlon\"`\n" + "-   `\"decathalon\"`\n" + "-   `\"décahlon\"`\n" + "\n" + "```{r}\n" + "library(stringdist)\n" + "\n" + "s1 <- \"Décathlon\"\n" + "s2 <- \"decathalon\"\n" + "\n" + "distance <- stringdist(s1, s2, method = \"lv\")\n" + "cat(\"Distance de Levenshtein entre\", s1, \"et\", s2, \"=\", distance)\n" + "\n" + "```\n" + "\n" + "La distance de Levenshtein entre `\"Décathlon\"` et `\"decathalon\"` est de **3** (D→d, é→e, + insertion de \"a\").\n" + "\n" + "En fixant un seuil de distance faible (ex: ≤ 2), on peut automatiquement considérer que ces variantes désignent la **même entité**. C'est essentiel pour fiabiliser les comptages.\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "## Conclusion\n" + "\n" + "-   Le **texte** est devenu une matière première massive.\\n" + "-   Le NLP/TAL permet :\n" + "    -   De nouveaux terrains (avis, réseaux sociaux, forums).\\n" + "    -   De nouvelles méthodes (analyse lexicale, syntaxique, sémantique, pragmatique).\\n" + "    -   De nouveaux objets (discours de marque, avis, interactions).\n" + "\n" + "::: callout-tip\n" + "👉 Pour le marketing digital et la netnographie : comprendre que **le langage est à la fois structure, sens et action**.\n" + ":::\n" + ""</script>
+<script> window._input_filename = 'C:\Users\Olivier\Documents\GitHub\etudes_qualitatives_web\cours_4\cours_4.qmd'</script>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -748,6 +1564,82 @@ Elle est largement utilisée dans des applications comme :</p>
         ]
       });
     </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
