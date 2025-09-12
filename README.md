@@ -13,7 +13,7 @@ Ce dépôt contient les supports de cours (slides **Quarto / reveal.js**) et les
 | **Séance 3** | **Scraping** des données en ligne (statique & dynamique) | [📑 cours_3.html](https://oliviercaron.github.io/etudes_qualitatives_web/cours_3/cours_3.html) | [test_scrap_api_decathlon.ipynb](https://github.com/oliviercaron/etudes_qualitatives_web/blob/main/cours_3/test_scrap_api_decathlon.ipynb) <br> [test_scrap_marketing_jobs.R](https://github.com/oliviercaron/etudes_qualitatives_web/blob/main/cours_3/test_scrap_marketing_jobs.R) |
 | **Séance 4** | **Analyse exploratoire** & statistiques lexicales | [📑 cours_4.html](https://oliviercaron.github.io/etudes_qualitatives_web/cours_4/cours_4.html) | [Première analyse quantitative](https://benaventc.github.io/NLPBook/une-premi%C3%A8re-analyse-quantitative.html) <br> [Annotation syntaxique](https://oliviercaron.github.io/systematic_lit_review/nlp_techniques.html) |
 | **Séance 5** | **Analyse de sentiment** : des dictionnaires au Machine Learning | [📑 cours_5.html](https://oliviercaron.github.io/etudes_qualitatives_web/cours_5/cours_5.html) | |
-| **Séance 6** | **Représentations vectorielles et Topic modeling** (LDA, STM, embeddings) | [📑 cours_6.html](https://oliviercaron.github.io/etudes_qualitatives_web/cours_6/cours_6.html) | |
+| **Séance 6** | **Topic modeling et représentations vectorielles** (LDA, STM, embeddings) | [📑 cours_6.html](https://oliviercaron.github.io/etudes_qualitatives_web/cours_6/cours_6.html) | |
 | **Séance 7** | **Transformers & LLMs** appliqués au marketing digital | [📑 cours_7.html](https://oliviercaron.github.io/etudes_qualitatives_web/cours_7/cours_7.html) | |
 
 ## 📊 Ressources complémentaires : visualisation de données
