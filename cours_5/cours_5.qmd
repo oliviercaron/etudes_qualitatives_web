@@ -1,0 +1,1145 @@
+---
+title: "Études qualitatives sur le web (netnographie)"
+subtitle: "Analyse de sentiment et opinions"
+author:
+  - name: "Olivier Caron"
+    affiliations: "Paris Dauphine - PSL"
+format:
+  ubd-revealjs:
+    self-contained: false
+    chalkboard: true
+    transition: fade
+    auto-stretch: false
+    width: 1250
+    height: 760
+    toc: false
+    toc-depth: 1
+    code-block-height: 700px
+execute:
+  echo: true
+bibliography: refs.bib
+revealjs-plugins:
+  - editable
+filters:
+  - editable
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+------------------------------------------------------------------------
+
+## Objectifs du cours {style="font-size:0.75em"}
+
+::::: columns
+::: {.column width="50%"}
+**1. Comprendre et modéliser les opinions**
+
+-   Définir et distinguer **opinion**, **subjectivité** et **polarité**.
+-   Maîtriser les **niveaux d'analyse** (document, phrase, aspect) et
+    leur pertinence marketing.
+-   Identifier les **phénomènes linguistiques** qui influencent le
+    sentiment (négation, intensité, "mais"...).
+
+\
+\
+
+**2. Maîtriser les approches classiques**
+
+\
+\
+
+-   Appliquer des méthodes basées sur des **lexiques** et des
+    **règles**.
+-   Comprendre comment **adapter un lexique** à un domaine spécifique
+    (induction *corpus-based*).
+    
+:::
+
+::: {.column width="50%"}
+**3. Comprendre le Machine Learning pour l'analyse de sentiment**
+
+-   Comprendre les principes des apprentissages **supervisé** et **non
+    supervisé**.
+-   Distinguer le **ML "classique"** (Naive Bayes, SVM) du **Deep
+    Learning / Transfer Learning**.
+-   Connaître les avantages et les limites de chaque grande famille de
+    modèles.
+
+**4. Comprendre et mettre en oeuvre une démarche rigoureuse**
+
+\
+
+-   Concevoir un **schéma d'annotation** clair et fiable.
+-   Mesurer la qualité des données avec l'**accord inter-annotateurs
+    (IAA)**.
+-   **Évaluer** un système avec les bonnes métriques (**F1-macro**) en
+    évitant les pièges (déséquilibre des classes).
+    
+:::
+:::::
+
+------------------------------------------------------------------------
+
+## Qu’est-ce qu’une opinion ? Le modèle structuré de Liu {style="font-size:0.80em"}
+
+En analyse de sentiment, une opinion n'est pas qu'un simple "j'aime" ou
+"je n'aime pas". Pour être analysable, Bing Liu, l'un des pionniers du
+domaine, la modélise comme un objet structuré, le **quintuple**
+[@liuSentimentAnalysisOpinion, p. 19].
+
+\
+
+$$(e_i, a_{ij}, s_{ijkl}, h_k, t_l)$$\
+
+-   **Entité (**$e_i$) : le produit, la marque, le service. *Ex: "iPhone
+    15"*.
+-   **Aspect (**$a_{ij}$) : une caractéristique spécifique de l'entité.
+    *Ex: "batterie", "qualité photo"*. Si l'opinion vise l'entité
+    entière, on utilise l'aspect **GENERAL**.
+-   **Sentiment (**$s_{ijkl}$) : la polarité (+, 0, -) et/ou son
+    intensité. *Ex: "très positif"*.
+-   **Holder (**$h_k$) : la source de l'opinion. *Ex: "l'auteur du
+    tweet", "le journaliste"*.
+-   **Temps (**$t_l$) : la date de publication. Essentiel pour suivre
+    les tendances.
+
+------------------------------------------------------------------------
+
+## Explicite vs. Implicite : lire entre les lignes {style="font-size:0.85em"}
+
+Toutes les opinions ne sont pas exprimées de la même manière. La
+distinction entre opinion explicite et implicite est cruciale car elle
+détermine la difficulté de l'analyse [@liuSentimentAnalysisOpinion, p.
+26].
+
+::::: columns
+::: {.column width="50%"}
+### **Opinion explicite**
+
+C'est une **déclaration subjective** qui utilise des mots de sentiment
+clairs.
+
+-   *"La batterie de ce téléphone est **excellente**."*
+-   *"Je **déteste** le nouveau design."*
+-   *"Le service client était **décevant**."*
+
+**Facilité** : relativement simple à détecter avec des lexiques de mots
+positifs/négatifs.
+:::
+
+::: {.column width="50%"}
+### **Opinion implicite**
+
+C'est un **énoncé factuel** qui, dans un contexte donné, implique une
+opinion forte.
+
+-   *"La batterie de ce téléphone **tient à peine la journée**."* (fait
+    indésirable → opinion négative)
+-   *"J'ai dû **redémarrer l'ordinateur trois fois** ce matin."* (fait
+    indésirable → opinion négative)
+-   *"Le colis est **arrivé en 24h**."* (fait désirable → opinion
+    positive)
+
+**Difficulté** : beaucoup plus complexe à détecter. Nécessite une
+connaissance du domaine et des attentes des consommateurs.
+:::
+:::::
+
+------------------------------------------------------------------------
+
+## Subjectivité, polarité et valence {style="font-size:0.75em"}
+
+Le langage des opinions a plusieurs facettes. Il est essentiel de distinguer si un texte exprime un point de vue (*subjectivité*) et si ce point de vue est positif ou négatif (*polarité* ou *valence*) [@pangOpinionMiningSentiment, p. 5].
+
+-   **Subjectivité** : c'est la présence d'un **état privé** de l'auteur (croyance, jugement, spéculation) par opposition à un **fait objectif** vérifiable.
+    -   **Subjectif** : *"Je pense que ce film va plaire."*
+    -   **Objectif** : *"Le film est sorti hier."*
+
+-   **Polarité (ou valence)** : c'est l'**orientation** de l'opinion (+, -, 0). Le terme **valence**, issu de la psychologie, est souvent utilisé pour décrire cette qualité intrinsèquement positive ou négative d'un mot ou d'une expression.
+    -   **Subjectif SANS polarité claire** : *"Je me demande si ce produit est fiable."*
+    -   **Subjectif AVEC polarité** : *"Ce produit est incroyablement fiable."* (valence positive)
+
+-   **Polarité (ou valence) contextuelle** : la polarité d'un mot n'est pas fixe ; elle dépend crucialement de son contexte. Les **négations**, **intensificateurs** ou même l'**aspect** concerné peuvent tout changer.
+    - *"long"* → valence positive pour une batterie, valence négative pour un temps d'attente.
+
+::: {.callout-note title="Pourquoi cette distinction est-elle importante ?"}
+La plupart des systèmes d'analyse de sentiment fonctionnent en deux étapes : d'abord, ils filtrent les phrases pour ne garder que les **subjectives**, puis ils déterminent la **polarité/valence** de ces dernières.
+:::
+
+
+------------------------------------------------------------------------
+
+## Les niveaux d'analyse : quelle question se pose-t-on ? {style="font-size:0.72em"}
+
+L'analyse de sentiment peut être menée à différentes échelles. Chaque
+"granularité" répond à un besoin marketing différent
+[@liuSentimentAnalysisOpinion, p. 10-11].
+
+::::: columns
+::: {.column width="50%"}
+### **Document-level**
+
+On analyse un texte entier (un avis, un article) pour en extraire un
+sentiment global.
+
+-   **Question métier** : *"Quel est le score de satisfaction moyen de
+    notre produit sur Amazon ?"*
+-   **Limite** : très réducteur. Un avis 3 étoiles peut contenir des
+    critiques très précises et des compliments sur d'autres aspects.
+
+### **Sentence-level**
+
+\
+
+On analyse chaque phrase indépendamment pour déterminer si elle est
+subjective et quelle est sa polarité.
+
+\
+
+-   **Question métier** : *"Quels sont les verbatims clients les plus
+    percutants (positifs ou négatifs) à faire remonter en réunion ?"*
+-   **Limite** : une même phrase peut contenir plusieurs opinions. *"Le
+    design est super mais la batterie est nulle."*
+:::
+
+::: {.column width="50%"}
+### **Aspect-level (ABSA)**
+
+C'est le niveau le plus fin et le plus utile. On identifie les
+**aspects** spécifiques et on leur attribue une polarité.
+
+-   **Question métier** : *"Quels sont les **points forts et les points
+    faibles** de notre produit ? Sur quoi devons-nous concentrer nos
+    efforts R&D et marketing ?"*
+-   **Avantage** : fournit des insights très **actionnables**.
+
+\
+\
+
+### **Opinions Comparatives**
+
+\
+
+On analyse les phrases qui comparent plusieurs entités sur un même
+aspect.
+
+\
+
+-   **Question métier** : *"Comment notre produit se positionne-t-il
+    face à notre principal concurrent sur l'aspect 'prix' ou 'qualité'
+    aux yeux des consommateurs ?"*
+-   **Avantage** : le cœur de l'**intelligence concurrentielle**.
+:::
+:::::
+
+## Les phénomènes linguistiques et leurs effets
+
+::::: columns
+::: {.column width="50%" style="font-size:0.75em"}
+### **"Valence Shifters"** : négation & intensité
+
+-   **Négation** : inverse la polarité d'un mot (*pas bon*). La
+    **portée** (scope) est cruciale : "Ce n'est pas bon, c'est
+    excellent" → la négation ne s'applique qu'à "bon".
+-   **Intensificateurs** : augmentent la force (*très, vraiment,
+    extrêmement*).
+-   **Atténuateurs** : diminuent la force (*un peu, légèrement*).
+
+### **Connecteurs** : "Mais" et "Et"
+
+-   **Adversatifs ("mais", "cependant")** : signalent un retournement.
+    La règle d'or est que l'opinion **après le "mais"** est la plus
+    importante.
+    -   *"Le design est super, **mais la batterie est nulle**."* → avis
+        globalement négatif.
+-   **Additifs ("et")** : tendent à aligner des opinions de même
+    polarité.
+    -   *"Léger **et** pratique."* → deux aspects positifs.
+:::
+
+::: {.column width="50%" style="font-size:0.8em"}
+### **Conditionnels & Modaux**
+
+-   **Expriment une possibilité, pas une réalité** (*"Le service
+    **pourrait** être meilleur."*).
+-   Ils **affaiblissent** l'opinion. Ce n'est pas une critique aussi
+    ferme que *"Le service est mauvais."*
+
+\
+\
+
+### **Implicites & Ironie**
+
+-   **Implicite** : opinion cachée dans un fait.
+    -   *"Le téléphone chauffe après 10 min."* → fait objectif, mais
+        opinion négative implicite sur l'aspect *performance*.
+-   **Ironie/Sarcasme** : dire le contraire de ce que l'on pense.
+    -   *"Super, ma commande est encore arrivée en retard."* → mots
+        positifs, mais sentiment très négatif. C'est le défi le plus
+        complexe de l'analyse.
+:::
+:::::
+
+------------------------------------------------------------------------
+
+## Méthodes d'analyse classiques
+
+::::: columns
+::: {.column width="50%" style="font-size:0.7em"}
+### **Approche par lexiques (dictionnaires)**
+
+-   **Principe** : on attribue un score à chaque mot (+1 pour "bon", -1
+    pour "mauvais") et on fait la somme, ajustée par des **règles de
+    composition** (négation, "mais"...).
+-   **Construction de lexique** :
+    -   **Dictionary-based** : on part de quelques mots et on étend avec
+        des synonymes/antonymes.
+    -   **Corpus-based** : on "découvre" la polarité des mots en
+        regardant avec quels autres mots ils apparaissent dans un grand
+        corpus de textes (ex: PMI).
+
+### **ABSA (Aspect-Based Sentiment Analysis)**
+
+C'est l'approche la plus **actionnable** pour le marketing.
+
+-   **Pipeline** :
+    1.  **Extraire les aspects** dont les gens parlent (ex: "batterie",
+        "écran", "prix").
+    2.  **Lier l'opinion à l'aspect** (ex: "excellent" → "écran").
+    3.  **Calculer la polarité pour chaque aspect**.
+-   **Résultat** : une carte des points forts et faibles du produit.
+:::
+
+::: {.column width="50%" style="font-size:0.8em"}
+### **Opinions comparatives**
+
+-   **Objectif** : analyser les phrases qui comparent des entités.
+    -   *"La batterie de l'iPhone **dure plus longtemps que** celle du
+        Samsung."*
+-   **Extraction** : on identifie les deux entités comparées (E1, E2),
+    l'aspect de comparaison (A) et surtout, l'**entité préférée** (PE).
+:::
+:::::
+
+------------------------------------------------------------------------
+
+## Deux approches pour automatiser l'analyse : ML vs Deep Learning
+
+![](images/clipboard-2246092486.png){fig-align="center" width="60%"}
+
+::::: columns
+::: {.column width="50%" style="font-size:0.478em"}
+###  **Machine Learning "Classique"**
+
+-   **Principe** : l'humain choisit et prépare les *features*
+    (caractéristiques) pertinentes du texte (ex: la présence de certains
+    mots, des bigrammes...). C'est une étape de **feature extraction**
+    manuelle.
+-   **Le modèle apprend** à associer ces *features* préparées à un
+    sentiment (positif/négatif).
+-   **Analogie** : on prépare les ingrédients (features) pour le chef
+    (modèle) qui n'a plus qu'à cuisiner.
+:::
+
+::: {.column width="50%" style="font-size:0.5em"}
+### **Deep Learning**
+
+-   **Principe** : le modèle apprend **directement à partir des mots
+    bruts**. Il découvre lui-même les *features* importantes dans ses
+    couches cachées (*hidden layers*). L'étape de **feature extraction**
+    est automatique.
+-   **Le modèle apprend** des représentations complexes du langage
+    (embeddings).
+-   **Analogie** : on donne les produits bruts au chef (modèle) et il se
+    charge de tout, de la découpe à la cuisson.
+:::
+:::::
+
+::: {.callout-tip title="A retenir"}
+Le **Deep Learning** automatise plus de tâches et peut capturer des
+relations plus complexes, ce qui conduit souvent à de meilleures
+performances [@hartmannMoreFeelingAccuracy2023]. C'est la base des
+modèles les plus récents.
+:::
+
+------------------------------------------------------------------------
+
+## Transition : les limites des approches par lexiques {style="font-size:0.7em"}
+
+Les méthodes par lexiques et règles sont transparentes et rapides, mais
+elles ont des faiblesses majeures :
+
+-   **Aveugles au contexte** : elles peinent à comprendre que **"pas
+    mauvais"** est positif ou que **"long"** peut être positif
+    (batterie) ou négatif (mise au point)
+    [@liuSentimentAnalysisOpinion].
+-   **Statiques et rigides** : un lexique ne s'adapte pas à l'argot, aux
+    nouveaux usages ou à un domaine très spécifique. Il faut le mettre à
+    jour manuellement.
+-   **Couverture limitée** : elles ne gèrent que les mots qu'elles
+    connaissent et ratent toutes les opinions implicites (*"le téléphone
+    a cessé de fonctionner au bout de deux jours"*).
+
+\
+
+::: {.callout-note title="Quelle transition ?"}
+Comment passer d'un système qui suit des règles fixes à un système qui
+**apprend à partir d'exemples** et s'adapte au contexte ?
+
+**Réponse : le Machine Learning (ML)**
+:::
+
+------------------------------------------------------------------------
+
+## Les 3 grandes approches du Machine Learning {style="font-size:0.65em"}
+
+On peut classer les algorithmes de ML selon la manière dont ils
+"apprennent" à partir des données [@ahmadMachineLearningTechniques2017].
+
+::::::::: columns
+:::: {.column width="33%"}
+### **Apprentissage Supervisé**
+
+-   **Principe** : apprendre avec un **corrigé**. Le modèle est entraîné
+    sur des données où la "bonne réponse" (l'étiquette) est déjà connue.
+-   **Données requises** : un volume conséquent de textes **déjà
+    étiquetés** (positif, négatif, etc.). C'est le fameux **Gold
+    Standard**.
+-   **Exemples** :
+    -   Naive Bayes
+    -   Régression Logistique
+    -   Support Vector Machine (SVM)
+
+::: {.callout-tip title="💡 Cas d'usage marketing"}
+C'est l'approche la plus courante pour la classification. Idéal quand on
+dispose de données historiques, comme des tickets de support client déjà
+classés par niveau de satisfaction.
+:::
+::::
+
+:::: {.column width="33%"}
+### **Apprentissage Non Supervisé**
+
+-   **Principe** : trouver des **structures cachées** dans les données,
+    sans aucun corrigé. Le modèle regroupe les textes qui se
+    ressemblent.
+-   **Données requises** : un grand volume de textes **bruts,
+    non-étiquetés**.
+-   **Exemple** :
+    -   **Clustering** : regrouper des clients ou des commentaires
+        similaires.
+
+\
+\
+
+::: {.callout-tip title="💡 Cas d'usage marketing"}
+Parfait pour l'**exploration**. Quand on ne sait pas ce qu'on cherche,
+le non-supervisé peut révéler des segments de clients ou des sujets de
+plainte émergents qu'on n'avait pas anticipés.
+:::
+::::
+
+:::: {.column width="33%"}
+### **Apprentissage Semi-Supervisé**
+
+-   **Principe** : le meilleur des deux mondes. On utilise un **petit
+    peu de données étiquetées** pour "guider" l'apprentissage sur une
+    **immense quantité de données non-étiquetées**.
+-   **Données requises** : quelques centaines d'exemples annotés + des
+    milliers (ou millions) de textes bruts.
+-   **Exemples** :
+    -   Algorithmes qui propagent les étiquettes des exemples connus aux
+        exemples inconnus qui leur ressemblent.
+
+::: {.callout-tip title="💡 Cas d'usage marketing"}
+C'est souvent le scénario le plus **réaliste et rentable**. L'annotation
+manuelle coûte cher. Le semi-supervisé permet de construire un modèle
+performant avec un effort d'annotation minimal.
+:::
+::::
+:::::::::
+
+------------------------------------------------------------------------
+
+## Le Machine Learning : apprendre à partir des données {style="font-size:0.7em"}
+
+L'idée du ML est simple : au lieu de donner des règles à la machine, on
+lui donne des **exemples** et on la laisse **découvrir les règles
+elle-même**. C'est une approche *bottom-up*
+[@hartmannComparingAutomatedText2019a].
+
+### Le workflow en 3 étapes
+
+:::::: columns
+::: {.column width="33%"}
+**1. Préparer les données**
+
+On a besoin d'un corpus d'avis **déjà étiquetés** (positif/négatif).
+
+\
+\
+
+Plus on a d'exemples de qualité, mieux le modèle apprendra.
+:::
+
+::: {.column width="33%"}
+**2. Transformer le texte en chiffres**
+
+Un ordinateur ne "lit" pas. Il calcule. Il faut transformer les mots en
+**vecteurs numériques** (features).
+
+\
+\
+
+-   **Approche simple (BoW)** : on compte la fréquence de chaque mot.
+-   **Approche avancée (Embeddings)** : on représente le sens des mots
+    dans un espace vectoriel. *(à voir en séance 6)*.
+:::
+
+::: {.column width="33%"}
+**3. Entraîner un modèle**
+
+On choisit un algorithme qui va apprendre à associer les "patterns"
+numériques des textes aux étiquettes.
+
+\
+\
+
+-   **Modèles classiques** : Naive Bayes, Régression Logistique, SVM.
+-   **Modèles modernes** : Réseaux de neurones (Deep Learning).
+:::
+::::::
+
+::: {.callout-tip title="L'adaptation au domaine" style="font-size:1.1em"}
+Avec le ML, on peut **ajuster finement ("finetuner")** un modèle sur un
+domaine spécifique (ex: luxe, automobile, cosmétique). Le modèle apprend
+ainsi le jargon et les nuances propres à ce domaine, là où un
+dictionnaire générique échouerait.
+:::
+
+------------------------------------------------------------------------
+
+## Un panorama des modèles de Machine Learning {style="font-size:0.7em"}
+
+Tous les modèles n'ont pas la même complexité ni la même performance.
+Voici une vue d'ensemble, du plus simple au plus avancé.
+
+:::::::::: columns
+::: {.column width="50%" style="font-size: 0.75em"}
+### 1. ML "Classique" (Supervised Learning)
+
+On entraîne un modèle de A à Z sur nos propres données étiquetées.
+
+-   **Naive Bayes** : un modèle probabiliste simple et rapide. Il
+    calcule la probabilité qu'un avis soit positif sachant les mots
+    qu'il contient [@ahmadMachineLearningTechniques2017]. Très bon comme
+    baseline.
+
+-   **Support Vector Machine (SVM)** : un classificateur très robuste
+    qui cherche la "frontière" optimale pour séparer les classes. Il a
+    longtemps été l'état de l'art pour la classification de texte
+    [@pangOpinionMiningSentiment].
+
+**Le défi** : nécessite beaucoup de données étiquetées pour chaque
+nouveau domaine.
+
+\
+\
+\
+
+### 2. Le Deep Learning et le Transfer Learning
+
+\
+
+On ne part plus de zéro. On utilise un modèle **pré-entraîné** sur des
+milliards de textes (comme Wikipédia) qui a déjà une compréhension
+générale du langage.
+
+\
+\
+
+-   **Principe** : on prend ce "cerveau" pré-entraîné et on l'affine
+    (*fine-tuning*) sur notre tâche spécifique avec beaucoup moins de
+    données [@dangSentimentAnalysisBased2020].
+-   **Avantage majeur** : le modèle peut généraliser et comprendre des
+    nuances qu'il n'aurait jamais pu apprendre sur un petit jeu de
+    données.
+-   C'est l'approche qui donne aujourd'hui les **meilleures
+    performances** [@hartmannMoreFeelingAccuracy2023].
+:::
+
+:::::::: {.column width="50%"}
+### L'échelle de la performance
+
+::::: columns
+:::: {.column width="50%"}
+
+::::
+:::::
+
+::: {.callout-note title="Accuracy moyenne [@hartmannMoreFeelingAccuracy2023]"}
+Une méta-analyse sur 272 jeux de données montre une hiérarchie claire
+des performances :
+
+1.  **Transfer Learning (BERT, RoBERTa...)** : **\~90-96%**
+2.  **ML Classique (SVM, etc.)** : **\~80-88%**
+3.  **Lexiques (VADER, LIWC...)** : **\~65-75%**
+
+Le Transfer Learning est en moyenne **+20 points** plus précis que les
+lexiques.
+:::
+
+::: {.callout-warning title="Le compromis général (interprétabilité)"}
+-   **Lexiques** : **transparence maximale**, mais précision limitée.
+    Idéal pour comprendre le "pourquoi" et pour des analyses
+    exploratoires.
+-   **ML / Transfer Learning** : **précision maximale**, mais plus
+    "boîte noire". Idéal pour des systèmes de détection automatique (ex:
+    alertes de crise) où la performance prime.
+:::
+::::::::
+::::::::::
+
+# Annotation & évaluation {.transition-slide-ubdyellow}
+
+## L'annotation manuelle : créer notre "vérité terrain" {style="font-size: 0.85em"}
+
+Avant de pouvoir évaluer un outil, il nous faut une référence fiable :
+le **gold standard**. C'est un ensemble de textes que des humains ont
+lus et étiquetés selon des règles précises.
+
+### Principes d'une bonne annotation
+
+-   **Schéma clair** : définir précisément ce qu'on cherche.
+    -   **Unités** : annote-t-on la phrase entière, un segment
+        (**span**), ou une paire (**aspect**, **opinion**) ?
+    -   **Labels** : est-ce une simple polarité (`{-, 0, +}`) ou une
+        échelle d'**intensité** (ex: notes de 1 à 5) ?
+-   **Guide d'annotation** : un document essentiel avec des règles et
+    des exemples de cas limites (ironie, conditionnels) pour assurer la
+    cohérence.
+-   **Double annotation** : au moins deux personnes annotent le même
+    texte de manière indépendante.
+-   **Adjudication** : en cas de désaccord, un troisième annotateur (ou
+    un consensus) tranche pour finaliser le gold standard.
+
+::: {.callout-tip title="💡 Conseil pratique" style="font-size: 0.9em"}
+Un bon guide d'annotation est la clé de voûte de toute analyse de
+sentiment rigoureuse. C'est 80% du travail pour obtenir des données
+fiables.
+:::
+
+------------------------------------------------------------------------
+
+## La fiabilité des données : l'accord inter-annotateurs (IAA) {style="font-size: 0.8em"}
+
+**La question clé :** nos annotateurs sont-ils d'accord entre eux, ou
+est-ce que leurs étiquettes sont le fruit du hasard ? L'IAA mesure la
+cohérence de leur travail.
+
+::::: columns
+::: {.column width="50%"}
+### Kappa de Cohen ($\kappa$)
+
+Mesure l'accord entre **deux** annotateurs, en corrigeant l'accord qui
+pourrait survenir par chance[^1]. $$
+\kappa = \frac{p_o - p_e}{1 - p_e}
+$$ Où $p_o$ est l'accord observé et $p_e$ l'accord attendu par hasard.
+:::
+
+::: {.column width="50%"}
+### Alpha de Krippendorff ($\alpha$)
+
+Plus général et robuste : fonctionne avec **plus de deux** annotateurs
+et différents types de labels (nominal, ordinal...). $$
+\alpha = 1 - \frac{D_o}{D_e}
+$$ Où $D_o$ est le désaccord observé et $D_e$ le désaccord attendu par
+hasard.
+:::
+:::::
+
+[^1]: D’autres mesures existent, comme le Kappa de Fleiss (extension à
+    plusieurs annotateurs) ou l’ICC (Intraclass Correlation Coefficient)
+    pour des variables continues.
+
+::: {.callout-note title="🎯 Objectif"}
+On vise un score **Kappa/Alpha ≥ 0.70**. En dessous, cela signifie que
+le guide d'annotation n'est pas assez clair et doit être amélioré. Un
+IAA élevé garantit que notre "vérité terrain" est solide.
+:::
+
+------------------------------------------------------------------------
+
+## Exemple & interprétation des scores {style="font-size: 0.8em"}
+
+::::::: columns
+::::: {.column width="50%"}
+### Exemple de calcul (Kappa de Cohen)
+
+Deux annotateurs classent 50 tweets (*positif/négatif*).
+
+-   Accord observé : 40/50 → $p_o = 0.8$\
+-   Accord attendu par hasard : $p_e = 0.5$
+
+$$
+\kappa = \frac{0.8 - 0.5}{1 - 0.5} = 0.6
+$$
+
+:::: {.callout-example title="Interprétation"}
+$\kappa = 0.6$ → **accord modéré à substantiel**, mais améliorable.
+
+::: {.callout-note title="Remarque sur l'interprétation" style="font-size: 0.8em"}
+Les seuils proposés par Landis et Koch
+[@landisMeasurementObserverAgreement1977] sont devenus une référence,
+mais ils sont **arbitraires** et parfois jugés trop tolérants.\
+McHugh [@mchugh2012interrater] recommande des critères plus stricts,
+considérant qu’un accord « acceptable » ne devrait pas être en dessous
+de **0.80** en contexte scientifique ou médical.
+:::
+::::
+:::::
+
+::: {.column width="50%" style="font-size: 0.8em"}
+### Interprétation des scores
+
+| Valeur de κ / α | Interprétation selon Landis & Koch (1977) |
+|-----------------|-------------------------------------------|
+| \< 0.00         | Poor                                      |
+| 0.00 – 0.20     | Slight                                    |
+| 0.21 – 0.40     | Fair                                      |
+| 0.41 – 0.60     | Moderate                                  |
+| 0.61 – 0.80     | Substantial                               |
+| 0.81 – 1.00     | Almost perfect                            |
+
+```{r}
+library(irr)
+# Exemple : 2 annotateurs classent 50 tweets (positif/négatif)
+# On crée une matrice items × annotateurs
+# Ici : 40 accords, 10 désaccords
+annotateur1 <- c(rep("positif", 20), rep("négatif", 20), rep("positif", 5), rep("négatif", 5))
+annotateur2 <- c(rep("positif", 20), rep("négatif", 20), rep("négatif", 5), rep("positif", 5))
+annotations <- data.frame(annotateur1, annotateur2)
+kappa2(annotations, "unweighted")
+```
+:::
+:::::::
+
+## Exemple & interprétation de l’Alpha de Krippendorff {style="font-size: 0.8em"}
+
+::::::: columns
+:::: {.column width="50%"}
+### Exemple de calcul
+
+Trois annotateurs évaluent 5 items (*positif/négatif*).
+
+-   Désaccord observé : $(D_o \approx 0.27)$
+-   Désaccord attendu : $(D_e \approx 0.48)$
+
+$$
+\alpha = 1 - \frac{0.27}{0.48} \approx 0.463
+$$
+
+::: {.callout-example title="Interprétation"}
+(\alpha = 0.463) → Accord **insuffisant** (\< 0.67) → guide/formation à
+améliorer.
+:::
+::::
+
+:::: {.column width="50%"}
+### Interprétation des scores
+
+::: {.callout-note title="Comment lire α" style="font-size: 0.8em"}
+-   (D_o) = désaccord observé (proportion de désaccords réels entre
+    juges).\
+-   (D_e) = désaccord attendu **par hasard**, calculé à partir de la
+    distribution globale des catégories.
+
+Selon [@krippendorff2018content] :\
+- **α ≥ 0.80** → Accord **fiable** (analyses solides)\
+- **0.67 ≤ α \< 0.80** → Accord **acceptable** (exploratoire)\
+- **α \< 0.67** → Accord **insuffisant**, guide d’annotation à améliorer
+
+```{r}
+library(irr)
+annotations <- data.frame(
+  annotateur1 = c(1, 1, 0, 1, 0),
+  annotateur2 = c(1, 0, 0, 1, 0),
+  annotateur3 = c(1, 1, 0, 1, 1)
+)
+# La fonction kripp.alpha attend une matrice items × juges
+result <- kripp.alpha(t(as.matrix(annotations)), method = "nominal")
+result
+```
+:::
+::::
+:::::::
+
+## La base de l'évaluation : la matrice de confusion {style="font-size: 0.85em"}
+
+Maintenant que nous avons un gold standard fiable, nous pouvons juger
+notre outil. La matrice de confusion est le point de départ : elle
+montre où le modèle a eu raison et où il s'est trompé.
+
+Imaginons qu'on veuille détecter les commentaires **négatifs** (la
+classe "positive" de notre analyse) :
+
+|                    | Prédit : **négatif**  | Prédit : **OK**       |
+|--------------------|-----------------------|-----------------------|
+| **Réel : négatif** | **TP** (vrai positif) | **FN** (faux négatif) |
+| **Réel : OK**      | **FP** (faux positif) | **TN** (vrai négatif) |
+
+\
+
+-   **TP (true positive)** : l'alerte était justifiée. C'est un
+    commentaire négatif, et on l'a bien détecté. **Bravo**
+-   **FN (false negative)** : **l'alerte manquée !** C'était un
+    commentaire négatif, mais on l'a raté. **Danger !**
+-   **FP (false positive)** : **la fausse alerte.** On a cru que c'était
+    négatif, mais ça ne l'était pas. **Bruit.**
+-   **TN (true negative)** : on a bien ignoré un commentaire
+    non-négatif. **Correct.**
+
+------------------------------------------------------------------------
+
+## Matrice de confusion multiclasse (analyse de sentiment) {style="font-size: 0.4em"}
+
+![](images/clipboard-1562987940.png){fig-align="center" width="50%"}
+
+### Interprétation de la matrice de confusion (10 000 avis)
+
+::::: columns
+::: column
+#### Performance générale
+
+Sur 10 000 avis, le modèle a correctement classé **7 692** d'entre eux,
+soit une **précision globale de 76,9%**.
+
+-   **Avis Négatifs** : **2 107** correctement identifiés sur 3 053.
+-   **Avis Neutres** : **1 636** correctement identifiés sur 2 023.
+-   **Avis Positifs** : **3 949** correctement identifiés sur 4 924. Le
+    modèle est particulièrement performant pour cette classe.
+:::
+
+::: column
+#### Analyse des erreurs principales
+
+Les erreurs les plus fréquentes se situent dans la confusion avec la
+classe **Neutre**.
+
+-   **Erreur majeure n°1** : **739** avis **positifs** ont été classés à
+    tort comme **neutres**. Le modèle peine à identifier un sentiment
+    positif peu prononcé.
+-   **Erreur majeure n°2** : **620** avis **négatifs** ont été classés à
+    tort comme **neutres**. De même, le sentiment négatif léger semble
+    difficile à capter.
+
+##### Pistes d'amélioration
+
+-   **Affiner la distinction** : Le modèle pourrait être amélioré en lui
+    fournissant plus d'exemples d'avis à la frontière entre "Neutre" et
+    "Positif/Négatif".
+-   **Analyse des faux négatifs/positifs** : Examiner les 739 avis
+    positifs et 620 avis négatifs mal classés pour comprendre les mots
+    ou tournures de phrases qui trompent le modèle.
+:::
+:::::
+
+## Le dilemme du marketeur : précision vs. rappel {style="font-size: 0.65em"}
+
+L'accuracy (taux de bonnes prédictions) est souvent trompeuse. La
+précision et le rappel répondent à des besoins métier très différents.
+
+:::::: columns
+::: {.column width="50%"}
+### Précision (precision)
+
+$$
+\mathrm{P} = \frac{TP}{TP + FP}
+$$
+
+**La question métier :** quand mon système sonne une alerte, est-ce que
+je peux lui faire confiance ?
+
+-   Une **haute précision** signifie que l'on a peu de fausses alertes
+    (peu de FP).
+-   **Priorité :** ne pas déranger les équipes pour rien, ne pas
+    contacter à tort des clients supposés mécontents. C'est la métrique
+    de la **fiabilité**.
+
+### Rappel (recall)
+
+$$
+\mathrm{R} = \frac{TP}{TP + FN}
+$$ **La question métier :** suis-je sûr d'avoir identifié TOUS les vrais
+commentaires négatifs ?
+
+-   Un **haut rappel** signifie que l'on a raté très peu de vrais
+    problèmes (peu de FN).
+-   **Priorité :** détecter une crise à tout prix, même si cela génère
+    quelques fausses alertes. C'est la métrique de l'**exhaustivité**.
+:::
+
+:::: {.column width="50%"}
+### F1-score
+
+$$
+\mathrm{F1} = \frac{2 \times P \times R}{P + R}
+$$ **La question métier :** comment trouver le meilleur équilibre entre
+fiabilité et exhaustivité ?
+
+Le **F1-score** est une moyenne qui pénalise les modèles qui sacrifient
+trop l'une des deux métriques. **C'est la métrique par défaut pour une
+évaluation équilibrée.**
+
+\
+\
+\
+\
+
+::: {.callout-tip title="Analogie marketing" style="font-size: 1.2em"}
+-   **Haute précision** : votre campagne de retargeting est très
+    efficace (haut taux de conversion), mais n'a touché qu'un petit
+    segment.
+-   **Haut rappel** : votre campagne TV a touché tout le monde
+    (couverture maximale), mais avec un faible impact.
+-   **Haut F1-score** : vous avez touché une large part de votre cible
+    avec un impact significatif.
+:::
+::::
+::::::
+
+------------------------------------------------------------------------
+
+## Le défi des données réelles : des distributions asymétriques {style="font-size: 0.70em"}
+
+Contrairement à une idée reçue, les avis en ligne sont rarement
+"équilibrés". En réalité, leur distribution est presque toujours
+**fortement asymétrique** (*skewed*), suivant souvent une forme visuelle
+de **courbe en "J"** [@pangOpinionMiningSentiment, p. 50].
+
+L'asymétrie dépend fortement de la plateforme (biais d'auto-sélection) :
+
+-   **Majoritairement positifs** : sur les plateformes où l'avis est un
+    acte de recommandation ou de construction de réputation (ex:
+    **Airbnb**, la plupart des produits sur **Amazon**), on observe une
+    avalanche d'avis très positifs (4-5 étoiles).
+-   **Majoritairement négatifs** : sur les plateformes perçues comme un
+    lieu de réclamation ou de vigilance (ex: **Trustpilot** pour
+    certains services, forums de support technique), les avis négatifs
+    peuvent dominer.
+
+::: {.callout-warning title="Le piège de l'accuracy reste le même"}
+Que vous ayez 90% d'avis positifs ou 90% de négatifs, le problème de
+fond demeure : l'**accuracy est une métrique dangereuse**. Un modèle qui
+prédit toujours la classe majoritaire aura un score élevé mais sera
+inutile pour détecter les signaux faibles (la crise qui démarre ou les
+clients ambassadeurs).
+:::
+
+### Les bonnes métriques pour les données déséquilibrées
+
+-   **F1-macro** : on calcule le F1-score pour chaque classe (+, 0, -),
+    puis on fait la **moyenne simple**. Chaque classe a le même poids,
+    qu'elle soit rare ou fréquente. C'est le **standard** pour rapporter
+    la performance en analyse de sentiment.
+
+-   **Balanced accuracy** : c'est la moyenne des rappels de chaque
+    classe. Simple et juste.
+
+$$
+\mathrm{BAcc}=\tfrac{1}{2}\big(\text{Rappel}_{Pos} + \text{Rappel}_{Neg}\big)
+$$
+
+------------------------------------------------------------------------
+
+## Au-delà des labels : évaluer les scores {style="font-size: 0.60em"}
+
+La plupart des outils (VADER, LIWC) donnent un **score continu** (ex: -0.87), pas un label. Voici comment on évalue cette sortie.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### 1. Le seuil de décision ($\tau$)
+
+C'est à nous de transformer ce score en label. On définit une **"zone neutre"**.
+
+-   **Exemple** : si score > `0.1` → positif ; si score < `-0.1` → négatif ; sinon → neutre.
+-   Un seuil plus exigeant augmentera la précision mais baissera le rappel.
+
+### 2. Évaluer le score directement
+
+-   **Corrélation de Spearman** : compare le **classement** des avis selon le score de l'outil avec le classement des notes humaines (étoiles).
+    -   *La question : "est-ce que l'outil classe bien les avis du pire au meilleur ?"*
+-   **MAE (mean absolute error)** : calcule l'erreur moyenne entre le score de l'outil (normalisé) et la note en étoile.
+:::
+
+::: {.column width="50%"}
+### Courbes P-R et ROC
+
+En faisant varier le seuil $\tau$ de 0 à 1, on peut tracer des courbes qui visualisent le compromis entre les erreurs :
+
+-   **Courbe ROC** : montre le taux de vrais positifs (sensibilité) contre le taux de faux positifs (1-spécificité). C'est la vision la plus complète du compromis.
+
+-   **Courbe P-R (precision-recall)** : montre l'évolution de la précision en fonction du rappel. Elle est surtout pertinente quand la classe négative est immense et peu intéressante (ex: trouver l'aiguille dans la botte de foin).
+
+::: {.callout-warning title="Mise en garde sur le déséquilibre"}
+Contrairement à une idée reçue, l'AUPRC (l'aire sous la courbe P-R) n'est pas *toujours* la meilleure métrique en cas de déséquilibre. Des recherches récentes montrent qu'elle peut même **aggraver les biais** et que le choix doit avant tout dépendre de l'objectif métier [@mcdermottCloserLookAUROC2025].
+:::
+:::
+
+::::
+
+::: {.callout-note title="Quel seuil choisir ?"}
+Le choix du seuil est une **décision stratégique**. Pour la **détection de crise** (ne rien rater), on choisira un seuil bas pour maximiser le **rappel**. Pour une **campagne de fidélisation** ciblant les clients "très heureux" (ne pas se tromper), on choisira un seuil élevé pour maximiser la **précision**.
+:::
+
+
+------------------------------------------------------------------------
+
+## Synthèse pratique : quelle métrique pour quel outil ? {style="font-size: 0.75em"}
+
+Un guide pour évaluer les outils que vous utiliserez en TP et pour vos
+projets.
+
+:::::: columns
+::: {.column width="50%"}
+### 1. Comprendre la sortie de l'outil
+
+-   **VADER, NRC, syuzhet, LIWC** produisent principalement des
+    **scores**.
+-   Votre première étape sera toujours de **définir des seuils** pour
+    les convertir en labels `(+, 0, -)`.
+
+### 2. Le rapport de performance idéal
+
+Pour un projet d'analyse de sentiment, votre rapport d'évaluation
+devrait contenir :
+
+1.  La **matrice de confusion** pour visualiser les erreurs.
+2.  Le **F1-score macro** comme indicateur principal de la performance.
+3.  La **corrélation de Spearman** pour évaluer la qualité du classement
+    par score.
+4.  La **couverture du lexique** : quel % de mots l'outil a-t-il reconnu
+    ? Un score basé sur 10% du texte est peu fiable.
+:::
+
+:::: {.column width="50%"}
+### 3. Checklist d'analyse d'erreurs
+
+Une bonne métrique ne suffit pas. Il faut comprendre **pourquoi**
+l'outil se trompe.
+
+-   L'outil gère-t-il bien la **négation** ? (*"pas mauvais"*)
+-   Comprend-il les **adversatifs** ? (*"beau mais lent"*)
+-   Est-il sensible à l'**intensité** ? *"un peu déçu" vs "totalement
+    dégoûté"*)
+-   Est-il adapté à votre **domaine** ? (ex: le mot "froid" est négatif
+    pour un plat, mais positif pour une bière).
+
+::: {.callout-note title="Le conseil final"}
+Aucune métrique n'est parfaite. La meilleure approche est de **combiner
+une métrique quantitative robuste (F1-macro) avec une analyse
+qualitative des erreurs** pour vraiment comprendre les forces et les
+faiblesses de votre système.
+:::
+::::
+::::::
+
+## Pièges à éviter en analyse de sentiment {style="font-size:0.80em"}
+
+Même les meilleurs outils peuvent se tromper. Voici les pièges les plus courants à anticiper :
+
+:::: {.columns}
+::: {.column width="50%"}
+### Pièges Linguistiques
+
+-   **Ambiguïtés** : l'implicite, l'ironie et le sarcasme peuvent totalement inverser la polarité et sont très difficiles à détecter automatiquement.
+-   **Portée des "shifters"** : une négation ou un adversatif ("mais") mal interprété peut fausser l'analyse d'une phrase entière.
+
+### Pièges Méthodologiques
+
+-   **Dépendance au domaine** : un lexique entraîné sur des avis de restaurants sera médiocre pour analyser des tweets financiers. Le vocabulaire et le contexte changent tout.
+-   **Biais des lexiques** : un dictionnaire générique peut contenir des biais culturels ou être inadapté au langage spécifique de certaines communautés en ligne (argot, mèmes).
+:::
+::: {.column width="50%"}
+### Pièges liés aux Données et à l'Éthique
+
+-   **Spam d'opinion (Fake Reviews)** : la présence d'avis frauduleux (positifs ou négatifs) peut complètement fausser vos KPIs. La détection de spam est un enjeu majeur.
+-   **Qualité des données** : des textes très courts, mal écrits ou remplis d'emojis peuvent dégrader la performance de n'importe quel modèle.
+:::
+::::
+
+## De la question marketing au rapport final : la checklist d'un projet réussi  {style="font-size:0.50em"}
+
+Un projet d'analyse de sentiment réussi n'est pas qu'une question d'outils, c'est avant tout une question de méthode. Voici les étapes clés.
+
+### 1. Partir de la question de recherche (cadrage stratégique)
+Tout commence par la traduction d'un objectif métier en une question analytique précise. Cette question va dicter vos choix techniques [@krugmannSentimentAnalysisAge2024a].
+
+- **Question métier** : *"Le lancement de notre nouveau produit génère-t-il un buzz positif ?"*
+- **Traduction analytique** :
+    - Quel est le volume de mentions ?* → **Monitoring de base**
+    - La polarité globale est-elle positive ou négative ?* → **Classification binaire**
+    - Quels sont les points forts et faibles perçus ?* → **ABSA (analyse par aspect)**
+    - Comment nous situons-nous face au concurrent X ?* → **Analyse comparative**
+
+### 2. Choisir l'approche méthodologique
+Votre question et vos ressources (temps, données) déterminent la meilleure approche.
+
+- **Approche Lexique + Règles** : idéale pour la **transparence** (comprendre le "pourquoi"), la rapidité et l'exploration, au détriment de la performance brute.
+- **Approche Machine Learning** : à privilégier pour la **performance** et l'**adaptation** au domaine. C'est en moyenne +20 points de précision par rapport aux lexiques [@hartmannMoreFeelingAccuracy2023].
+
+### 3. Préparer données et outils (rigueur opérationnelle)
+- **Si approche ML** : la priorité est de constituer un **Gold Standard** de qualité via une **annotation** rigoureuse (guide clair, double annotation, calcul de l'**IAA**). La qualité du modèle dépend directement de la qualité de ces données.
+- **Si approche Lexique** : la priorité est d'**adapter le lexique** au domaine (via les techniques corpus-based comme PMI ou l'analyse des conjonctions) et de vérifier manuellement un échantillon pour éviter les contresens.
+
+### 4. Analyser et evaluer les résultats
+- **Évaluation quantitative** : ne jamais se fier à l'accuracy seule. Utiliser la **matrice de confusion** et le **F1-macro** pour une mesure juste, surtout si les classes sont déséquilibrées.
+- **Analyse qualitative des erreurs** : examiner les cas où le modèle se trompe (négation, ironie, implicite...). C'est la meilleure source d'inspiration pour l'améliorer.
+- **Test de robustesse** : vérifier si le modèle fonctionne encore sur des données d'une autre plateforme ou d'une autre période (**cross-domaine**, **cross-temporel**).
+
+------------------------------------------------------------------------
+
+
+## Conclusion : de l'artisanat à l'automatisation intelligente {style="font-size:0.65em"}
+
+L'analyse de sentiment a connu une révolution. Nous sommes passés d'approches manuelles à des outils capables de comprendre le langage avec une finesse sans précédent.
+
+:::: {.columns}
+::: {.column width="50%"}
+
+### L’évolution des méthodes
+
+- **Hier : lexiques & règles (artisanat)** :
+Méthodes transparentes et contrôlables, excellentes pour l'exploration et pour tester des hypothèses théoriques [@hartmannMoreFeelingAccuracy2023, p. 84].
+
+- **Aujourd’hui : Machine Learning & Deep Learning (industrialisation)** :
+Apprentissage sur données pour une meilleure adaptation au contexte et des performances nettement supérieures [@hartmannMoreFeelingAccuracy2023, p. 76].
+
+- **Demain (et déjà maintenant) :  LLMs / IA générative** :
+Compréhension contextuelle "sur étagère" (*zero-shot*) qui rivalise avec les modèles spécialisés, posant de nouveaux enjeux de reproductibilité et d'éthique [@krugmannSentimentAnalysisAge2024a, p. 2, 16].
+:::
+
+::: {.column width="50%"}
+
+### Les implications pour le marketing
+
+- **De la description à la prédiction** :
+Au-delà du comptage pos/neg : anticipation de tendances (ex: cours de la bourse) et détection de signaux faibles de crise (*firestorms*) [@hartmannMoreFeelingAccuracy2023, p. 76].
+
+- **Connaissance client hyper-granulaire** :
+Les nuances dans des milliers de verbatims permettent d'affiner les personas, de personnaliser les messages et d'identifier des besoins non satisfaits pour l’innovation [@agarwalProminentFeatureExtraction2016, p. 3].
+
+- **Vigilance stratégique en continu** :
+L'e-réputation devient un **flux** d'information en temps réel qui peut alimenter des tableaux de bord et la prise de décision au quotidien [@ahmadMachineLearningTechniques2017, p. 3].
+:::
+::::
+
+::: {.callout-note title="Le message final"}
+La technologie devient de plus en plus puissante et accessible. Le rôle de l’expert marketing n’est plus de connaître chaque détail technique, mais de **poser les bonnes questions**, d'**interpréter avec esprit critique** et de **décider** à partir d’insights fiables [@hartmannMoreFeelingAccuracy2023].
+:::
+
+-----
+
+## Références

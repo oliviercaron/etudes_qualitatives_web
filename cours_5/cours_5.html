@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="cours_5_files/libs/clipboard/clipboard.min.js"></script>
+<script src="cours_5_files/libs/quarto-html/tabby.min.js"></script>
+<script src="cours_5_files/libs/quarto-html/popper.min.js"></script>
+<script src="cours_5_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="cours_5_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="cours_5_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="cours_5_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
+
+  <meta name="author" content="Olivier Caron">
+  <title>Études qualitatives sur le web (netnographie)</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="cours_5_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="cours_5_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="cours_5_files/libs/revealjs/dist/theme/quarto-7305b09eb733fa85903ef661c69bedac.css">
+  <link href="cours_5_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="cours_5_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="cours_5_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="cours_5_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="cours_5_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="cours_5_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="ubd_bg1.png" data-background-position="center" data-background-size="cover" class="quarto-title-block center">
+  <h1 class="title">Études qualitatives sur le web (netnographie)</h1>
+  <p class="subtitle">Analyse de sentiment et opinions</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Olivier Caron 
+</div>
+        <p class="quarto-title-affiliation">
+            Paris Dauphine - PSL
+          </p>
+    </div>
+</div>
+
+</section>
+<section id="objectifs-du-cours" class="slide level2" style="font-size:0.75em">
+<h2>Objectifs du cours</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>1. Comprendre et modéliser les opinions</strong></p>
+<ul>
+<li>Définir et distinguer <strong>opinion</strong>, <strong>subjectivité</strong> et <strong>polarité</strong>.</li>
+<li>Maîtriser les <strong>niveaux d’analyse</strong> (document, phrase, aspect) et leur pertinence marketing.</li>
+<li>Identifier les <strong>phénomènes linguistiques</strong> qui influencent le sentiment (négation, intensité, “mais”…).</li>
+</ul>
+<p><br>
+<br>
+</p>
+<p><strong>2. Maîtriser les approches classiques</strong></p>
+<p><br>
+<br>
+</p>
+<ul>
+<li>Appliquer des méthodes basées sur des <strong>lexiques</strong> et des <strong>règles</strong>.</li>
+<li>Comprendre comment <strong>adapter un lexique</strong> à un domaine spécifique (induction <em>corpus-based</em>).</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>3. Comprendre le Machine Learning pour l’analyse de sentiment</strong></p>
+<ul>
+<li>Comprendre les principes des apprentissages <strong>supervisé</strong> et <strong>non supervisé</strong>.</li>
+<li>Distinguer le <strong>ML “classique”</strong> (Naive Bayes, SVM) du <strong>Deep Learning / Transfer Learning</strong>.</li>
+<li>Connaître les avantages et les limites de chaque grande famille de modèles.</li>
+</ul>
+<p><strong>4. Comprendre et mettre en oeuvre une démarche rigoureuse</strong></p>
+<p><br>
+</p>
+<ul>
+<li>Concevoir un <strong>schéma d’annotation</strong> clair et fiable.</li>
+<li>Mesurer la qualité des données avec l’<strong>accord inter-annotateurs (IAA)</strong>.</li>
+<li><strong>Évaluer</strong> un système avec les bonnes métriques (<strong>F1-macro</strong>) en évitant les pièges (déséquilibre des classes).</li>
+</ul>
+</div></div>
+</section>
+<section id="quest-ce-quune-opinion-le-modèle-structuré-de-liu" class="slide level2" style="font-size:0.80em">
+<h2>Qu’est-ce qu’une opinion ? Le modèle structuré de Liu</h2>
+<p>En analyse de sentiment, une opinion n’est pas qu’un simple “j’aime” ou “je n’aime pas”. Pour être analysable, Bing Liu, l’un des pionniers du domaine, la modélise comme un objet structuré, le <strong>quintuple</strong> <span class="citation" data-cites="liuSentimentAnalysisOpinion">(<a href="#/références" role="doc-biblioref" onclick="">Liu 2022, 19</a>)</span>.</p>
+<p><br>
+</p>
+<p><span class="math display">\[(e_i, a_{ij}, s_{ijkl}, h_k, t_l)\]</span><br>
+</p>
+<ul>
+<li><strong>Entité (</strong><span class="math inline">\(e_i\)</span>) : le produit, la marque, le service. <em>Ex: “iPhone 15”</em>.</li>
+<li><strong>Aspect (</strong><span class="math inline">\(a_{ij}\)</span>) : une caractéristique spécifique de l’entité. <em>Ex: “batterie”, “qualité photo”</em>. Si l’opinion vise l’entité entière, on utilise l’aspect <strong>GENERAL</strong>.</li>
+<li><strong>Sentiment (</strong><span class="math inline">\(s_{ijkl}\)</span>) : la polarité (+, 0, -) et/ou son intensité. <em>Ex: “très positif”</em>.</li>
+<li><strong>Holder (</strong><span class="math inline">\(h_k\)</span>) : la source de l’opinion. <em>Ex: “l’auteur du tweet”, “le journaliste”</em>.</li>
+<li><strong>Temps (</strong><span class="math inline">\(t_l\)</span>) : la date de publication. Essentiel pour suivre les tendances.</li>
+</ul>
+</section>
+<section id="explicite-vs.-implicite-lire-entre-les-lignes" class="slide level2" style="font-size:0.85em">
+<h2>Explicite vs.&nbsp;Implicite : lire entre les lignes</h2>
+<p>Toutes les opinions ne sont pas exprimées de la même manière. La distinction entre opinion explicite et implicite est cruciale car elle détermine la difficulté de l’analyse <span class="citation" data-cites="liuSentimentAnalysisOpinion">(<a href="#/références" role="doc-biblioref" onclick="">Liu 2022, 26</a>)</span>.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="opinion-explicite"><strong>Opinion explicite</strong></h3>
+<p>C’est une <strong>déclaration subjective</strong> qui utilise des mots de sentiment clairs.</p>
+<ul>
+<li><em>“La batterie de ce téléphone est <strong>excellente</strong>.”</em></li>
+<li><em>“Je <strong>déteste</strong> le nouveau design.”</em></li>
+<li><em>“Le service client était <strong>décevant</strong>.”</em></li>
+</ul>
+<p><strong>Facilité</strong> : relativement simple à détecter avec des lexiques de mots positifs/négatifs.</p>
+</div><div class="column" style="width:50%;">
+<h3 id="opinion-implicite"><strong>Opinion implicite</strong></h3>
+<p>C’est un <strong>énoncé factuel</strong> qui, dans un contexte donné, implique une opinion forte.</p>
+<ul>
+<li><em>“La batterie de ce téléphone <strong>tient à peine la journée</strong>.”</em> (fait indésirable → opinion négative)</li>
+<li><em>“J’ai dû <strong>redémarrer l’ordinateur trois fois</strong> ce matin.”</em> (fait indésirable → opinion négative)</li>
+<li><em>“Le colis est <strong>arrivé en 24h</strong>.”</em> (fait désirable → opinion positive)</li>
+</ul>
+<p><strong>Difficulté</strong> : beaucoup plus complexe à détecter. Nécessite une connaissance du domaine et des attentes des consommateurs.</p>
+</div></div>
+</section>
+<section id="subjectivité-polarité-et-valence" class="slide level2" style="font-size:0.75em">
+<h2>Subjectivité, polarité et valence</h2>
+<p>Le langage des opinions a plusieurs facettes. Il est essentiel de distinguer si un texte exprime un point de vue (<em>subjectivité</em>) et si ce point de vue est positif ou négatif (<em>polarité</em> ou <em>valence</em>) <span class="citation" data-cites="pangOpinionMiningSentiment">(<a href="#/références" role="doc-biblioref" onclick="">Pang, Lee, et al. 2008, 5</a>)</span>.</p>
+<ul>
+<li><strong>Subjectivité</strong> : c’est la présence d’un <strong>état privé</strong> de l’auteur (croyance, jugement, spéculation) par opposition à un <strong>fait objectif</strong> vérifiable.
+<ul>
+<li><strong>Subjectif</strong> : <em>“Je pense que ce film va plaire.”</em></li>
+<li><strong>Objectif</strong> : <em>“Le film est sorti hier.”</em></li>
+</ul></li>
+<li><strong>Polarité (ou valence)</strong> : c’est l’<strong>orientation</strong> de l’opinion (+, -, 0). Le terme <strong>valence</strong>, issu de la psychologie, est souvent utilisé pour décrire cette qualité intrinsèquement positive ou négative d’un mot ou d’une expression.
+<ul>
+<li><strong>Subjectif SANS polarité claire</strong> : <em>“Je me demande si ce produit est fiable.”</em></li>
+<li><strong>Subjectif AVEC polarité</strong> : <em>“Ce produit est incroyablement fiable.”</em> (valence positive)</li>
+</ul></li>
+<li><strong>Polarité (ou valence) contextuelle</strong> : la polarité d’un mot n’est pas fixe ; elle dépend crucialement de son contexte. Les <strong>négations</strong>, <strong>intensificateurs</strong> ou même l’<strong>aspect</strong> concerné peuvent tout changer.
+<ul>
+<li><em>“long”</em> → valence positive pour une batterie, valence négative pour un temps d’attente.</li>
+</ul></li>
+</ul>
+<div title="Pourquoi cette distinction est-elle importante ?">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pourquoi cette distinction est-elle importante ?</strong></p>
+</div>
+<div class="callout-content">
+<p>La plupart des systèmes d’analyse de sentiment fonctionnent en deux étapes : d’abord, ils filtrent les phrases pour ne garder que les <strong>subjectives</strong>, puis ils déterminent la <strong>polarité/valence</strong> de ces dernières.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="les-niveaux-danalyse-quelle-question-se-pose-t-on" class="slide level2" style="font-size:0.72em">
+<h2>Les niveaux d’analyse : quelle question se pose-t-on ?</h2>
+<p>L’analyse de sentiment peut être menée à différentes échelles. Chaque “granularité” répond à un besoin marketing différent <span class="citation" data-cites="liuSentimentAnalysisOpinion">(<a href="#/références" role="doc-biblioref" onclick="">Liu 2022, 10–11</a>)</span>.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="document-level"><strong>Document-level</strong></h3>
+<p>On analyse un texte entier (un avis, un article) pour en extraire un sentiment global.</p>
+<ul>
+<li><strong>Question métier</strong> : <em>“Quel est le score de satisfaction moyen de notre produit sur Amazon ?”</em></li>
+<li><strong>Limite</strong> : très réducteur. Un avis 3 étoiles peut contenir des critiques très précises et des compliments sur d’autres aspects.</li>
+</ul>
+<h3 id="sentence-level"><strong>Sentence-level</strong></h3>
+<p><br>
+</p>
+<p>On analyse chaque phrase indépendamment pour déterminer si elle est subjective et quelle est sa polarité.</p>
+<p><br>
+</p>
+<ul>
+<li><strong>Question métier</strong> : <em>“Quels sont les verbatims clients les plus percutants (positifs ou négatifs) à faire remonter en réunion ?”</em></li>
+<li><strong>Limite</strong> : une même phrase peut contenir plusieurs opinions. <em>“Le design est super mais la batterie est nulle.”</em></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="aspect-level-absa"><strong>Aspect-level (ABSA)</strong></h3>
+<p>C’est le niveau le plus fin et le plus utile. On identifie les <strong>aspects</strong> spécifiques et on leur attribue une polarité.</p>
+<ul>
+<li><strong>Question métier</strong> : <em>“Quels sont les <strong>points forts et les points faibles</strong> de notre produit ? Sur quoi devons-nous concentrer nos efforts R&amp;D et marketing ?”</em></li>
+<li><strong>Avantage</strong> : fournit des insights très <strong>actionnables</strong>.</li>
+</ul>
+<p><br>
+<br>
+</p>
+<h3 id="opinions-comparatives"><strong>Opinions Comparatives</strong></h3>
+<p><br>
+</p>
+<p>On analyse les phrases qui comparent plusieurs entités sur un même aspect.</p>
+<p><br>
+</p>
+<ul>
+<li><strong>Question métier</strong> : <em>“Comment notre produit se positionne-t-il face à notre principal concurrent sur l’aspect ‘prix’ ou ‘qualité’ aux yeux des consommateurs ?”</em></li>
+<li><strong>Avantage</strong> : le cœur de l’<strong>intelligence concurrentielle</strong>.</li>
+</ul>
+</div></div>
+</section>
+<section id="les-phénomènes-linguistiques-et-leurs-effets" class="slide level2">
+<h2>Les phénomènes linguistiques et leurs effets</h2>
+<div class="columns">
+<div class="column" style="font-size:0.75em">
+<h3 id="valence-shifters-négation-intensité"><strong>“Valence Shifters”</strong> : négation &amp; intensité</h3>
+<ul>
+<li><strong>Négation</strong> : inverse la polarité d’un mot (<em>pas bon</em>). La <strong>portée</strong> (scope) est cruciale : “Ce n’est pas bon, c’est excellent” → la négation ne s’applique qu’à “bon”.</li>
+<li><strong>Intensificateurs</strong> : augmentent la force (<em>très, vraiment, extrêmement</em>).</li>
+<li><strong>Atténuateurs</strong> : diminuent la force (<em>un peu, légèrement</em>).</li>
+</ul>
+<h3 id="connecteurs-mais-et-et"><strong>Connecteurs</strong> : “Mais” et “Et”</h3>
+<ul>
+<li><strong>Adversatifs (“mais”, “cependant”)</strong> : signalent un retournement. La règle d’or est que l’opinion <strong>après le “mais”</strong> est la plus importante.
+<ul>
+<li><em>“Le design est super, <strong>mais la batterie est nulle</strong>.”</em> → avis globalement négatif.</li>
+</ul></li>
+<li><strong>Additifs (“et”)</strong> : tendent à aligner des opinions de même polarité.
+<ul>
+<li><em>“Léger <strong>et</strong> pratique.”</em> → deux aspects positifs.</li>
+</ul></li>
+</ul>
+</div><div class="column" style="font-size:0.8em">
+<h3 id="conditionnels-modaux"><strong>Conditionnels &amp; Modaux</strong></h3>
+<ul>
+<li><strong>Expriment une possibilité, pas une réalité</strong> (<em>“Le service <strong>pourrait</strong> être meilleur.”</em>).</li>
+<li>Ils <strong>affaiblissent</strong> l’opinion. Ce n’est pas une critique aussi ferme que <em>“Le service est mauvais.”</em></li>
+</ul>
+<p><br>
+<br>
+</p>
+<h3 id="implicites-ironie"><strong>Implicites &amp; Ironie</strong></h3>
+<ul>
+<li><strong>Implicite</strong> : opinion cachée dans un fait.
+<ul>
+<li><em>“Le téléphone chauffe après 10 min.”</em> → fait objectif, mais opinion négative implicite sur l’aspect <em>performance</em>.</li>
+</ul></li>
+<li><strong>Ironie/Sarcasme</strong> : dire le contraire de ce que l’on pense.
+<ul>
+<li><em>“Super, ma commande est encore arrivée en retard.”</em> → mots positifs, mais sentiment très négatif. C’est le défi le plus complexe de l’analyse.</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section id="méthodes-danalyse-classiques" class="slide level2">
+<h2>Méthodes d’analyse classiques</h2>
+<div class="columns">
+<div class="column" style="font-size:0.7em">
+<h3 id="approche-par-lexiques-dictionnaires"><strong>Approche par lexiques (dictionnaires)</strong></h3>
+<ul>
+<li><strong>Principe</strong> : on attribue un score à chaque mot (+1 pour “bon”, -1 pour “mauvais”) et on fait la somme, ajustée par des <strong>règles de composition</strong> (négation, “mais”…).</li>
+<li><strong>Construction de lexique</strong> :
+<ul>
+<li><strong>Dictionary-based</strong> : on part de quelques mots et on étend avec des synonymes/antonymes.</li>
+<li><strong>Corpus-based</strong> : on “découvre” la polarité des mots en regardant avec quels autres mots ils apparaissent dans un grand corpus de textes (ex: PMI).</li>
+</ul></li>
+</ul>
+<h3 id="absa-aspect-based-sentiment-analysis"><strong>ABSA (Aspect-Based Sentiment Analysis)</strong></h3>
+<p>C’est l’approche la plus <strong>actionnable</strong> pour le marketing.</p>
+<ul>
+<li><strong>Pipeline</strong> :
+<ol type="1">
+<li><strong>Extraire les aspects</strong> dont les gens parlent (ex: “batterie”, “écran”, “prix”).</li>
+<li><strong>Lier l’opinion à l’aspect</strong> (ex: “excellent” → “écran”).</li>
+<li><strong>Calculer la polarité pour chaque aspect</strong>.</li>
+</ol></li>
+<li><strong>Résultat</strong> : une carte des points forts et faibles du produit.</li>
+</ul>
+</div><div class="column" style="font-size:0.8em">
+<h3 id="opinions-comparatives-1"><strong>Opinions comparatives</strong></h3>
+<ul>
+<li><strong>Objectif</strong> : analyser les phrases qui comparent des entités.
+<ul>
+<li><em>“La batterie de l’iPhone <strong>dure plus longtemps que</strong> celle du Samsung.”</em></li>
+</ul></li>
+<li><strong>Extraction</strong> : on identifie les deux entités comparées (E1, E2), l’aspect de comparaison (A) et surtout, l’<strong>entité préférée</strong> (PE).</li>
+</ul>
+</div></div>
+</section>
+<section id="deux-approches-pour-automatiser-lanalyse-ml-vs-deep-learning" class="slide level2">
+<h2>Deux approches pour automatiser l’analyse : ML vs Deep Learning</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/clipboard-2246092486.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+<div class="columns">
+<div class="column" style="font-size:0.478em">
+<h3 id="machine-learning-classique"><strong>Machine Learning “Classique”</strong></h3>
+<ul>
+<li><strong>Principe</strong> : l’humain choisit et prépare les <em>features</em> (caractéristiques) pertinentes du texte (ex: la présence de certains mots, des bigrammes…). C’est une étape de <strong>feature extraction</strong> manuelle.</li>
+<li><strong>Le modèle apprend</strong> à associer ces <em>features</em> préparées à un sentiment (positif/négatif).</li>
+<li><strong>Analogie</strong> : on prépare les ingrédients (features) pour le chef (modèle) qui n’a plus qu’à cuisiner.</li>
+</ul>
+</div><div class="column" style="font-size:0.5em">
+<h3 id="deep-learning"><strong>Deep Learning</strong></h3>
+<ul>
+<li><strong>Principe</strong> : le modèle apprend <strong>directement à partir des mots bruts</strong>. Il découvre lui-même les <em>features</em> importantes dans ses couches cachées (<em>hidden layers</em>). L’étape de <strong>feature extraction</strong> est automatique.</li>
+<li><strong>Le modèle apprend</strong> des représentations complexes du langage (embeddings).</li>
+<li><strong>Analogie</strong> : on donne les produits bruts au chef (modèle) et il se charge de tout, de la découpe à la cuisson.</li>
+</ul>
+</div></div>
+<div title="A retenir">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>A retenir</strong></p>
+</div>
+<div class="callout-content">
+<p>Le <strong>Deep Learning</strong> automatise plus de tâches et peut capturer des relations plus complexes, ce qui conduit souvent à de meilleures performances <span class="citation" data-cites="hartmannMoreFeelingAccuracy2023">(<a href="#/références" role="doc-biblioref" onclick="">Hartmann et al. 2023</a>)</span>. C’est la base des modèles les plus récents.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="transition-les-limites-des-approches-par-lexiques" class="slide level2" style="font-size:0.7em">
+<h2>Transition : les limites des approches par lexiques</h2>
+<p>Les méthodes par lexiques et règles sont transparentes et rapides, mais elles ont des faiblesses majeures :</p>
+<ul>
+<li><strong>Aveugles au contexte</strong> : elles peinent à comprendre que <strong>“pas mauvais”</strong> est positif ou que <strong>“long”</strong> peut être positif (batterie) ou négatif (mise au point) <span class="citation" data-cites="liuSentimentAnalysisOpinion">(<a href="#/références" role="doc-biblioref" onclick="">Liu 2022</a>)</span>.</li>
+<li><strong>Statiques et rigides</strong> : un lexique ne s’adapte pas à l’argot, aux nouveaux usages ou à un domaine très spécifique. Il faut le mettre à jour manuellement.</li>
+<li><strong>Couverture limitée</strong> : elles ne gèrent que les mots qu’elles connaissent et ratent toutes les opinions implicites (<em>“le téléphone a cessé de fonctionner au bout de deux jours”</em>).</li>
+</ul>
+<p><br>
+</p>
+<div title="Quelle transition ?">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Quelle transition ?</strong></p>
+</div>
+<div class="callout-content">
+<p>Comment passer d’un système qui suit des règles fixes à un système qui <strong>apprend à partir d’exemples</strong> et s’adapte au contexte ?</p>
+<p><strong>Réponse : le Machine Learning (ML)</strong></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="les-3-grandes-approches-du-machine-learning" class="slide level2" style="font-size:0.65em">
+<h2>Les 3 grandes approches du Machine Learning</h2>
+<p>On peut classer les algorithmes de ML selon la manière dont ils “apprennent” à partir des données <span class="citation" data-cites="ahmadMachineLearningTechniques2017">(<a href="#/références" role="doc-biblioref" onclick="">Ahmad et al. 2017</a>)</span>.</p>
+<div class="columns">
+<div class="column" style="width:33%;">
+<h3 id="apprentissage-supervisé"><strong>Apprentissage Supervisé</strong></h3>
+<ul>
+<li><strong>Principe</strong> : apprendre avec un <strong>corrigé</strong>. Le modèle est entraîné sur des données où la “bonne réponse” (l’étiquette) est déjà connue.</li>
+<li><strong>Données requises</strong> : un volume conséquent de textes <strong>déjà étiquetés</strong> (positif, négatif, etc.). C’est le fameux <strong>Gold Standard</strong>.</li>
+<li><strong>Exemples</strong> :
+<ul>
+<li>Naive Bayes</li>
+<li>Régression Logistique</li>
+<li>Support Vector Machine (SVM)</li>
+</ul></li>
+</ul>
+<div title="💡 Cas d'usage marketing">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>💡 Cas d’usage marketing</strong></p>
+</div>
+<div class="callout-content">
+<p>C’est l’approche la plus courante pour la classification. Idéal quand on dispose de données historiques, comme des tickets de support client déjà classés par niveau de satisfaction.</p>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<h3 id="apprentissage-non-supervisé"><strong>Apprentissage Non Supervisé</strong></h3>
+<ul>
+<li><strong>Principe</strong> : trouver des <strong>structures cachées</strong> dans les données, sans aucun corrigé. Le modèle regroupe les textes qui se ressemblent.</li>
+<li><strong>Données requises</strong> : un grand volume de textes <strong>bruts, non-étiquetés</strong>.</li>
+<li><strong>Exemple</strong> :
+<ul>
+<li><strong>Clustering</strong> : regrouper des clients ou des commentaires similaires.</li>
+</ul></li>
+</ul>
+<p><br>
+<br>
+</p>
+<div title="💡 Cas d'usage marketing">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>💡 Cas d’usage marketing</strong></p>
+</div>
+<div class="callout-content">
+<p>Parfait pour l’<strong>exploration</strong>. Quand on ne sait pas ce qu’on cherche, le non-supervisé peut révéler des segments de clients ou des sujets de plainte émergents qu’on n’avait pas anticipés.</p>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<h3 id="apprentissage-semi-supervisé"><strong>Apprentissage Semi-Supervisé</strong></h3>
+<ul>
+<li><strong>Principe</strong> : le meilleur des deux mondes. On utilise un <strong>petit peu de données étiquetées</strong> pour “guider” l’apprentissage sur une <strong>immense quantité de données non-étiquetées</strong>.</li>
+<li><strong>Données requises</strong> : quelques centaines d’exemples annotés + des milliers (ou millions) de textes bruts.</li>
+<li><strong>Exemples</strong> :
+<ul>
+<li>Algorithmes qui propagent les étiquettes des exemples connus aux exemples inconnus qui leur ressemblent.</li>
+</ul></li>
+</ul>
+<div title="💡 Cas d'usage marketing">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>💡 Cas d’usage marketing</strong></p>
+</div>
+<div class="callout-content">
+<p>C’est souvent le scénario le plus <strong>réaliste et rentable</strong>. L’annotation manuelle coûte cher. Le semi-supervisé permet de construire un modèle performant avec un effort d’annotation minimal.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="le-machine-learning-apprendre-à-partir-des-données" class="slide level2" style="font-size:0.7em">
+<h2>Le Machine Learning : apprendre à partir des données</h2>
+<p>L’idée du ML est simple : au lieu de donner des règles à la machine, on lui donne des <strong>exemples</strong> et on la laisse <strong>découvrir les règles elle-même</strong>. C’est une approche <em>bottom-up</em> <span class="citation" data-cites="hartmannComparingAutomatedText2019a">(<a href="#/références" role="doc-biblioref" onclick="">Hartmann et al. 2019</a>)</span>.</p>
+<h3 id="le-workflow-en-3-étapes">Le workflow en 3 étapes</h3>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><strong>1. Préparer les données</strong></p>
+<p>On a besoin d’un corpus d’avis <strong>déjà étiquetés</strong> (positif/négatif).</p>
+<p><br>
+<br>
+</p>
+<p>Plus on a d’exemples de qualité, mieux le modèle apprendra.</p>
+</div><div class="column" style="width:33%;">
+<p><strong>2. Transformer le texte en chiffres</strong></p>
+<p>Un ordinateur ne “lit” pas. Il calcule. Il faut transformer les mots en <strong>vecteurs numériques</strong> (features).</p>
+<p><br>
+<br>
+</p>
+<ul>
+<li><strong>Approche simple (BoW)</strong> : on compte la fréquence de chaque mot.</li>
+<li><strong>Approche avancée (Embeddings)</strong> : on représente le sens des mots dans un espace vectoriel. <em>(à voir en séance 6)</em>.</li>
+</ul>
+</div><div class="column" style="width:33%;">
+<p><strong>3. Entraîner un modèle</strong></p>
+<p>On choisit un algorithme qui va apprendre à associer les “patterns” numériques des textes aux étiquettes.</p>
+<p><br>
+<br>
+</p>
+<ul>
+<li><strong>Modèles classiques</strong> : Naive Bayes, Régression Logistique, SVM.</li>
+<li><strong>Modèles modernes</strong> : Réseaux de neurones (Deep Learning).</li>
+</ul>
+</div></div>
+<div title="L'adaptation au domaine" style="font-size:1.1em">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>L’adaptation au domaine</strong></p>
+</div>
+<div class="callout-content">
+<p>Avec le ML, on peut <strong>ajuster finement (“finetuner”)</strong> un modèle sur un domaine spécifique (ex: luxe, automobile, cosmétique). Le modèle apprend ainsi le jargon et les nuances propres à ce domaine, là où un dictionnaire générique échouerait.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="un-panorama-des-modèles-de-machine-learning" class="slide level2" style="font-size:0.7em">
+<h2>Un panorama des modèles de Machine Learning</h2>
+<p>Tous les modèles n’ont pas la même complexité ni la même performance. Voici une vue d’ensemble, du plus simple au plus avancé.</p>
+<div class="columns">
+<div class="column" style="font-size: 0.75em">
+<h3 id="ml-classique-supervised-learning">1. ML “Classique” (Supervised Learning)</h3>
+<p>On entraîne un modèle de A à Z sur nos propres données étiquetées.</p>
+<ul>
+<li><p><strong>Naive Bayes</strong> : un modèle probabiliste simple et rapide. Il calcule la probabilité qu’un avis soit positif sachant les mots qu’il contient <span class="citation" data-cites="ahmadMachineLearningTechniques2017">(<a href="#/références" role="doc-biblioref" onclick="">Ahmad et al. 2017</a>)</span>. Très bon comme baseline.</p></li>
+<li><p><strong>Support Vector Machine (SVM)</strong> : un classificateur très robuste qui cherche la “frontière” optimale pour séparer les classes. Il a longtemps été l’état de l’art pour la classification de texte <span class="citation" data-cites="pangOpinionMiningSentiment">(<a href="#/références" role="doc-biblioref" onclick="">Pang, Lee, et al. 2008</a>)</span>.</p></li>
+</ul>
+<p><strong>Le défi</strong> : nécessite beaucoup de données étiquetées pour chaque nouveau domaine.</p>
+<p><br>
+<br>
+<br>
+</p>
+<h3 id="le-deep-learning-et-le-transfer-learning">2. Le Deep Learning et le Transfer Learning</h3>
+<p><br>
+</p>
+<p>On ne part plus de zéro. On utilise un modèle <strong>pré-entraîné</strong> sur des milliards de textes (comme Wikipédia) qui a déjà une compréhension générale du langage.</p>
+<p><br>
+<br>
+</p>
+<ul>
+<li><strong>Principe</strong> : on prend ce “cerveau” pré-entraîné et on l’affine (<em>fine-tuning</em>) sur notre tâche spécifique avec beaucoup moins de données <span class="citation" data-cites="dangSentimentAnalysisBased2020">(<a href="#/références" role="doc-biblioref" onclick="">Dang, Moreno-García, and De La Prieta 2020</a>)</span>.</li>
+<li><strong>Avantage majeur</strong> : le modèle peut généraliser et comprendre des nuances qu’il n’aurait jamais pu apprendre sur un petit jeu de données.</li>
+<li>C’est l’approche qui donne aujourd’hui les <strong>meilleures performances</strong> <span class="citation" data-cites="hartmannMoreFeelingAccuracy2023">(<a href="#/références" role="doc-biblioref" onclick="">Hartmann et al. 2023</a>)</span>.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="léchelle-de-la-performance">L’échelle de la performance</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+
+</div></div>
+<div title="Accuracy moyenne [@hartmannMoreFeelingAccuracy2023]">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Accuracy moyenne <span class="citation" data-cites="hartmannMoreFeelingAccuracy2023">(<a href="#/références" role="doc-biblioref" onclick="">Hartmann et al. 2023</a>)</span></strong></p>
+</div>
+<div class="callout-content">
+<p>Une méta-analyse sur 272 jeux de données montre une hiérarchie claire des performances :</p>
+<ol type="1">
+<li><strong>Transfer Learning (BERT, RoBERTa…)</strong> : <strong>~90-96%</strong></li>
+<li><strong>ML Classique (SVM, etc.)</strong> : <strong>~80-88%</strong></li>
+<li><strong>Lexiques (VADER, LIWC…)</strong> : <strong>~65-75%</strong></li>
+</ol>
+<p>Le Transfer Learning est en moyenne <strong>+20 points</strong> plus précis que les lexiques.</p>
+</div>
+</div>
+</div>
+</div>
+<div title="Le compromis général (interprétabilité)">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Le compromis général (interprétabilité)</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><strong>Lexiques</strong> : <strong>transparence maximale</strong>, mais précision limitée. Idéal pour comprendre le “pourquoi” et pour des analyses exploratoires.</li>
+<li><strong>ML / Transfer Learning</strong> : <strong>précision maximale</strong>, mais plus “boîte noire”. Idéal pour des systèmes de détection automatique (ex: alertes de crise) où la performance prime.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section>
+<section id="annotation-évaluation" class="title-slide slide level1 transition-slide-ubdyellow center">
+<h1>Annotation &amp; évaluation</h1>
+
+</section>
+<section id="lannotation-manuelle-créer-notre-vérité-terrain" class="slide level2" style="font-size: 0.85em">
+<h2>L’annotation manuelle : créer notre “vérité terrain”</h2>
+<p>Avant de pouvoir évaluer un outil, il nous faut une référence fiable : le <strong>gold standard</strong>. C’est un ensemble de textes que des humains ont lus et étiquetés selon des règles précises.</p>
+<h3 id="principes-dune-bonne-annotation">Principes d’une bonne annotation</h3>
+<ul>
+<li><strong>Schéma clair</strong> : définir précisément ce qu’on cherche.
+<ul>
+<li><strong>Unités</strong> : annote-t-on la phrase entière, un segment (<strong>span</strong>), ou une paire (<strong>aspect</strong>, <strong>opinion</strong>) ?</li>
+<li><strong>Labels</strong> : est-ce une simple polarité (<code>{-, 0, +}</code>) ou une échelle d’<strong>intensité</strong> (ex: notes de 1 à 5) ?</li>
+</ul></li>
+<li><strong>Guide d’annotation</strong> : un document essentiel avec des règles et des exemples de cas limites (ironie, conditionnels) pour assurer la cohérence.</li>
+<li><strong>Double annotation</strong> : au moins deux personnes annotent le même texte de manière indépendante.</li>
+<li><strong>Adjudication</strong> : en cas de désaccord, un troisième annotateur (ou un consensus) tranche pour finaliser le gold standard.</li>
+</ul>
+<div title="💡 Conseil pratique" style="font-size: 0.9em">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>💡 Conseil pratique</strong></p>
+</div>
+<div class="callout-content">
+<p>Un bon guide d’annotation est la clé de voûte de toute analyse de sentiment rigoureuse. C’est 80% du travail pour obtenir des données fiables.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="la-fiabilité-des-données-laccord-inter-annotateurs-iaa" class="slide level2" style="font-size: 0.8em">
+<h2>La fiabilité des données : l’accord inter-annotateurs (IAA)</h2>
+<p><strong>La question clé :</strong> nos annotateurs sont-ils d’accord entre eux, ou est-ce que leurs étiquettes sont le fruit du hasard ? L’IAA mesure la cohérence de leur travail.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="kappa-de-cohen-kappa">Kappa de Cohen (<span class="math inline">\(\kappa\)</span>)</h3>
+<p>Mesure l’accord entre <strong>deux</strong> annotateurs, en corrigeant l’accord qui pourrait survenir par chance<sup>1</sup>. <span class="math display">\[
+\kappa = \frac{p_o - p_e}{1 - p_e}
+\]</span> Où <span class="math inline">\(p_o\)</span> est l’accord observé et <span class="math inline">\(p_e\)</span> l’accord attendu par hasard.</p>
+</div><div class="column" style="width:50%;">
+<h3 id="alpha-de-krippendorff-alpha">Alpha de Krippendorff (<span class="math inline">\(\alpha\)</span>)</h3>
+<p>Plus général et robuste : fonctionne avec <strong>plus de deux</strong> annotateurs et différents types de labels (nominal, ordinal…). <span class="math display">\[
+\alpha = 1 - \frac{D_o}{D_e}
+\]</span> Où <span class="math inline">\(D_o\)</span> est le désaccord observé et <span class="math inline">\(D_e\)</span> le désaccord attendu par hasard.</p>
+</div></div>
+<div title="🎯 Objectif">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>🎯 Objectif</strong></p>
+</div>
+<div class="callout-content">
+<p>On vise un score <strong>Kappa/Alpha ≥ 0.70</strong>. En dessous, cela signifie que le guide d’annotation n’est pas assez clair et doit être amélioré. Un IAA élevé garantit que notre “vérité terrain” est solide.</p>
+</div>
+</div>
+</div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>D’autres mesures existent, comme le Kappa de Fleiss (extension à plusieurs annotateurs) ou l’ICC (Intraclass Correlation Coefficient) pour des variables continues.</p></li></ol></aside></section>
+<section id="exemple-interprétation-des-scores" class="slide level2" style="font-size: 0.8em">
+<h2>Exemple &amp; interprétation des scores</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="exemple-de-calcul-kappa-de-cohen">Exemple de calcul (Kappa de Cohen)</h3>
+<p>Deux annotateurs classent 50 tweets (<em>positif/négatif</em>).</p>
+<ul>
+<li>Accord observé : 40/50 → <span class="math inline">\(p_o = 0.8\)</span><br>
+</li>
+<li>Accord attendu par hasard : <span class="math inline">\(p_e = 0.5\)</span></li>
+</ul>
+<p><span class="math display">\[
+\kappa = \frac{0.8 - 0.5}{1 - 0.5} = 0.6
+\]</span></p>
+<div class="callout-example" title="Interprétation">
+<p><span class="math inline">\(\kappa = 0.6\)</span> → <strong>accord modéré à substantiel</strong>, mais améliorable.</p>
+<div title="Remarque sur l'interprétation" style="font-size: 0.8em">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Remarque sur l’interprétation</strong></p>
+</div>
+<div class="callout-content">
+<p>Les seuils proposés par Landis et Koch <span class="citation" data-cites="landisMeasurementObserverAgreement1977">(<a href="#/références" role="doc-biblioref" onclick="">Landis and Koch 1977</a>)</span> sont devenus une référence, mais ils sont <strong>arbitraires</strong> et parfois jugés trop tolérants.<br>
+McHugh <span class="citation" data-cites="mchugh2012interrater">(<a href="#/références" role="doc-biblioref" onclick="">McHugh 2012</a>)</span> recommande des critères plus stricts, considérant qu’un accord « acceptable » ne devrait pas être en dessous de <strong>0.80</strong> en contexte scientifique ou médical.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="font-size: 0.8em">
+<h3 id="interprétation-des-scores">Interprétation des scores</h3>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Valeur de κ / α</th>
+<th>Interprétation selon Landis &amp; Koch (1977)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&lt; 0.00</td>
+<td>Poor</td>
+</tr>
+<tr class="even">
+<td>0.00 – 0.20</td>
+<td>Slight</td>
+</tr>
+<tr class="odd">
+<td>0.21 – 0.40</td>
+<td>Fair</td>
+</tr>
+<tr class="even">
+<td>0.41 – 0.60</td>
+<td>Moderate</td>
+</tr>
+<tr class="odd">
+<td>0.61 – 0.80</td>
+<td>Substantial</td>
+</tr>
+<tr class="even">
+<td>0.81 – 1.00</td>
+<td>Almost perfect</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(irr)</span>
+<span id="cb1-2"><a href=""></a><span class="co"># Exemple : 2 annotateurs classent 50 tweets (positif/négatif)</span></span>
+<span id="cb1-3"><a href=""></a><span class="co"># On crée une matrice items × annotateurs</span></span>
+<span id="cb1-4"><a href=""></a><span class="co"># Ici : 40 accords, 10 désaccords</span></span>
+<span id="cb1-5"><a href=""></a>annotateur1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"positif"</span>, <span class="dv">20</span>), <span class="fu">rep</span>(<span class="st">"négatif"</span>, <span class="dv">20</span>), <span class="fu">rep</span>(<span class="st">"positif"</span>, <span class="dv">5</span>), <span class="fu">rep</span>(<span class="st">"négatif"</span>, <span class="dv">5</span>))</span>
+<span id="cb1-6"><a href=""></a>annotateur2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"positif"</span>, <span class="dv">20</span>), <span class="fu">rep</span>(<span class="st">"négatif"</span>, <span class="dv">20</span>), <span class="fu">rep</span>(<span class="st">"négatif"</span>, <span class="dv">5</span>), <span class="fu">rep</span>(<span class="st">"positif"</span>, <span class="dv">5</span>))</span>
+<span id="cb1-7"><a href=""></a>annotations <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(annotateur1, annotateur2)</span>
+<span id="cb1-8"><a href=""></a><span class="fu">kappa2</span>(annotations, <span class="st">"unweighted"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Cohen's Kappa for 2 Raters (Weights: unweighted)
+
+ Subjects = 50 
+   Raters = 2 
+    Kappa = 0.6 
+
+        z = 4.24 
+  p-value = 2.21e-05 </code></pre>
+</div>
+</div>
+</div></div>
+</section>
+<section id="exemple-interprétation-de-lalpha-de-krippendorff" class="slide level2" style="font-size: 0.8em">
+<h2>Exemple &amp; interprétation de l’Alpha de Krippendorff</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="exemple-de-calcul">Exemple de calcul</h3>
+<p>Trois annotateurs évaluent 5 items (<em>positif/négatif</em>).</p>
+<ul>
+<li>Désaccord observé : <span class="math inline">\((D_o \approx 0.27)\)</span></li>
+<li>Désaccord attendu : <span class="math inline">\((D_e \approx 0.48)\)</span></li>
+</ul>
+<p><span class="math display">\[
+\alpha = 1 - \frac{0.27}{0.48} \approx 0.463
+\]</span></p>
+<div class="callout-example" title="Interprétation">
+<p>(= 0.463) → Accord <strong>insuffisant</strong> (&lt; 0.67) → guide/formation à améliorer.</p>
+</div>
+</div><div class="column" style="width:50%;">
+<h3 id="interprétation-des-scores-1">Interprétation des scores</h3>
+<div title="Comment lire α" style="font-size: 0.8em">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Comment lire α</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>(D_o) = désaccord observé (proportion de désaccords réels entre juges).<br>
+</li>
+<li>(D_e) = désaccord attendu <strong>par hasard</strong>, calculé à partir de la distribution globale des catégories.</li>
+</ul>
+<p>Selon <span class="citation" data-cites="krippendorff2018content">(<a href="#/références" role="doc-biblioref" onclick="">Krippendorff 2018</a>)</span> :<br>
+- <strong>α ≥ 0.80</strong> → Accord <strong>fiable</strong> (analyses solides)<br>
+- <strong>0.67 ≤ α &lt; 0.80</strong> → Accord <strong>acceptable</strong> (exploratoire)<br>
+- <strong>α &lt; 0.67</strong> → Accord <strong>insuffisant</strong>, guide d’annotation à améliorer</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">library</span>(irr)</span>
+<span id="cb3-2"><a href=""></a>annotations <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-3"><a href=""></a>  <span class="at">annotateur1 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb3-4"><a href=""></a>  <span class="at">annotateur2 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb3-5"><a href=""></a>  <span class="at">annotateur3 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb3-6"><a href=""></a>)</span>
+<span id="cb3-7"><a href=""></a><span class="co"># La fonction kripp.alpha attend une matrice items × juges</span></span>
+<span id="cb3-8"><a href=""></a>result <span class="ot">&lt;-</span> <span class="fu">kripp.alpha</span>(<span class="fu">t</span>(<span class="fu">as.matrix</span>(annotations)), <span class="at">method =</span> <span class="st">"nominal"</span>)</span>
+<span id="cb3-9"><a href=""></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Krippendorff's alpha
+
+ Subjects = 5 
+   Raters = 3 
+    alpha = 0.463 </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="la-base-de-lévaluation-la-matrice-de-confusion" class="slide level2" style="font-size: 0.85em">
+<h2>La base de l’évaluation : la matrice de confusion</h2>
+<p>Maintenant que nous avons un gold standard fiable, nous pouvons juger notre outil. La matrice de confusion est le point de départ : elle montre où le modèle a eu raison et où il s’est trompé.</p>
+<p>Imaginons qu’on veuille détecter les commentaires <strong>négatifs</strong> (la classe “positive” de notre analyse) :</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>Prédit : <strong>négatif</strong></th>
+<th>Prédit : <strong>OK</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Réel : négatif</strong></td>
+<td><strong>TP</strong> (vrai positif)</td>
+<td><strong>FN</strong> (faux négatif)</td>
+</tr>
+<tr class="even">
+<td><strong>Réel : OK</strong></td>
+<td><strong>FP</strong> (faux positif)</td>
+<td><strong>TN</strong> (vrai négatif)</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+</p>
+<ul>
+<li><strong>TP (true positive)</strong> : l’alerte était justifiée. C’est un commentaire négatif, et on l’a bien détecté. <strong>Bravo</strong></li>
+<li><strong>FN (false negative)</strong> : <strong>l’alerte manquée !</strong> C’était un commentaire négatif, mais on l’a raté. <strong>Danger !</strong></li>
+<li><strong>FP (false positive)</strong> : <strong>la fausse alerte.</strong> On a cru que c’était négatif, mais ça ne l’était pas. <strong>Bruit.</strong></li>
+<li><strong>TN (true negative)</strong> : on a bien ignoré un commentaire non-négatif. <strong>Correct.</strong></li>
+</ul>
+</section>
+<section id="matrice-de-confusion-multiclasse-analyse-de-sentiment" class="slide level2" style="font-size: 0.4em">
+<h2>Matrice de confusion multiclasse (analyse de sentiment)</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/clipboard-1562987940.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
+<h3 id="interprétation-de-la-matrice-de-confusion-10-000-avis">Interprétation de la matrice de confusion (10 000 avis)</h3>
+<div class="columns">
+<div class="column">
+<h4 id="performance-générale">Performance générale</h4>
+<p>Sur 10 000 avis, le modèle a correctement classé <strong>7 692</strong> d’entre eux, soit une <strong>précision globale de 76,9%</strong>.</p>
+<ul>
+<li><strong>Avis Négatifs</strong> : <strong>2 107</strong> correctement identifiés sur 3 053.</li>
+<li><strong>Avis Neutres</strong> : <strong>1 636</strong> correctement identifiés sur 2 023.</li>
+<li><strong>Avis Positifs</strong> : <strong>3 949</strong> correctement identifiés sur 4 924. Le modèle est particulièrement performant pour cette classe.</li>
+</ul>
+</div><div class="column">
+<h4 id="analyse-des-erreurs-principales">Analyse des erreurs principales</h4>
+<p>Les erreurs les plus fréquentes se situent dans la confusion avec la classe <strong>Neutre</strong>.</p>
+<ul>
+<li><strong>Erreur majeure n°1</strong> : <strong>739</strong> avis <strong>positifs</strong> ont été classés à tort comme <strong>neutres</strong>. Le modèle peine à identifier un sentiment positif peu prononcé.</li>
+<li><strong>Erreur majeure n°2</strong> : <strong>620</strong> avis <strong>négatifs</strong> ont été classés à tort comme <strong>neutres</strong>. De même, le sentiment négatif léger semble difficile à capter.</li>
+</ul>
+<h5 id="pistes-damélioration">Pistes d’amélioration</h5>
+<ul>
+<li><strong>Affiner la distinction</strong> : Le modèle pourrait être amélioré en lui fournissant plus d’exemples d’avis à la frontière entre “Neutre” et “Positif/Négatif”.</li>
+<li><strong>Analyse des faux négatifs/positifs</strong> : Examiner les 739 avis positifs et 620 avis négatifs mal classés pour comprendre les mots ou tournures de phrases qui trompent le modèle.</li>
+</ul>
+</div></div>
+</section>
+<section id="le-dilemme-du-marketeur-précision-vs.-rappel" class="slide level2" style="font-size: 0.65em">
+<h2>Le dilemme du marketeur : précision vs.&nbsp;rappel</h2>
+<p>L’accuracy (taux de bonnes prédictions) est souvent trompeuse. La précision et le rappel répondent à des besoins métier très différents.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="précision-precision">Précision (precision)</h3>
+<p><span class="math display">\[
+\mathrm{P} = \frac{TP}{TP + FP}
+\]</span></p>
+<p><strong>La question métier :</strong> quand mon système sonne une alerte, est-ce que je peux lui faire confiance ?</p>
+<ul>
+<li>Une <strong>haute précision</strong> signifie que l’on a peu de fausses alertes (peu de FP).</li>
+<li><strong>Priorité :</strong> ne pas déranger les équipes pour rien, ne pas contacter à tort des clients supposés mécontents. C’est la métrique de la <strong>fiabilité</strong>.</li>
+</ul>
+<h3 id="rappel-recall">Rappel (recall)</h3>
+<p><span class="math display">\[
+\mathrm{R} = \frac{TP}{TP + FN}
+\]</span> <strong>La question métier :</strong> suis-je sûr d’avoir identifié TOUS les vrais commentaires négatifs ?</p>
+<ul>
+<li>Un <strong>haut rappel</strong> signifie que l’on a raté très peu de vrais problèmes (peu de FN).</li>
+<li><strong>Priorité :</strong> détecter une crise à tout prix, même si cela génère quelques fausses alertes. C’est la métrique de l’<strong>exhaustivité</strong>.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="f1-score">F1-score</h3>
+<p><span class="math display">\[
+\mathrm{F1} = \frac{2 \times P \times R}{P + R}
+\]</span> <strong>La question métier :</strong> comment trouver le meilleur équilibre entre fiabilité et exhaustivité ?</p>
+<p>Le <strong>F1-score</strong> est une moyenne qui pénalise les modèles qui sacrifient trop l’une des deux métriques. <strong>C’est la métrique par défaut pour une évaluation équilibrée.</strong></p>
+<p><br>
+<br>
+<br>
+<br>
+</p>
+<div title="Analogie marketing" style="font-size: 1.2em">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Analogie marketing</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><strong>Haute précision</strong> : votre campagne de retargeting est très efficace (haut taux de conversion), mais n’a touché qu’un petit segment.</li>
+<li><strong>Haut rappel</strong> : votre campagne TV a touché tout le monde (couverture maximale), mais avec un faible impact.</li>
+<li><strong>Haut F1-score</strong> : vous avez touché une large part de votre cible avec un impact significatif.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="le-défi-des-données-réelles-des-distributions-asymétriques" class="slide level2" style="font-size: 0.70em">
+<h2>Le défi des données réelles : des distributions asymétriques</h2>
+<p>Contrairement à une idée reçue, les avis en ligne sont rarement “équilibrés”. En réalité, leur distribution est presque toujours <strong>fortement asymétrique</strong> (<em>skewed</em>), suivant souvent une forme visuelle de <strong>courbe en “J”</strong> <span class="citation" data-cites="pangOpinionMiningSentiment">(<a href="#/références" role="doc-biblioref" onclick="">Pang, Lee, et al. 2008, 50</a>)</span>.</p>
+<p>L’asymétrie dépend fortement de la plateforme (biais d’auto-sélection) :</p>
+<ul>
+<li><strong>Majoritairement positifs</strong> : sur les plateformes où l’avis est un acte de recommandation ou de construction de réputation (ex: <strong>Airbnb</strong>, la plupart des produits sur <strong>Amazon</strong>), on observe une avalanche d’avis très positifs (4-5 étoiles).</li>
+<li><strong>Majoritairement négatifs</strong> : sur les plateformes perçues comme un lieu de réclamation ou de vigilance (ex: <strong>Trustpilot</strong> pour certains services, forums de support technique), les avis négatifs peuvent dominer.</li>
+</ul>
+<div title="Le piège de l'accuracy reste le même">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Le piège de l’accuracy reste le même</strong></p>
+</div>
+<div class="callout-content">
+<p>Que vous ayez 90% d’avis positifs ou 90% de négatifs, le problème de fond demeure : l’<strong>accuracy est une métrique dangereuse</strong>. Un modèle qui prédit toujours la classe majoritaire aura un score élevé mais sera inutile pour détecter les signaux faibles (la crise qui démarre ou les clients ambassadeurs).</p>
+</div>
+</div>
+</div>
+</div>
+<h3 id="les-bonnes-métriques-pour-les-données-déséquilibrées">Les bonnes métriques pour les données déséquilibrées</h3>
+<ul>
+<li><p><strong>F1-macro</strong> : on calcule le F1-score pour chaque classe (+, 0, -), puis on fait la <strong>moyenne simple</strong>. Chaque classe a le même poids, qu’elle soit rare ou fréquente. C’est le <strong>standard</strong> pour rapporter la performance en analyse de sentiment.</p></li>
+<li><p><strong>Balanced accuracy</strong> : c’est la moyenne des rappels de chaque classe. Simple et juste.</p></li>
+</ul>
+<p><span class="math display">\[
+\mathrm{BAcc}=\tfrac{1}{2}\big(\text{Rappel}_{Pos} + \text{Rappel}_{Neg}\big)
+\]</span></p>
+</section>
+<section id="au-delà-des-labels-évaluer-les-scores" class="slide level2" style="font-size: 0.60em">
+<h2>Au-delà des labels : évaluer les scores</h2>
+<p>La plupart des outils (VADER, LIWC) donnent un <strong>score continu</strong> (ex: -0.87), pas un label. Voici comment on évalue cette sortie.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="le-seuil-de-décision-tau">1. Le seuil de décision (<span class="math inline">\(\tau\)</span>)</h3>
+<p>C’est à nous de transformer ce score en label. On définit une <strong>“zone neutre”</strong>.</p>
+<ul>
+<li><strong>Exemple</strong> : si score &gt; <code>0.1</code> → positif ; si score &lt; <code>-0.1</code> → négatif ; sinon → neutre.</li>
+<li>Un seuil plus exigeant augmentera la précision mais baissera le rappel.</li>
+</ul>
+<h3 id="évaluer-le-score-directement">2. Évaluer le score directement</h3>
+<ul>
+<li><strong>Corrélation de Spearman</strong> : compare le <strong>classement</strong> des avis selon le score de l’outil avec le classement des notes humaines (étoiles).
+<ul>
+<li><em>La question : “est-ce que l’outil classe bien les avis du pire au meilleur ?”</em></li>
+</ul></li>
+<li><strong>MAE (mean absolute error)</strong> : calcule l’erreur moyenne entre le score de l’outil (normalisé) et la note en étoile.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="courbes-p-r-et-roc">Courbes P-R et ROC</h3>
+<p>En faisant varier le seuil <span class="math inline">\(\tau\)</span> de 0 à 1, on peut tracer des courbes qui visualisent le compromis entre les erreurs :</p>
+<ul>
+<li><p><strong>Courbe ROC</strong> : montre le taux de vrais positifs (sensibilité) contre le taux de faux positifs (1-spécificité). C’est la vision la plus complète du compromis.</p></li>
+<li><p><strong>Courbe P-R (precision-recall)</strong> : montre l’évolution de la précision en fonction du rappel. Elle est surtout pertinente quand la classe négative est immense et peu intéressante (ex: trouver l’aiguille dans la botte de foin).</p></li>
+</ul>
+<div title="Mise en garde sur le déséquilibre">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Mise en garde sur le déséquilibre</strong></p>
+</div>
+<div class="callout-content">
+<p>Contrairement à une idée reçue, l’AUPRC (l’aire sous la courbe P-R) n’est pas <em>toujours</em> la meilleure métrique en cas de déséquilibre. Des recherches récentes montrent qu’elle peut même <strong>aggraver les biais</strong> et que le choix doit avant tout dépendre de l’objectif métier <span class="citation" data-cites="mcdermottCloserLookAUROC2025">(<a href="#/références" role="doc-biblioref" onclick="">McDermott et al. 2025</a>)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+<div title="Quel seuil choisir ?">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Quel seuil choisir ?</strong></p>
+</div>
+<div class="callout-content">
+<p>Le choix du seuil est une <strong>décision stratégique</strong>. Pour la <strong>détection de crise</strong> (ne rien rater), on choisira un seuil bas pour maximiser le <strong>rappel</strong>. Pour une <strong>campagne de fidélisation</strong> ciblant les clients “très heureux” (ne pas se tromper), on choisira un seuil élevé pour maximiser la <strong>précision</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="synthèse-pratique-quelle-métrique-pour-quel-outil" class="slide level2" style="font-size: 0.75em">
+<h2>Synthèse pratique : quelle métrique pour quel outil ?</h2>
+<p>Un guide pour évaluer les outils que vous utiliserez en TP et pour vos projets.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="comprendre-la-sortie-de-loutil">1. Comprendre la sortie de l’outil</h3>
+<ul>
+<li><strong>VADER, NRC, syuzhet, LIWC</strong> produisent principalement des <strong>scores</strong>.</li>
+<li>Votre première étape sera toujours de <strong>définir des seuils</strong> pour les convertir en labels <code>(+, 0, -)</code>.</li>
+</ul>
+<h3 id="le-rapport-de-performance-idéal">2. Le rapport de performance idéal</h3>
+<p>Pour un projet d’analyse de sentiment, votre rapport d’évaluation devrait contenir :</p>
+<ol type="1">
+<li>La <strong>matrice de confusion</strong> pour visualiser les erreurs.</li>
+<li>Le <strong>F1-score macro</strong> comme indicateur principal de la performance.</li>
+<li>La <strong>corrélation de Spearman</strong> pour évaluer la qualité du classement par score.</li>
+<li>La <strong>couverture du lexique</strong> : quel % de mots l’outil a-t-il reconnu ? Un score basé sur 10% du texte est peu fiable.</li>
+</ol>
+</div><div class="column" style="width:50%;">
+<h3 id="checklist-danalyse-derreurs">3. Checklist d’analyse d’erreurs</h3>
+<p>Une bonne métrique ne suffit pas. Il faut comprendre <strong>pourquoi</strong> l’outil se trompe.</p>
+<ul>
+<li>L’outil gère-t-il bien la <strong>négation</strong> ? (<em>“pas mauvais”</em>)</li>
+<li>Comprend-il les <strong>adversatifs</strong> ? (<em>“beau mais lent”</em>)</li>
+<li>Est-il sensible à l’<strong>intensité</strong> ? <em>“un peu déçu” vs “totalement dégoûté”</em>)</li>
+<li>Est-il adapté à votre <strong>domaine</strong> ? (ex: le mot “froid” est négatif pour un plat, mais positif pour une bière).</li>
+</ul>
+<div title="Le conseil final">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Le conseil final</strong></p>
+</div>
+<div class="callout-content">
+<p>Aucune métrique n’est parfaite. La meilleure approche est de <strong>combiner une métrique quantitative robuste (F1-macro) avec une analyse qualitative des erreurs</strong> pour vraiment comprendre les forces et les faiblesses de votre système.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="pièges-à-éviter-en-analyse-de-sentiment" class="slide level2" style="font-size:0.80em">
+<h2>Pièges à éviter en analyse de sentiment</h2>
+<p>Même les meilleurs outils peuvent se tromper. Voici les pièges les plus courants à anticiper :</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="pièges-linguistiques">Pièges Linguistiques</h3>
+<ul>
+<li><strong>Ambiguïtés</strong> : l’implicite, l’ironie et le sarcasme peuvent totalement inverser la polarité et sont très difficiles à détecter automatiquement.</li>
+<li><strong>Portée des “shifters”</strong> : une négation ou un adversatif (“mais”) mal interprété peut fausser l’analyse d’une phrase entière.</li>
+</ul>
+<h3 id="pièges-méthodologiques">Pièges Méthodologiques</h3>
+<ul>
+<li><strong>Dépendance au domaine</strong> : un lexique entraîné sur des avis de restaurants sera médiocre pour analyser des tweets financiers. Le vocabulaire et le contexte changent tout.</li>
+<li><strong>Biais des lexiques</strong> : un dictionnaire générique peut contenir des biais culturels ou être inadapté au langage spécifique de certaines communautés en ligne (argot, mèmes).</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="pièges-liés-aux-données-et-à-léthique">Pièges liés aux Données et à l’Éthique</h3>
+<ul>
+<li><strong>Spam d’opinion (Fake Reviews)</strong> : la présence d’avis frauduleux (positifs ou négatifs) peut complètement fausser vos KPIs. La détection de spam est un enjeu majeur.</li>
+<li><strong>Qualité des données</strong> : des textes très courts, mal écrits ou remplis d’emojis peuvent dégrader la performance de n’importe quel modèle.</li>
+</ul>
+</div></div>
+</section>
+<section id="de-la-question-marketing-au-rapport-final-la-checklist-dun-projet-réussi" class="slide level2" style="font-size:0.50em">
+<h2>De la question marketing au rapport final : la checklist d’un projet réussi</h2>
+<p>Un projet d’analyse de sentiment réussi n’est pas qu’une question d’outils, c’est avant tout une question de méthode. Voici les étapes clés.</p>
+<h3 id="partir-de-la-question-de-recherche-cadrage-stratégique">1. Partir de la question de recherche (cadrage stratégique)</h3>
+<p>Tout commence par la traduction d’un objectif métier en une question analytique précise. Cette question va dicter vos choix techniques <span class="citation" data-cites="krugmannSentimentAnalysisAge2024a">(<a href="#/références" role="doc-biblioref" onclick="">Krugmann and Hartmann 2024</a>)</span>.</p>
+<ul>
+<li><strong>Question métier</strong> : <em>“Le lancement de notre nouveau produit génère-t-il un buzz positif ?”</em></li>
+<li><strong>Traduction analytique</strong> :
+<ul>
+<li>Quel est le volume de mentions ?* → <strong>Monitoring de base</strong></li>
+<li>La polarité globale est-elle positive ou négative ?* → <strong>Classification binaire</strong></li>
+<li>Quels sont les points forts et faibles perçus ?* → <strong>ABSA (analyse par aspect)</strong></li>
+<li>Comment nous situons-nous face au concurrent X ?* → <strong>Analyse comparative</strong></li>
+</ul></li>
+</ul>
+<h3 id="choisir-lapproche-méthodologique">2. Choisir l’approche méthodologique</h3>
+<p>Votre question et vos ressources (temps, données) déterminent la meilleure approche.</p>
+<ul>
+<li><strong>Approche Lexique + Règles</strong> : idéale pour la <strong>transparence</strong> (comprendre le “pourquoi”), la rapidité et l’exploration, au détriment de la performance brute.</li>
+<li><strong>Approche Machine Learning</strong> : à privilégier pour la <strong>performance</strong> et l’<strong>adaptation</strong> au domaine. C’est en moyenne +20 points de précision par rapport aux lexiques <span class="citation" data-cites="hartmannMoreFeelingAccuracy2023">(<a href="#/références" role="doc-biblioref" onclick="">Hartmann et al. 2023</a>)</span>.</li>
+</ul>
+<h3 id="préparer-données-et-outils-rigueur-opérationnelle">3. Préparer données et outils (rigueur opérationnelle)</h3>
+<ul>
+<li><strong>Si approche ML</strong> : la priorité est de constituer un <strong>Gold Standard</strong> de qualité via une <strong>annotation</strong> rigoureuse (guide clair, double annotation, calcul de l’<strong>IAA</strong>). La qualité du modèle dépend directement de la qualité de ces données.</li>
+<li><strong>Si approche Lexique</strong> : la priorité est d’<strong>adapter le lexique</strong> au domaine (via les techniques corpus-based comme PMI ou l’analyse des conjonctions) et de vérifier manuellement un échantillon pour éviter les contresens.</li>
+</ul>
+<h3 id="analyser-et-evaluer-les-résultats">4. Analyser et evaluer les résultats</h3>
+<ul>
+<li><strong>Évaluation quantitative</strong> : ne jamais se fier à l’accuracy seule. Utiliser la <strong>matrice de confusion</strong> et le <strong>F1-macro</strong> pour une mesure juste, surtout si les classes sont déséquilibrées.</li>
+<li><strong>Analyse qualitative des erreurs</strong> : examiner les cas où le modèle se trompe (négation, ironie, implicite…). C’est la meilleure source d’inspiration pour l’améliorer.</li>
+<li><strong>Test de robustesse</strong> : vérifier si le modèle fonctionne encore sur des données d’une autre plateforme ou d’une autre période (<strong>cross-domaine</strong>, <strong>cross-temporel</strong>).</li>
+</ul>
+</section>
+<section id="conclusion-de-lartisanat-à-lautomatisation-intelligente" class="slide level2" style="font-size:0.65em">
+<h2>Conclusion : de l’artisanat à l’automatisation intelligente</h2>
+<p>L’analyse de sentiment a connu une révolution. Nous sommes passés d’approches manuelles à des outils capables de comprendre le langage avec une finesse sans précédent.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="lévolution-des-méthodes">L’évolution des méthodes</h3>
+<ul>
+<li><p><strong>Hier : lexiques &amp; règles (artisanat)</strong> : Méthodes transparentes et contrôlables, excellentes pour l’exploration et pour tester des hypothèses théoriques <span class="citation" data-cites="hartmannMoreFeelingAccuracy2023">(<a href="#/références" role="doc-biblioref" onclick="">Hartmann et al. 2023, 84</a>)</span>.</p></li>
+<li><p><strong>Aujourd’hui : Machine Learning &amp; Deep Learning (industrialisation)</strong> : Apprentissage sur données pour une meilleure adaptation au contexte et des performances nettement supérieures <span class="citation" data-cites="hartmannMoreFeelingAccuracy2023">(<a href="#/références" role="doc-biblioref" onclick="">Hartmann et al. 2023, 76</a>)</span>.</p></li>
+<li><p><strong>Demain (et déjà maintenant) : LLMs / IA générative</strong> : Compréhension contextuelle “sur étagère” (<em>zero-shot</em>) qui rivalise avec les modèles spécialisés, posant de nouveaux enjeux de reproductibilité et d’éthique <span class="citation" data-cites="krugmannSentimentAnalysisAge2024a">(<a href="#/références" role="doc-biblioref" onclick="">Krugmann and Hartmann 2024, 2, 16</a>)</span>.</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="les-implications-pour-le-marketing">Les implications pour le marketing</h3>
+<ul>
+<li><p><strong>De la description à la prédiction</strong> : Au-delà du comptage pos/neg : anticipation de tendances (ex: cours de la bourse) et détection de signaux faibles de crise (<em>firestorms</em>) <span class="citation" data-cites="hartmannMoreFeelingAccuracy2023">(<a href="#/références" role="doc-biblioref" onclick="">Hartmann et al. 2023, 76</a>)</span>.</p></li>
+<li><p><strong>Connaissance client hyper-granulaire</strong> : Les nuances dans des milliers de verbatims permettent d’affiner les personas, de personnaliser les messages et d’identifier des besoins non satisfaits pour l’innovation <span class="citation" data-cites="agarwalProminentFeatureExtraction2016">(<a href="#/références" role="doc-biblioref" onclick="">Agarwal and Mittal 2016, 3</a>)</span>.</p></li>
+<li><p><strong>Vigilance stratégique en continu</strong> : L’e-réputation devient un <strong>flux</strong> d’information en temps réel qui peut alimenter des tableaux de bord et la prise de décision au quotidien <span class="citation" data-cites="ahmadMachineLearningTechniques2017">(<a href="#/références" role="doc-biblioref" onclick="">Ahmad et al. 2017, 3</a>)</span>.</p></li>
+</ul>
+</div></div>
+<div title="Le message final">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Le message final</strong></p>
+</div>
+<div class="callout-content">
+<p>La technologie devient de plus en plus puissante et accessible. Le rôle de l’expert marketing n’est plus de connaître chaque détail technique, mais de <strong>poser les bonnes questions</strong>, d’<strong>interpréter avec esprit critique</strong> et de <strong>décider</strong> à partir d’insights fiables <span class="citation" data-cites="hartmannMoreFeelingAccuracy2023">(<a href="#/références" role="doc-biblioref" onclick="">Hartmann et al. 2023</a>)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="références" class="slide level2 smaller scrollable">
+<h2>Références</h2>
+
+<script> window._input_file = "---\n" + "title: \"Études qualitatives sur le web (netnographie)\"\n" + "subtitle: \"Analyse de sentiment et opinions\"\n" + "author:\n" + "  - name: \"Olivier Caron\"\n" + "    affiliations: \"Paris Dauphine - PSL\"\n" + "format:\n" + "  ubd-revealjs:\n" + "    self-contained: false\n" + "    chalkboard: true\n" + "    transition: fade\n" + "    auto-stretch: false\n" + "    width: 1250\n" + "    height: 760\n" + "    toc: false\n" + "    toc-depth: 1\n" + "    code-block-height: 700px\n" + "execute:\n" + "  echo: true\n" + "bibliography: refs.bib\n" + "revealjs-plugins:\n" + "  - editable\n" + "filters:\n" + "  - editable\n" + "editor: \n" + "  markdown: \n" + "    wrap: 72\n" + "---\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Objectifs du cours {style=\"font-size:0.75em\"}\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "**1. Comprendre et modéliser les opinions**\n" + "\n" + "-   Définir et distinguer **opinion**, **subjectivité** et **polarité**.\n" + "-   Maîtriser les **niveaux d'analyse** (document, phrase, aspect) et\n" + "    leur pertinence marketing.\n" + "-   Identifier les **phénomènes linguistiques** qui influencent le\n" + "    sentiment (négation, intensité, \"mais\"...).\n" + "\n" + "\\n" + "\\n" + "\n" + "**2. Maîtriser les approches classiques**\n" + "\n" + "\\n" + "\\n" + "\n" + "-   Appliquer des méthodes basées sur des **lexiques** et des\n" + "    **règles**.\n" + "-   Comprendre comment **adapter un lexique** à un domaine spécifique\n" + "    (induction *corpus-based*).\n" + "    \n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "**3. Comprendre le Machine Learning pour l'analyse de sentiment**\n" + "\n" + "-   Comprendre les principes des apprentissages **supervisé** et **non\n" + "    supervisé**.\n" + "-   Distinguer le **ML \"classique\"** (Naive Bayes, SVM) du **Deep\n" + "    Learning / Transfer Learning**.\n" + "-   Connaître les avantages et les limites de chaque grande famille de\n" + "    modèles.\n" + "\n" + "**4. Comprendre et mettre en oeuvre une démarche rigoureuse**\n" + "\n" + "\\n" + "\n" + "-   Concevoir un **schéma d'annotation** clair et fiable.\n" + "-   Mesurer la qualité des données avec l'**accord inter-annotateurs\n" + "    (IAA)**.\n" + "-   **Évaluer** un système avec les bonnes métriques (**F1-macro**) en\n" + "    évitant les pièges (déséquilibre des classes).\n" + "    \n" + ":::\n" + ":::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Qu’est-ce qu’une opinion ? Le modèle structuré de Liu {style=\"font-size:0.80em\"}\n" + "\n" + "En analyse de sentiment, une opinion n'est pas qu'un simple \"j'aime\" ou\n" + "\"je n'aime pas\". Pour être analysable, Bing Liu, l'un des pionniers du\n" + "domaine, la modélise comme un objet structuré, le **quintuple**\n" + "[@liuSentimentAnalysisOpinion, p. 19].\n" + "\n" + "\\n" + "\n" + "$$(e_i, a_{ij}, s_{ijkl}, h_k, t_l)$$\\n" + "\n" + "-   **Entité (**$e_i$) : le produit, la marque, le service. *Ex: \"iPhone\n" + "    15\"*.\n" + "-   **Aspect (**$a_{ij}$) : une caractéristique spécifique de l'entité.\n" + "    *Ex: \"batterie\", \"qualité photo\"*. Si l'opinion vise l'entité\n" + "    entière, on utilise l'aspect **GENERAL**.\n" + "-   **Sentiment (**$s_{ijkl}$) : la polarité (+, 0, -) et/ou son\n" + "    intensité. *Ex: \"très positif\"*.\n" + "-   **Holder (**$h_k$) : la source de l'opinion. *Ex: \"l'auteur du\n" + "    tweet\", \"le journaliste\"*.\n" + "-   **Temps (**$t_l$) : la date de publication. Essentiel pour suivre\n" + "    les tendances.\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Explicite vs. Implicite : lire entre les lignes {style=\"font-size:0.85em\"}\n" + "\n" + "Toutes les opinions ne sont pas exprimées de la même manière. La\n" + "distinction entre opinion explicite et implicite est cruciale car elle\n" + "détermine la difficulté de l'analyse [@liuSentimentAnalysisOpinion, p.\n" + "26].\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### **Opinion explicite**\n" + "\n" + "C'est une **déclaration subjective** qui utilise des mots de sentiment\n" + "clairs.\n" + "\n" + "-   *\"La batterie de ce téléphone est **excellente**.\"*\n" + "-   *\"Je **déteste** le nouveau design.\"*\n" + "-   *\"Le service client était **décevant**.\"*\n" + "\n" + "**Facilité** : relativement simple à détecter avec des lexiques de mots\n" + "positifs/négatifs.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### **Opinion implicite**\n" + "\n" + "C'est un **énoncé factuel** qui, dans un contexte donné, implique une\n" + "opinion forte.\n" + "\n" + "-   *\"La batterie de ce téléphone **tient à peine la journée**.\"* (fait\n" + "    indésirable → opinion négative)\n" + "-   *\"J'ai dû **redémarrer l'ordinateur trois fois** ce matin.\"* (fait\n" + "    indésirable → opinion négative)\n" + "-   *\"Le colis est **arrivé en 24h**.\"* (fait désirable → opinion\n" + "    positive)\n" + "\n" + "**Difficulté** : beaucoup plus complexe à détecter. Nécessite une\n" + "connaissance du domaine et des attentes des consommateurs.\n" + ":::\n" + ":::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Subjectivité, polarité et valence {style=\"font-size:0.75em\"}\n" + "\n" + "Le langage des opinions a plusieurs facettes. Il est essentiel de distinguer si un texte exprime un point de vue (*subjectivité*) et si ce point de vue est positif ou négatif (*polarité* ou *valence*) [@pangOpinionMiningSentiment, p. 5].\n" + "\n" + "-   **Subjectivité** : c'est la présence d'un **état privé** de l'auteur (croyance, jugement, spéculation) par opposition à un **fait objectif** vérifiable.\n" + "    -   **Subjectif** : *\"Je pense que ce film va plaire.\"*\n" + "    -   **Objectif** : *\"Le film est sorti hier.\"*\n" + "\n" + "-   **Polarité (ou valence)** : c'est l'**orientation** de l'opinion (+, -, 0). Le terme **valence**, issu de la psychologie, est souvent utilisé pour décrire cette qualité intrinsèquement positive ou négative d'un mot ou d'une expression.\n" + "    -   **Subjectif SANS polarité claire** : *\"Je me demande si ce produit est fiable.\"*\n" + "    -   **Subjectif AVEC polarité** : *\"Ce produit est incroyablement fiable.\"* (valence positive)\n" + "\n" + "-   **Polarité (ou valence) contextuelle** : la polarité d'un mot n'est pas fixe ; elle dépend crucialement de son contexte. Les **négations**, **intensificateurs** ou même l'**aspect** concerné peuvent tout changer.\n" + "    - *\"long\"* → valence positive pour une batterie, valence négative pour un temps d'attente.\n" + "\n" + "::: {.callout-note title=\"Pourquoi cette distinction est-elle importante ?\"}\n" + "La plupart des systèmes d'analyse de sentiment fonctionnent en deux étapes : d'abord, ils filtrent les phrases pour ne garder que les **subjectives**, puis ils déterminent la **polarité/valence** de ces dernières.\n" + ":::\n" + "\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Les niveaux d'analyse : quelle question se pose-t-on ? {style=\"font-size:0.72em\"}\n" + "\n" + "L'analyse de sentiment peut être menée à différentes échelles. Chaque\n" + "\"granularité\" répond à un besoin marketing différent\n" + "[@liuSentimentAnalysisOpinion, p. 10-11].\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### **Document-level**\n" + "\n" + "On analyse un texte entier (un avis, un article) pour en extraire un\n" + "sentiment global.\n" + "\n" + "-   **Question métier** : *\"Quel est le score de satisfaction moyen de\n" + "    notre produit sur Amazon ?\"*\n" + "-   **Limite** : très réducteur. Un avis 3 étoiles peut contenir des\n" + "    critiques très précises et des compliments sur d'autres aspects.\n" + "\n" + "### **Sentence-level**\n" + "\n" + "\\n" + "\n" + "On analyse chaque phrase indépendamment pour déterminer si elle est\n" + "subjective et quelle est sa polarité.\n" + "\n" + "\\n" + "\n" + "-   **Question métier** : *\"Quels sont les verbatims clients les plus\n" + "    percutants (positifs ou négatifs) à faire remonter en réunion ?\"*\n" + "-   **Limite** : une même phrase peut contenir plusieurs opinions. *\"Le\n" + "    design est super mais la batterie est nulle.\"*\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### **Aspect-level (ABSA)**\n" + "\n" + "C'est le niveau le plus fin et le plus utile. On identifie les\n" + "**aspects** spécifiques et on leur attribue une polarité.\n" + "\n" + "-   **Question métier** : *\"Quels sont les **points forts et les points\n" + "    faibles** de notre produit ? Sur quoi devons-nous concentrer nos\n" + "    efforts R&D et marketing ?\"*\n" + "-   **Avantage** : fournit des insights très **actionnables**.\n" + "\n" + "\\n" + "\\n" + "\n" + "### **Opinions Comparatives**\n" + "\n" + "\\n" + "\n" + "On analyse les phrases qui comparent plusieurs entités sur un même\n" + "aspect.\n" + "\n" + "\\n" + "\n" + "-   **Question métier** : *\"Comment notre produit se positionne-t-il\n" + "    face à notre principal concurrent sur l'aspect 'prix' ou 'qualité'\n" + "    aux yeux des consommateurs ?\"*\n" + "-   **Avantage** : le cœur de l'**intelligence concurrentielle**.\n" + ":::\n" + ":::::\n" + "\n" + "## Les phénomènes linguistiques et leurs effets\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\" style=\"font-size:0.75em\"}\n" + "### **\"Valence Shifters\"** : négation & intensité\n" + "\n" + "-   **Négation** : inverse la polarité d'un mot (*pas bon*). La\n" + "    **portée** (scope) est cruciale : \"Ce n'est pas bon, c'est\n" + "    excellent\" → la négation ne s'applique qu'à \"bon\".\n" + "-   **Intensificateurs** : augmentent la force (*très, vraiment,\n" + "    extrêmement*).\n" + "-   **Atténuateurs** : diminuent la force (*un peu, légèrement*).\n" + "\n" + "### **Connecteurs** : \"Mais\" et \"Et\"\n" + "\n" + "-   **Adversatifs (\"mais\", \"cependant\")** : signalent un retournement.\n" + "    La règle d'or est que l'opinion **après le \"mais\"** est la plus\n" + "    importante.\n" + "    -   *\"Le design est super, **mais la batterie est nulle**.\"* → avis\n" + "        globalement négatif.\n" + "-   **Additifs (\"et\")** : tendent à aligner des opinions de même\n" + "    polarité.\n" + "    -   *\"Léger **et** pratique.\"* → deux aspects positifs.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\" style=\"font-size:0.8em\"}\n" + "### **Conditionnels & Modaux**\n" + "\n" + "-   **Expriment une possibilité, pas une réalité** (*\"Le service\n" + "    **pourrait** être meilleur.\"*).\n" + "-   Ils **affaiblissent** l'opinion. Ce n'est pas une critique aussi\n" + "    ferme que *\"Le service est mauvais.\"*\n" + "\n" + "\\n" + "\\n" + "\n" + "### **Implicites & Ironie**\n" + "\n" + "-   **Implicite** : opinion cachée dans un fait.\n" + "    -   *\"Le téléphone chauffe après 10 min.\"* → fait objectif, mais\n" + "        opinion négative implicite sur l'aspect *performance*.\n" + "-   **Ironie/Sarcasme** : dire le contraire de ce que l'on pense.\n" + "    -   *\"Super, ma commande est encore arrivée en retard.\"* → mots\n" + "        positifs, mais sentiment très négatif. C'est le défi le plus\n" + "        complexe de l'analyse.\n" + ":::\n" + ":::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Méthodes d'analyse classiques\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\" style=\"font-size:0.7em\"}\n" + "### **Approche par lexiques (dictionnaires)**\n" + "\n" + "-   **Principe** : on attribue un score à chaque mot (+1 pour \"bon\", -1\n" + "    pour \"mauvais\") et on fait la somme, ajustée par des **règles de\n" + "    composition** (négation, \"mais\"...).\n" + "-   **Construction de lexique** :\n" + "    -   **Dictionary-based** : on part de quelques mots et on étend avec\n" + "        des synonymes/antonymes.\n" + "    -   **Corpus-based** : on \"découvre\" la polarité des mots en\n" + "        regardant avec quels autres mots ils apparaissent dans un grand\n" + "        corpus de textes (ex: PMI).\n" + "\n" + "### **ABSA (Aspect-Based Sentiment Analysis)**\n" + "\n" + "C'est l'approche la plus **actionnable** pour le marketing.\n" + "\n" + "-   **Pipeline** :\n" + "    1.  **Extraire les aspects** dont les gens parlent (ex: \"batterie\",\n" + "        \"écran\", \"prix\").\n" + "    2.  **Lier l'opinion à l'aspect** (ex: \"excellent\" → \"écran\").\n" + "    3.  **Calculer la polarité pour chaque aspect**.\n" + "-   **Résultat** : une carte des points forts et faibles du produit.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\" style=\"font-size:0.8em\"}\n" + "### **Opinions comparatives**\n" + "\n" + "-   **Objectif** : analyser les phrases qui comparent des entités.\n" + "    -   *\"La batterie de l'iPhone **dure plus longtemps que** celle du\n" + "        Samsung.\"*\n" + "-   **Extraction** : on identifie les deux entités comparées (E1, E2),\n" + "    l'aspect de comparaison (A) et surtout, l'**entité préférée** (PE).\n" + ":::\n" + ":::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Deux approches pour automatiser l'analyse : ML vs Deep Learning\n" + "\n" + "![](images/clipboard-2246092486.png){fig-align=\"center\" width=\"60%\"}\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\" style=\"font-size:0.478em\"}\n" + "###  **Machine Learning \"Classique\"**\n" + "\n" + "-   **Principe** : l'humain choisit et prépare les *features*\n" + "    (caractéristiques) pertinentes du texte (ex: la présence de certains\n" + "    mots, des bigrammes...). C'est une étape de **feature extraction**\n" + "    manuelle.\n" + "-   **Le modèle apprend** à associer ces *features* préparées à un\n" + "    sentiment (positif/négatif).\n" + "-   **Analogie** : on prépare les ingrédients (features) pour le chef\n" + "    (modèle) qui n'a plus qu'à cuisiner.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\" style=\"font-size:0.5em\"}\n" + "### **Deep Learning**\n" + "\n" + "-   **Principe** : le modèle apprend **directement à partir des mots\n" + "    bruts**. Il découvre lui-même les *features* importantes dans ses\n" + "    couches cachées (*hidden layers*). L'étape de **feature extraction**\n" + "    est automatique.\n" + "-   **Le modèle apprend** des représentations complexes du langage\n" + "    (embeddings).\n" + "-   **Analogie** : on donne les produits bruts au chef (modèle) et il se\n" + "    charge de tout, de la découpe à la cuisson.\n" + ":::\n" + ":::::\n" + "\n" + "::: {.callout-tip title=\"A retenir\"}\n" + "Le **Deep Learning** automatise plus de tâches et peut capturer des\n" + "relations plus complexes, ce qui conduit souvent à de meilleures\n" + "performances [@hartmannMoreFeelingAccuracy2023]. C'est la base des\n" + "modèles les plus récents.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Transition : les limites des approches par lexiques {style=\"font-size:0.7em\"}\n" + "\n" + "Les méthodes par lexiques et règles sont transparentes et rapides, mais\n" + "elles ont des faiblesses majeures :\n" + "\n" + "-   **Aveugles au contexte** : elles peinent à comprendre que **\"pas\n" + "    mauvais\"** est positif ou que **\"long\"** peut être positif\n" + "    (batterie) ou négatif (mise au point)\n" + "    [@liuSentimentAnalysisOpinion].\n" + "-   **Statiques et rigides** : un lexique ne s'adapte pas à l'argot, aux\n" + "    nouveaux usages ou à un domaine très spécifique. Il faut le mettre à\n" + "    jour manuellement.\n" + "-   **Couverture limitée** : elles ne gèrent que les mots qu'elles\n" + "    connaissent et ratent toutes les opinions implicites (*\"le téléphone\n" + "    a cessé de fonctionner au bout de deux jours\"*).\n" + "\n" + "\\n" + "\n" + "::: {.callout-note title=\"Quelle transition ?\"}\n" + "Comment passer d'un système qui suit des règles fixes à un système qui\n" + "**apprend à partir d'exemples** et s'adapte au contexte ?\n" + "\n" + "**Réponse : le Machine Learning (ML)**\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Les 3 grandes approches du Machine Learning {style=\"font-size:0.65em\"}\n" + "\n" + "On peut classer les algorithmes de ML selon la manière dont ils\n" + "\"apprennent\" à partir des données [@ahmadMachineLearningTechniques2017].\n" + "\n" + "::::::::: columns\n" + ":::: {.column width=\"33%\"}\n" + "### **Apprentissage Supervisé**\n" + "\n" + "-   **Principe** : apprendre avec un **corrigé**. Le modèle est entraîné\n" + "    sur des données où la \"bonne réponse\" (l'étiquette) est déjà connue.\n" + "-   **Données requises** : un volume conséquent de textes **déjà\n" + "    étiquetés** (positif, négatif, etc.). C'est le fameux **Gold\n" + "    Standard**.\n" + "-   **Exemples** :\n" + "    -   Naive Bayes\n" + "    -   Régression Logistique\n" + "    -   Support Vector Machine (SVM)\n" + "\n" + "::: {.callout-tip title=\"💡 Cas d'usage marketing\"}\n" + "C'est l'approche la plus courante pour la classification. Idéal quand on\n" + "dispose de données historiques, comme des tickets de support client déjà\n" + "classés par niveau de satisfaction.\n" + ":::\n" + "::::\n" + "\n" + ":::: {.column width=\"33%\"}\n" + "### **Apprentissage Non Supervisé**\n" + "\n" + "-   **Principe** : trouver des **structures cachées** dans les données,\n" + "    sans aucun corrigé. Le modèle regroupe les textes qui se\n" + "    ressemblent.\n" + "-   **Données requises** : un grand volume de textes **bruts,\n" + "    non-étiquetés**.\n" + "-   **Exemple** :\n" + "    -   **Clustering** : regrouper des clients ou des commentaires\n" + "        similaires.\n" + "\n" + "\\n" + "\\n" + "\n" + "::: {.callout-tip title=\"💡 Cas d'usage marketing\"}\n" + "Parfait pour l'**exploration**. Quand on ne sait pas ce qu'on cherche,\n" + "le non-supervisé peut révéler des segments de clients ou des sujets de\n" + "plainte émergents qu'on n'avait pas anticipés.\n" + ":::\n" + "::::\n" + "\n" + ":::: {.column width=\"33%\"}\n" + "### **Apprentissage Semi-Supervisé**\n" + "\n" + "-   **Principe** : le meilleur des deux mondes. On utilise un **petit\n" + "    peu de données étiquetées** pour \"guider\" l'apprentissage sur une\n" + "    **immense quantité de données non-étiquetées**.\n" + "-   **Données requises** : quelques centaines d'exemples annotés + des\n" + "    milliers (ou millions) de textes bruts.\n" + "-   **Exemples** :\n" + "    -   Algorithmes qui propagent les étiquettes des exemples connus aux\n" + "        exemples inconnus qui leur ressemblent.\n" + "\n" + "::: {.callout-tip title=\"💡 Cas d'usage marketing\"}\n" + "C'est souvent le scénario le plus **réaliste et rentable**. L'annotation\n" + "manuelle coûte cher. Le semi-supervisé permet de construire un modèle\n" + "performant avec un effort d'annotation minimal.\n" + ":::\n" + "::::\n" + ":::::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Le Machine Learning : apprendre à partir des données {style=\"font-size:0.7em\"}\n" + "\n" + "L'idée du ML est simple : au lieu de donner des règles à la machine, on\n" + "lui donne des **exemples** et on la laisse **découvrir les règles\n" + "elle-même**. C'est une approche *bottom-up*\n" + "[@hartmannComparingAutomatedText2019a].\n" + "\n" + "### Le workflow en 3 étapes\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"33%\"}\n" + "**1. Préparer les données**\n" + "\n" + "On a besoin d'un corpus d'avis **déjà étiquetés** (positif/négatif).\n" + "\n" + "\\n" + "\\n" + "\n" + "Plus on a d'exemples de qualité, mieux le modèle apprendra.\n" + ":::\n" + "\n" + "::: {.column width=\"33%\"}\n" + "**2. Transformer le texte en chiffres**\n" + "\n" + "Un ordinateur ne \"lit\" pas. Il calcule. Il faut transformer les mots en\n" + "**vecteurs numériques** (features).\n" + "\n" + "\\n" + "\\n" + "\n" + "-   **Approche simple (BoW)** : on compte la fréquence de chaque mot.\n" + "-   **Approche avancée (Embeddings)** : on représente le sens des mots\n" + "    dans un espace vectoriel. *(à voir en séance 6)*.\n" + ":::\n" + "\n" + "::: {.column width=\"33%\"}\n" + "**3. Entraîner un modèle**\n" + "\n" + "On choisit un algorithme qui va apprendre à associer les \"patterns\"\n" + "numériques des textes aux étiquettes.\n" + "\n" + "\\n" + "\\n" + "\n" + "-   **Modèles classiques** : Naive Bayes, Régression Logistique, SVM.\n" + "-   **Modèles modernes** : Réseaux de neurones (Deep Learning).\n" + ":::\n" + "::::::\n" + "\n" + "::: {.callout-tip title=\"L'adaptation au domaine\" style=\"font-size:1.1em\"}\n" + "Avec le ML, on peut **ajuster finement (\"finetuner\")** un modèle sur un\n" + "domaine spécifique (ex: luxe, automobile, cosmétique). Le modèle apprend\n" + "ainsi le jargon et les nuances propres à ce domaine, là où un\n" + "dictionnaire générique échouerait.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Un panorama des modèles de Machine Learning {style=\"font-size:0.7em\"}\n" + "\n" + "Tous les modèles n'ont pas la même complexité ni la même performance.\n" + "Voici une vue d'ensemble, du plus simple au plus avancé.\n" + "\n" + ":::::::::: columns\n" + "::: {.column width=\"50%\" style=\"font-size: 0.75em\"}\n" + "### 1. ML \"Classique\" (Supervised Learning)\n" + "\n" + "On entraîne un modèle de A à Z sur nos propres données étiquetées.\n" + "\n" + "-   **Naive Bayes** : un modèle probabiliste simple et rapide. Il\n" + "    calcule la probabilité qu'un avis soit positif sachant les mots\n" + "    qu'il contient [@ahmadMachineLearningTechniques2017]. Très bon comme\n" + "    baseline.\n" + "\n" + "-   **Support Vector Machine (SVM)** : un classificateur très robuste\n" + "    qui cherche la \"frontière\" optimale pour séparer les classes. Il a\n" + "    longtemps été l'état de l'art pour la classification de texte\n" + "    [@pangOpinionMiningSentiment].\n" + "\n" + "**Le défi** : nécessite beaucoup de données étiquetées pour chaque\n" + "nouveau domaine.\n" + "\n" + "\\n" + "\\n" + "\\n" + "\n" + "### 2. Le Deep Learning et le Transfer Learning\n" + "\n" + "\\n" + "\n" + "On ne part plus de zéro. On utilise un modèle **pré-entraîné** sur des\n" + "milliards de textes (comme Wikipédia) qui a déjà une compréhension\n" + "générale du langage.\n" + "\n" + "\\n" + "\\n" + "\n" + "-   **Principe** : on prend ce \"cerveau\" pré-entraîné et on l'affine\n" + "    (*fine-tuning*) sur notre tâche spécifique avec beaucoup moins de\n" + "    données [@dangSentimentAnalysisBased2020].\n" + "-   **Avantage majeur** : le modèle peut généraliser et comprendre des\n" + "    nuances qu'il n'aurait jamais pu apprendre sur un petit jeu de\n" + "    données.\n" + "-   C'est l'approche qui donne aujourd'hui les **meilleures\n" + "    performances** [@hartmannMoreFeelingAccuracy2023].\n" + ":::\n" + "\n" + ":::::::: {.column width=\"50%\"}\n" + "### L'échelle de la performance\n" + "\n" + "::::: columns\n" + ":::: {.column width=\"50%\"}\n" + "\n" + "::::\n" + ":::::\n" + "\n" + "::: {.callout-note title=\"Accuracy moyenne [@hartmannMoreFeelingAccuracy2023]\"}\n" + "Une méta-analyse sur 272 jeux de données montre une hiérarchie claire\n" + "des performances :\n" + "\n" + "1.  **Transfer Learning (BERT, RoBERTa...)** : **\~90-96%**\n" + "2.  **ML Classique (SVM, etc.)** : **\~80-88%**\n" + "3.  **Lexiques (VADER, LIWC...)** : **\~65-75%**\n" + "\n" + "Le Transfer Learning est en moyenne **+20 points** plus précis que les\n" + "lexiques.\n" + ":::\n" + "\n" + "::: {.callout-warning title=\"Le compromis général (interprétabilité)\"}\n" + "-   **Lexiques** : **transparence maximale**, mais précision limitée.\n" + "    Idéal pour comprendre le \"pourquoi\" et pour des analyses\n" + "    exploratoires.\n" + "-   **ML / Transfer Learning** : **précision maximale**, mais plus\n" + "    \"boîte noire\". Idéal pour des systèmes de détection automatique (ex:\n" + "    alertes de crise) où la performance prime.\n" + ":::\n" + "::::::::\n" + "::::::::::\n" + "\n" + "# Annotation & évaluation {.transition-slide-ubdyellow}\n" + "\n" + "## L'annotation manuelle : créer notre \"vérité terrain\" {style=\"font-size: 0.85em\"}\n" + "\n" + "Avant de pouvoir évaluer un outil, il nous faut une référence fiable :\n" + "le **gold standard**. C'est un ensemble de textes que des humains ont\n" + "lus et étiquetés selon des règles précises.\n" + "\n" + "### Principes d'une bonne annotation\n" + "\n" + "-   **Schéma clair** : définir précisément ce qu'on cherche.\n" + "    -   **Unités** : annote-t-on la phrase entière, un segment\n" + "        (**span**), ou une paire (**aspect**, **opinion**) ?\n" + "    -   **Labels** : est-ce une simple polarité (`{-, 0, +}`) ou une\n" + "        échelle d'**intensité** (ex: notes de 1 à 5) ?\n" + "-   **Guide d'annotation** : un document essentiel avec des règles et\n" + "    des exemples de cas limites (ironie, conditionnels) pour assurer la\n" + "    cohérence.\n" + "-   **Double annotation** : au moins deux personnes annotent le même\n" + "    texte de manière indépendante.\n" + "-   **Adjudication** : en cas de désaccord, un troisième annotateur (ou\n" + "    un consensus) tranche pour finaliser le gold standard.\n" + "\n" + "::: {.callout-tip title=\"💡 Conseil pratique\" style=\"font-size: 0.9em\"}\n" + "Un bon guide d'annotation est la clé de voûte de toute analyse de\n" + "sentiment rigoureuse. C'est 80% du travail pour obtenir des données\n" + "fiables.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## La fiabilité des données : l'accord inter-annotateurs (IAA) {style=\"font-size: 0.8em\"}\n" + "\n" + "**La question clé :** nos annotateurs sont-ils d'accord entre eux, ou\n" + "est-ce que leurs étiquettes sont le fruit du hasard ? L'IAA mesure la\n" + "cohérence de leur travail.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### Kappa de Cohen ($\kappa$)\n" + "\n" + "Mesure l'accord entre **deux** annotateurs, en corrigeant l'accord qui\n" + "pourrait survenir par chance[^1]. $$\n" + "\kappa = \frac{p_o - p_e}{1 - p_e}\n" + "$$ Où $p_o$ est l'accord observé et $p_e$ l'accord attendu par hasard.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### Alpha de Krippendorff ($\alpha$)\n" + "\n" + "Plus général et robuste : fonctionne avec **plus de deux** annotateurs\n" + "et différents types de labels (nominal, ordinal...). $$\n" + "\alpha = 1 - \frac{D_o}{D_e}\n" + "$$ Où $D_o$ est le désaccord observé et $D_e$ le désaccord attendu par\n" + "hasard.\n" + ":::\n" + ":::::\n" + "\n" + "[^1]: D’autres mesures existent, comme le Kappa de Fleiss (extension à\n" + "    plusieurs annotateurs) ou l’ICC (Intraclass Correlation Coefficient)\n" + "    pour des variables continues.\n" + "\n" + "::: {.callout-note title=\"🎯 Objectif\"}\n" + "On vise un score **Kappa/Alpha ≥ 0.70**. En dessous, cela signifie que\n" + "le guide d'annotation n'est pas assez clair et doit être amélioré. Un\n" + "IAA élevé garantit que notre \"vérité terrain\" est solide.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Exemple & interprétation des scores {style=\"font-size: 0.8em\"}\n" + "\n" + "::::::: columns\n" + "::::: {.column width=\"50%\"}\n" + "### Exemple de calcul (Kappa de Cohen)\n" + "\n" + "Deux annotateurs classent 50 tweets (*positif/négatif*).\n" + "\n" + "-   Accord observé : 40/50 → $p_o = 0.8$\\n" + "-   Accord attendu par hasard : $p_e = 0.5$\n" + "\n" + "$$\n" + "\kappa = \frac{0.8 - 0.5}{1 - 0.5} = 0.6\n" + "$$\n" + "\n" + ":::: {.callout-example title=\"Interprétation\"}\n" + "$\kappa = 0.6$ → **accord modéré à substantiel**, mais améliorable.\n" + "\n" + "::: {.callout-note title=\"Remarque sur l'interprétation\" style=\"font-size: 0.8em\"}\n" + "Les seuils proposés par Landis et Koch\n" + "[@landisMeasurementObserverAgreement1977] sont devenus une référence,\n" + "mais ils sont **arbitraires** et parfois jugés trop tolérants.\\n" + "McHugh [@mchugh2012interrater] recommande des critères plus stricts,\n" + "considérant qu’un accord « acceptable » ne devrait pas être en dessous\n" + "de **0.80** en contexte scientifique ou médical.\n" + ":::\n" + "::::\n" + ":::::\n" + "\n" + "::: {.column width=\"50%\" style=\"font-size: 0.8em\"}\n" + "### Interprétation des scores\n" + "\n" + "| Valeur de κ / α | Interprétation selon Landis & Koch (1977) |\n" + "|-----------------|-------------------------------------------|\n" + "| \< 0.00         | Poor                                      |\n" + "| 0.00 – 0.20     | Slight                                    |\n" + "| 0.21 – 0.40     | Fair                                      |\n" + "| 0.41 – 0.60     | Moderate                                  |\n" + "| 0.61 – 0.80     | Substantial                               |\n" + "| 0.81 – 1.00     | Almost perfect                            |\n" + "\n" + "```{r}\n" + "library(irr)\n" + "# Exemple : 2 annotateurs classent 50 tweets (positif/négatif)\n" + "# On crée une matrice items × annotateurs\n" + "# Ici : 40 accords, 10 désaccords\n" + "annotateur1 <- c(rep(\"positif\", 20), rep(\"négatif\", 20), rep(\"positif\", 5), rep(\"négatif\", 5))\n" + "annotateur2 <- c(rep(\"positif\", 20), rep(\"négatif\", 20), rep(\"négatif\", 5), rep(\"positif\", 5))\n" + "annotations <- data.frame(annotateur1, annotateur2)\n" + "kappa2(annotations, \"unweighted\")\n" + "```\n" + ":::\n" + ":::::::\n" + "\n" + "## Exemple & interprétation de l’Alpha de Krippendorff {style=\"font-size: 0.8em\"}\n" + "\n" + "::::::: columns\n" + ":::: {.column width=\"50%\"}\n" + "### Exemple de calcul\n" + "\n" + "Trois annotateurs évaluent 5 items (*positif/négatif*).\n" + "\n" + "-   Désaccord observé : $(D_o \approx 0.27)$\n" + "-   Désaccord attendu : $(D_e \approx 0.48)$\n" + "\n" + "$$\n" + "\alpha = 1 - \frac{0.27}{0.48} \approx 0.463\n" + "$$\n" + "\n" + "::: {.callout-example title=\"Interprétation\"}\n" + "(\alpha = 0.463) → Accord **insuffisant** (\< 0.67) → guide/formation à\n" + "améliorer.\n" + ":::\n" + "::::\n" + "\n" + ":::: {.column width=\"50%\"}\n" + "### Interprétation des scores\n" + "\n" + "::: {.callout-note title=\"Comment lire α\" style=\"font-size: 0.8em\"}\n" + "-   (D_o) = désaccord observé (proportion de désaccords réels entre\n" + "    juges).\\n" + "-   (D_e) = désaccord attendu **par hasard**, calculé à partir de la\n" + "    distribution globale des catégories.\n" + "\n" + "Selon [@krippendorff2018content] :\\n" + "- **α ≥ 0.80** → Accord **fiable** (analyses solides)\\n" + "- **0.67 ≤ α \< 0.80** → Accord **acceptable** (exploratoire)\\n" + "- **α \< 0.67** → Accord **insuffisant**, guide d’annotation à améliorer\n" + "\n" + "```{r}\n" + "library(irr)\n" + "annotations <- data.frame(\n" + "  annotateur1 = c(1, 1, 0, 1, 0),\n" + "  annotateur2 = c(1, 0, 0, 1, 0),\n" + "  annotateur3 = c(1, 1, 0, 1, 1)\n" + ")\n" + "# La fonction kripp.alpha attend une matrice items × juges\n" + "result <- kripp.alpha(t(as.matrix(annotations)), method = \"nominal\")\n" + "result\n" + "```\n" + ":::\n" + "::::\n" + ":::::::\n" + "\n" + "## La base de l'évaluation : la matrice de confusion {style=\"font-size: 0.85em\"}\n" + "\n" + "Maintenant que nous avons un gold standard fiable, nous pouvons juger\n" + "notre outil. La matrice de confusion est le point de départ : elle\n" + "montre où le modèle a eu raison et où il s'est trompé.\n" + "\n" + "Imaginons qu'on veuille détecter les commentaires **négatifs** (la\n" + "classe \"positive\" de notre analyse) :\n" + "\n" + "|                    | Prédit : **négatif**  | Prédit : **OK**       |\n" + "|--------------------|-----------------------|-----------------------|\n" + "| **Réel : négatif** | **TP** (vrai positif) | **FN** (faux négatif) |\n" + "| **Réel : OK**      | **FP** (faux positif) | **TN** (vrai négatif) |\n" + "\n" + "\\n" + "\n" + "-   **TP (true positive)** : l'alerte était justifiée. C'est un\n" + "    commentaire négatif, et on l'a bien détecté. **Bravo**\n" + "-   **FN (false negative)** : **l'alerte manquée !** C'était un\n" + "    commentaire négatif, mais on l'a raté. **Danger !**\n" + "-   **FP (false positive)** : **la fausse alerte.** On a cru que c'était\n" + "    négatif, mais ça ne l'était pas. **Bruit.**\n" + "-   **TN (true negative)** : on a bien ignoré un commentaire\n" + "    non-négatif. **Correct.**\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Matrice de confusion multiclasse (analyse de sentiment) {style=\"font-size: 0.4em\"}\n" + "\n" + "![](images/clipboard-1562987940.png){fig-align=\"center\" width=\"50%\"}\n" + "\n" + "### Interprétation de la matrice de confusion (10 000 avis)\n" + "\n" + "::::: columns\n" + "::: column\n" + "#### Performance générale\n" + "\n" + "Sur 10 000 avis, le modèle a correctement classé **7 692** d'entre eux,\n" + "soit une **précision globale de 76,9%**.\n" + "\n" + "-   **Avis Négatifs** : **2 107** correctement identifiés sur 3 053.\n" + "-   **Avis Neutres** : **1 636** correctement identifiés sur 2 023.\n" + "-   **Avis Positifs** : **3 949** correctement identifiés sur 4 924. Le\n" + "    modèle est particulièrement performant pour cette classe.\n" + ":::\n" + "\n" + "::: column\n" + "#### Analyse des erreurs principales\n" + "\n" + "Les erreurs les plus fréquentes se situent dans la confusion avec la\n" + "classe **Neutre**.\n" + "\n" + "-   **Erreur majeure n°1** : **739** avis **positifs** ont été classés à\n" + "    tort comme **neutres**. Le modèle peine à identifier un sentiment\n" + "    positif peu prononcé.\n" + "-   **Erreur majeure n°2** : **620** avis **négatifs** ont été classés à\n" + "    tort comme **neutres**. De même, le sentiment négatif léger semble\n" + "    difficile à capter.\n" + "\n" + "##### Pistes d'amélioration\n" + "\n" + "-   **Affiner la distinction** : Le modèle pourrait être amélioré en lui\n" + "    fournissant plus d'exemples d'avis à la frontière entre \"Neutre\" et\n" + "    \"Positif/Négatif\".\n" + "-   **Analyse des faux négatifs/positifs** : Examiner les 739 avis\n" + "    positifs et 620 avis négatifs mal classés pour comprendre les mots\n" + "    ou tournures de phrases qui trompent le modèle.\n" + ":::\n" + ":::::\n" + "\n" + "## Le dilemme du marketeur : précision vs. rappel {style=\"font-size: 0.65em\"}\n" + "\n" + "L'accuracy (taux de bonnes prédictions) est souvent trompeuse. La\n" + "précision et le rappel répondent à des besoins métier très différents.\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### Précision (precision)\n" + "\n" + "$$\n" + "\mathrm{P} = \frac{TP}{TP + FP}\n" + "$$\n" + "\n" + "**La question métier :** quand mon système sonne une alerte, est-ce que\n" + "je peux lui faire confiance ?\n" + "\n" + "-   Une **haute précision** signifie que l'on a peu de fausses alertes\n" + "    (peu de FP).\n" + "-   **Priorité :** ne pas déranger les équipes pour rien, ne pas\n" + "    contacter à tort des clients supposés mécontents. C'est la métrique\n" + "    de la **fiabilité**.\n" + "\n" + "### Rappel (recall)\n" + "\n" + "$$\n" + "\mathrm{R} = \frac{TP}{TP + FN}\n" + "$$ **La question métier :** suis-je sûr d'avoir identifié TOUS les vrais\n" + "commentaires négatifs ?\n" + "\n" + "-   Un **haut rappel** signifie que l'on a raté très peu de vrais\n" + "    problèmes (peu de FN).\n" + "-   **Priorité :** détecter une crise à tout prix, même si cela génère\n" + "    quelques fausses alertes. C'est la métrique de l'**exhaustivité**.\n" + ":::\n" + "\n" + ":::: {.column width=\"50%\"}\n" + "### F1-score\n" + "\n" + "$$\n" + "\mathrm{F1} = \frac{2 \times P \times R}{P + R}\n" + "$$ **La question métier :** comment trouver le meilleur équilibre entre\n" + "fiabilité et exhaustivité ?\n" + "\n" + "Le **F1-score** est une moyenne qui pénalise les modèles qui sacrifient\n" + "trop l'une des deux métriques. **C'est la métrique par défaut pour une\n" + "évaluation équilibrée.**\n" + "\n" + "\\n" + "\\n" + "\\n" + "\\n" + "\n" + "::: {.callout-tip title=\"Analogie marketing\" style=\"font-size: 1.2em\"}\n" + "-   **Haute précision** : votre campagne de retargeting est très\n" + "    efficace (haut taux de conversion), mais n'a touché qu'un petit\n" + "    segment.\n" + "-   **Haut rappel** : votre campagne TV a touché tout le monde\n" + "    (couverture maximale), mais avec un faible impact.\n" + "-   **Haut F1-score** : vous avez touché une large part de votre cible\n" + "    avec un impact significatif.\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Le défi des données réelles : des distributions asymétriques {style=\"font-size: 0.70em\"}\n" + "\n" + "Contrairement à une idée reçue, les avis en ligne sont rarement\n" + "\"équilibrés\". En réalité, leur distribution est presque toujours\n" + "**fortement asymétrique** (*skewed*), suivant souvent une forme visuelle\n" + "de **courbe en \"J\"** [@pangOpinionMiningSentiment, p. 50].\n" + "\n" + "L'asymétrie dépend fortement de la plateforme (biais d'auto-sélection) :\n" + "\n" + "-   **Majoritairement positifs** : sur les plateformes où l'avis est un\n" + "    acte de recommandation ou de construction de réputation (ex:\n" + "    **Airbnb**, la plupart des produits sur **Amazon**), on observe une\n" + "    avalanche d'avis très positifs (4-5 étoiles).\n" + "-   **Majoritairement négatifs** : sur les plateformes perçues comme un\n" + "    lieu de réclamation ou de vigilance (ex: **Trustpilot** pour\n" + "    certains services, forums de support technique), les avis négatifs\n" + "    peuvent dominer.\n" + "\n" + "::: {.callout-warning title=\"Le piège de l'accuracy reste le même\"}\n" + "Que vous ayez 90% d'avis positifs ou 90% de négatifs, le problème de\n" + "fond demeure : l'**accuracy est une métrique dangereuse**. Un modèle qui\n" + "prédit toujours la classe majoritaire aura un score élevé mais sera\n" + "inutile pour détecter les signaux faibles (la crise qui démarre ou les\n" + "clients ambassadeurs).\n" + ":::\n" + "\n" + "### Les bonnes métriques pour les données déséquilibrées\n" + "\n" + "-   **F1-macro** : on calcule le F1-score pour chaque classe (+, 0, -),\n" + "    puis on fait la **moyenne simple**. Chaque classe a le même poids,\n" + "    qu'elle soit rare ou fréquente. C'est le **standard** pour rapporter\n" + "    la performance en analyse de sentiment.\n" + "\n" + "-   **Balanced accuracy** : c'est la moyenne des rappels de chaque\n" + "    classe. Simple et juste.\n" + "\n" + "$$\n" + "\mathrm{BAcc}=\tfrac{1}{2}\big(\text{Rappel}_{Pos} + \text{Rappel}_{Neg}\big)\n" + "$$\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Au-delà des labels : évaluer les scores {style=\"font-size: 0.60em\"}\n" + "\n" + "La plupart des outils (VADER, LIWC) donnent un **score continu** (ex: -0.87), pas un label. Voici comment on évalue cette sortie.\n" + "\n" + ":::: {.columns}\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### 1. Le seuil de décision ($\tau$)\n" + "\n" + "C'est à nous de transformer ce score en label. On définit une **\"zone neutre\"**.\n" + "\n" + "-   **Exemple** : si score > `0.1` → positif ; si score < `-0.1` → négatif ; sinon → neutre.\n" + "-   Un seuil plus exigeant augmentera la précision mais baissera le rappel.\n" + "\n" + "### 2. Évaluer le score directement\n" + "\n" + "-   **Corrélation de Spearman** : compare le **classement** des avis selon le score de l'outil avec le classement des notes humaines (étoiles).\n" + "    -   *La question : \"est-ce que l'outil classe bien les avis du pire au meilleur ?\"*\n" + "-   **MAE (mean absolute error)** : calcule l'erreur moyenne entre le score de l'outil (normalisé) et la note en étoile.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### Courbes P-R et ROC\n" + "\n" + "En faisant varier le seuil $\tau$ de 0 à 1, on peut tracer des courbes qui visualisent le compromis entre les erreurs :\n" + "\n" + "-   **Courbe ROC** : montre le taux de vrais positifs (sensibilité) contre le taux de faux positifs (1-spécificité). C'est la vision la plus complète du compromis.\n" + "\n" + "-   **Courbe P-R (precision-recall)** : montre l'évolution de la précision en fonction du rappel. Elle est surtout pertinente quand la classe négative est immense et peu intéressante (ex: trouver l'aiguille dans la botte de foin).\n" + "\n" + "::: {.callout-warning title=\"Mise en garde sur le déséquilibre\"}\n" + "Contrairement à une idée reçue, l'AUPRC (l'aire sous la courbe P-R) n'est pas *toujours* la meilleure métrique en cas de déséquilibre. Des recherches récentes montrent qu'elle peut même **aggraver les biais** et que le choix doit avant tout dépendre de l'objectif métier [@mcdermottCloserLookAUROC2025].\n" + ":::\n" + ":::\n" + "\n" + "::::\n" + "\n" + "::: {.callout-note title=\"Quel seuil choisir ?\"}\n" + "Le choix du seuil est une **décision stratégique**. Pour la **détection de crise** (ne rien rater), on choisira un seuil bas pour maximiser le **rappel**. Pour une **campagne de fidélisation** ciblant les clients \"très heureux\" (ne pas se tromper), on choisira un seuil élevé pour maximiser la **précision**.\n" + ":::\n" + "\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Synthèse pratique : quelle métrique pour quel outil ? {style=\"font-size: 0.75em\"}\n" + "\n" + "Un guide pour évaluer les outils que vous utiliserez en TP et pour vos\n" + "projets.\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### 1. Comprendre la sortie de l'outil\n" + "\n" + "-   **VADER, NRC, syuzhet, LIWC** produisent principalement des\n" + "    **scores**.\n" + "-   Votre première étape sera toujours de **définir des seuils** pour\n" + "    les convertir en labels `(+, 0, -)`.\n" + "\n" + "### 2. Le rapport de performance idéal\n" + "\n" + "Pour un projet d'analyse de sentiment, votre rapport d'évaluation\n" + "devrait contenir :\n" + "\n" + "1.  La **matrice de confusion** pour visualiser les erreurs.\n" + "2.  Le **F1-score macro** comme indicateur principal de la performance.\n" + "3.  La **corrélation de Spearman** pour évaluer la qualité du classement\n" + "    par score.\n" + "4.  La **couverture du lexique** : quel % de mots l'outil a-t-il reconnu\n" + "    ? Un score basé sur 10% du texte est peu fiable.\n" + ":::\n" + "\n" + ":::: {.column width=\"50%\"}\n" + "### 3. Checklist d'analyse d'erreurs\n" + "\n" + "Une bonne métrique ne suffit pas. Il faut comprendre **pourquoi**\n" + "l'outil se trompe.\n" + "\n" + "-   L'outil gère-t-il bien la **négation** ? (*\"pas mauvais\"*)\n" + "-   Comprend-il les **adversatifs** ? (*\"beau mais lent\"*)\n" + "-   Est-il sensible à l'**intensité** ? *\"un peu déçu\" vs \"totalement\n" + "    dégoûté\"*)\n" + "-   Est-il adapté à votre **domaine** ? (ex: le mot \"froid\" est négatif\n" + "    pour un plat, mais positif pour une bière).\n" + "\n" + "::: {.callout-note title=\"Le conseil final\"}\n" + "Aucune métrique n'est parfaite. La meilleure approche est de **combiner\n" + "une métrique quantitative robuste (F1-macro) avec une analyse\n" + "qualitative des erreurs** pour vraiment comprendre les forces et les\n" + "faiblesses de votre système.\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "## Pièges à éviter en analyse de sentiment {style=\"font-size:0.80em\"}\n" + "\n" + "Même les meilleurs outils peuvent se tromper. Voici les pièges les plus courants à anticiper :\n" + "\n" + ":::: {.columns}\n" + "::: {.column width=\"50%\"}\n" + "### Pièges Linguistiques\n" + "\n" + "-   **Ambiguïtés** : l'implicite, l'ironie et le sarcasme peuvent totalement inverser la polarité et sont très difficiles à détecter automatiquement.\n" + "-   **Portée des \"shifters\"** : une négation ou un adversatif (\"mais\") mal interprété peut fausser l'analyse d'une phrase entière.\n" + "\n" + "### Pièges Méthodologiques\n" + "\n" + "-   **Dépendance au domaine** : un lexique entraîné sur des avis de restaurants sera médiocre pour analyser des tweets financiers. Le vocabulaire et le contexte changent tout.\n" + "-   **Biais des lexiques** : un dictionnaire générique peut contenir des biais culturels ou être inadapté au langage spécifique de certaines communautés en ligne (argot, mèmes).\n" + ":::\n" + "::: {.column width=\"50%\"}\n" + "### Pièges liés aux Données et à l'Éthique\n" + "\n" + "-   **Spam d'opinion (Fake Reviews)** : la présence d'avis frauduleux (positifs ou négatifs) peut complètement fausser vos KPIs. La détection de spam est un enjeu majeur.\n" + "-   **Qualité des données** : des textes très courts, mal écrits ou remplis d'emojis peuvent dégrader la performance de n'importe quel modèle.\n" + ":::\n" + "::::\n" + "\n" + "## De la question marketing au rapport final : la checklist d'un projet réussi  {style=\"font-size:0.50em\"}\n" + "\n" + "Un projet d'analyse de sentiment réussi n'est pas qu'une question d'outils, c'est avant tout une question de méthode. Voici les étapes clés.\n" + "\n" + "### 1. Partir de la question de recherche (cadrage stratégique)\n" + "Tout commence par la traduction d'un objectif métier en une question analytique précise. Cette question va dicter vos choix techniques [@krugmannSentimentAnalysisAge2024a].\n" + "\n" + "- **Question métier** : *\"Le lancement de notre nouveau produit génère-t-il un buzz positif ?\"*\n" + "- **Traduction analytique** :\n" + "    - Quel est le volume de mentions ?* → **Monitoring de base**\n" + "    - La polarité globale est-elle positive ou négative ?* → **Classification binaire**\n" + "    - Quels sont les points forts et faibles perçus ?* → **ABSA (analyse par aspect)**\n" + "    - Comment nous situons-nous face au concurrent X ?* → **Analyse comparative**\n" + "\n" + "### 2. Choisir l'approche méthodologique\n" + "Votre question et vos ressources (temps, données) déterminent la meilleure approche.\n" + "\n" + "- **Approche Lexique + Règles** : idéale pour la **transparence** (comprendre le \"pourquoi\"), la rapidité et l'exploration, au détriment de la performance brute.\n" + "- **Approche Machine Learning** : à privilégier pour la **performance** et l'**adaptation** au domaine. C'est en moyenne +20 points de précision par rapport aux lexiques [@hartmannMoreFeelingAccuracy2023].\n" + "\n" + "### 3. Préparer données et outils (rigueur opérationnelle)\n" + "- **Si approche ML** : la priorité est de constituer un **Gold Standard** de qualité via une **annotation** rigoureuse (guide clair, double annotation, calcul de l'**IAA**). La qualité du modèle dépend directement de la qualité de ces données.\n" + "- **Si approche Lexique** : la priorité est d'**adapter le lexique** au domaine (via les techniques corpus-based comme PMI ou l'analyse des conjonctions) et de vérifier manuellement un échantillon pour éviter les contresens.\n" + "\n" + "### 4. Analyser et evaluer les résultats\n" + "- **Évaluation quantitative** : ne jamais se fier à l'accuracy seule. Utiliser la **matrice de confusion** et le **F1-macro** pour une mesure juste, surtout si les classes sont déséquilibrées.\n" + "- **Analyse qualitative des erreurs** : examiner les cas où le modèle se trompe (négation, ironie, implicite...). C'est la meilleure source d'inspiration pour l'améliorer.\n" + "- **Test de robustesse** : vérifier si le modèle fonctionne encore sur des données d'une autre plateforme ou d'une autre période (**cross-domaine**, **cross-temporel**).\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "\n" + "## Conclusion : de l'artisanat à l'automatisation intelligente {style=\"font-size:0.65em\"}\n" + "\n" + "L'analyse de sentiment a connu une révolution. Nous sommes passés d'approches manuelles à des outils capables de comprendre le langage avec une finesse sans précédent.\n" + "\n" + ":::: {.columns}\n" + "::: {.column width=\"50%\"}\n" + "\n" + "### L’évolution des méthodes\n" + "\n" + "- **Hier : lexiques & règles (artisanat)** :\n" + "Méthodes transparentes et contrôlables, excellentes pour l'exploration et pour tester des hypothèses théoriques [@hartmannMoreFeelingAccuracy2023, p. 84].\n" + "\n" + "- **Aujourd’hui : Machine Learning & Deep Learning (industrialisation)** :\n" + "Apprentissage sur données pour une meilleure adaptation au contexte et des performances nettement supérieures [@hartmannMoreFeelingAccuracy2023, p. 76].\n" + "\n" + "- **Demain (et déjà maintenant) :  LLMs / IA générative** :\n" + "Compréhension contextuelle \"sur étagère\" (*zero-shot*) qui rivalise avec les modèles spécialisés, posant de nouveaux enjeux de reproductibilité et d'éthique [@krugmannSentimentAnalysisAge2024a, p. 2, 16].\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "\n" + "### Les implications pour le marketing\n" + "\n" + "- **De la description à la prédiction** :\n" + "Au-delà du comptage pos/neg : anticipation de tendances (ex: cours de la bourse) et détection de signaux faibles de crise (*firestorms*) [@hartmannMoreFeelingAccuracy2023, p. 76].\n" + "\n" + "- **Connaissance client hyper-granulaire** :\n" + "Les nuances dans des milliers de verbatims permettent d'affiner les personas, de personnaliser les messages et d'identifier des besoins non satisfaits pour l’innovation [@agarwalProminentFeatureExtraction2016, p. 3].\n" + "\n" + "- **Vigilance stratégique en continu** :\n" + "L'e-réputation devient un **flux** d'information en temps réel qui peut alimenter des tableaux de bord et la prise de décision au quotidien [@ahmadMachineLearningTechniques2017, p. 3].\n" + ":::\n" + "::::\n" + "\n" + "::: {.callout-note title=\"Le message final\"}\n" + "La technologie devient de plus en plus puissante et accessible. Le rôle de l’expert marketing n’est plus de connaître chaque détail technique, mais de **poser les bonnes questions**, d'**interpréter avec esprit critique** et de **décider** à partir d’insights fiables [@hartmannMoreFeelingAccuracy2023].\n" + ":::\n" + "\n" + "-----\n" + "\n" + "## Références\n" + ""</script>
+<script> window._input_filename = 'C:\Users\Olivier\Documents\GitHub\etudes_qualitatives_web\cours_5\cours_5.qmd'</script>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-agarwalProminentFeatureExtraction2016" class="csl-entry" role="listitem">
+Agarwal, Basant, and Namita Mittal. 2016. <em>Prominent <span>Feature Extraction</span> for <span>Sentiment Analysis</span></em>. Socio-<span>Affective Computing</span>. Cham: Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-25343-5">https://doi.org/10.1007/978-3-319-25343-5</a>.
+</div>
+<div id="ref-ahmadMachineLearningTechniques2017" class="csl-entry" role="listitem">
+Ahmad, Munir, Shabib Aftab, Syed Shah Muhammad, and Sarfraz Ahmad. 2017. <span>“Machine <span>Learning Techniques</span> for <span>Sentiment Analysis</span>: <span>A Review</span>”</span> 8 (3).
+</div>
+<div id="ref-dangSentimentAnalysisBased2020" class="csl-entry" role="listitem">
+Dang, Nhan Cach, María N. Moreno-García, and Fernando De La Prieta. 2020. <span>“Sentiment <span>Analysis Based</span> on <span>Deep Learning</span>: <span>A Comparative Study</span>.”</span> <em>Electronics</em> 9 (3): 483. <a href="https://doi.org/10.3390/electronics9030483">https://doi.org/10.3390/electronics9030483</a>.
+</div>
+<div id="ref-hartmannMoreFeelingAccuracy2023" class="csl-entry" role="listitem">
+Hartmann, Jochen, Mark Heitmann, Christian Siebert, and Christina Schamp. 2023. <span>“More Than a <span>Feeling</span>: <span>Accuracy</span> and <span>Application</span> of <span>Sentiment Analysis</span>.”</span> <em>International Journal of Research in Marketing</em> 40 (1): 75–87. <a href="https://doi.org/10.1016/j.ijresmar.2022.05.005">https://doi.org/10.1016/j.ijresmar.2022.05.005</a>.
+</div>
+<div id="ref-hartmannComparingAutomatedText2019a" class="csl-entry" role="listitem">
+Hartmann, Jochen, Juliana Huppertz, Christina Schamp, and Mark Heitmann. 2019. <span>“Comparing Automated Text Classification Methods.”</span> <em>International Journal of Research in Marketing</em> 36 (1): 20–38. <a href="https://doi.org/10.1016/j.ijresmar.2018.09.009">https://doi.org/10.1016/j.ijresmar.2018.09.009</a>.
+</div>
+<div id="ref-krippendorff2018content" class="csl-entry" role="listitem">
+Krippendorff, Klaus. 2018. <em>Content Analysis: An Introduction to Its Methodology</em>. Sage publications.
+</div>
+<div id="ref-krugmannSentimentAnalysisAge2024a" class="csl-entry" role="listitem">
+Krugmann, Jan Ole, and Jochen Hartmann. 2024. <span>“Sentiment <span>Analysis</span> in the <span>Age</span> of <span>Generative AI</span>.”</span> <em>Customer Needs and Solutions</em> 11 (1): 3. <a href="https://doi.org/10.1007/s40547-024-00143-4">https://doi.org/10.1007/s40547-024-00143-4</a>.
+</div>
+<div id="ref-landisMeasurementObserverAgreement1977" class="csl-entry" role="listitem">
+Landis, J. Richard, and Gary G. Koch. 1977. <span>“The <span>Measurement</span> of <span>Observer Agreement</span> for <span>Categorical Data</span>.”</span> <em>Biometrics</em> 33 (1): 159. <a href="https://doi.org/10.2307/2529310">https://doi.org/10.2307/2529310</a>.
+</div>
+<div id="ref-liuSentimentAnalysisOpinion" class="csl-entry" role="listitem">
+Liu, Bing. 2022. <em>Sentiment Analysis and Opinion Mining</em>. Springer Nature.
+</div>
+<div id="ref-mcdermottCloserLookAUROC2025" class="csl-entry" role="listitem">
+McDermott, Matthew B. A., Haoran Zhang, Lasse Hyldig Hansen, Giovanni Angelotti, and Jack Gallifant. 2025. <span>“A <span>Closer Look</span> at <span>AUROC</span> and <span>AUPRC</span> Under <span>Class Imbalance</span>.”</span> arXiv. <a href="https://doi.org/10.48550/arXiv.2401.06091">https://doi.org/10.48550/arXiv.2401.06091</a>.
+</div>
+<div id="ref-mchugh2012interrater" class="csl-entry" role="listitem">
+McHugh, Mary L. 2012. <span>“Interrater Reliability: The Kappa Statistic.”</span> <em>Biochemia Medica</em> 22 (3): 276–82.
+</div>
+<div id="ref-pangOpinionMiningSentiment" class="csl-entry" role="listitem">
+Pang, Bo, Lillian Lee, et al. 2008. <span>“Opinion Mining and Sentiment Analysis.”</span> <em>Foundations and Trends<span></span> in Information Retrieval</em> 2 (1–2): 1–135.
+</div>
+</div>
+</section></section>
+
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="cours_5_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="cours_5_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="cours_5_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="cours_5_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="cours_5_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="cours_5_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="cours_5_files/libs/revealjs/plugin/revealeditable/editable.js"></script>
+  <script src="cours_5_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="cours_5_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="cours_5_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="cours_5_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="cours_5_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1250,
+
+        height: 760,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, Revealeditable, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    <script type="text/javascript">
+      Reveal.on('ready', event => {
+        if (event.indexh === 0) {
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+      });
+      Reveal.addEventListener('slidechanged', (event) => {
+        if (event.indexh === 0) {
+          Reveal.configure({ slideNumber: null });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+        if (event.indexh === 1) { 
+          Reveal.configure({ slideNumber: 'c/t' });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+        }
+      });
+    </script>
+    
+
+</body></html>
