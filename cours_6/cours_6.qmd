@@ -32,7 +32,7 @@ editor:
 Aujourd'hui, nous allons au-delà de l'analyse de mots isolés pour
 répondre à deux questions marketing fondamentales :
 
-1.  **De quoi parlent réellement mes clients ?**
+1.  **De quoi parlent réellement les personnes, consommateurs, clients ?**
     -   Nous verrons comment le **Topic Modeling** (modélisation de
         thèmes) peut automatiquement découvrir les grands sujets de
         discussion (les *topics*) cachés dans des milliers d'avis.
