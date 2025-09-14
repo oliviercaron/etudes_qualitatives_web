@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="guide_complet_rapport_files/libs/clipboard/clipboard.min.js"></script>
+<script src="guide_complet_rapport_files/libs/quarto-html/tabby.min.js"></script>
+<script src="guide_complet_rapport_files/libs/quarto-html/popper.min.js"></script>
+<script src="guide_complet_rapport_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="guide_complet_rapport_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="guide_complet_rapport_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="guide_complet_rapport_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
+
+  <meta name="author" content="Olivier Caron">
+  <title>Études qualitatives sur le web (netnographie)</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="guide_complet_rapport_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="guide_complet_rapport_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="guide_complet_rapport_files/libs/revealjs/dist/theme/quarto-7305b09eb733fa85903ef661c69bedac.css">
+  <link href="guide_complet_rapport_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="guide_complet_rapport_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="guide_complet_rapport_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="guide_complet_rapport_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="guide_complet_rapport_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="guide_complet_rapport_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="ubd_bg1.png" data-background-position="center" data-background-size="cover" class="quarto-title-block center">
+  <h1 class="title">Études qualitatives sur le web (netnographie)</h1>
+  <p class="subtitle">Un guide complet pour le rendu (rapport Quarto)</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Olivier Caron 
+</div>
+        <p class="quarto-title-affiliation">
+            Paris Dauphine - PSL
+          </p>
+    </div>
+</div>
+
+</section>
+<section>
+<section id="analyser-un-texte-la-boîte-à-outils-du-marketer" class="title-slide slide level1 transition-slide-ubdteal center">
+<h1>Analyser un texte : la boîte à outils du marketer</h1>
+
+</section>
+<section id="pour-interpréter-un-message-on-utilise-une-checklist" class="slide level2" style="font-size:0.8em">
+<h2>Pour interpréter un message, on utilise une checklist :</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="la-structure">🕵️ 1. La Structure</h3>
+<ul>
+<li><strong>Question :</strong> De quoi est fait le message ?</li>
+<li><em>Mots, grammaire, négation, intensité (“très”, “trop”), dépendances…</em></li>
+<li><span style="font-size:0.8em"><strong>Réf. théoriques</strong> : Saussure · Chomsky &amp; Tesnière</span></li>
+</ul>
+<h3 id="les-fonctions">🎯 2. Les Fonctions</h3>
+<ul>
+<li><strong>Question :</strong> À quoi sert le message ?</li>
+<li><em>Informer, émouvoir, faire agir, entretenir le lien…</em></li>
+<li><span style="font-size:0.8em"><strong>Réf.</strong> : Jakobson</span></li>
+</ul>
+<h3 id="le-contexte">🤝 3. Le Contexte</h3>
+<ul>
+<li><strong>Question :</strong> Avec quels mots apparaît-il ?</li>
+<li><em>Voisinages, cooccurrences, collocations (“qualité” + “premium”), patrons relationnels…</em></li>
+<li><span style="font-size:0.8em"><strong>Réf.</strong> : Firth &amp; Harris</span></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="fréquence-distribution">📊 4. Fréquence / Distribution</h3>
+<ul>
+<li><strong>Question :</strong> Courant, moyen ou rare ?</li>
+<li><em>Structurel (bruit), distinctif (thème), signal faible (tendance)…</em></li>
+<li><span style="font-size:0.8em"><strong>Réf.</strong> : Zipf</span></li>
+</ul>
+<h3 id="laction-actes-effets">⚡ 5. L’Action (Actes &amp; Effets)</h3>
+<ul>
+<li><strong>Question :</strong> Quelle action accomplit-il ?</li>
+<li><em>Recommander, alerter, blâmer, mobiliser… Et quels effets ?</em></li>
+<li><span style="font-size:0.8em"><strong>Réf.</strong> : Austin</span></li>
+</ul>
+<h3 id="le-réseau-de-textes">🌐 6. Le Réseau de textes</h3>
+<ul>
+<li><strong>Question :</strong> À quoi est-il connecté ?</li>
+<li><em>Mèmes, hashtags, réponses, parodies, formats (duos/stitches)…</em></li>
+<li><span style="font-size:0.8em"><strong>Réf.</strong> : Genette</span></li>
+</ul>
+</div></div>
+</section>
+<section id="de-lindice-à-linterprétation-mode-demploi" class="slide level2" style="font-size:0.58em">
+<h2>De l’indice à l’interprétation (Mode d’emploi)</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Outil</th>
+<th style="text-align: left;">On cherche… (Indices concrets)</th>
+<th style="text-align: left;">On en déduit… (Interprétation actionnable)</th>
+<th style="text-align: left;">Réf.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>🕵️‍♂️ Structure</strong></td>
+<td style="text-align: left;">Négation, intensité (“trop”), tournures figées, dépendances</td>
+<td style="text-align: left;">La <strong>cible</strong> (produit, service, canal) &amp; la <strong>portée</strong> de l’évaluation</td>
+<td style="text-align: left;">Saussure · Chomsky</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>🎯 Fonctions</strong></td>
+<td style="text-align: left;">Marques expressives/conatives, CTA, questions, emojis</td>
+<td style="text-align: left;">Le <strong>but dominant</strong> : informer, persuader, engager, relancer</td>
+<td style="text-align: left;">Jakobson</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>🤝 Contexte</strong></td>
+<td style="text-align: left;">Cooccurrences fortes, collocations, patrons (“trop + adj”)</td>
+<td style="text-align: left;">Les <strong>associations</strong> positives/négatives &amp; oppositions sémantiques</td>
+<td style="text-align: left;">Firth · Harris</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>📊 Distribution</strong></td>
+<td style="text-align: left;">Fréquences (rare, moyenne, haute), TF-IDF</td>
+<td style="text-align: left;"><strong>Structurel</strong> vs <strong>distinctif</strong> ; <strong>émergent</strong> vs routinier</td>
+<td style="text-align: left;">Zipf</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>⚡ Actes / effets</strong></td>
+<td style="text-align: left;">“Je recommande”, “Boycottez…”, réactions en chaîne</td>
+<td style="text-align: left;">L’<strong>action réalisée</strong> &amp; ses <strong>effets</strong> (mobiliser, dissuader…)</td>
+<td style="text-align: left;">Austin</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>🌐 Réseaux</strong></td>
+<td style="text-align: left;">#, @, citations, formats (unboxing, SAV), duos/stitches</td>
+<td style="text-align: left;">L’<strong>inscription intertextuelle</strong> &amp; le <strong>genre</strong> mobilisé</td>
+<td style="text-align: left;">Genette</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Exemple projet (avis clients) :</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Structure → repérer la <strong>cible</strong> des griefs (livraison, taille, SAV, prix).<br>
+</li>
+<li>Contexte → associer chaque cible à ses <strong>attributs</strong> (“retard”, “imprécis”, “trop cher”).<br>
+</li>
+<li>Distribution → distinguer <strong>pain points majeurs</strong> (fréquences moyennes/hautes) vs <strong>signaux émergents</strong> (rares mais stratégiques).</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="passons-à-la-pratique-3-exemples-annotés" class="slide level2" style="font-size:0.8em">
+<h2>Passons à la pratique : 3 exemples annotés</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Exemple 1 (avis 5★)</strong></p>
+</div>
+<div class="callout-content">
+<blockquote>
+<p>“Service impeccable, livraison rapide. Je recommande.”</p>
+</blockquote>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>🎯 Fonctions</strong> : Expressive + Conative<br>
+</li>
+<li><strong>⚡ Acte</strong> : Recommandation (impact réputation)<br>
+</li>
+<li><strong>🕵️‍♂️ Structure</strong> : cibles <em>service/logistique</em> ; intensif <em>impeccable</em><br>
+</li>
+<li><strong>Recommandation</strong> : capitaliser en <strong>preuve sociale</strong> (extraits site / fiche produit)</li>
+</ul>
+</div><div class="column" style="width:33%;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Exemple 2 (avis 2★)</strong></p>
+</div>
+<div class="callout-content">
+<blockquote>
+<p>“Trop cher pour la qualité proposée.”</p>
+</blockquote>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>🕵️‍♂️ Structure</strong> : Intensification “trop” + comparaison implicite<br>
+</li>
+<li><strong>🤝 Contexte</strong> : collocation <em>trop + cher</em> ; association <em>cher ↔︎ qualité</em><br>
+</li>
+<li><strong>📊 Distribution</strong> : si récurrent → <strong>axe prioritaire</strong><br>
+</li>
+<li><strong>Recommandation</strong> : clarifier <strong>promesse qualité</strong> / segmenter <strong>offre-prix</strong></li>
+</ul>
+</div><div class="column" style="width:34%;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Exemple 3 (réseau social)</strong></p>
+</div>
+<div class="callout-content">
+<blockquote>
+<p>“#NewDrop demain. Qui est chaud ? 👀”</p>
+</blockquote>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>🎯 Fonctions</strong> : Phatique + Conative (+ Poétique stylisée)<br>
+</li>
+<li><strong>⚡ Acte</strong> : Mobilisation (teasing cross-canal)<br>
+</li>
+<li><strong>🌐 Réseau</strong> : hashtag + emoji + format <strong>lancement</strong><br>
+</li>
+<li><strong>Recommandation</strong> : <strong>orchestration omnicanale</strong> (site, app, magasin)</li>
+</ul>
+</div></div>
+</section></section>
+<section>
+<section id="du-cours-au-projet-workflow-netnographie-avis-clients" class="title-slide slide level1 center">
+<h1>Du cours au projet : workflow netnographie (avis clients)</h1>
+
+</section>
+<section id="étape-1-constitution-du-corpus" class="slide level2">
+<h2>Étape 1 — Constitution du corpus</h2>
+<ul>
+<li><strong>Collecte</strong> : API officielles si possible ; sinon scraping (respect robots.txt, pauses).<br>
+</li>
+<li><strong>Échantillonnage</strong> : viser <strong>diversité de canaux</strong> (web, app, magasin) &amp; <strong>mix polarité</strong> (1–2–3–4–5★).<br>
+</li>
+<li><strong>Journal de collecte</strong> : volumes/jours, sources, filtres utilisés.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Outils</strong> : <code>requests</code>, <code>BeautifulSoup</code>, <code>Selenium</code> (si nécessaire), API Google Places / Trustpilot / App Stores.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="étape-2-pré-traitements-r-python" class="slide level2">
+<h2>Étape 2 — Pré-traitements (R / Python)</h2>
+<ul>
+<li><strong>Nettoyage</strong> : doublons, encodage, normalisation (minuscules), gestion emojis.<br>
+</li>
+<li><strong>Tokenisation &amp; lemmatisation</strong> : <code>spacy</code> (fr), <code>stanza</code>, <code>nltk</code> ; <code>quanteda</code> (R).<br>
+</li>
+<li><strong>Stopwords génériques + métier</strong> (ex. “magasin”, “produit” si omniprésent et non-informatif).<br>
+</li>
+<li><strong>Méta</strong> : note, date, canal, catégorie produit (si dispo).</li>
+</ul>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong><strong>Pièges FR</strong></strong></p>
+</div>
+<div class="callout-content">
+<p>Négation disjointe (<em>ne…pas</em>), adverbes d’intensité (<em>trop, très, vraiment</em>), accords/variantes (<em>livraisons/livraison</em>).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="étape-3-analyses-socle-explorer-prioriser" class="slide level2" style="font-size:0.8em">
+<h2>Étape 3 — Analyses “socle” (explorer &amp; prioriser)</h2>
+<p><br>
+<br>
+</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="a.-fréquences-tf-idf">A. Fréquences &amp; TF-IDF</h3>
+<ul>
+<li>Top unigrams/bigrams par canal &amp; note (5★ vs 1★).</li>
+<li><strong>TF-IDF</strong> pour repérer ce qui <strong>caractérise</strong> 1★ vs 5★.</li>
+</ul>
+<h3 id="b.-cooccurrences-collocations">B. Cooccurrences &amp; collocations</h3>
+<ul>
+<li>Graphes de <strong>cooccurrences</strong> (fenêtre 2–5).<br>
+</li>
+<li>Collocations <strong>trop + adj</strong> ; <strong>service + client</strong> ; <strong>retard + livraison</strong>.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="c.-keyness-comparaison-de-discours">C. Keyness (comparaison de discours)</h3>
+<ul>
+<li><strong>Cible</strong> : 1★ (A) vs 5★ (B).<br>
+</li>
+<li>Test <strong>Log-Likelihood <span class="math inline">\(G^2\)</span></strong> → mots <strong>sur-représentés</strong> dans A vs B.<br>
+</li>
+<li>Lecture : <em>“retard, remboursement, indisponible”</em> (A) vs <em>“rapide, conforme, accueillant”</em> (B).</li>
+</ul>
+<h3 id="d.-indices-syntaxiques-clés">D. Indices syntaxiques clés</h3>
+<ul>
+<li>Négation (<strong>ne…pas / pas / jamais</strong>) → polarité.<br>
+</li>
+<li>Intensité (<strong>trop, très, vraiment</strong>).<br>
+</li>
+<li>Modalité (<strong>il faudrait, on doit</strong>).</li>
+</ul>
+</div></div>
+</section>
+<section id="étape-4-sentiment-aspects-prudents-mais-utiles" class="slide level2">
+<h2>Étape 4 — Sentiment &amp; aspects (prudents mais utiles)</h2>
+<ul>
+<li><strong>Lexicons FR</strong> (VADER-FR, FEEL…) pour <strong>tendance</strong> globale.<br>
+</li>
+<li><strong>ML</strong> (SVM/LogReg) sur échantillon annoté si le temps le permet.<br>
+</li>
+<li><strong>Aspect-based</strong> léger : lier <strong>cibles</strong> (livraison, retour, SAV) aux <strong>attributs</strong> (retard, frais, sympathique).</li>
+</ul>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Limites</strong></p>
+</div>
+<div class="callout-content">
+<p>Ironie, euphémismes, multilingue, bruit (bots). Toujours <strong>contextualiser</strong> la mesure → valider par échantillon <em>KWIC</em> (concordances).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="étape-5-thèmes-lda-stm-bertopic" class="slide level2">
+<h2>Étape 5 — Thèmes (LDA / STM / BERTopic)</h2>
+<ul>
+<li><strong>Quand ?</strong> Corpus ≥ quelques milliers de phrases, diversité suffisante.<br>
+</li>
+<li><strong>Objectif</strong> : dégager <strong>thèmes latents</strong> (ex. <em>livraison</em>, <em>retours</em>, <em>tailles</em>, <em>SAV en magasin</em>).<br>
+</li>
+<li><strong>Choix outils</strong> :
+<ul>
+<li><strong>LDA/STM</strong> si vous voulez un <strong>cadre probabiliste</strong> stable.<br>
+</li>
+<li><strong>BERTopic</strong> (embeddings) si vous voulez capter <strong>formulations variées</strong> (2025-ready).<br>
+</li>
+</ul></li>
+<li><strong>Validation</strong> : cohérence (UMass/C_v), lisibilité top terms, <strong>labels humains</strong>.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Astuce</strong></p>
+</div>
+<div class="callout-content">
+<p>Combinez <strong>keyness</strong> (ce qui distingue) et <strong>thèmes</strong> (de quoi on parle) → matrice <strong>problèmes × canaux</strong>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="étape-6-llm-en-appui-avec-traçabilité" class="slide level2">
+<h2>Étape 6 — LLM en appui (avec traçabilité)</h2>
+<ul>
+<li><strong>Zero-shot</strong> : classer en <strong>aspects</strong> simples (livraison / produit / prix / SAV).<br>
+</li>
+<li><strong>Résumé ciblé</strong> : <em>“Résume en 5 bullets les pain points ‘retours’.”</em><br>
+</li>
+<li><strong>Extraction</strong> : <em>“Repère demandes implicites (‘il faudrait…’) et propositions d’amélioration.”</em><br>
+</li>
+<li><strong>Traçabilité</strong> : conserver <strong>prompts</strong>.</li>
+</ul>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Bon usage</strong> : LLM = <strong>assistant d’analyse et de code</strong>, pas oracle. Toujours <strong>vérifier</strong>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="étape-7-data-storytelling-recommandations" class="slide level2">
+<h2>Étape 7 — Data storytelling &amp; recommandations</h2>
+<p><br>
+</p>
+<ul>
+<li><strong>Storyline</strong> : du <strong>constat</strong> (données) → <strong>insight</strong> (interprétation) → <strong>action</strong> (reco).<br>
+</li>
+<li><strong>Graphiques</strong> : barres (fréquences), graphes cooccurrence, treemaps thèmes, tableaux <strong>problèmes × canaux</strong>… soyez innovants<br>
+</li>
+<li><strong>Reco cross-canal</strong> :
+<ul>
+<li>Livraison : créneaux + suivi en temps réel, promesse réaliste.<br>
+</li>
+<li>Retours : fenêtre élargie, gratuit en point relais, clarté des conditions.<br>
+</li>
+<li>Magasin : disponibilité stock, click&amp;collect fluide, file d’attente.<br>
+</li>
+<li>SAV : script empathique + empowerment conseillers.</li>
+</ul></li>
+</ul>
+</section>
+<section id="qualité-reproductibilité-attendus-pour-lévaluation" class="slide level2">
+<h2>Qualité &amp; reproductibilité (attendus pour l’évaluation)</h2>
+<p><br>
+<br>
+<br>
+</p>
+<ul>
+<li><strong>Clarté</strong> : expliquer vos choix (stopwords métier, fenêtre cooccurrence).<br>
+</li>
+<li><strong>Rigueur</strong> : harmoniser lemmes, gérer négation, documenter pipeline.<br>
+</li>
+<li><strong>Triangulation</strong> : stats (keyness, fréquences) <strong>+</strong> exemples (KWIC) <strong>+</strong> thèmes.<br>
+</li>
+<li><strong>Éthique</strong> : anonymisation, respect CGU, périmètre limité.<br>
+</li>
+<li><strong>Lien au cours “Cross-canal”</strong> : traduire en <strong>reco opérationnelles</strong> par canal (web, app, magasin, logistique).</li>
+</ul>
+</section>
+<section id="grille-dévaluation" class="slide level2" style="font-size:0.7em">
+<h2>Grille d’évaluation</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Critère</th>
+<th>Attendu</th>
+<th>Indicateurs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Cadrage &amp; éthique</strong></td>
+<td>Problème clair, sources légitimes, RGPD</td>
+<td>Périmètre &amp; période, anonymisation, journal collecte</td>
+</tr>
+<tr class="even">
+<td><strong>Pré-traitements</strong></td>
+<td>Pipeline propre &amp; justifié</td>
+<td>Lemmatisation FR, stopwords</td>
+</tr>
+<tr class="odd">
+<td><strong>Analyses socle</strong></td>
+<td>Fréquences/TF-IDF, cooccurrences, keyness</td>
+<td>Graphiques lisibles, interprétation correcte</td>
+</tr>
+<tr class="even">
+<td><strong>Sentiment &amp; aspects</strong></td>
+<td>Mesure prudente + contexte</td>
+<td>Concordances, limites discutées</td>
+</tr>
+<tr class="odd">
+<td><strong>Thèmes</strong></td>
+<td>Méthode adaptée (LDA/STM/BERTopic)</td>
+<td>Cohérence, labels pertinents, liens aux données</td>
+</tr>
+<tr class="even">
+<td><strong>LLM (optionnel)</strong></td>
+<td>Aide outillée &amp; traçable</td>
+<td>Prompts, validation, limites</td>
+</tr>
+<tr class="odd">
+<td><strong>Storytelling &amp; recos</strong></td>
+<td>Du constat à l’action</td>
+<td>Recos <strong>SMART</strong> &amp; cross-canal, KPIs…</td>
+</tr>
+<tr class="even">
+<td><strong>Mobilisation théorique</strong></td>
+<td>Structure, Fonctions, Contexte, Distribution, Actes, Réseaux</td>
+<td>Références citées, application pertinente</td>
+</tr>
+<tr class="odd">
+<td><strong>Reproductibilité</strong></td>
+<td>Démarche traçable</td>
+<td>Rapport Quarto</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="mémo-express-checklist-finale" class="slide level2">
+<h2>Mémo express (checklist finale)</h2>
+<ul>
+<li><strong>Quelle action accomplit ce message ?</strong> <em>(Austin)</em><br>
+</li>
+<li><strong>Quel but communicatif domine ?</strong> <em>(Jakobson)</em><br>
+</li>
+<li><strong>Sur quoi porte l’évaluation et avec quelle intensité ?</strong> <em>(Chomsky/Tesnière)</em><br>
+</li>
+<li><strong>Avec quels mots il “voyage” ?</strong> <em>(Firth/Harris)</em><br>
+</li>
+<li><strong>Est-ce un thème structurel, distinctif, ou un signal faible ?</strong> <em>(Zipf)</em><br>
+</li>
+<li><strong>À quels autres textes/formats il se relie ?</strong> <em>(Genette)</em></li>
+</ul>
+<div class="callout-success">
+<p><strong>Livrables</strong> (groupes de 2/3) :<br>
+1) Quarto/Notebook reproductible (code + figures) avec analyse et <strong>recommandations cross-canal</strong></p>
+</div>
+
+<script> window._input_file = "---\n" + "title: \"Études qualitatives sur le web (netnographie)\"\n" + "subtitle: \"Un guide complet pour le rendu (rapport Quarto)\"\n" + "author:\n" + "  - name: \"Olivier Caron\"\n" + "    affiliations: \"Paris Dauphine - PSL\"\n" + "format:\n" + "  ubd-revealjs:\n" + "    self-contained: false\n" + "    chalkboard: true\n" + "    transition: fade\n" + "    auto-stretch: false\n" + "    width: 1250\n" + "    height: 760\n" + "    toc: false\n" + "    toc-depth: 1\n" + "    code-block-height: 700px\n" + "execute:\n" + "  echo: true\n" + "bibliography: refs.bib\n" + "revealjs-plugins:\n" + "  - editable\n" + "filters:\n" + "  - editable\n" + "---\n" + "\n" + "# Analyser un texte : la boîte à outils du marketer {.transition-slide-ubdteal}\n" + "\n" + "## Pour interpréter un message, on utilise une checklist : {style=\"font-size:0.8em\"}\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"50%\"}\n" + "\n" + "### 🕵️ 1. La Structure\n" + "- **Question :** De quoi est fait le message ?\n" + "- *Mots, grammaire, négation, intensité (“très”, “trop”), dépendances…*\n" + "- <span style=\"font-size:0.8em\">**Réf. théoriques** : Saussure · Chomsky & Tesnière</span>\n" + "\n" + "### 🎯 2. Les Fonctions\n" + "- **Question :** À quoi sert le message ?\n" + "- *Informer, émouvoir, faire agir, entretenir le lien…*\n" + "- <span style=\"font-size:0.8em\">**Réf.** : Jakobson</span>\n" + "\n" + "### 🤝 3. Le Contexte\n" + "- **Question :** Avec quels mots apparaît-il ?\n" + "- *Voisinages, cooccurrences, collocations (“qualité” + “premium”), patrons relationnels…*\n" + "- <span style=\"font-size:0.8em\">**Réf.** : Firth & Harris</span>\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### 📊 4. Fréquence / Distribution\n" + "- **Question :** Courant, moyen ou rare ?\n" + "- *Structurel (bruit), distinctif (thème), signal faible (tendance)…*\n" + "- <span style=\"font-size:0.8em\">**Réf.** : Zipf</span>\n" + "\n" + "### ⚡ 5. L’Action (Actes & Effets)\n" + "- **Question :** Quelle action accomplit-il ?\n" + "- *Recommander, alerter, blâmer, mobiliser… Et quels effets ?*\n" + "- <span style=\"font-size:0.8em\">**Réf.** : Austin</span>\n" + "\n" + "### 🌐 6. Le Réseau de textes\n" + "- **Question :** À quoi est-il connecté ?\n" + "- *Mèmes, hashtags, réponses, parodies, formats (duos/stitches)…*\n" + "- <span style=\"font-size:0.8em\">**Réf.** : Genette</span>\n" + ":::\n" + "::::::\n" + "\n" + "---\n" + " \n" + "## De l’indice à l’interprétation (Mode d’emploi) {style=\"font-size:0.58em\"}\n" + "\n" + "| Outil | On cherche… (Indices concrets) | On en déduit… (Interprétation actionnable) | Réf. |\n" + "|:--|:--|:--|:--|\n" + "| **🕵️‍♂️ Structure** | Négation, intensité (“trop”), tournures figées, dépendances | La **cible** (produit, service, canal) & la **portée** de l’évaluation | Saussure · Chomsky |\n" + "| **🎯 Fonctions** | Marques expressives/conatives, CTA, questions, emojis | Le **but dominant** : informer, persuader, engager, relancer | Jakobson |\n" + "| **🤝 Contexte** | Cooccurrences fortes, collocations, patrons (“trop + adj”) | Les **associations** positives/négatives & oppositions sémantiques | Firth · Harris |\n" + "| **📊 Distribution** | Fréquences (rare, moyenne, haute), TF-IDF | **Structurel** vs **distinctif** ; **émergent** vs routinier | Zipf |\n" + "| **⚡ Actes / effets** | “Je recommande”, “Boycottez…”, réactions en chaîne | L’**action réalisée** & ses **effets** (mobiliser, dissuader…) | Austin |\n" + "| **🌐 Réseaux** | #, @, citations, formats (unboxing, SAV), duos/stitches | L’**inscription intertextuelle** & le **genre** mobilisé | Genette |\n" + "\n" + "::: callout-note\n" + "### Exemple projet (avis clients) :  \n" + "- Structure → repérer la **cible** des griefs (livraison, taille, SAV, prix).  \n" + "- Contexte → associer chaque cible à ses **attributs** (“retard”, “imprécis”, “trop cher”).  \n" + "- Distribution → distinguer **pain points majeurs** (fréquences moyennes/hautes) vs **signaux émergents** (rares mais stratégiques).\n" + ":::\n" + "\n" + "---\n" + "\n" + "## Passons à la pratique : 3 exemples annotés {style=\"font-size:0.8em\"}\n" + "\n" + "::::: columns\n" + "::: {.column width=\"33%\"}\n" + "::: {.callout-note}\n" + "\n" + "#### Exemple 1 (avis 5★)\n" + "\n" + "> “Service impeccable, livraison rapide. Je recommande.”\n" + ":::\n" + "- **🎯 Fonctions** : Expressive + Conative  \n" + "- **⚡ Acte** : Recommandation (impact réputation)  \n" + "- **🕵️‍♂️ Structure** : cibles *service/logistique* ; intensif *impeccable*  \n" + "- **Recommandation** : capitaliser en **preuve sociale** (extraits site / fiche produit)\n" + ":::\n" + "\n" + "::: {.column width=\"33%\"}\n" + "::: {.callout-note}\n" + "\n" + "#### Exemple 2 (avis 2★)\n" + "\n" + "> “Trop cher pour la qualité proposée.”\n" + ":::\n" + "- **🕵️‍♂️ Structure** : Intensification “trop” + comparaison implicite  \n" + "- **🤝 Contexte** : collocation *trop + cher* ; association *cher ↔ qualité*  \n" + "- **📊 Distribution** : si récurrent → **axe prioritaire**  \n" + "- **Recommandation** : clarifier **promesse qualité** / segmenter **offre-prix**\n" + ":::\n" + "\n" + "::: {.column width=\"34%\"}\n" + "::: {.callout-note}\n" + "\n" + "#### Exemple 3 (réseau social)\n" + "\n" + "> “#NewDrop demain. Qui est chaud ? 👀”\n" + ":::\n" + "- **🎯 Fonctions** : Phatique + Conative (+ Poétique stylisée)  \n" + "- **⚡ Acte** : Mobilisation (teasing cross-canal)  \n" + "- **🌐 Réseau** : hashtag + emoji + format **lancement**  \n" + "- **Recommandation** : **orchestration omnicanale** (site, app, magasin)\n" + ":::\n" + ":::::\n" + "\n" + "# Du cours au projet : workflow netnographie (avis clients)\n" + "\n" + "---\n" + "\n" + "## Étape 1 — Constitution du corpus\n" + "\n" + "- **Collecte** : API officielles si possible ; sinon scraping (respect robots.txt, pauses).  \n" + "- **Échantillonnage** : viser **diversité de canaux** (web, app, magasin) & **mix polarité** (1–2–3–4–5★).  \n" + "- **Journal de collecte** : volumes/jours, sources, filtres utilisés.\n" + "\n" + "::: callout-note\n" + "**Outils** : `requests`, `BeautifulSoup`, `Selenium` (si nécessaire), API Google Places / Trustpilot / App Stores.\n" + ":::\n" + "\n" + "---\n" + "\n" + "## Étape 2 — Pré-traitements (R / Python)\n" + "\n" + "- **Nettoyage** : doublons, encodage, normalisation (minuscules), gestion emojis.  \n" + "- **Tokenisation & lemmatisation** : `spacy` (fr), `stanza`, `nltk` ; `quanteda` (R).  \n" + "- **Stopwords génériques + métier** (ex. “magasin”, “produit” si omniprésent et non-informatif).  \n" + "- **Méta** : note, date, canal, catégorie produit (si dispo).\n" + "\n" + "::: callout-tip\n" + "### **Pièges FR**\n" + "Négation disjointe (*ne…pas*), adverbes d’intensité (*trop, très, vraiment*), accords/variantes (*livraisons/livraison*).\n" + ":::\n" + "\n" + "---\n" + "\n" + "## Étape 3 — Analyses “socle” (explorer & prioriser) {style=\"font-size:0.8em\"}\n" + "\n" + "\\n" + "\\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### A. Fréquences & TF-IDF\n" + "- Top unigrams/bigrams par canal & note (5★ vs 1★).\n" + "- **TF-IDF** pour repérer ce qui **caractérise** 1★ vs 5★.\n" + "\n" + "### B. Cooccurrences & collocations\n" + "- Graphes de **cooccurrences** (fenêtre 2–5).  \n" + "- Collocations **trop + adj** ; **service + client** ; **retard + livraison**.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### C. Keyness (comparaison de discours)\n" + "- **Cible** : 1★ (A) vs 5★ (B).  \n" + "- Test **Log-Likelihood $G^2$** → mots **sur-représentés** dans A vs B.  \n" + "- Lecture : *“retard, remboursement, indisponible”* (A) vs *“rapide, conforme, accueillant”* (B).\n" + "\n" + "### D. Indices syntaxiques clés\n" + "- Négation (**ne…pas / pas / jamais**) → polarité.  \n" + "- Intensité (**trop, très, vraiment**).  \n" + "- Modalité (**il faudrait, on doit**).\n" + ":::\n" + "::::::\n" + "\n" + "---\n" + "\n" + "## Étape 4 — Sentiment & aspects (prudents mais utiles)\n" + "\n" + "- **Lexicons FR** (VADER-FR, FEEL…) pour **tendance** globale.  \n" + "- **ML** (SVM/LogReg) sur échantillon annoté si le temps le permet.  \n" + "- **Aspect-based** léger : lier **cibles** (livraison, retour, SAV) aux **attributs** (retard, frais, sympathique).\n" + "\n" + "::: callout-warning\n" + "### Limites\n" + "Ironie, euphémismes, multilingue, bruit (bots). Toujours **contextualiser** la mesure → valider par échantillon *KWIC* (concordances).\n" + ":::\n" + "\n" + "---\n" + "\n" + "## Étape 5 — Thèmes (LDA / STM / BERTopic)\n" + "\n" + "- **Quand ?** Corpus ≥ quelques milliers de phrases, diversité suffisante.  \n" + "- **Objectif** : dégager **thèmes latents** (ex. *livraison*, *retours*, *tailles*, *SAV en magasin*).  \n" + "- **Choix outils** :  \n" + "  - **LDA/STM** si vous voulez un **cadre probabiliste** stable.  \n" + "  - **BERTopic** (embeddings) si vous voulez capter **formulations variées** (2025-ready).  \n" + "- **Validation** : cohérence (UMass/C_v), lisibilité top terms, **labels humains**.\n" + "\n" + "::: callout-note\n" + "### Astuce\n" + "Combinez **keyness** (ce qui distingue) et **thèmes** (de quoi on parle) → matrice **problèmes × canaux**.\n" + ":::\n" + "\n" + "---\n" + "\n" + "## Étape 6 — LLM en appui (avec traçabilité)\n" + "\n" + "- **Zero-shot** : classer en **aspects** simples (livraison / produit / prix / SAV).  \n" + "- **Résumé ciblé** : *“Résume en 5 bullets les pain points ‘retours’.”*  \n" + "- **Extraction** : *“Repère demandes implicites (‘il faudrait…’) et propositions d’amélioration.”*  \n" + "- **Traçabilité** : conserver **prompts**.\n" + "\n" + "::: callout-important\n" + "**Bon usage** : LLM = **assistant d’analyse et de code**, pas oracle. Toujours **vérifier**.\n" + ":::\n" + "\n" + "---\n" + "\n" + "## Étape 7 — Data storytelling & recommandations\n" + "\n" + "\\n" + "\n" + "- **Storyline** : du **constat** (données) → **insight** (interprétation) → **action** (reco).  \n" + "- **Graphiques** : barres (fréquences), graphes cooccurrence, treemaps thèmes, tableaux **problèmes × canaux**... soyez innovants  \n" + "- **Reco cross-canal** :  \n" + "  - Livraison : créneaux + suivi en temps réel, promesse réaliste.  \n" + "  - Retours : fenêtre élargie, gratuit en point relais, clarté des conditions.  \n" + "  - Magasin : disponibilité stock, click&collect fluide, file d’attente.  \n" + "  - SAV : script empathique + empowerment conseillers.\n" + "\n" + "\n" + "---\n" + "\n" + "## Qualité & reproductibilité (attendus pour l’évaluation)\n" + "\n" + "\\n" + "\\n" + "\\n" + "\n" + "- **Clarté** : expliquer vos choix (stopwords métier, fenêtre cooccurrence).  \n" + "- **Rigueur** : harmoniser lemmes, gérer négation, documenter pipeline.  \n" + "- **Triangulation** : stats (keyness, fréquences) **+** exemples (KWIC) **+** thèmes.  \n" + "- **Éthique** : anonymisation, respect CGU, périmètre limité.  \n" + "- **Lien au cours “Cross-canal”** : traduire en **reco opérationnelles** par canal (web, app, magasin, logistique).\n" + "\n" + "---\n" + "\n" + "## Grille d’évaluation {style=\"font-size:0.7em\"}\n" + "\n" + "| Critère | Attendu | Indicateurs |\n" + "|---|---|---|\n" + "| **Cadrage & éthique** | Problème clair, sources légitimes, RGPD | Périmètre & période, anonymisation, journal collecte |\n" + "| **Pré-traitements** | Pipeline propre & justifié | Lemmatisation FR, stopwords |\n" + "| **Analyses socle** | Fréquences/TF-IDF, cooccurrences, keyness | Graphiques lisibles, interprétation correcte |\n" + "| **Sentiment & aspects** | Mesure prudente + contexte | Concordances, limites discutées |\n" + "| **Thèmes** | Méthode adaptée (LDA/STM/BERTopic) | Cohérence, labels pertinents, liens aux données |\n" + "| **LLM (optionnel)** | Aide outillée & traçable | Prompts, validation, limites |\n" + "| **Storytelling & recos** | Du constat à l’action | Recos **SMART** & cross-canal, KPIs... |\n" + "| **Mobilisation théorique** | Structure, Fonctions, Contexte, Distribution, Actes, Réseaux | Références citées, application pertinente |\n" + "| **Reproductibilité** | Démarche traçable | Rapport Quarto |\n" + "\n" + "---\n" + "\n" + "## Mémo express (checklist finale)\n" + "\n" + "- **Quelle action accomplit ce message ?** *(Austin)*  \n" + "- **Quel but communicatif domine ?** *(Jakobson)*  \n" + "- **Sur quoi porte l’évaluation et avec quelle intensité ?** *(Chomsky/Tesnière)*  \n" + "- **Avec quels mots il “voyage” ?** *(Firth/Harris)*  \n" + "- **Est-ce un thème structurel, distinctif, ou un signal faible ?** *(Zipf)*  \n" + "- **À quels autres textes/formats il se relie ?** *(Genette)*\n" + "\n" + "::: callout-success\n" + "**Livrables** (groupes de 2/3) :  \n" + "1) Quarto/Notebook reproductible (code + figures) avec analyse et **recommandations cross-canal**\n" + ":::"</script>
+<script> window._input_filename = 'C:\Users\Olivier\Documents\GitHub\etudes_qualitatives_web\cours_1\guide_complet_rapport.qmd'</script>
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="guide_complet_rapport_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="guide_complet_rapport_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="guide_complet_rapport_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="guide_complet_rapport_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="guide_complet_rapport_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="guide_complet_rapport_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="guide_complet_rapport_files/libs/revealjs/plugin/revealeditable/editable.js"></script>
+  <script src="guide_complet_rapport_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="guide_complet_rapport_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="guide_complet_rapport_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="guide_complet_rapport_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="guide_complet_rapport_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1250,
+
+        height: 760,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, Revealeditable, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    <script type="text/javascript">
+      Reveal.on('ready', event => {
+        if (event.indexh === 0) {
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+      });
+      Reveal.addEventListener('slidechanged', (event) => {
+        if (event.indexh === 0) {
+          Reveal.configure({ slideNumber: null });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+        if (event.indexh === 1) { 
+          Reveal.configure({ slideNumber: 'c/t' });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+        }
+      });
+    </script>
+    
+
+</body></html>

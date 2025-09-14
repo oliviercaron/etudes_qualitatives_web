@@ -1,0 +1,293 @@
+---
+title: "Études qualitatives sur le web (netnographie)"
+subtitle: "Un guide complet pour le rendu (rapport Quarto)"
+author:
+  - name: "Olivier Caron"
+    affiliations: "Paris Dauphine - PSL"
+format:
+  ubd-revealjs:
+    self-contained: false
+    chalkboard: true
+    transition: fade
+    auto-stretch: false
+    width: 1250
+    height: 760
+    toc: false
+    toc-depth: 1
+    code-block-height: 700px
+execute:
+  echo: true
+bibliography: refs.bib
+revealjs-plugins:
+  - editable
+filters:
+  - editable
+---
+
+# Analyser un texte : la boîte à outils du marketer {.transition-slide-ubdteal}
+
+## Pour interpréter un message, on utilise une checklist : {style="font-size:0.8em"}
+
+:::::: columns
+::: {.column width="50%"}
+
+### 🕵️ 1. La Structure
+- **Question :** De quoi est fait le message ?
+- *Mots, grammaire, négation, intensité (“très”, “trop”), dépendances…*
+- <span style="font-size:0.8em">**Réf. théoriques** : Saussure · Chomsky & Tesnière</span>
+
+### 🎯 2. Les Fonctions
+- **Question :** À quoi sert le message ?
+- *Informer, émouvoir, faire agir, entretenir le lien…*
+- <span style="font-size:0.8em">**Réf.** : Jakobson</span>
+
+### 🤝 3. Le Contexte
+- **Question :** Avec quels mots apparaît-il ?
+- *Voisinages, cooccurrences, collocations (“qualité” + “premium”), patrons relationnels…*
+- <span style="font-size:0.8em">**Réf.** : Firth & Harris</span>
+:::
+
+::: {.column width="50%"}
+### 📊 4. Fréquence / Distribution
+- **Question :** Courant, moyen ou rare ?
+- *Structurel (bruit), distinctif (thème), signal faible (tendance)…*
+- <span style="font-size:0.8em">**Réf.** : Zipf</span>
+
+### ⚡ 5. L’Action (Actes & Effets)
+- **Question :** Quelle action accomplit-il ?
+- *Recommander, alerter, blâmer, mobiliser… Et quels effets ?*
+- <span style="font-size:0.8em">**Réf.** : Austin</span>
+
+### 🌐 6. Le Réseau de textes
+- **Question :** À quoi est-il connecté ?
+- *Mèmes, hashtags, réponses, parodies, formats (duos/stitches)…*
+- <span style="font-size:0.8em">**Réf.** : Genette</span>
+:::
+::::::
+
+---
+ 
+## De l’indice à l’interprétation (Mode d’emploi) {style="font-size:0.58em"}
+
+| Outil | On cherche… (Indices concrets) | On en déduit… (Interprétation actionnable) | Réf. |
+|:--|:--|:--|:--|
+| **🕵️‍♂️ Structure** | Négation, intensité (“trop”), tournures figées, dépendances | La **cible** (produit, service, canal) & la **portée** de l’évaluation | Saussure · Chomsky |
+| **🎯 Fonctions** | Marques expressives/conatives, CTA, questions, emojis | Le **but dominant** : informer, persuader, engager, relancer | Jakobson |
+| **🤝 Contexte** | Cooccurrences fortes, collocations, patrons (“trop + adj”) | Les **associations** positives/négatives & oppositions sémantiques | Firth · Harris |
+| **📊 Distribution** | Fréquences (rare, moyenne, haute), TF-IDF | **Structurel** vs **distinctif** ; **émergent** vs routinier | Zipf |
+| **⚡ Actes / effets** | “Je recommande”, “Boycottez…”, réactions en chaîne | L’**action réalisée** & ses **effets** (mobiliser, dissuader…) | Austin |
+| **🌐 Réseaux** | #, @, citations, formats (unboxing, SAV), duos/stitches | L’**inscription intertextuelle** & le **genre** mobilisé | Genette |
+
+::: callout-note
+### Exemple projet (avis clients) :  
+- Structure → repérer la **cible** des griefs (livraison, taille, SAV, prix).  
+- Contexte → associer chaque cible à ses **attributs** (“retard”, “imprécis”, “trop cher”).  
+- Distribution → distinguer **pain points majeurs** (fréquences moyennes/hautes) vs **signaux émergents** (rares mais stratégiques).
+:::
+
+---
+
+## Passons à la pratique : 3 exemples annotés {style="font-size:0.8em"}
+
+::::: columns
+::: {.column width="33%"}
+::: {.callout-note}
+
+#### Exemple 1 (avis 5★)
+
+> “Service impeccable, livraison rapide. Je recommande.”
+:::
+- **🎯 Fonctions** : Expressive + Conative  
+- **⚡ Acte** : Recommandation (impact réputation)  
+- **🕵️‍♂️ Structure** : cibles *service/logistique* ; intensif *impeccable*  
+- **Recommandation** : capitaliser en **preuve sociale** (extraits site / fiche produit)
+:::
+
+::: {.column width="33%"}
+::: {.callout-note}
+
+#### Exemple 2 (avis 2★)
+
+> “Trop cher pour la qualité proposée.”
+:::
+- **🕵️‍♂️ Structure** : Intensification “trop” + comparaison implicite  
+- **🤝 Contexte** : collocation *trop + cher* ; association *cher ↔ qualité*  
+- **📊 Distribution** : si récurrent → **axe prioritaire**  
+- **Recommandation** : clarifier **promesse qualité** / segmenter **offre-prix**
+:::
+
+::: {.column width="34%"}
+::: {.callout-note}
+
+#### Exemple 3 (réseau social)
+
+> “#NewDrop demain. Qui est chaud ? 👀”
+:::
+- **🎯 Fonctions** : Phatique + Conative (+ Poétique stylisée)  
+- **⚡ Acte** : Mobilisation (teasing cross-canal)  
+- **🌐 Réseau** : hashtag + emoji + format **lancement**  
+- **Recommandation** : **orchestration omnicanale** (site, app, magasin)
+:::
+:::::
+
+# Du cours au projet : workflow netnographie (avis clients)
+
+---
+
+## Étape 1 — Constitution du corpus
+
+- **Collecte** : API officielles si possible ; sinon scraping (respect robots.txt, pauses).  
+- **Échantillonnage** : viser **diversité de canaux** (web, app, magasin) & **mix polarité** (1–2–3–4–5★).  
+- **Journal de collecte** : volumes/jours, sources, filtres utilisés.
+
+::: callout-note
+**Outils** : `requests`, `BeautifulSoup`, `Selenium` (si nécessaire), API Google Places / Trustpilot / App Stores.
+:::
+
+---
+
+## Étape 2 — Pré-traitements (R / Python)
+
+- **Nettoyage** : doublons, encodage, normalisation (minuscules), gestion emojis.  
+- **Tokenisation & lemmatisation** : `spacy` (fr), `stanza`, `nltk` ; `quanteda` (R).  
+- **Stopwords génériques + métier** (ex. “magasin”, “produit” si omniprésent et non-informatif).  
+- **Méta** : note, date, canal, catégorie produit (si dispo).
+
+::: callout-tip
+### **Pièges FR**
+Négation disjointe (*ne…pas*), adverbes d’intensité (*trop, très, vraiment*), accords/variantes (*livraisons/livraison*).
+:::
+
+---
+
+## Étape 3 — Analyses “socle” (explorer & prioriser) {style="font-size:0.8em"}
+
+\
+\
+
+:::::: columns
+::: {.column width="50%"}
+### A. Fréquences & TF-IDF
+- Top unigrams/bigrams par canal & note (5★ vs 1★).
+- **TF-IDF** pour repérer ce qui **caractérise** 1★ vs 5★.
+
+### B. Cooccurrences & collocations
+- Graphes de **cooccurrences** (fenêtre 2–5).  
+- Collocations **trop + adj** ; **service + client** ; **retard + livraison**.
+:::
+
+::: {.column width="50%"}
+### C. Keyness (comparaison de discours)
+- **Cible** : 1★ (A) vs 5★ (B).  
+- Test **Log-Likelihood $G^2$** → mots **sur-représentés** dans A vs B.  
+- Lecture : *“retard, remboursement, indisponible”* (A) vs *“rapide, conforme, accueillant”* (B).
+
+### D. Indices syntaxiques clés
+- Négation (**ne…pas / pas / jamais**) → polarité.  
+- Intensité (**trop, très, vraiment**).  
+- Modalité (**il faudrait, on doit**).
+:::
+::::::
+
+---
+
+## Étape 4 — Sentiment & aspects (prudents mais utiles)
+
+- **Lexicons FR** (VADER-FR, FEEL…) pour **tendance** globale.  
+- **ML** (SVM/LogReg) sur échantillon annoté si le temps le permet.  
+- **Aspect-based** léger : lier **cibles** (livraison, retour, SAV) aux **attributs** (retard, frais, sympathique).
+
+::: callout-warning
+### Limites
+Ironie, euphémismes, multilingue, bruit (bots). Toujours **contextualiser** la mesure → valider par échantillon *KWIC* (concordances).
+:::
+
+---
+
+## Étape 5 — Thèmes (LDA / STM / BERTopic)
+
+- **Quand ?** Corpus ≥ quelques milliers de phrases, diversité suffisante.  
+- **Objectif** : dégager **thèmes latents** (ex. *livraison*, *retours*, *tailles*, *SAV en magasin*).  
+- **Choix outils** :  
+  - **LDA/STM** si vous voulez un **cadre probabiliste** stable.  
+  - **BERTopic** (embeddings) si vous voulez capter **formulations variées** (2025-ready).  
+- **Validation** : cohérence (UMass/C_v), lisibilité top terms, **labels humains**.
+
+::: callout-note
+### Astuce
+Combinez **keyness** (ce qui distingue) et **thèmes** (de quoi on parle) → matrice **problèmes × canaux**.
+:::
+
+---
+
+## Étape 6 — LLM en appui (avec traçabilité)
+
+- **Zero-shot** : classer en **aspects** simples (livraison / produit / prix / SAV).  
+- **Résumé ciblé** : *“Résume en 5 bullets les pain points ‘retours’.”*  
+- **Extraction** : *“Repère demandes implicites (‘il faudrait…’) et propositions d’amélioration.”*  
+- **Traçabilité** : conserver **prompts**.
+
+::: callout-important
+**Bon usage** : LLM = **assistant d’analyse et de code**, pas oracle. Toujours **vérifier**.
+:::
+
+---
+
+## Étape 7 — Data storytelling & recommandations
+
+\
+
+- **Storyline** : du **constat** (données) → **insight** (interprétation) → **action** (reco).  
+- **Graphiques** : barres (fréquences), graphes cooccurrence, treemaps thèmes, tableaux **problèmes × canaux**... soyez innovants  
+- **Reco cross-canal** :  
+  - Livraison : créneaux + suivi en temps réel, promesse réaliste.  
+  - Retours : fenêtre élargie, gratuit en point relais, clarté des conditions.  
+  - Magasin : disponibilité stock, click&collect fluide, file d’attente.  
+  - SAV : script empathique + empowerment conseillers.
+
+
+---
+
+## Qualité & reproductibilité (attendus pour l’évaluation)
+
+\
+\
+\
+
+- **Clarté** : expliquer vos choix (stopwords métier, fenêtre cooccurrence).  
+- **Rigueur** : harmoniser lemmes, gérer négation, documenter pipeline.  
+- **Triangulation** : stats (keyness, fréquences) **+** exemples (KWIC) **+** thèmes.  
+- **Éthique** : anonymisation, respect CGU, périmètre limité.  
+- **Lien au cours “Cross-canal”** : traduire en **reco opérationnelles** par canal (web, app, magasin, logistique).
+
+---
+
+## Grille d’évaluation {style="font-size:0.7em"}
+
+| Critère | Attendu | Indicateurs |
+|---|---|---|
+| **Cadrage & éthique** | Problème clair, sources légitimes, RGPD | Périmètre & période, anonymisation, journal collecte |
+| **Pré-traitements** | Pipeline propre & justifié | Lemmatisation FR, stopwords |
+| **Analyses socle** | Fréquences/TF-IDF, cooccurrences, keyness | Graphiques lisibles, interprétation correcte |
+| **Sentiment & aspects** | Mesure prudente + contexte | Concordances, limites discutées |
+| **Thèmes** | Méthode adaptée (LDA/STM/BERTopic) | Cohérence, labels pertinents, liens aux données |
+| **LLM (optionnel)** | Aide outillée & traçable | Prompts, validation, limites |
+| **Storytelling & recos** | Du constat à l’action | Recos **SMART** & cross-canal, KPIs... |
+| **Mobilisation théorique** | Structure, Fonctions, Contexte, Distribution, Actes, Réseaux | Références citées, application pertinente |
+| **Reproductibilité** | Démarche traçable | Rapport Quarto |
+
+---
+
+## Mémo express (checklist finale)
+
+- **Quelle action accomplit ce message ?** *(Austin)*  
+- **Quel but communicatif domine ?** *(Jakobson)*  
+- **Sur quoi porte l’évaluation et avec quelle intensité ?** *(Chomsky/Tesnière)*  
+- **Avec quels mots il “voyage” ?** *(Firth/Harris)*  
+- **Est-ce un thème structurel, distinctif, ou un signal faible ?** *(Zipf)*  
+- **À quels autres textes/formats il se relie ?** *(Genette)*
+
+::: callout-success
+**Livrables** (groupes de 2/3) :  
+1) Quarto/Notebook reproductible (code + figures) avec analyse et **recommandations cross-canal**
+:::

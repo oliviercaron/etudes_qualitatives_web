@@ -24,33 +24,51 @@ filters:
   - editable
 ---
 
-## Révolution du texte : production & lecture
+## Révolution du texte : production & lecture {style="font-size:0.9em"}
 
--   Explosion de la **production textuelle** (posts, avis, tweets, articles scientifiques).\
--   Conséquence : **impossible de tout lire** → besoin d’automatisation.\
+-   Explosion de la **production textuelle** (posts, avis, X/Twitter, TikTok, LinkedIn, articles scientifiques).
+-   Conséquence : **impossible de tout lire** → besoin d’automatisation (indexation, filtrage, résumés).
 -   **Révolution de la lecture** : moteurs de recherche, curation, algorithmes de recommandation.
 
 ::: callout-note
-👉 En marketing digital : les consommateurs produisent massivement du texte (avis, posts, hashtags).
+👉 En marketing digital : les consommateurs produisent massivement du texte (avis, posts, hashtags).\
+- Exemple : des millions d’avis TripAdvisor / Google Reviews chaque jour.\
+- Exemple réseaux sociaux : hashtags #AI, #TikTokMadeMeBuyIt, #Dropshipping qui se renouvellent en continu.\
+- Exemple SEO : Google doit **sélectionner** des mots-clés pertinents → stratégie centrale en référencement.
 :::
 
 # Fondements théoriques du langage pour la netnographie {.transition-slide-ubdblue}
 
-## Deux perspectives qui se complètent
+## Deux perspectives qui se complètent {style="font-size:0.9em"}
 
-:::: {.columns}
+::::: columns
 ::: {.column width="50%"}
 ### Perspective **structuraliste**
-La langue comme **système** (catégories, oppositions, règles).  
+
+La langue comme **système** (catégories, oppositions, règles).\
 Finalité : décrire l’**architecture** qui stabilise les usages.
+
+\
+
+*Exemple : le hashtag **#MondayMotivation** comme convention collective sur X/LinkedIn qui structure les pratiques.*
 :::
 
 ::: {.column width="50%"}
 ### Perspective **pragmatique / usage**
-Le langage comme **activité** située et sociale.  
+
+Le langage comme **activité** située et sociale.\
 Finalité : comprendre **ce que fait** un message et comment il circule.
+
+\
+\
+
+*Exemple : le détournement ironique **#MondayDespair** illustre l’usage créatif et viral sur TikTok.*
 :::
-::::
+:::::
+
+\
+\
+
 
 ::: callout-note
 Ces perspectives s’articulent : la **structure** rend les énoncés intelligibles ; l’**usage** leur donne portée et effets.
@@ -58,9 +76,9 @@ Ces perspectives s’articulent : la **structure** rend les énoncés intelligib
 
 ------------------------------------------------------------------------
 
-## Saussure : système de signes et niveaux d’analyse
+## Saussure : système de signes et niveaux d’analyse {style="font-size:0.9em"}
 
-:::: {.columns}
+:::::: columns
 ::: {.column width="58%"}
 -   **Langage** : capacité humaine de signifier.\
 -   **Langue** : **code partagé** (unités, oppositions, règles).\
@@ -68,25 +86,30 @@ Ces perspectives s’articulent : la **structure** rend les énoncés intelligib
 -   **Texte** : matérialisation de la parole (post, avis, thread).
 
 **Conséquence** : distinguer conventions **collectives** (formats, hashtags, routines) et innovations **singulières** (mèmes, détournements).
+
+*Exemple : la story Instagram = convention collective ; un remix TikTok ou un mème détournant une pub de luxe = innovation singulière.*
 :::
 
 :::: {.column width="42%"}
-::: callout-tip
-**Notions clés**
 
--   La **valeur** d’un signe dépend des **différences** avec les autres signes.\
--   Le **système** donne un cadre ; l’**usage** l’actualise et l’infléchit.
+\
+\
+
+::: callout-tip
+### Notions clés
+
+- La **valeur** d’un signe dépend des **différences** avec les autres signes.\
+- Le **système** donne un cadre ; l’**usage** l’actualise et l’infléchit.
 :::
 ::::
 ::::::
 
 ------------------------------------------------------------------------
 
-## Chomsky & Tesnière : structure, dépendances, générativité
+## Chomsky & Tesnière : structure, dépendances, générativité {style="font-size:1em"}
 
 :::::: columns
 ::: {.column width="57%" style="font-size:0.75em"}
-\
 
 -   **Grammaire générative** : un ensemble **fini de règles** → une infinité d’énoncés.\
 -   **Compétence** (connaissance implicite) vs **performance** (usage effectif).\
@@ -94,43 +117,66 @@ Ces perspectives s’articulent : la **structure** rend les énoncés intelligib
 
 ### Apport interprétatif
 
-\
-La structure **module** le sens :
+La structure **module** le sens : - “pas **vraiment** satisfaisant” ≠ “**vraiment** pas satisfaisant”.\
+- Les relations syntaxiques révèlent **cibles** (produit, marque, service) et **attributs** (prix, qualité, délai).
 
--   “pas **vraiment** satisfaisant” ≠ “**vraiment** pas satisfaisant”.\
--   Les relations syntaxiques révèlent **cibles** (produit, marque, service) et **attributs** (prix, qualité, délai).
+*Exemple SEO : “acheter iPhone 16 pas cher” ≠ “iPhone 16 pas cher acheter”. La syntaxe change la pertinence des résultats Google.*
 :::
 
 :::: {.column width="43%"}
 ::: callout-note
-**Indicateurs récurrents**
+**Indicateurs récurrents**\
+- Négation\
+- Modalité (“il faudrait”, “on doit”)\
+- Intensité (“très”, “trop”, “vraiment”)\
+- Comparaison (“plus/moins que”)
 
--   Négation\
--   Modalité (“il faudrait”, “on doit”)\
--   Intensité (“très”, “trop”, “vraiment”)\
--   Comparaison (“plus/moins que”)
+*Exemple : un avis “Ce service est **trop lent**” → intensité négative claire détectable en NLP.*
 :::
 ::::
 ::::::
 
 ------------------------------------------------------------------------
 
-## Jakobson : fonctions du langage et formats de message
+## Jakobson : fonctions du langage et formats de message {style="font-size:0.75em"}
 
+::::: columns
+::: {.column width="60%"}
 Les messages combinent des **fonctions** avec des dominantes variables :
 
-1.  **Référentielle** — informer sur le monde (faits, caractéristiques).\
-2.  **Expressive** — manifester une attitude ou une émotion.\
-3.  **Conative** — orienter le destinataire (inciter, solliciter).\
-4.  **Phatique** — ouvrir/entretenir le canal d’échange.\
-5.  **Métalinguistique** — expliciter le code (définitions, balises).\
-6.  **Poétique** — valoriser la forme (style, rime, mème, slogan).
+1. **Référentielle** — informer sur le monde (faits, caractéristiques).  
+   - ex. “Ce téléphone a un écran 6,5 pouces.”
+2. **Expressive** — manifester une attitude ou une émotion.  
+   - ex. “J’adore ce parfum 😍”
+3. **Conative** — orienter le destinataire (inciter, solliciter).  
+   - ex. “Abonnez-vous maintenant !”
+4. **Phatique** — ouvrir/entretenir le canal d’échange.  
+   - ex. “Hello TikTok, qui est là ?”
+5. **Métalinguistique** — expliciter le code (définitions, balises).  
+   - ex. “RT = retweet”
+6. **Poétique** — valoriser la forme (style, rime, mème, slogan).  
+   - ex. “Just do it.” (ou slogan généré par IA)
 
 Les **genres** (unboxing, SAV, teasing, témoignage) stabilisent des combinaisons de fonctions.
+:::
+
+::: {.column width="40%"}
+::: callout-tip
+### Exemple de campagne : **Nike**
+- **Référentielle** : “Une seule façon de savoir.”  
+- **Expressive** : émotion de l’athlète en pleine action.  
+- **Poétique** : slogan **JUST DO IT.**  
+- **Conative** : boutons “Équipe-toi” / “Regarder”.
+:::
+
+![](images/clipboard-2230655830.png){fig-align="center" width="100%"}
+:::
+:::::
+
 
 ------------------------------------------------------------------------
 
-## Austin : le langage comme action
+## Austin : le langage comme action {style="font-size:0.9em"}
 
 > “Dire, c’est **faire**.”
 
@@ -141,138 +187,136 @@ Les **genres** (unboxing, SAV, teasing, témoignage) stabilisent des combinaison
 -   **Perlocutoire** : **effet** produit (convaincre, mobiliser, dissuader, apaiser…).
 
 Un énoncé **évalue** et **agit** : il oriente l’échange, peut enclencher des réponses, amplifier ou clore une discussion.
+
+*Exemple : un avis Google “Je recommande cette boutique” = acte illocutoire de recommandation.*
 :::
 
 :::: {.column width="42%"}
 ::: callout-important
-**Indices**
+**Indices**\
+- Verbes et formules illocutoires (“je recommande / déconseille”)\
+- Traces perlocutoires (réponses, relais, reconfigurations du fil)
 
--   Verbes et formules illocutoires (“je recommande / déconseille”)\
--   Traces perlocutoires (réponses, relais, reconfigurations du fil)
+*Exemple 2024 : un tweet “Boycottez Shein” = illocutoire ; la tendance **#BoycottShein** qui explose = perlocutoire.*
 :::
 ::::
 ::::::
 
 ------------------------------------------------------------------------
 
-## Firth & Harris : le sens par les contextes
+## Firth & Harris : le sens par les contextes {style="font-size:0.9em"}
 
 > “You shall know a word by the **company** it keeps.” — *J. R. Firth*
 
 :::::: columns
 ::: {.column width="57%"}
 -   **Hypothèse distributionnelle** : des mots partageant des **contextes** présentent des **proximités de sens**.\
--   Le **voisinage** (cooccurrences, fenêtres, dépendances) caractérise les **associations** : par exemple *qualité* ↔ *premium*, *prix* ↔ *juste* / *trop*.
+-   Le **voisinage** (cooccurrences, fenêtres, dépendances) caractérise les **associations**.
 
 **Conséquence** : le sens **relationnel** se lit dans les **profils de contexte** (collocations, patrons d’usage, régularités de voisinage).
+
+*Exemple : Google apprend que “meilleur smartphone” ≈ “top téléphone” car ils apparaissent dans des contextes très proches.*
 :::
 
 :::: {.column width="43%"}
 ::: callout-note
-**Pratiques d’observation**
+**Pratiques d’observation**\
+- Repérer cooccurrences fortes\
+- Identifier collocations (“service client”, “trop + adjectif”)\
+- Suivre les patrons relationnels stables
 
--   Repérer cooccurrences fortes\
--   Identifier collocations (“service client”, “trop + adjectif”)\
--   Suivre les patrons relationnels stables
+*Exemple : “premium” cooccurrent avec “qualité” → connotation positive ; “prix” cooccurrent avec “trop” → connotation négative.*
 :::
 ::::
 ::::::
 
 ------------------------------------------------------------------------
 
-## Zipf : fréquences, longue traîne et visibilité
+## Zipf : fréquences, longue traîne et visibilité {style="font-size:0.9em"}
 
 :::::: columns
-::: {.column width="58%"}
+::: {.column width="50%" style="font-size:0.90em"}
 -   **Loi de Zipf** : quelques formes **très fréquentes**, une **longue traîne** de rares.\
 -   **Effets** :
-    -   Les unités **structurelles** dominent la volumétrie (colle du discours).\
-    -   Les éléments **distinctifs** se situent souvent en **fréquence moyenne**.\
+    -   Les unités **structurelles** dominent la volumétrie (colle du discours).
+        -   ex. “the, and, of” ou “le, de, et”\
+    -   Les éléments **distinctifs** se situent souvent en **fréquence moyenne**.
+        -   ex. dans des tweets politiques 2024 : “réforme, climat, impôt”\
     -   Les **signaux faibles** (rares) portent innovations et codes internes.
+        -   ex. hashtags ponctuels : *#AIart*, *#TikTokMadeMeBuyIt*, *#BackToSchool2025*
 
-La fréquence informe moins sur l’“importance” que sur le **rôle** (structurel, distinctif, émergent).
+👉 La fréquence renseigne moins sur l’“importance” que sur le **rôle** (structurel, distinctif, émergent).
 :::
 
-:::: {.column width="42%"}
+:::: {.column width="50%" style="font-size:0.75em"}
 ::: callout-tip
-**Question directrice**\
-Que dit la **position fréquentielle** d’une forme sur sa fonction discursive et sa place dans le répertoire d’une communauté ?
+## Question directrice
+
+Que dit la **position fréquentielle** d’une forme sur sa fonction discursive et sa place dans le répertoire d’une communauté ?\
+
+- **Fréquent** = colle du langage (structural)\
+- **Moyen** = propre au thème ou au groupe (distinctif)\
+- **Rare** = émergent, innovation, code interne
 :::
+
+Exemple classique : loi de Zipf sur *Ulysses* de James Joyce.
+![](images/clipboard-4009297054.png){fig-align="center" width="80%"}
+
 ::::
 ::::::
 
 ------------------------------------------------------------------------
 
-## Genette : textes en réseau (transtextualité)
+## Genette : textes en réseau (transtextualité) {style="font-size:0.80em"}
+
 
 :::::: columns
 ::: {.column width="60%"}
--   **Intertextualité** : citations, allusions, réemplois (hashtags, duos, stitches).\
--   **Paratexte** : titraille, visuels, émojis, alt-text, légendes, tags.\
--   **Métatexte** : commentaires et critiques d’autres textes.\
--   **Hypertexte** : transformations/variations (parodie, remix, détournement).\
--   **Architexte** : appartenance à un **genre** (unboxing, SAV, témoignage, teasing).
 
-Un message s’**inscrit** dans des **chaînes** : références et paratexte orientent sa lecture et sa circulation.
+
+-   **Intertextualité** : citations, allusions, réemplois.
+    -   ex. un TikTok reprend un son viral ou cite une punchline de rap.\
+-   **Paratexte** : titraille, visuels, émojis, alt-text, légendes, tags.
+    -   ex. la vignette YouTube “choc 😱” ou les #SEO dans un post LinkedIn.\
+-   **Métatexte** : commentaires et critiques d’autres textes.
+    -   ex. un thread X qui démonte une campagne publicitaire.\
+-   **Hypertexte** : transformations/variations (parodie, remix, détournement).
+    -   ex. détournement humoristique d’une pub Apple sur Insta.\
+-   **Architexte** : appartenance à un **genre** (unboxing, SAV, témoignage, teasing).
+    -   ex. le format “haul Shein” sur TikTok ou les “unboxing iPhone” chaque rentrée.
+
+👉 Un message s’**inscrit** dans des **chaînes** : références et paratexte orientent sa lecture et sa circulation.
 :::
 
 :::: {.column width="40%"}
-::: callout-note
-**Indices de réseau**
 
--   Mentions, citations, formats de reprise\
--   Rôle du layout et des métadonnées dans l’orientation interprétative
-:::
-::::
-::::::
-
-# Schéma intégré d’interprétation {.transition-slide-ubdteal}
-
-## De la forme à l’effet : grille de lecture unifiée
-
-:::::: columns
-::: {.column width="62%"}
-1.  **Structure** *(Saussure, Chomsky)* : catégories, dépendances, portée (négation, modalités, intensité).\
-2.  **Fonctions** *(Jakobson)* : dominante communicative et format.\
-3.  **Contexte lexical** *(Firth, Harris)* : cooccurrences, collocations, patrons relationnels.\
-4.  **Distribution** *(Zipf)* : fréquences, longue traîne, signaux faibles / distinctifs.\
-5.  **Actes & effets** *(Austin)* : nature de l’acte et traces perlocutoires dans l’échange.\
-6.  **Réseaux de textes** *(Genette)* : références, paratexte, genres, trajectoires.
-:::
-
-:::: {.column width="38%"}
-::: callout-important
-Finalité : produire une interprétation **cohérente** d’un corpus en articulant règles, usages, relations sémantiques, actes et inscriptions intertextuelles.
-:::
-::::
-::::::
-
-------------------------------------------------------------------------
-
-## Typologie croisée (repères d’annotation) {.smaller}
+\
+\
 \
 
-| Dimension | Indices typiques | Lecture |
-|------------------------|------------------------|------------------------|
-| **Structure** | négation, modalité, intensif, dépendances | portée de l’évaluation ; cible/attribut |
-| **Fonctions** | items expressifs/conatifs/poétiques | rôle communicatif dominant |
-| **Contexte** | cooccurrences, collocations | associations et oppositions sémantiques |
-| **Distribution** | fréquences / raretés | structurel vs distinctif ; émergent vs routinier |
-| **Actes / effets** | verbes illocutoires, traces perlocutoires | recommandation, alerte, mobilisation… |
-| **Réseaux** | citations, hashtags, formats | ancrage intertextuel ; architexte mobilisé |
 
-------------------------------------------------------------------------
+::: callout-note
+### Indices de réseau
 
-## Études guidées (exemples)
+-   Mentions (\@, #), citations, formats de reprise (duos, stitches).\
+-   Rôle du layout et des métadonnées dans l’orientation interprétative.
 
-::: incremental
--   “Service impeccable, livraison rapide. Je recommande.”\
-    **Fonctions** : expressive + conative ; **Acte** : recommandation ; **Structure** : cibles *service/logistique* ; **Réseau** : format *avis court*.
--   “Trop cher pour la qualité proposée.”\
-    **Structure** : intensification + comparaison implicite ; **Contexte** : collocation “trop cher” ; **Acte** : dissuasion ; **Distribution** : expression fréquente ou niche selon la communauté.
--   “#NewDrop demain. Qui est chaud ? 👀”\
-    **Fonctions** : phatique + conative + poétique ; **Acte** : mobilisation ; **Paratexte** : hashtag, émojis ; **Architexte** : teasing de lancement.
+*Exemple : un duo TikTok qui répond à une vidéo originale, avec emojis + hashtag sponsorisé → la circulation du texte est déjà orientée par le format.*
 :::
+::::
+::::::
+
+## Récapitulatif application marketing {style="font-size:0.75em"}
+
+| Théorie / outil | Exemple digital | Utilité marketing |
+|------------------|------------------------------|-------------------------|
+| Saussure (langue/parole) | Story IG (code) vs remix TikTok (innovation) | Adapter format & créativité au canal |
+| Chomsky/Tesnière | Syntaxe requêtes SEO (“acheter… pas cher…”) | Pertinence SEO & compréhension requêtes |
+| Jakobson (6 fonctions) | Campagne Nike multi-fonctions | Conception messages & CTA efficaces |
+| Austin (actes de langage) | “#BoycottShein” (illo→perlo) | Gérer réputation & crises |
+| Firth/Harris (contextes) | “premium” ↔ “qualité”, “prix” ↔ “trop” | Analyse de sentiment & positionnement |
+| Zipf (fréquences) | Hashtags campagne : fréquent/moyen/rare | Social listening : bruit / thèmes / signaux |
+| Genette (réseaux) | Duos/stitches, parodies, vignettes YouTube | Stratégies de diffusion & formats natifs |
 
 ------------------------------------------------------------------------
 
@@ -286,22 +330,22 @@ Finalité : produire une interprétation **cohérente** d’un corpus en articul
 
 # De la théorie… à la méthodologie {.transition-slide-ubdyellow}
 
-## Roadmap Humphreys & Wang (2018) 1/2
+## Roadmap Humphreys & Wang (2018) 1/2 [@humphreys2018]
 
 ### Étapes
-::: {.incremental}
-- **1. Research question** — formuler une question adaptée à l’analyse textuelle
-- **2. Construct identification** — identifier les construits (émotion, influence, statut, etc.)
-- **3. Data collection** — collecter les corpus (posts, avis, threads)
-- **4. Operationalization** — transformer les construits en indicateurs (dictionnaires, modèles)
-- **5. Interpretation & analysis** — relier résultats et théorie (comparaison, corrélation, prédiction)
-- **6. Validation** — vérifier robustesse (multi-opérationnalisation, triangulation, hold-out sample)
+
+::: incremental
+-   **1. Research question** — formuler une question adaptée à l’analyse textuelle
+-   **2. Construct identification** — identifier les construits (émotion, influence, statut, etc.)
+-   **3. Data collection** — collecter les corpus (posts, avis, threads)
+-   **4. Operationalization** — transformer les construits en indicateurs (dictionnaires, modèles)
+-   **5. Interpretation & analysis** — relier résultats et théorie (comparaison, corrélation, prédiction)
+-   **6. Validation** — vérifier robustesse (multi-opérationnalisation, triangulation, hold-out sample)
 :::
 
 ## Roadmap Humphreys & Wang (2018) 2/2
 
 ![](images/clipboard-1874408983.png){fig-align="center" width="100%"} {.fragment}
-
 
 ------------------------------------------------------------------------
 
@@ -323,7 +367,6 @@ Finalité : produire une interprétation **cohérente** d’un corpus en articul
 -   **Réseaux de textes** : la signification comme **inscription** sociale (intertextes, paratextes, genres).
 
 **Chaîne d’analyse** : **Structure → Fonction → Contexte → Distribution → Acte → Réseau**.
-
 
 # De la théorie… à la pratique {.transition-slide-ubdyellow}
 
@@ -353,10 +396,62 @@ Finalité : produire une interprétation **cohérente** d’un corpus en articul
 
 ------------------------------------------------------------------------
 
+## Tokeniser = découper en tokens (unités) {style="font-size:0.68em"}
+
+Avant toute analyse, on segmente le texte brut en **tokens** (unités). C’est la base de la DTM/BoW, du TF-IDF, des cooccurrences et de la keyness. *(Le POS tagging est vu juste après.)*
+
+
+:::::: columns
+::: {.column width="50%"}
+### Le principe : transformer la phrase en « briques »
+- **Tokenisation mots** : liste de **mots** et **signes** (ponctuation, hashtags, emojis, mentions).
+- Un **token** peut être :
+  - un **mot** (*service*, *client*),  
+  - de la **ponctuation** (`,` `!`),  
+  - un **hashtag** (`#AmazonPrime`),  
+  - une **mention** (`@Amazon`),  
+  - un **emoji** (`😍`).
+
+### Décisions FR à documenter (avant d’analyser)
+- **Apostrophes** : `l’expédition` → `["l'", "expédition"]`, `c’est` → `["c'", "est"]`
+- **Négation disjointe** : *ne … pas* → ne pas supprimer **ne**
+- **Hashtags/mentions/emojis** : souvent **conserver** (signal thématique/ton)
+- **URLs / nombres** : normaliser (`<URL>`, `<NUM>`) si bruit
+- **Traits d’union** : *service-après-vente*, *click-and-collect* → garder ou séparer
+:::
+
+::: {.column width="50%"}
+### Exemple (FR — Amazon) : sortie obtenue (tokenisation)
+**Texte :**  
+“J’adore le service client d'Amazon, c’est top ! 😍 #AmazonPrime”
+
+**Tokens :**  
+`['J’', 'adore', 'le', 'service', 'client', "d'", 'Amazon', ',', 'c’', 'est', 'top', '!', '😍', '#', 'AmazonPrime']`
+
+\
+\
+
+::: callout-tip
+### Pourquoi c’est la base ?
+Sans tokens, on ne peut pas **compter** (fréquences/Zipf), construire **BoW/TF-IDF**, ni comparer avec **keyness**.
+:::
+
+``` {.python code-line-numbers="1|2|3|4|5|6"}
+import spacy
+nlp = spacy.load("fr_core_news_sm")
+s = "J’adore le service client d'Amazon, c’est top ! 😍 #AmazonPrime"
+doc = nlp(s)
+tokens = [t.text for t in doc]
+print(tokens)
+```
+
+:::
+::::::
+
 ## Représentation : "Bag-of-Words"
 
 :::::: columns
-::: {.column width="30%" style="font-size:1em"}
+::: {.column width="30%" style="font-size:0.7em"}
 ### Le principe
 
 -   Une fois le texte nettoyé, il faut le transformer en chiffres pour que la machine puisse le traiter.
@@ -364,6 +459,8 @@ Finalité : produire une interprétation **cohérente** d’un corpus en articul
     -   On représente un document uniquement par les mots qu'il contient.
     -   L'**ordre des mots** et la grammaire sont volontairement **ignorés**.
 -   Cette approche permet de créer une **Matrice Document-Terme (DTM)**.
+
+![](images/clipboard-534031787.png)
 :::
 
 :::: {.column width="70%" style="font-size:0.55em"}
@@ -505,11 +602,11 @@ Le score le plus célèbre en anglais est le **Flesch-Kincaid Reading Ease**.
 
 :::: {.column width="50%" style="font-size:0.75em"}
 ::: {.callout-note title="Scores & Applications" style="font-size:0.75em"}
-### Formule générale
+#### Formule générale
 
 La plupart des scores suivent une logique de ce type : $Score = A - (B \times \frac{\text{mots}}{\text{phrase}}) - (C \times \frac{\text{syllabes}}{\text{mot}})$
 
-### Utilité en marketing
+#### Utilité en marketing
 
 -   **Auditer le contenu de marque** : le langage utilisé sur un site web ou les réseaux sociaux est-il adapté à la cible ? Est-il trop simple ? Trop jargonnant ?
 -   **Analyser l'audience** : le niveau de langage des consommateurs dans leurs avis peut-il révéler leur niveau d'expertise ?
@@ -588,7 +685,7 @@ Un PMI élevé suggère un lien sémantique fort.
 
 ------------------------------------------------------------------------
 
-## Analyse de "Keyness" (mots-clés)
+## Analyse de "Keyness" (mots-clés) 1/3
 
 :::::: columns
 ::: {.column width="60%"}
@@ -599,6 +696,7 @@ Un PMI élevé suggère un lien sémantique fort.
 -   **Applications** :
     -   Avis 5★ vs 1★ : Quels mots sont "clés" pour les clients satisfaits ?
     -   Tweets avant vs après une crise : quel vocabulaire a émergé ?
+    -   Articles de presse : comparer le lexique Sports masculins vs féminins
 :::
 
 :::: {.column width="40%"}
@@ -617,32 +715,90 @@ Tests possibles :\
 ::::
 ::::::
 
+## Analyse de "Keyness" (mots-clés) 2/3
+
+::::: columns
+::: {.column width="50%"}
+### Pipeline méthodologique [@raoGenderBiasNews2021]
+
+1.  **Collecte des articles** de presse canadienne (2018–2020)\
+2.  **NER** : extraction des **noms et prénoms des personnes citées**\
+3.  **Coreference resolution** : associer les **citations** au bon locuteur\
+4.  **Attribution du genre** :
+    -   via une base interne de personnalités publiques\
+    -   **OU** (si non trouvé) via une API (prénom ou nom complet)\
+:::
+
+::: {.column width="50%"}
+### Suite du pipeline
+
+\
+
+5.  **Classification des articles** :
+    -   *Male corpus* = majorité d’hommes cités\
+    -   *Female corpus* = majorité de femmes citées
+6.  **Analyses linguistiques** :
+    -   *Topic modelling* (LDA) → thèmes\
+    -   **Keyness → mots sur-représentés** dans chaque corpus\
+    -   *Dependency bigrams* → style de discours\
+:::
+:::::
+
+## Analyse de "Keyness" (mots-clés) 3/3 {style="font-size:0.75em"}
+
+![](images/clipboard-2048161018.png){fig-align="center" width="80%"}
+
+::::: columns
+::: {.column width="50%"}
+### Corpus masculin
+
+-   Bigrams fréquents : *lead_give, run_allow, pass_complete, homer_hit…*\
+-   Mots clés : *touchdown, quarterback, Mariners…*\
+-   Discours → centré sur **le déroulement technique des matchs**.
+:::
+
+::: {.column width="50%"}
+### Corpus féminin
+
+-   Bigrams fréquents : *gold_win, medal_win, record_set, cup_win…*\
+-   Mots clés : *Rapinoe, Sinclair, FIFA, Wozniacki…*\
+-   Discours → centré sur **les victoires, les records et les sportives emblématiques**.
+:::
+:::::
+
+👉 Conclusion : la presse **décrit les hommes en action**, mais ne parle des femmes **que lorsqu’elles gagnent**.
+
 ------------------------------------------------------------------------
 
-## Annotation morphosyntaxique (POS Tagging)
+## Annotation morphosyntaxique (POS Tagging) {style="font-size:0.85em"}
 
-L'étiquetage morphosyntaxique (POS Tagging) attribue à chaque mot sa **catégorie grammaticale** (nom, verbe, adjectif, adverbe, etc.).
+L’étiquetage morphosyntaxique (POS Tagging) attribue à chaque mot sa **catégorie grammaticale** (DET, NOUN, VERB/AUX, ADJ, ADV, …) et, selon les outils, des **traits morphologiques** (Genre, Nombre, Temps, etc.).
 
-<u>Le</u>/[DET]{.bg style="--col: #325494"} <u>produit</u>/[NOM]{.bg style="--col: #58DDB3"} <u>est</u>/[VERBE]{.bg style="--col: #B10F2E"} <u>vraiment</u>/[ADV]{.bg style="--col: #999999"} <u>excellent</u>/[ADJ]{.bg style="--col: #F5C946"}
+<u>Le</u>/[DET]{.bg style="--col: #325494"} <u>produit</u>/[NOUN]{.bg style="--col: #58DDB3"} <u>est</u>/[AUX]{.bg style="--col: #B10F2E"} <u>vraiment</u>/[ADV]{.bg style="--col: #999999"} <u>excellent</u>/[ADJ]{.bg style="--col: #F5C946"}
 
 :::::: columns
 ::: {.column width="50%" style="font-size:0.8em"}
 ### À quoi ça sert ?
 
--   **Filtrer l'information** :
-    -   Extraire les **adjectifs** pour analyser les qualificatifs d'un produit.
-    -   Isoler les **noms propres** pour détecter les entités.
--   **Préparer le traitement** :
-    -   Indispensable pour une bonne **lemmatisation** (ex: "port" → *porter* vs *port*).
-    -   Utile aussi pour la **stemmatisation** (ex: "jouer", "jouait", "jouera" → *jou*).
+- **Filtrer l’information** :
+  - Extraire les **adjectifs** pour analyser les qualificatifs d’un produit.
+  - Isoler les **noms propres** pour détecter les entités.
+- **Préparer le traitement** :
+  - Indispensable pour une **lemmatisation** fiable (*port* → *porter* vs *port*).
+  - Utile pour la **stemmatisation** (*jouer*, *jouait*, *jouera* → *jou*).
 :::
 
 :::: {.column width="50%"}
 ::: {.callout-note title="Le standard Universal Dependencies" style="font-size:0.9em"}
-Le projet **Universal Dependencies (UD)** propose un jeu d'étiquettes unifié (17 catégories principales) pour de nombreuses langues. Cela facilite l'utilisation d'outils multilingues comme spaCy ou UDPipe.
+- **UPOS** : étiquettes universelles (DET, NOUN, VERB, **AUX**, ADJ, ADV, …)  
+- **XPOS** : étiquettes spécifiques à la langue (optionnel)  
+- **FEATS** : traits (ex. Gender=Masc, Number=Sing, Tense=Pres, Mood=Ind)
+
+Outils compatibles : **spaCy**, **Stanza/Trankit**, **UDPipe**.
 :::
 ::::
 ::::::
+
 
 ## Analyse en dépendances syntaxiques (Dependency Parsing) 1/3
 
@@ -673,7 +829,7 @@ Un cadre de référence majeur pour cette tâche est le projet [**Universal Depe
 
 ------------------------------------------------------------------------
 
-## Exemple code
+## Exemple code (modèle anglais)
 
 [**Voir l’exemple de code ici**](https://oliviercaron.github.io/systematic_lit_review/annotations.html#part-of-speech-tagging-with-udpipe-straka-strakova-2017-tokenizing)
 
@@ -767,5 +923,8 @@ En fixant un seuil de distance faible (ex: ≤ 2), on peut automatiquement consi
     -   De nouveaux objets (discours de marque, avis, interactions).
 
 ::: callout-tip
+### Langage
 👉 Pour le marketing digital et la netnographie : comprendre que **le langage est à la fois structure, sens et action**.
 :::
+
+## Références

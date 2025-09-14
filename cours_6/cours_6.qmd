@@ -32,7 +32,8 @@ editor:
 Aujourd'hui, nous allons au-delà de l'analyse de mots isolés pour
 répondre à deux questions marketing fondamentales :
 
-1.  **De quoi parlent réellement les personnes, consommateurs, clients ?**
+1.  **De quoi parlent réellement les personnes, consommateurs, clients
+    ?**
     -   Nous verrons comment le **Topic Modeling** (modélisation de
         thèmes) peut automatiquement découvrir les grands sujets de
         discussion (les *topics*) cachés dans des milliers d'avis.
@@ -51,24 +52,27 @@ LLMs.
 
 ## Le problème : comment synthétiser 10 000 verbatims ? {style="font-size:0.8em"}
 
-Imaginez que vous avez collecté 10 000 avis sur votre produit.  
+Imaginez que vous avez collecté 10 000 avis sur votre produit.\
 Les lire un par un est impossible. Comment savoir rapidement quels sont
 les 5 ou 10 grands thèmes de satisfaction ou d'insatisfaction ?
 
-C'est le rôle du **Topic Modeling**.  
-Il s’agit en général d’une méthode d'apprentissage **non supervisé** :  
+C'est le rôle du **Topic Modeling**.\
+Il s’agit en général d’une méthode d'apprentissage **non supervisé** :\
 elle découvre les thèmes **sans qu’on les lui dise à l’avance**.
 
 L'algorithme le plus célèbre pour cela est le **LDA (Latent Dirichlet
 Allocation)** [@bleiLatentDirichletAllocation2003].
 
 ::: {.callout-note appearance="simple"}
-**Variantes** :  
-- **STM (Structural Topic Model)** [@roberts2013structural] permet d’incorporer des **covariables** (ex. date, genre, segment client).  
-- **BERTopic** [@grootendorst2022bertopic] s’appuie sur les **embeddings modernes** (BERT) et un clustering pour produire des thèmes plus cohérents.  
-- **Seeded LDA** : versions guidées où l’on fournit des mots-clés pour orienter les thèmes.  
+**Variantes** :\
+- **STM (Structural Topic Model)** [@roberts2013structural] permet
+d’incorporer des **covariables** (ex. date, genre, segment client).\
+- **BERTopic** [@grootendorst2022bertopic] s’appuie sur les **embeddings
+modernes** (BERT) et un clustering pour produire des thèmes plus
+cohérents.\
+- **Seeded LDA** : versions guidées où l’on fournit des mots-clés pour
+orienter les thèmes.
 :::
-
 
 ## Qu'est-ce que le LDA ? L'intuition {style="font-size:0.7em"}
 
@@ -158,81 +162,99 @@ probabiliste : **documents → thèmes → mots.**
 
 ## Le Topic Modeling en marketing {style="font-size:0.8em"}
 
-La littérature marketing montre des usages variés et utiles du topic modeling.  
-Une revue de 61 études confirme son adoption et trace des pistes de recherche
-[@reisenbichlerTopicModelingMarketing2019].
+La littérature marketing montre des usages variés et utiles du topic
+modeling.\
+Une revue de 61 études confirme son adoption et trace des pistes de
+recherche [@reisenbichlerTopicModelingMarketing2019].
 
 ::::: columns
 ::: {.column width="50%"}
 ### Domaines d’application
-- **Segmentation & profiling** (voix client, personas)  
-- **Analyse de communautés** (forums, réseaux sociaux)  
-- **Systèmes de recommandation**  
-- **Publicité & ciblage** (mots-clés, messages)  
-- **Veille & tendances** (évolution des thèmes)
+
+-   **Segmentation & profiling** (voix client, personas)\
+-   **Analyse de communautés** (forums, réseaux sociaux)\
+-   **Systèmes de recommandation**\
+-   **Publicité & ciblage** (mots-clés, messages)\
+-   **Veille & tendances** (évolution des thèmes)
 :::
 
 ::: {.column width="50%"}
 ### Opportunités de recherche
-- **Données multi-sources & dynamiques** (texte + achats, social, temps)  
-- Coupler LDA avec des **modèles prédictifs** (churn, CLV, ventes)  
-- Mieux évaluer les thèmes (**cohérence, exclusivité, stabilité**)  
-- Explorer des variantes (**STM, BERTopic**) selon le cas d’usage
+
+-   **Données multi-sources & dynamiques** (texte + achats, social,
+    temps)\
+-   Coupler LDA avec des **modèles prédictifs** (churn, CLV, ventes)\
+-   Mieux évaluer les thèmes (**cohérence, exclusivité, stabilité**)\
+-   Explorer des variantes (**STM, BERTopic**) selon le cas d’usage
 :::
 :::::
 
+## Visualiser les thèmes avec ggplot2 [@balech2019] {style="font-size:0.8em"}
 
-## Visualiser les thèmes avec LDA {style="font-size:0.8em"}
+![](images/clipboard-1049051214.png){fig-align="center" width="90%"}
+
+## Visualiser les thèmes avec LDAvis {style="font-size:0.8em"}
 
 ::::: columns
 ::: {.column width="20%"}
-💡 Une fois le modèle entraîné, on peut explorer les thèmes avec des outils interactifs :
+💡 Une fois le modèle entraîné, on peut explorer les thèmes avec des
+outils interactifs :
 
-- **Python :** Gensim + pyLDAvis  
-- **R :** LDAvis  
+-   **Python :** Gensim + pyLDAvis\
+-   **R :** LDAvis
 
-Chaque **bulle** représente un thème.  
-Les mots les plus fréquents apparaissent à droite.  
+Chaque **bulle** représente un thème.\
+Les mots les plus fréquents apparaissent à droite.
 :::
 
 ::: {.column width="80%"}
-![](images/clipboard-3079638492.gif){width="95%" fig-alt="Exemple de visualisation interactive des thèmes avec LDAvis"}
+![](images/clipboard-3079638492.gif){width="95%"
+fig-alt="Exemple de visualisation interactive des thèmes avec LDAvis"}
 :::
 :::::
 
 ## Limites du Topic Modeling (et quand aller plus loin) {style="font-size:0.8em"}
 
-::::: columns
+:::::: columns
 ::: {.column width="55%"}
-###  Limites pratiques
-- **Choix du nombre de topics (K)** : compromis interprétabilité / granularité  
-- **Qualité des thèmes** : dépend du prétraitement & des hyperparamètres  
-- **Cohérence sémantique** : certains topics sont “fourre-tout”  
-- **Statique** : difficulté à suivre finement l’**évolution** des thèmes  
-- **Polysémie** non résolue : un mot = un même rôle selon le topic
+### Limites pratiques
+
+-   **Choix du nombre de topics (K)** : compromis interprétabilité /
+    granularité\
+-   **Qualité des thèmes** : dépend du prétraitement & des
+    hyperparamètres\
+-   **Cohérence sémantique** : certains topics sont “fourre-tout”\
+-   **Statique** : difficulté à suivre finement l’**évolution** des
+    thèmes\
+-   **Polysémie** non résolue : un mot = un même rôle selon le topic
 
 ### Évaluer & améliorer
-- Utiliser des métriques de **cohérence de topics** (ex. *topic coherence*)  
-- Tester plusieurs K et **stabiliser** (bootstrap / réplications)  
-- Ajouter du **guidage** (Seeded/Guided LDA) ou des **covariables** (STM [@roberts2013structural])
+
+-   Utiliser des métriques de **cohérence de topics** (ex. *topic
+    coherence*)\
+-   Tester plusieurs K et **stabiliser** (bootstrap / réplications)\
+-   Ajouter du **guidage** (Seeded/Guided LDA) ou des **covariables**
+    (STM [@roberts2013structural])
 :::
 
-::: {.column width="45%"}
+:::: {.column width="45%"}
 ### Quand passer à des approches récentes
-- **STM** : intégrer **covariables** (temps, segment, campagne) pour expliquer/faire varier les thèmes [@roberts2013structural]  
-- **BERTopic** : s’appuyer sur des **embeddings (BERT)** + clustering pour des thèmes souvent plus **cohérents** [@grootendorst2022bertopic]  
-- **Embeddings/LLMs** : capter la **sémantique contextuelle**, faire de la **recherche sémantique**, du **résumé** ou de la **Q&A**
+
+-   **STM** : intégrer **covariables** (temps, segment, campagne) pour
+    expliquer/faire varier les thèmes [@roberts2013structural]\
+-   **BERTopic** : s’appuyer sur des **embeddings (BERT)** + clustering
+    pour des thèmes souvent plus **cohérents**
+    [@grootendorst2022bertopic]\
+-   **Embeddings/LLMs** : capter la **sémantique contextuelle**, faire
+    de la **recherche sémantique**, du **résumé** ou de la **Q&A**
 
 ::: {.callout-note appearance="simple"}
-**Message clé** : LDA est excellent pour **cartographier** des thèmes.  
-Dès que le **contexte** et la **nuance** deviennent critiques, on gagne à
-passer vers **STM / BERTopic**, puis **embeddings & LLMs**.
+**Message clé** : LDA est excellent pour **cartographier** des thèmes.\
+Dès que le **contexte** et la **nuance** deviennent critiques, on gagne
+à passer vers **STM / BERTopic**, puis **embeddings & LLMs**.
 :::
-:::
-:::::
-
-
-
+::::
+::::::
 
 # Des mots aux vecteurs : comprendre les Word Embeddings {.transition-slide-ubdblue style="font-size:0.55em"}
 
@@ -602,7 +624,7 @@ d’un mot**.
 :::::
 
 ::: {.callout-tip title="Vers les Transformers et l'attention"}
-Les modèles modernes (**Transformers**) introduisent le mécanisme\
+Les modèles modernes (**Transformers**) introduisent le mécanisme
 d’**attention**, qui permet de :
 
 -   Donner à chaque mot une **représentation contextualisée** (le
