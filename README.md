@@ -24,7 +24,7 @@ Ce dépôt contient les supports de cours (slides **Quarto / reveal.js**) et les
 - **Python** : [Tutoriel officiel](https://docs.python.org/3/tutorial/) · [pandas – documentation](https://pandas.pydata.org/docs/) · [PEP8](https://peps.python.org/pep-0008/)
 - **Scraping** : [rvest](https://rvest.tidyverse.org/) · [requests](https://requests.readthedocs.io/) · [Selenium](https://www.selenium.dev/documentation/webdriver/) · [Playwright](https://playwright.dev/python/) · [Scrapy](https://docs.scrapy.org/)
 - **NLP (R)** : [quanteda – Quickstart](https://quanteda.io/articles/quickstart.html) · [Tutoriel quanteda (Monroe)](https://burtmonroe.github.io/TextAsDataCourse/Tutorials/TADA-IntroToQuanteda.nb.html) · [Quanteda – bookdown (Lukito)](https://bookdown.org/josephine_lukito/j381m_tutorials/id_25-quanteda.html#id_25-quanteda) · [tidytext – le livre](https://www.tidytextmining.com/) · [Text mining & nuage de mots (FR)](https://www.sthda.com/french/wiki/text-mining-et-nuage-de-mots-avec-le-logiciel-r-5-etapes-simples-a-savoir)
-- **NLP (Python)** : [spaCy – usage](https://spacy.io/usage) · [textacy](https://textacy.readthedocs.io/) · [scikit-learn – texte](https://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html)
+- **NLP (Python)** : [spaCy – usage](https://spacy.io/usage) · [NLTK](https://www.nltk.org/)
 
 ---
 
