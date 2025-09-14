@@ -1,0 +1,232 @@
+---
+title: "TP — Introduction douce au text mining (avis Carrefour / Trustpilot) — Énoncé"
+subtitle: "R + Quarto — version à compléter"
+author:
+  - name: "Olivier Caron"
+    affiliations: "Paris Dauphine - PSL"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    toc-depth: 2
+    number-sections: false
+    fig-width: 8
+    fig-height: 6
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: false
+---
+
+> **But du TP (🏁)**  
+> Se familiariser pas à pas avec l’analyse de texte en R sur des avis clients (Trustpilot – Carrefour), **sans aller trop loin** : lecture des données, comptages simples, tokenisation, stopwords, bigrams, mini-stats lexicales, et un _aperçu_ d’annotation UD avec `udpipe`.
+
+> **Données (📁)** : `data/reviews_trustpilot_clean_pseudo.csv` (FR, pseudo-anonymisé).  
+> **Colonnes (à titre indicatif)** : `review_id`, `author_name_pseudo`, `title`, `review`, `rating`, `date_published`, `page_url`.
+
+## Avant de commencer
+
+### Outils possibles (vous choisissez...)
+
+- `quanteda` : corpus, DFM/DTM, fréquences, **collocations**, **cooccurrences**, **keyness**, lisibilité (via `quanteda.textstats`).
+- `tidytext` : travail en format _tidy_ (une ligne = un token), n-grammes simples.
+- `stopwords` : listes de **mots vides** (FR).
+- `stringr` / `dplyr` / `ggplot2` : manipulations + graphiques.
+- `udpipe` : **POS tagging** + **dépendances** (Universal Dependencies) en fin de TP (petit aperçu).
+
+> 💡 **Conseil** : commentez vos choix et vos hypothèses.
+
+---
+
+## Préambule — Packages & lecture des données
+
+```{r}
+# À FAIRE : charger les packages utiles listés ci-dessus
+```
+
+```{r}
+# À FAIRE : lire le CSV dans un objet `reviews`
+```
+
+---
+
+## Ex. 1 — Inspecter les données
+
+```{r}
+# À FAIRE : explorer noms de colonnes, rating, date
+```
+
+---
+
+## Ex. 2 — Choisir la colonne texte
+
+> On utilisera **`review`** comme colonne texte (hypothèse du jeu de données).
+
+```{r}
+# À FAIRE : vérifier l'existence de `review`
+```
+
+---
+
+## Ex. 3 — Nettoyage léger (sans excès)
+
+> Minuscules, espaces en trop, URLs basiques. **On garde** hashtags/mentions/émojis.
+
+```{r}
+# À FAIRE : créer une colonne `txt` nettoyée à partir de `review`
+```
+
+---
+
+## Ex. 4 — Volumétrie simple
+
+```{r}
+# À FAIRE : n_char, n_words + summary
+```
+
+---
+
+## Ex. 5 — Histogramme de la longueur (mots)
+
+```{r}
+# À FAIRE : histogramme + ligne pointillée en moyenne
+```
+
+---
+
+## Ex. 6 — Tokenisation (format tidy)
+
+```{r}
+# À FAIRE : unnest_tokens(words) sur `txt` -> `tokens_tbl`
+```
+
+---
+
+## Ex. 7 — Stopwords FR & filtres utiles
+
+```{r}
+# À FAIRE : retirer stopwords FR, numériques, ne garder que mots valides
+```
+
+---
+
+## Ex. 8 — Fréquences & Top 20
+
+```{r}
+# À FAIRE : compter, afficher top 20 + barplot
+```
+
+---
+
+## Ex. 9 — Petite Zipf
+
+```{r}
+# À FAIRE : calculer rang + fréquence relative et tracer en log-log
+```
+
+---
+
+## Ex. 10 — Diversité lexicale (TTR) par avis
+
+```{r}
+# À FAIRE : calculer TTR par review_id
+```
+
+---
+
+## Ex. 11 — Bigrams (2-grammes)
+
+```{r}
+# À FAIRE : ngrams=2 -> nettoyer -> top 20
+```
+
+---
+
+## Ex. 12 — Keyness Index (tokens)
+
+```{r}
+# À FAIRE :
+# - filtrer avis != 3, créer `group` (high/low) et `text_col=txt`
+# - corpus -> tokens (baisser stopwords mais garder un peu de négation)
+# - retirer la marque "carrefour*"
+# - dfm_trim(min_termfreq = 5)
+# - textstat_keyness(measure="lr"), trier par G2, tables & plot
+```
+
+---
+
+## Ex. 13 — Aperçu POS (UDPipe) sur un échantillon
+
+```{r}
+# À FAIRE :
+# - échantillonner ~300 review_id
+# - charger le modèle FR (ou le télécharger)
+# - udpipe_annotate -> objet `pos`
+# - compter les UPOS
+```
+
+---
+
+## Ex. 13b — Keyness sur lemmes (UD, sous-échantillon)
+
+```{r}
+# À FAIRE :
+# - depuis `pos`, filtrer NOUN/VERB/ADJ/ADV, tolower(lemma)
+# - retirer stopwords (en gardant un peu de négation) + retirer "carrefour*"
+# - joindre la polarité par doc_id (via `reviews` -> group)
+# - agréger par doc_id (concat lemmes), corpus->tokens->dfm
+# - textstat_keyness (cible >3), tops & plot
+```
+
+---
+
+## Ex. 14 — Couples adjectif → nom (*amod*)
+
+```{r}
+# À FAIRE :
+# - filtrer dep_rel=="amod", upos=="ADJ"
+# - joindre la tête (lemma du nom) et compter les paires
+```
+
+---
+
+## Ex. 15 — Wordcloud par rating (5 vs 1)
+
+```{r}
+# À FAIRE :
+# - filtrer notes 5 et 1, group=high/low, text_col=txt
+# - corpus->tokens, retirer "carrefour*"
+# - dfm -> textstat_frequency(group=...)
+# - limiter à N par groupe
+# - ggwordcloud pour chaque
+```
+
+---
+
+## Ex. 15 — Mini-interprétation (3–5 puces)
+
+> - 2 thèmes saillants (tokens/bigrams)  
+> - 2 adjectifs les plus associés (Ex. 14) + intérêt marketing  
+> - 1 piste d’amélioration du parcours (livraison, SAV, promo, etc.)
+
+---
+
+## (Option) Petit détour par `quanteda` (DFM rapide)
+
+```{r}
+# À FAIRE : petite DFM sur `txt`, textstat_frequency, collocations
+```
+
+---
+
+## 📥 Télécharger un modèle FR pour UDPipe (au cas où)
+
+```{r}
+# OPTION A — Téléchargement automatique (à décommenter et exécuter)
+# m <- udpipe_download_model(language = "french-gsd")
+# ud_model <- udpipe_load_model(m$file_model)
+
+# OPTION B — Chargement depuis un fichier local
+# ud_model <- udpipe_load_model("french-gsd-ud-2.5-191206.udpipe")
+```

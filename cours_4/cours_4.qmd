@@ -117,7 +117,9 @@ Ces perspectives s’articulent : la **structure** rend les énoncés intelligib
 
 ### Apport interprétatif
 
-La structure **module** le sens : - “pas **vraiment** satisfaisant” ≠ “**vraiment** pas satisfaisant”.\
+La structure **module** le sens : 
+
+- “pas **vraiment** satisfaisant” ≠ “**vraiment** pas satisfaisant”.\
 - Les relations syntaxiques révèlent **cibles** (produit, marque, service) et **attributs** (prix, qualité, délai).
 
 *Exemple SEO : “acheter iPhone 16 pas cher” ≠ “iPhone 16 pas cher acheter”. La syntaxe change la pertinence des résultats Google.*
@@ -125,7 +127,7 @@ La structure **module** le sens : - “pas **vraiment** satisfaisant” ≠ “*
 
 :::: {.column width="43%"}
 ::: callout-note
-**Indicateurs récurrents**\
+### Indicateurs récurrents
 - Négation\
 - Modalité (“il faudrait”, “on doit”)\
 - Intensité (“très”, “trop”, “vraiment”)\
@@ -193,7 +195,7 @@ Un énoncé **évalue** et **agit** : il oriente l’échange, peut enclencher d
 
 :::: {.column width="42%"}
 ::: callout-important
-**Indices**\
+### Indices
 - Verbes et formules illocutoires (“je recommande / déconseille”)\
 - Traces perlocutoires (réponses, relais, reconfigurations du fil)
 
@@ -220,7 +222,7 @@ Un énoncé **évalue** et **agit** : il oriente l’échange, peut enclencher d
 
 :::: {.column width="43%"}
 ::: callout-note
-**Pratiques d’observation**\
+### Pratiques d’observation
 - Repérer cooccurrences fortes\
 - Identifier collocations (“service client”, “trop + adjectif”)\
 - Suivre les patrons relationnels stables
@@ -238,7 +240,7 @@ Un énoncé **évalue** et **agit** : il oriente l’échange, peut enclencher d
 ::: {.column width="50%" style="font-size:0.90em"}
 -   **Loi de Zipf** : quelques formes **très fréquentes**, une **longue traîne** de rares.\
 -   **Effets** :
-    -   Les unités **structurelles** dominent la volumétrie (colle du discours).
+    -   Les unités **structurelles** dominent la volumétrie (**"colle" du discours**).
         -   ex. “the, and, of” ou “le, de, et”\
     -   Les éléments **distinctifs** se situent souvent en **fréquence moyenne**.
         -   ex. dans des tweets politiques 2024 : “réforme, climat, impôt”\
@@ -250,7 +252,7 @@ Un énoncé **évalue** et **agit** : il oriente l’échange, peut enclencher d
 
 :::: {.column width="50%" style="font-size:0.75em"}
 ::: callout-tip
-## Question directrice
+### Question directrice
 
 Que dit la **position fréquentielle** d’une forme sur sa fonction discursive et sa place dans le répertoire d’une communauté ?\
 
@@ -464,7 +466,7 @@ print(tokens)
 :::
 
 :::: {.column width="70%" style="font-size:0.55em"}
-::: {.callout-note title="Exemple de DTM"}
+::: {.callout-note title="Exemple de DTM après stopwords FR"}
 **Corpus :**
 
 -   D1: "Produit **excellent et** pas cher"
