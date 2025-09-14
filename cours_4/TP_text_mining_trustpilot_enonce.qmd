@@ -1,6 +1,6 @@
 ---
-title: "TP — Introduction douce au text mining (avis Carrefour / Trustpilot) — Énoncé"
-subtitle: "R + Quarto — version à compléter"
+title: "TP - Introduction douce au text mining (avis Carrefour / Trustpilot) - Énoncé"
+subtitle: "R + Quarto - version à compléter"
 author:
   - name: "Olivier Caron"
     affiliations: "Paris Dauphine - PSL"
@@ -39,7 +39,7 @@ execute:
 
 ---
 
-## Préambule — Packages & lecture des données
+## Préambule - Packages & lecture des données
 
 ```{r}
 # À FAIRE : charger les packages utiles listés ci-dessus
@@ -51,7 +51,7 @@ execute:
 
 ---
 
-## Ex. 1 — Inspecter les données
+## Ex. 1 - Inspecter les données
 
 ```{r}
 # À FAIRE : explorer noms de colonnes, rating, date
@@ -59,7 +59,7 @@ execute:
 
 ---
 
-## Ex. 2 — Choisir la colonne texte
+## Ex. 2 - Choisir la colonne texte
 
 > On utilisera **`review`** comme colonne texte (hypothèse du jeu de données).
 
@@ -69,7 +69,7 @@ execute:
 
 ---
 
-## Ex. 3 — Nettoyage léger (sans excès)
+## Ex. 3 - Nettoyage léger (sans excès)
 
 > Minuscules, espaces en trop, URLs basiques. **On garde** hashtags/mentions/émojis.
 
@@ -79,7 +79,7 @@ execute:
 
 ---
 
-## Ex. 4 — Volumétrie simple
+## Ex. 4 - Volumétrie simple
 
 ```{r}
 # À FAIRE : n_char, n_words + summary
@@ -87,7 +87,7 @@ execute:
 
 ---
 
-## Ex. 5 — Histogramme de la longueur (mots)
+## Ex. 5 - Histogramme de la longueur (mots)
 
 ```{r}
 # À FAIRE : histogramme + ligne pointillée en moyenne
@@ -95,7 +95,7 @@ execute:
 
 ---
 
-## Ex. 6 — Tokenisation (format tidy)
+## Ex. 6 - Tokenisation (format tidy)
 
 ```{r}
 # À FAIRE : unnest_tokens(words) sur `txt` -> `tokens_tbl`
@@ -103,7 +103,7 @@ execute:
 
 ---
 
-## Ex. 7 — Stopwords FR & filtres utiles
+## Ex. 7 - Stopwords FR & filtres utiles
 
 ```{r}
 # À FAIRE : retirer stopwords FR, numériques, ne garder que mots valides
@@ -111,7 +111,7 @@ execute:
 
 ---
 
-## Ex. 8 — Fréquences & Top 20
+## Ex. 8 - Fréquences & Top 20
 
 ```{r}
 # À FAIRE : compter, afficher top 20 + barplot
@@ -119,7 +119,7 @@ execute:
 
 ---
 
-## Ex. 9 — Petite Zipf
+## Ex. 9 - Petite Zipf
 
 ```{r}
 # À FAIRE : calculer rang + fréquence relative et tracer en log-log
@@ -127,7 +127,7 @@ execute:
 
 ---
 
-## Ex. 10 — Diversité lexicale (TTR) par avis
+## Ex. 10 - Diversité lexicale (TTR) par avis
 
 ```{r}
 # À FAIRE : calculer TTR par review_id
@@ -135,7 +135,7 @@ execute:
 
 ---
 
-## Ex. 11 — Bigrams (2-grammes)
+## Ex. 11 - Bigrams (2-grammes)
 
 ```{r}
 # À FAIRE : ngrams=2 -> nettoyer -> top 20
@@ -143,7 +143,7 @@ execute:
 
 ---
 
-## Ex. 12 — Keyness Index (tokens)
+## Ex. 12 - Keyness Index (tokens)
 
 ```{r}
 # À FAIRE :
@@ -156,7 +156,7 @@ execute:
 
 ---
 
-## Ex. 13 — Aperçu POS (UDPipe) sur un échantillon
+## Ex. 13 - Aperçu POS (UDPipe) sur un échantillon
 
 ```{r}
 # À FAIRE :
@@ -168,7 +168,7 @@ execute:
 
 ---
 
-## Ex. 13b — Keyness sur lemmes (UD, sous-échantillon)
+## Ex. 13b - Keyness sur lemmes (UD, sous-échantillon)
 
 ```{r}
 # À FAIRE :
@@ -181,7 +181,7 @@ execute:
 
 ---
 
-## Ex. 14 — Couples adjectif → nom (*amod*)
+## Ex. 14 - Couples adjectif → nom (*amod*)
 
 ```{r}
 # À FAIRE :
@@ -191,7 +191,7 @@ execute:
 
 ---
 
-## Ex. 15 — Wordcloud par rating (5 vs 1)
+## Ex. 15 - Wordcloud par rating (5 vs 1)
 
 ```{r}
 # À FAIRE :
@@ -204,7 +204,7 @@ execute:
 
 ---
 
-## Ex. 15 — Mini-interprétation (3–5 puces)
+## Ex. 15 - Mini-interprétation (3–5 puces)
 
 > - 2 thèmes saillants (tokens/bigrams)  
 > - 2 adjectifs les plus associés (Ex. 14) + intérêt marketing  
@@ -223,10 +223,10 @@ execute:
 ## 📥 Télécharger un modèle FR pour UDPipe (au cas où)
 
 ```{r}
-# OPTION A — Téléchargement automatique (à décommenter et exécuter)
+# OPTION A - Téléchargement automatique (à décommenter et exécuter)
 # m <- udpipe_download_model(language = "french-gsd")
 # ud_model <- udpipe_load_model(m$file_model)
 
-# OPTION B — Chargement depuis un fichier local
+# OPTION B - Chargement depuis un fichier local
 # ud_model <- udpipe_load_model("french-gsd-ud-2.5-191206.udpipe")
 ```
