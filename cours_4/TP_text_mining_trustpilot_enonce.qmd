@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD
 title: "TP - Intro TAL (avis Carrefour / Trustpilot) - Énoncé"
+=======
+title: "TP - Introduction au TAL/NLP (avis Carrefour / Trustpilot) - Énoncé"
+>>>>>>> 6df5a444b02f1e83b820d37ae0c9ee24413735e9
 subtitle: "R + Quarto - version à compléter"
 author:
   - name: "Vos noms et prénoms"
@@ -119,10 +123,11 @@ execute:
 
 ---
 
-## Ex. 9 - Petite Zipf
+## Ex. 9 - Zipf
 
 ```{r}
 # À FAIRE : calculer rang + fréquence relative et tracer en log-log
+#  + créer le graphique ggplot
 ```
 
 ---
@@ -161,7 +166,8 @@ execute:
 ```{r}
 # À FAIRE :
 # - échantillonner ~300 review_id
-# - charger le modèle FR (ou le télécharger)
+# - charger le modèle FR (ou le télécharger) : déà présent à la racine du cour sous le nom
+#   "french-gsd-ud-2.5-191206.udpipe"
 # - udpipe_annotate -> objet `pos`
 # - compter les UPOS
 ```

@@ -1,0 +1,508 @@
+---
+title: "TP - Introduction douce au text mining (avis Carrefour / Trustpilot) - Corrigé"
+subtitle: "R + Quarto - version avec code de référence"
+author:
+  - name: "Olivier Caron"
+    affiliations: "Paris Dauphine - PSL"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    toc-depth: 2
+    number-sections: false
+    fig-width: 8
+    fig-height: 6
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: false
+---
+
+> **But du TP (🏁)**  
+> Se familiariser pas à pas avec l’analyse de texte en R sur des avis clients (Trustpilot – Carrefour), **sans aller trop loin** : lecture des données, comptages simples, tokenisation, stopwords, bigrams, mini-stats lexicales, et un _aperçu_ d’annotation UD avec `udpipe`.
+
+> **Données (📁)** : `data/reviews_trustpilot_clean_pseudo.csv` (FR, pseudo-anonymisé).  
+> **Colonnes (à titre indicatif)** : `review_id`, `author_name_pseudo`, `title`, `review`, `rating`, `date_published`, `page_url`.
+
+## Avant de commencer
+
+### Outils possibles (vous choisissez...)
+
+- `quanteda` : corpus, DFM/DTM, fréquences, **collocations**, **cooccurrences**, **keyness**, lisibilité (via `quanteda.textstats`).
+- `tidytext` : travail en format _tidy_ (une ligne = un token), n-grammes simples.
+- `stopwords` : listes de **mots vides** (FR).
+- `stringr` / `dplyr` / `ggplot2` : manipulations + graphiques.
+- `udpipe` : **POS tagging** + **dépendances** (Universal Dependencies) en fin de TP (petit aperçu).
+
+> 💡 **Conseil** : restez simple, commentez vos choix, entraînez-vous à construire un rapport d'analyse.
+
+---
+
+## Préambule - Packages & lecture des données
+
+```{r}
+# install.packages(c("tidyverse","tidytext","stopwords","quanteda","quanteda.textstats","quanteda.textplots","udpipe","ggwordcloud"))
+
+library(tidyverse)
+library(tidytext)
+library(stopwords)
+library(quanteda)
+library(quanteda.textstats)
+library(quanteda.textplots)
+library(udpipe)
+library(ggwordcloud)
+```
+
+> Charger les avis depuis le chemin demandé.
+
+```{r}
+reviews <- readr::read_csv("data/reviews_trustpilot_clean_pseudo.csv",
+                           show_col_types = FALSE, progress = FALSE)
+dim(reviews)
+dplyr::glimpse(reviews)
+head(reviews, 3)
+```
+
+---
+
+## Ex. 1 - Inspecter les données
+
+> Repérez ce qui ressemble au **texte d’avis**, notez la présence d’une **date** et d’une **note** (rating).
+
+```{r}
+names(reviews)
+summary(reviews$rating)
+summary(reviews$date_published)
+```
+
+---
+
+## Ex. 2 - Choisir la colonne texte
+
+> On utilisera **`review`** comme colonne texte.
+
+```{r}
+stopifnot("review" %in% names(reviews))  # sécurité : la colonne doit exister
+table(!is.na(reviews$review))
+```
+
+---
+
+## Ex. 3 - Nettoyage léger (sans excès)
+
+> Minuscules, espaces en trop, URLs basiques. **On garde** hashtags/mentions/émojis.
+
+```{r}
+reviews <- reviews |>
+  mutate(txt = review |> as.character() |> stringr::str_squish() |> tolower() |>
+           stringr::str_replace_all("http\\S+|www\\.[^\\s]+", " "))
+
+head(reviews$txt, 5)
+```
+
+---
+
+## Ex. 4 - Volumétrie simple
+
+> Mesurez longueur approximative (caractères / mots).
+
+```{r}
+reviews <- reviews |>
+  mutate(n_char = nchar(txt),
+         n_words = stringr::str_count(txt, "\\S+"))
+
+summary(reviews[, c("n_char","n_words")])
+```
+
+---
+
+## Ex. 5 - Histogramme de la longueur (mots)
+
+> Distribution + moyenne (ligne pointillée).
+
+```{r}
+avg <- mean(reviews$n_words, na.rm = TRUE)
+ggplot(reviews, aes(n_words)) +
+  geom_histogram(bins = 40, boundary = 0) +
+  geom_vline(xintercept = avg, linetype = 2) +
+  labs(x = "Nombre de mots par avis", y = "Fréquence",
+       title = paste0("Distribution de la longueur (mots) - moyenne ≈ ", round(avg,1)))
+```
+
+---
+
+## Ex. 6 - Tokenisation (format tidy)
+
+> Une ligne = un mot. Conserver hashtags/mentions/émojis, retirer vides.
+
+```{r}
+tokens_tbl <- reviews |>
+  select(review_id, txt) |>
+  tidytext::unnest_tokens(token, txt, token = "words", to_lower = FALSE) |>
+  filter(token != "")
+
+head(tokens_tbl, 10)
+```
+
+---
+
+## Ex. 7 - Stopwords FR & filtres utiles
+
+> Enlevez **stopwords** FR, supprimez tokens numériques, gardez mots de ≥2 lettres (hors `#`/`@`).
+
+```{r}
+sw_fr <- stopwords::stopwords("fr", source = "stopwords-iso")
+
+tokens_clean <- tokens_tbl |>
+  filter(!(token %in% sw_fr)) |>
+  filter(!stringr::str_detect(token, "^\\d+$")) |>
+  filter(stringr::str_detect(token, "^#|^@|^[\\p{L}’'\\-]{2,}$"))
+
+head(tokens_clean, 10)
+```
+
+---
+
+## Ex. 8 - Fréquences & Top 20
+
+```{r}
+freq <- tokens_clean |>
+  count(token, sort = TRUE)
+
+freq %>% slice(1:20)
+```
+
+```{r}
+ggplot(freq %>% slice(1:20), aes(x = reorder(token, n), y = n)) +
+  geom_col() + coord_flip() +
+  labs(x = NULL, y = "Fréquence", title = "Top 20 des tokens (après nettoyage)")
+```
+
+---
+
+## Ex. 9 - Petite Zipf
+
+> Rang + fréquence relative → nuage log–log.
+
+```{r}
+zipf <- freq |>
+  mutate(rank = row_number(),
+         freq_rel = n / sum(n))
+
+ggplot(zipf, aes(x = log10(rank), y = log10(freq_rel))) +
+  geom_point(alpha = .5) +
+  labs(x = "log10(rang)", y = "log10(fr_rel)", title = "Approximation loi de Zipf")
+```
+
+---
+
+## Ex. 10 - Diversité lexicale (TTR) par avis
+
+```{r}
+ttr_by_doc <- tokens_clean |>
+  group_by(review_id) |>
+  summarise(types = n_distinct(token), tokens = n(), TTR = types / tokens, .groups = "drop")
+
+summary(ttr_by_doc$TTR)
+```
+
+---
+
+## Ex. 11 - Bigrams (2-grammes)
+
+```{r}
+bigrams <- reviews |>
+  select(review_id, txt) |>
+  tidytext::unnest_tokens(bigram, txt, token = "ngrams", n = 2)
+
+bigrams_sep <- bigrams |>
+  tidyr::separate(bigram, into = c("w1","w2"), sep = " ")
+
+bigrams_clean <- bigrams_sep |>
+  filter(!(w1 %in% sw_fr), !(w2 %in% sw_fr))
+
+top_bi <- bigrams_clean |>
+  tidyr::unite("bigram", w1, w2, sep = " ") |>
+  count(bigram, sort = TRUE)
+
+top_bi %>% slice(1:20)
+```
+
+---
+
+## Ex. 12 - Keyness Index (tokens)
+
+```{r}
+# 0) Données : on écarte les avis = 3
+reviews_key <- reviews %>%
+  filter(!is.na(rating), rating != 3) %>%
+  mutate(
+    group = if_else(rating > 3, "high", "low"),
+    text_col = txt
+  )
+
+# 1) Corpus & tokens (FR) - garder une partie de la négation
+corp <- corpus(reviews_key, text_field = "text_col")
+toks <- tokens(corp, remove_punct = TRUE, remove_numbers = TRUE, remove_symbols = TRUE) %>%
+  tokens_tolower()
+
+sw_keep <- setdiff(stopwords("fr", source = "stopwords-iso"),
+                   c("ne","pas","jamais","plus"))
+toks <- tokens_remove(toks, sw_keep)
+
+# Retirer la marque
+toks <- tokens_remove(toks, pattern = "carrefour*", valuetype = "glob")
+
+# 2) DFM + trimming
+dfm_mat <- dfm(toks) %>% dfm_trim(min_termfreq = 5)
+
+# 3) Keyness (log-likelihood) : cible = avis positifs (>3)
+K <- textstat_keyness(
+  dfm_mat,
+  target  = docvars(dfm_mat, "group") == "high",
+  measure = "lr"  # -> colonne 'G2'
+)
+
+# 4) Côté >3 vs <3 : via fréquences relatives lissées (0.5)
+tot_t <- sum(K$n_target); tot_r <- sum(K$n_reference)
+K2 <- K %>%
+  mutate(side = if_else(
+    (n_target + 0.5) / (tot_t + 1) > (n_reference + 0.5) / (tot_r + 1),
+    "pos",  # surreprésenté dans >3
+    "neg"   # surreprésenté dans <3
+  ))
+
+# 5) Tops (classement par G2)
+top_pos <- K2 %>% filter(side == "pos") %>% slice_max(G2, n = 30)
+top_neg <- K2 %>% filter(side == "neg") %>% slice_max(G2, n = 30)
+
+# 6) Visualisation
+textplot_keyness(K, n = 20)
+
+# 7) Tables
+top_pos
+top_neg
+```
+
+---
+
+## Ex. 13 - Aperçu POS (UDPipe) sur un échantillon
+
+> Annotez ~300 avis (ou tout si moins) avec un modèle FR. Si besoin, **téléchargez** un modèle (bloc en bas).
+
+```{r}
+set.seed(123)
+sample_ids <- sample(unique(reviews$review_id), size = min(300, nrow(reviews)))
+sample_txt <- reviews |> filter(review_id %in% sample_ids) |> pull(txt)
+
+# 1) Charger un modèle FR déjà présent en local si disponible
+ud_model <- udpipe_load_model("french-gsd-ud-2.5-191206.udpipe")
+
+# 2) Annotation
+ann <- udpipe_annotate(ud_model, x = sample_txt, doc_id = as.character(sample_ids))
+pos <- as_tibble(ann)
+
+# Exemple de comptage des UPOS :
+pos |> count(upos, sort = TRUE)
+```
+
+---
+
+## Ex. 13b - Keyness sur lemmes (UD, sous-échantillon)
+
+```{r}
+# On se limite aux doc annotés dans `pos` + on rattache la polarité (>3 / <3)
+sw_fr_keepneg <- setdiff(stopwords("fr", source = "stopwords-iso"),
+                         c("pas","jamais","plus"))
+
+grp_tbl <- reviews %>%
+  transmute(doc_id = as.character(review_id),
+            rating,
+            group = if_else(!is.na(rating) & rating > 3, "high",
+                            if_else(!is.na(rating) & rating < 3, "low", NA_character_))) %>%
+  filter(!is.na(group))
+
+lem_tbl <- pos %>%
+  mutate(doc_id = as.character(doc_id),
+         lemma  = tolower(lemma)) %>%
+  filter(upos %in% c("NOUN","VERB","ADJ","ADV"),
+         !is.na(lemma), nzchar(lemma)) %>%
+  filter(!(lemma %in% sw_fr_keepneg)) %>%
+  filter(!stringr::str_detect(lemma, "^carrefour")) %>%
+  inner_join(grp_tbl, by = "doc_id")
+
+# Agrégation doc → texte (concat lemmes)
+lem_docs <- lem_tbl %>%
+  group_by(doc_id) %>%
+  summarise(group = dplyr::first(group),
+            text  = paste(lemma, collapse = " "),
+            .groups = "drop") %>%
+  filter(nchar(text) > 0)
+
+# Corpus → tokens → DFM
+corp_l <- corpus(lem_docs, text_field = "text", docid_field = "doc_id")
+toks_l <- tokens(corp_l, remove_punct = TRUE, remove_numbers = TRUE, remove_symbols = TRUE)
+toks_l <- tokens_remove(toks_l, pattern = "carrefour*", valuetype = "glob")
+toks_l <- toks_l[ntoken(toks_l) > 0]
+dfm_l <- dfm(toks_l) %>% dfm_trim(min_termfreq = 5)
+
+K_l <- textstat_keyness(
+  dfm_l,
+  target  = docvars(dfm_l, "group") == "high",
+  measure = "lr"
+)
+
+# Côté pos/neg
+tot_t <- sum(K_l$n_target); tot_r <- sum(K_l$n_reference)
+K_l2 <- K_l %>%
+  mutate(side = if_else(
+    (n_target + 0.5)/(tot_t + 1) > (n_reference + 0.5)/(tot_r + 1),
+    "pos","neg"
+  ))
+
+top_pos_lem <- K_l2 %>% filter(side == "pos") %>% slice_max(G2, n = 30)
+top_neg_lem <- K_l2 %>% filter(side == "neg") %>% slice_max(G2, n = 30)
+
+textplot_keyness(K_l, n = 20)
+
+top_pos_lem
+top_neg_lem
+```
+
+---
+
+## Ex. 14 - Couples adjectif → nom (*amod*)
+
+```{r}
+amod <- pos |>
+   filter(dep_rel == "amod", upos == "ADJ") |>
+   left_join(pos |> select(doc_id, sentence_id, token_id, head_lemma = lemma, head_upos = upos),
+             by = c("doc_id","sentence_id","head_token_id" = "token_id")) |>
+   filter(head_upos == "NOUN")
+
+amod_pairs <- amod |>
+   count(lemma, head_lemma, sort = TRUE)
+
+amod_pairs %>% slice(1:20)
+```
+
+---
+
+## Ex. 15 - Wordcloud par rating (1 vs 5)
+
+```{r}
+# 1) Garder uniquement 1★ et 5★
+# 1) Garder uniquement 1★ et 5★
+reviews_adj <- reviews %>%
+  dplyr::filter(!is.na(rating), rating %in% c(1, 5)) %>%
+  dplyr::mutate(
+    group  = dplyr::if_else(rating == 5, "star5", "star1"),
+    doc_id = as.character(review_id),
+    text   = txt
+  )
+
+# 2) Charger le modèle FR
+ud_model <- udpipe::udpipe_load_model("french-gsd-ud-2.5-191206.udpipe")
+
+# 3) Annotation UDPipe
+ann <- udpipe::udpipe_annotate(ud_model, x = reviews_adj$text, doc_id = reviews_adj$doc_id)
+pos <- tibble::as_tibble(ann)
+
+# 4) Ne garder que les ADJECTIFS + nettoyage + retrait de la marque
+adj <- pos %>%
+  dplyr::filter(upos == "ADJ") %>%
+  dplyr::transmute(doc_id = as.character(doc_id),
+                   lemma  = tolower(lemma)) %>%
+  dplyr::filter(!is.na(lemma), nzchar(lemma)) %>%
+  dplyr::filter(stringr::str_detect(lemma, "^[\\p{L}’'-]{2,}$")) %>%
+  dplyr::filter(!stringr::str_detect(lemma, "^carrefour"))
+
+# 5) Rattacher le groupe et compter par groupe
+adj_grp <- adj %>%
+  dplyr::inner_join(reviews_adj %>% dplyr::select(doc_id, group), by = "doc_id") %>%
+  dplyr::count(group, lemma, name = "frequency", sort = TRUE) %>%
+  dplyr::group_by(group) %>%
+  dplyr::mutate(rank = dplyr::row_number()) %>%
+  dplyr::ungroup()
+
+# 6) Limiter pour lisibilité
+N <- 200
+adj_top <- adj_grp %>%
+  dplyr::group_by(group) %>%
+  dplyr::slice_max(frequency, n = N) %>%
+  dplyr::ungroup()
+
+# 7) Séparer 5★ / 1★
+adj_5 <- adj_top %>% dplyr::filter(group == "star5")
+adj_1 <- adj_top %>% dplyr::filter(group == "star1")
+
+# 8) Deux wordclouds (pas de facet)
+set.seed(42)
+p_5 <- ggplot2::ggplot(adj_5, ggplot2::aes(label = lemma)) +
+  ggwordcloud::geom_text_wordcloud(ggplot2::aes(size = frequency, color = rank)) +
+  ggplot2::scale_size_area(max_size = 12) +                 # <— ICI
+  ggplot2::scale_color_gradient(low = "darkblue", high = "red") +
+  ggplot2::theme_minimal() +
+  ggplot2::labs(title = "Adjectifs — avis = 5★",
+                subtitle = "Lemmes (UDPipe), marque retirée",
+                size = "Fréquence", color = "Rang")
+
+set.seed(43)
+p_1 <- ggplot2::ggplot(adj_1, ggplot2::aes(label = lemma)) +
+  ggwordcloud::geom_text_wordcloud(ggplot2::aes(size = frequency, color = rank)) +
+  ggplot2::scale_size_area(max_size = 12) +                 # <— ET LÀ
+  ggplot2::scale_color_gradient(low = "darkblue", high = "red") +
+  ggplot2::theme_minimal() +
+  ggplot2::labs(title = "Adjectifs — avis = 1★",
+                subtitle = "Lemmes (UDPipe), marque retirée",
+                size = "Fréquence", color = "Rang")
+
+# 9) Afficher
+p_5
+p_1
+
+```
+
+---
+
+## Ex. 15 - Mini-interprétation (3–5 puces)
+
+> - 2 thèmes saillants (tokens/bigrams)  
+> - 2 adjectifs les plus associés (Ex. 14) + intérêt marketing  
+> - 1 piste d’amélioration du parcours (livraison, SAV, promo, etc.)
+
+---
+
+## (Option) Petit détour par `quanteda` (DFM rapide)
+
+```{r}
+corp <- corpus(reviews, text_field = "txt")
+toks <- tokens(corp, remove_punct = TRUE, remove_numbers = TRUE) |>
+  tokens_tolower() |>
+  tokens_remove(sw_fr)
+
+dfm_mat <- dfm(toks)
+head(quanteda.textstats::textstat_frequency(dfm_mat), 20)
+
+# Collocations (bigrams) :
+quanteda.textstats::textstat_collocations(toks, size = 2) |>
+   arrange(desc(lambda)) |>
+   head(20)
+```
+
+---
+
+## 📥 Télécharger un modèle FR pour UDPipe (au cas où)
+
+Le fichier du modèle FR est disponible à la racine du cours 4 et se nomme `french-gsd-ud-2.5-191206.udpipe`.
+Si besoin de le charger localement ou de le télécharger puis de le charger :
+
+```{r}
+# OPTION A - Téléchargement automatique
+# m <- udpipe_download_model(language = "french-gsd")
+# ud_model <- udpipe_load_model(m$file_model)
+
+# OPTION B - Chargement depuis un fichier local
+# ud_model <- udpipe_load_model("french-gsd-ud-2.5-191206.udpipe")
+```

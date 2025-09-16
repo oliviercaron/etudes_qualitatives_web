@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 cours_3/trustpilot_scraper_v2.py
 cours_4/TP_text_mining_trustpilot_corrige.qmd
 cours_4/TP_text_mining_trustpilot_corrige.html
@@ -6,3 +7,6 @@ cours_5/TP5_sentiment_ML_corrigé.html
 cours_5/TP5_sentiment_ML_corrigé.qmd
 cours_5/tp5_corrige_simple.html
 cours_5/data/reviews_trustpilot_lemmatised_tokens.csv
+=======
+cours_3/trustpilot_scraper_v2.py
+>>>>>>> 6df5a444b02f1e83b820d37ae0c9ee24413735e9
