@@ -1,9 +1,9 @@
 ---
-title: "TP - Introduction douce au text mining (avis Carrefour / Trustpilot) - Énoncé"
+title: "TP - Intro TAL (avis Carrefour / Trustpilot) - Énoncé"
 subtitle: "R + Quarto - version à compléter"
 author:
-  - name: "Olivier Caron"
-    affiliations: "Paris Dauphine - PSL"
+  - name: "Vos noms et prénoms"
+    affiliations: "IAE Paris-Est"
 format:
   html:
     embed-resources: true

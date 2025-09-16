@@ -8,7 +8,7 @@
 
 <meta name="author" content="Olivier Caron">
 
-<title>TP — Introduction douce au text mining (avis Carrefour / Trustpilot) — Énoncé</title>
+<title>TP - Intro TAL (avis Carrefour / Trustpilot) - Énoncé</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3089,24 +3089,24 @@ vertical-align: -.125em;
    
   <ul class="collapse">
   <li><a href="#avant-de-commencer" id="toc-avant-de-commencer" class="nav-link active" data-scroll-target="#avant-de-commencer">Avant de commencer</a></li>
-  <li><a href="#préambule-packages-lecture-des-données" id="toc-préambule-packages-lecture-des-données" class="nav-link" data-scroll-target="#préambule-packages-lecture-des-données">Préambule — Packages &amp; lecture des données</a></li>
-  <li><a href="#ex.-1-inspecter-les-données" id="toc-ex.-1-inspecter-les-données" class="nav-link" data-scroll-target="#ex.-1-inspecter-les-données">Ex. 1 — Inspecter les données</a></li>
-  <li><a href="#ex.-2-choisir-la-colonne-texte" id="toc-ex.-2-choisir-la-colonne-texte" class="nav-link" data-scroll-target="#ex.-2-choisir-la-colonne-texte">Ex. 2 — Choisir la colonne texte</a></li>
-  <li><a href="#ex.-3-nettoyage-léger-sans-excès" id="toc-ex.-3-nettoyage-léger-sans-excès" class="nav-link" data-scroll-target="#ex.-3-nettoyage-léger-sans-excès">Ex. 3 — Nettoyage léger (sans excès)</a></li>
-  <li><a href="#ex.-4-volumétrie-simple" id="toc-ex.-4-volumétrie-simple" class="nav-link" data-scroll-target="#ex.-4-volumétrie-simple">Ex. 4 — Volumétrie simple</a></li>
-  <li><a href="#ex.-5-histogramme-de-la-longueur-mots" id="toc-ex.-5-histogramme-de-la-longueur-mots" class="nav-link" data-scroll-target="#ex.-5-histogramme-de-la-longueur-mots">Ex. 5 — Histogramme de la longueur (mots)</a></li>
-  <li><a href="#ex.-6-tokenisation-format-tidy" id="toc-ex.-6-tokenisation-format-tidy" class="nav-link" data-scroll-target="#ex.-6-tokenisation-format-tidy">Ex. 6 — Tokenisation (format tidy)</a></li>
-  <li><a href="#ex.-7-stopwords-fr-filtres-utiles" id="toc-ex.-7-stopwords-fr-filtres-utiles" class="nav-link" data-scroll-target="#ex.-7-stopwords-fr-filtres-utiles">Ex. 7 — Stopwords FR &amp; filtres utiles</a></li>
-  <li><a href="#ex.-8-fréquences-top-20" id="toc-ex.-8-fréquences-top-20" class="nav-link" data-scroll-target="#ex.-8-fréquences-top-20">Ex. 8 — Fréquences &amp; Top 20</a></li>
-  <li><a href="#ex.-9-petite-zipf" id="toc-ex.-9-petite-zipf" class="nav-link" data-scroll-target="#ex.-9-petite-zipf">Ex. 9 — Petite Zipf</a></li>
-  <li><a href="#ex.-10-diversité-lexicale-ttr-par-avis" id="toc-ex.-10-diversité-lexicale-ttr-par-avis" class="nav-link" data-scroll-target="#ex.-10-diversité-lexicale-ttr-par-avis">Ex. 10 — Diversité lexicale (TTR) par avis</a></li>
-  <li><a href="#ex.-11-bigrams-2-grammes" id="toc-ex.-11-bigrams-2-grammes" class="nav-link" data-scroll-target="#ex.-11-bigrams-2-grammes">Ex. 11 — Bigrams (2-grammes)</a></li>
-  <li><a href="#ex.-12-keyness-index-tokens" id="toc-ex.-12-keyness-index-tokens" class="nav-link" data-scroll-target="#ex.-12-keyness-index-tokens">Ex. 12 — Keyness Index (tokens)</a></li>
-  <li><a href="#ex.-13-aperçu-pos-udpipe-sur-un-échantillon" id="toc-ex.-13-aperçu-pos-udpipe-sur-un-échantillon" class="nav-link" data-scroll-target="#ex.-13-aperçu-pos-udpipe-sur-un-échantillon">Ex. 13 — Aperçu POS (UDPipe) sur un échantillon</a></li>
-  <li><a href="#ex.-13b-keyness-sur-lemmes-ud-sous-échantillon" id="toc-ex.-13b-keyness-sur-lemmes-ud-sous-échantillon" class="nav-link" data-scroll-target="#ex.-13b-keyness-sur-lemmes-ud-sous-échantillon">Ex. 13b — Keyness sur lemmes (UD, sous-échantillon)</a></li>
-  <li><a href="#ex.-14-couples-adjectif-nom-amod" id="toc-ex.-14-couples-adjectif-nom-amod" class="nav-link" data-scroll-target="#ex.-14-couples-adjectif-nom-amod">Ex. 14 — Couples adjectif → nom (<em>amod</em>)</a></li>
-  <li><a href="#ex.-15-wordcloud-par-rating-5-vs-1" id="toc-ex.-15-wordcloud-par-rating-5-vs-1" class="nav-link" data-scroll-target="#ex.-15-wordcloud-par-rating-5-vs-1">Ex. 15 — Wordcloud par rating (5 vs 1)</a></li>
-  <li><a href="#ex.-15-mini-interprétation-35-puces" id="toc-ex.-15-mini-interprétation-35-puces" class="nav-link" data-scroll-target="#ex.-15-mini-interprétation-35-puces">Ex. 15 — Mini-interprétation (3–5 puces)</a></li>
+  <li><a href="#préambule---packages-lecture-des-données" id="toc-préambule---packages-lecture-des-données" class="nav-link" data-scroll-target="#préambule---packages-lecture-des-données">Préambule - Packages &amp; lecture des données</a></li>
+  <li><a href="#ex.-1---inspecter-les-données" id="toc-ex.-1---inspecter-les-données" class="nav-link" data-scroll-target="#ex.-1---inspecter-les-données">Ex. 1 - Inspecter les données</a></li>
+  <li><a href="#ex.-2---choisir-la-colonne-texte" id="toc-ex.-2---choisir-la-colonne-texte" class="nav-link" data-scroll-target="#ex.-2---choisir-la-colonne-texte">Ex. 2 - Choisir la colonne texte</a></li>
+  <li><a href="#ex.-3---nettoyage-léger-sans-excès" id="toc-ex.-3---nettoyage-léger-sans-excès" class="nav-link" data-scroll-target="#ex.-3---nettoyage-léger-sans-excès">Ex. 3 - Nettoyage léger (sans excès)</a></li>
+  <li><a href="#ex.-4---volumétrie-simple" id="toc-ex.-4---volumétrie-simple" class="nav-link" data-scroll-target="#ex.-4---volumétrie-simple">Ex. 4 - Volumétrie simple</a></li>
+  <li><a href="#ex.-5---histogramme-de-la-longueur-mots" id="toc-ex.-5---histogramme-de-la-longueur-mots" class="nav-link" data-scroll-target="#ex.-5---histogramme-de-la-longueur-mots">Ex. 5 - Histogramme de la longueur (mots)</a></li>
+  <li><a href="#ex.-6---tokenisation-format-tidy" id="toc-ex.-6---tokenisation-format-tidy" class="nav-link" data-scroll-target="#ex.-6---tokenisation-format-tidy">Ex. 6 - Tokenisation (format tidy)</a></li>
+  <li><a href="#ex.-7---stopwords-fr-filtres-utiles" id="toc-ex.-7---stopwords-fr-filtres-utiles" class="nav-link" data-scroll-target="#ex.-7---stopwords-fr-filtres-utiles">Ex. 7 - Stopwords FR &amp; filtres utiles</a></li>
+  <li><a href="#ex.-8---fréquences-top-20" id="toc-ex.-8---fréquences-top-20" class="nav-link" data-scroll-target="#ex.-8---fréquences-top-20">Ex. 8 - Fréquences &amp; Top 20</a></li>
+  <li><a href="#ex.-9---petite-zipf" id="toc-ex.-9---petite-zipf" class="nav-link" data-scroll-target="#ex.-9---petite-zipf">Ex. 9 - Petite Zipf</a></li>
+  <li><a href="#ex.-10---diversité-lexicale-ttr-par-avis" id="toc-ex.-10---diversité-lexicale-ttr-par-avis" class="nav-link" data-scroll-target="#ex.-10---diversité-lexicale-ttr-par-avis">Ex. 10 - Diversité lexicale (TTR) par avis</a></li>
+  <li><a href="#ex.-11---bigrams-2-grammes" id="toc-ex.-11---bigrams-2-grammes" class="nav-link" data-scroll-target="#ex.-11---bigrams-2-grammes">Ex. 11 - Bigrams (2-grammes)</a></li>
+  <li><a href="#ex.-12---keyness-index-tokens" id="toc-ex.-12---keyness-index-tokens" class="nav-link" data-scroll-target="#ex.-12---keyness-index-tokens">Ex. 12 - Keyness Index (tokens)</a></li>
+  <li><a href="#ex.-13---aperçu-pos-udpipe-sur-un-échantillon" id="toc-ex.-13---aperçu-pos-udpipe-sur-un-échantillon" class="nav-link" data-scroll-target="#ex.-13---aperçu-pos-udpipe-sur-un-échantillon">Ex. 13 - Aperçu POS (UDPipe) sur un échantillon</a></li>
+  <li><a href="#ex.-13b---keyness-sur-lemmes-ud-sous-échantillon" id="toc-ex.-13b---keyness-sur-lemmes-ud-sous-échantillon" class="nav-link" data-scroll-target="#ex.-13b---keyness-sur-lemmes-ud-sous-échantillon">Ex. 13b - Keyness sur lemmes (UD, sous-échantillon)</a></li>
+  <li><a href="#ex.-14---couples-adjectif-nom-amod" id="toc-ex.-14---couples-adjectif-nom-amod" class="nav-link" data-scroll-target="#ex.-14---couples-adjectif-nom-amod">Ex. 14 - Couples adjectif → nom (<em>amod</em>)</a></li>
+  <li><a href="#ex.-15---wordcloud-par-rating-5-vs-1" id="toc-ex.-15---wordcloud-par-rating-5-vs-1" class="nav-link" data-scroll-target="#ex.-15---wordcloud-par-rating-5-vs-1">Ex. 15 - Wordcloud par rating (5 vs 1)</a></li>
+  <li><a href="#ex.-15---mini-interprétation-35-puces" id="toc-ex.-15---mini-interprétation-35-puces" class="nav-link" data-scroll-target="#ex.-15---mini-interprétation-35-puces">Ex. 15 - Mini-interprétation (3–5 puces)</a></li>
   <li><a href="#option-petit-détour-par-quanteda-dfm-rapide" id="toc-option-petit-détour-par-quanteda-dfm-rapide" class="nav-link" data-scroll-target="#option-petit-détour-par-quanteda-dfm-rapide">(Option) Petit détour par <code>quanteda</code> (DFM rapide)</a></li>
   <li><a href="#télécharger-un-modèle-fr-pour-udpipe-au-cas-où" id="toc-télécharger-un-modèle-fr-pour-udpipe-au-cas-où" class="nav-link" data-scroll-target="#télécharger-un-modèle-fr-pour-udpipe-au-cas-où">📥 Télécharger un modèle FR pour UDPipe (au cas où)</a></li>
   </ul>
@@ -3116,8 +3116,8 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TP — Introduction douce au text mining (avis Carrefour / Trustpilot) — Énoncé</h1>
-<p class="subtitle lead">R + Quarto — version à compléter</p>
+<h1 class="title">TP - Intro TAL (avis Carrefour / Trustpilot) - Énoncé</h1>
+<p class="subtitle lead">R + Quarto - version à compléter</p>
 </div>
 
 
@@ -3172,8 +3172,8 @@ Se familiariser pas à pas avec l’analyse de texte en R sur des avis clients (
 <hr>
 </section>
 </section>
-<section id="préambule-packages-lecture-des-données" class="level2">
-<h2 class="anchored" data-anchor-id="préambule-packages-lecture-des-données">Préambule — Packages &amp; lecture des données</h2>
+<section id="préambule---packages-lecture-des-données" class="level2">
+<h2 class="anchored" data-anchor-id="préambule---packages-lecture-des-données">Préambule - Packages &amp; lecture des données</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># À FAIRE : charger les packages utiles listés ci-dessus</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -3182,15 +3182,15 @@ Se familiariser pas à pas avec l’analyse de texte en R sur des avis clients (
 </div>
 <hr>
 </section>
-<section id="ex.-1-inspecter-les-données" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-1-inspecter-les-données">Ex. 1 — Inspecter les données</h2>
+<section id="ex.-1---inspecter-les-données" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-1---inspecter-les-données">Ex. 1 - Inspecter les données</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># À FAIRE : explorer noms de colonnes, rating, date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
-<section id="ex.-2-choisir-la-colonne-texte" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-2-choisir-la-colonne-texte">Ex. 2 — Choisir la colonne texte</h2>
+<section id="ex.-2---choisir-la-colonne-texte" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-2---choisir-la-colonne-texte">Ex. 2 - Choisir la colonne texte</h2>
 <blockquote class="blockquote">
 <p>On utilisera <strong><code>review</code></strong> comme colonne texte (hypothèse du jeu de données).</p>
 </blockquote>
@@ -3199,8 +3199,8 @@ Se familiariser pas à pas avec l’analyse de texte en R sur des avis clients (
 </div>
 <hr>
 </section>
-<section id="ex.-3-nettoyage-léger-sans-excès" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-3-nettoyage-léger-sans-excès">Ex. 3 — Nettoyage léger (sans excès)</h2>
+<section id="ex.-3---nettoyage-léger-sans-excès" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-3---nettoyage-léger-sans-excès">Ex. 3 - Nettoyage léger (sans excès)</h2>
 <blockquote class="blockquote">
 <p>Minuscules, espaces en trop, URLs basiques. <strong>On garde</strong> hashtags/mentions/émojis.</p>
 </blockquote>
@@ -3209,64 +3209,64 @@ Se familiariser pas à pas avec l’analyse de texte en R sur des avis clients (
 </div>
 <hr>
 </section>
-<section id="ex.-4-volumétrie-simple" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-4-volumétrie-simple">Ex. 4 — Volumétrie simple</h2>
+<section id="ex.-4---volumétrie-simple" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-4---volumétrie-simple">Ex. 4 - Volumétrie simple</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># À FAIRE : n_char, n_words + summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
-<section id="ex.-5-histogramme-de-la-longueur-mots" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-5-histogramme-de-la-longueur-mots">Ex. 5 — Histogramme de la longueur (mots)</h2>
+<section id="ex.-5---histogramme-de-la-longueur-mots" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-5---histogramme-de-la-longueur-mots">Ex. 5 - Histogramme de la longueur (mots)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># À FAIRE : histogramme + ligne pointillée en moyenne</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
-<section id="ex.-6-tokenisation-format-tidy" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-6-tokenisation-format-tidy">Ex. 6 — Tokenisation (format tidy)</h2>
+<section id="ex.-6---tokenisation-format-tidy" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-6---tokenisation-format-tidy">Ex. 6 - Tokenisation (format tidy)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># À FAIRE : unnest_tokens(words) sur `txt` -&gt; `tokens_tbl`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
-<section id="ex.-7-stopwords-fr-filtres-utiles" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-7-stopwords-fr-filtres-utiles">Ex. 7 — Stopwords FR &amp; filtres utiles</h2>
+<section id="ex.-7---stopwords-fr-filtres-utiles" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-7---stopwords-fr-filtres-utiles">Ex. 7 - Stopwords FR &amp; filtres utiles</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># À FAIRE : retirer stopwords FR, numériques, ne garder que mots valides</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
-<section id="ex.-8-fréquences-top-20" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-8-fréquences-top-20">Ex. 8 — Fréquences &amp; Top 20</h2>
+<section id="ex.-8---fréquences-top-20" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-8---fréquences-top-20">Ex. 8 - Fréquences &amp; Top 20</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># À FAIRE : compter, afficher top 20 + barplot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
-<section id="ex.-9-petite-zipf" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-9-petite-zipf">Ex. 9 — Petite Zipf</h2>
+<section id="ex.-9---petite-zipf" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-9---petite-zipf">Ex. 9 - Petite Zipf</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># À FAIRE : calculer rang + fréquence relative et tracer en log-log</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
-<section id="ex.-10-diversité-lexicale-ttr-par-avis" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-10-diversité-lexicale-ttr-par-avis">Ex. 10 — Diversité lexicale (TTR) par avis</h2>
+<section id="ex.-10---diversité-lexicale-ttr-par-avis" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-10---diversité-lexicale-ttr-par-avis">Ex. 10 - Diversité lexicale (TTR) par avis</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># À FAIRE : calculer TTR par review_id</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
-<section id="ex.-11-bigrams-2-grammes" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-11-bigrams-2-grammes">Ex. 11 — Bigrams (2-grammes)</h2>
+<section id="ex.-11---bigrams-2-grammes" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-11---bigrams-2-grammes">Ex. 11 - Bigrams (2-grammes)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># À FAIRE : ngrams=2 -&gt; nettoyer -&gt; top 20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
-<section id="ex.-12-keyness-index-tokens" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-12-keyness-index-tokens">Ex. 12 — Keyness Index (tokens)</h2>
+<section id="ex.-12---keyness-index-tokens" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-12---keyness-index-tokens">Ex. 12 - Keyness Index (tokens)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># À FAIRE :</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># - filtrer avis != 3, créer `group` (high/low) et `text_col=txt`</span></span>
@@ -3277,8 +3277,8 @@ Se familiariser pas à pas avec l’analyse de texte en R sur des avis clients (
 </div>
 <hr>
 </section>
-<section id="ex.-13-aperçu-pos-udpipe-sur-un-échantillon" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-13-aperçu-pos-udpipe-sur-un-échantillon">Ex. 13 — Aperçu POS (UDPipe) sur un échantillon</h2>
+<section id="ex.-13---aperçu-pos-udpipe-sur-un-échantillon" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-13---aperçu-pos-udpipe-sur-un-échantillon">Ex. 13 - Aperçu POS (UDPipe) sur un échantillon</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># À FAIRE :</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># - échantillonner ~300 review_id</span></span>
@@ -3288,8 +3288,8 @@ Se familiariser pas à pas avec l’analyse de texte en R sur des avis clients (
 </div>
 <hr>
 </section>
-<section id="ex.-13b-keyness-sur-lemmes-ud-sous-échantillon" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-13b-keyness-sur-lemmes-ud-sous-échantillon">Ex. 13b — Keyness sur lemmes (UD, sous-échantillon)</h2>
+<section id="ex.-13b---keyness-sur-lemmes-ud-sous-échantillon" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-13b---keyness-sur-lemmes-ud-sous-échantillon">Ex. 13b - Keyness sur lemmes (UD, sous-échantillon)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># À FAIRE :</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># - depuis `pos`, filtrer NOUN/VERB/ADJ/ADV, tolower(lemma)</span></span>
@@ -3300,8 +3300,8 @@ Se familiariser pas à pas avec l’analyse de texte en R sur des avis clients (
 </div>
 <hr>
 </section>
-<section id="ex.-14-couples-adjectif-nom-amod" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-14-couples-adjectif-nom-amod">Ex. 14 — Couples adjectif → nom (<em>amod</em>)</h2>
+<section id="ex.-14---couples-adjectif-nom-amod" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-14---couples-adjectif-nom-amod">Ex. 14 - Couples adjectif → nom (<em>amod</em>)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># À FAIRE :</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># - filtrer dep_rel==&quot;amod&quot;, upos==&quot;ADJ&quot;</span></span>
@@ -3309,8 +3309,8 @@ Se familiariser pas à pas avec l’analyse de texte en R sur des avis clients (
 </div>
 <hr>
 </section>
-<section id="ex.-15-wordcloud-par-rating-5-vs-1" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-15-wordcloud-par-rating-5-vs-1">Ex. 15 — Wordcloud par rating (5 vs 1)</h2>
+<section id="ex.-15---wordcloud-par-rating-5-vs-1" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-15---wordcloud-par-rating-5-vs-1">Ex. 15 - Wordcloud par rating (5 vs 1)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># À FAIRE :</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># - filtrer notes 5 et 1, group=high/low, text_col=txt</span></span>
@@ -3321,8 +3321,8 @@ Se familiariser pas à pas avec l’analyse de texte en R sur des avis clients (
 </div>
 <hr>
 </section>
-<section id="ex.-15-mini-interprétation-35-puces" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-15-mini-interprétation-35-puces">Ex. 15 — Mini-interprétation (3–5 puces)</h2>
+<section id="ex.-15---mini-interprétation-35-puces" class="level2">
+<h2 class="anchored" data-anchor-id="ex.-15---mini-interprétation-35-puces">Ex. 15 - Mini-interprétation (3–5 puces)</h2>
 <blockquote class="blockquote">
 <ul>
 <li>2 thèmes saillants (tokens/bigrams)<br>
@@ -3344,11 +3344,11 @@ Se familiariser pas à pas avec l’analyse de texte en R sur des avis clients (
 <section id="télécharger-un-modèle-fr-pour-udpipe-au-cas-où" class="level2">
 <h2 class="anchored" data-anchor-id="télécharger-un-modèle-fr-pour-udpipe-au-cas-où">📥 Télécharger un modèle FR pour UDPipe (au cas où)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OPTION A — Téléchargement automatique (à décommenter et exécuter)</span></span>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OPTION A - Téléchargement automatique (à décommenter et exécuter)</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># m &lt;- udpipe_download_model(language = &quot;french-gsd&quot;)</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ud_model &lt;- udpipe_load_model(m$file_model)</span></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># OPTION B — Chargement depuis un fichier local</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># OPTION B - Chargement depuis un fichier local</span></span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ud_model &lt;- udpipe_load_model(&quot;french-gsd-ud-2.5-191206.udpipe&quot;)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>

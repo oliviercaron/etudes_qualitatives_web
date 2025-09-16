@@ -1,0 +1,179 @@
+---
+title: "TP5 - Analyse de sentiment & introduction au ML (R, tidyverse + tidymodels) - v5"
+subtitle: "M2 Marketing digital - Trustpilot (FR) - ÉNONCÉ"
+author:
+  - name: "Vos noms et prénoms"
+    affiliations: "IAE Paris-Est"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    toc-depth: 2
+    number-sections: false
+    fig-width: 8
+    fig-height: 6
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: false
+---
+
+
+> Objectif
+> Utiliser des méthodes classiques marketing d'analyse des sentiments/émotions/psycholinguistiique (LIWC, NRC, VADER pour l'anglais ou autre.)
+> Construire un pipeline d'analyse de sentiment sur des avis en français puis entraîner un modèle de classification binaire. Les consignes sont ouvertes: vous êtes libres des bibliothèques et fonctions. Documentez brièvement vos choix.
+
+**Règles**
+- Chaque section ci-dessous contient un chunk R avec un label. Écrivez votre code dans ce chunk.
+- Lorsque plusieurs approches existent, choisissez-en une et expliquez-la en commentaire.
+
+## Quelques informations :
+
+
+## 1) Chargement des données TripAdvisor, format RDS (propres à R)
+
+```{r}
+#| label: step-01-chargement-rds
+
+# - chargez les données brutes au format .rds
+# - vérifiez la structure et le nombre d'observations
+```
+
+## 2) Inspection des données, variable d'intérêt : "text"
+
+```{r}
+#| label: step-02-inspection-text
+
+# inspectez les colonnes disponibles, 
+# confirmez la présence d'une variable text et sa qualité (NA, longueur, etc.)
+# + éventuels graphes ou tableaux pour mieux comprendre les données, leur distribution etc
+# . (ex skim avec le package skimr). Vous pouvez utiliser table(), ou encore gt(),flextable(),reactable(),datatable() pour les tableaux.
+```
+
+## 3) NRC - polarité et émotions (méthode compatible)
+
+```{r}
+#| label: step-03-nrc-sentiment
+
+# - appliquez une méthode basée sur un lexique NRC ou équivalent
+# - calculez un score de polarité par avis et les émotions associées
+# - conservez une table avec id_avis, polarite, emotions
+```
+
+## 4) Distribution des mentions négatives et positives selon NRC
+
+```{r}
+#| label: step-04-nrc-distribution
+
+# - construisez des indicateurs neg/pos à partir des scores NRC
+# - visualisez la distribution par classes (par exemple: histogramme ou barplot)
+```
+
+## 5) Graphiques de synthèse
+
+```{r}
+#| label: step-05-graphs-synthese
+#| 
+# - proposez au moins deux graphiques utiles (ex: top émotions, évolution, etc.)
+# - commentez brièvement ce que montre chaque graphique
+```
+
+## 6) Utilisation de LIWC (dictionnaire fourni)
+
+```{r}
+#| label: step-06-liwc-analyse
+
+# - utilisez le dictionnaire dic/french_liwc_dictionnary.dic pour analyser le texte
+# - produisez des variables agrégées par avis (catégories LIWC pertinentes)
+```
+
+## 7) Graphiques LIWC
+
+```{r}
+#| label: step-07-liwc-graphs
+
+# - visualisez quelques catégories LIWC saillantes
+# - discutez rapidement l'intérêt des catégories retenues
+```
+
+## 8) Modèle supervisé: classification binaire du sentiment
+
+```{r}
+#| label: step-08-modele-binaire
+
+# - définissez la tâche de classification binaire (négatif vs positif)
+# - précisez brièvement les hypothèses et la cible
+```
+
+## 9) Création de features sentiment_bin et sentiment_ter
+
+```{r}
+#| label: step-09-crea-features-sentiment
+
+# - créez une variable binaire (par ex. 1=positif, 0=négatif)
+# - créez aussi une variable ternaire si utile (neg, neutre, pos)
+```
+
+## 10) Split train/test 80% (optionnel: validation croisée)
+
+```{r}
+#| label: step-10-split-validation
+
+# - séparez les données en train/test (80/20)
+# - si vous le souhaitez, ajoutez une validation croisée
+```
+
+## 11) Représentation texte: TF-IDF (jusqu'à ~15k tokens max, à adapter)
+
+```{r}
+#| label: step-11-tfidf-features
+
+# - construisez une matrice de caractéristiques TF-IDF
+# - contrôlez la dimensionnalité (vocabulaire max, ngrammes, seuils)
+```
+
+## 12) Modèle de classification (au choix)
+
+```{r}
+#| label: step-12-modele-clf
+
+# - entraînez au moins un modèle: régression logistique, SVM, Naive Bayes, Random Forest, etc.
+# - justifiez brièvement le choix du modèle et des hyperparamètres
+```
+
+## 13) Affichage des scores et choix de la métrique
+
+```{r}
+#| label: step-13-metrics
+
+# - évaluez les performances (ex: accuracy, f1, balanced accuracy, roc auc)
+# - expliquez la métrique principale retenue et pourquoi
+```
+
+## 14) Matrice de confusion
+
+```{r}
+#| label: step-14-confusion-matrix
+
+# - calculez et affichez la matrice de confusion sur le jeu de test
+# - interprétez les erreurs de classification
+```
+
+## 15) Score kappa interannotateur
+
+```{r}
+#| label: step-15-kappa
+
+# - calculez un score de type kappa pour évaluer l'accord au-delà du hasard
+# - discutez brièvement la lecture du kappa dans ce contexte
+```
+
+## 16) Analyse d'erreurs
+
+```{r}
+#| label: step-16-error-analysis
+
+# - identifiez quelques faux positifs et faux négatifs typiques
+# - proposez des pistes d'amélioration (features, modèle, données)
+```

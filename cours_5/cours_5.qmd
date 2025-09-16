@@ -53,7 +53,6 @@ editor:
     **règles**.
 -   Comprendre comment **adapter un lexique** à un domaine spécifique
     (induction *corpus-based*).
-    
 :::
 
 ::: {.column width="50%"}
@@ -75,7 +74,6 @@ editor:
     (IAA)**.
 -   **Évaluer** un système avec les bonnes métriques (**F1-macro**) en
     évitant les pièges (déséquilibre des classes).
-    
 :::
 :::::
 
@@ -150,23 +148,37 @@ connaissance du domaine et des attentes des consommateurs.
 
 ## Subjectivité, polarité et valence {style="font-size:0.75em"}
 
-Le langage des opinions a plusieurs facettes. Il est essentiel de distinguer si un texte exprime un point de vue (*subjectivité*) et si ce point de vue est positif ou négatif (*polarité* ou *valence*) [@pangOpinionMiningSentiment, p. 5].
+Le langage des opinions a plusieurs facettes. Il est essentiel de
+distinguer si un texte exprime un point de vue (*subjectivité*) et si ce
+point de vue est positif ou négatif (*polarité* ou *valence*)
+[@pangOpinionMiningSentiment, p. 5].
 
--   **Subjectivité** : c'est la présence d'un **état privé** de l'auteur (croyance, jugement, spéculation) par opposition à un **fait objectif** vérifiable.
+-   **Subjectivité** : c'est la présence d'un **état privé** de l'auteur
+    (croyance, jugement, spéculation) par opposition à un **fait
+    objectif** vérifiable.
     -   **Subjectif** : *"Je pense que ce film va plaire."*
     -   **Objectif** : *"Le film est sorti hier."*
-
--   **Polarité (ou valence)** : c'est l'**orientation** de l'opinion (+, -, 0). Le terme **valence**, issu de la psychologie, est souvent utilisé pour décrire cette qualité intrinsèquement positive ou négative d'un mot ou d'une expression.
-    -   **Subjectif SANS polarité claire** : *"Je me demande si ce produit est fiable."*
-    -   **Subjectif AVEC polarité** : *"Ce produit est incroyablement fiable."* (valence positive)
-
--   **Polarité (ou valence) contextuelle** : la polarité d'un mot n'est pas fixe ; elle dépend crucialement de son contexte. Les **négations**, **intensificateurs** ou même l'**aspect** concerné peuvent tout changer.
-    - *"long"* → valence positive pour une batterie, valence négative pour un temps d'attente.
+-   **Polarité (ou valence)** : c'est l'**orientation** de l'opinion (+,
+    -, 0). Le terme **valence**, issu de la psychologie, est souvent
+    utilisé pour décrire cette qualité intrinsèquement positive ou
+    négative d'un mot ou d'une expression.
+    -   **Subjectif SANS polarité claire** : *"Je me demande si ce
+        produit est fiable."*
+    -   **Subjectif AVEC polarité** : *"Ce produit est incroyablement
+        fiable."* (valence positive)
+-   **Polarité (ou valence) contextuelle** : la polarité d'un mot n'est
+    pas fixe ; elle dépend crucialement de son contexte. Les
+    **négations**, **intensificateurs** ou même l'**aspect** concerné
+    peuvent tout changer.
+    -   *"long"* → valence positive pour une batterie, valence négative
+        pour un temps d'attente.
 
 ::: {.callout-note title="Pourquoi cette distinction est-elle importante ?"}
-La plupart des systèmes d'analyse de sentiment fonctionnent en deux étapes : d'abord, ils filtrent les phrases pour ne garder que les **subjectives**, puis ils déterminent la **polarité/valence** de ces dernières.
+La plupart des systèmes d'analyse de sentiment fonctionnent en deux
+étapes : d'abord, ils filtrent les phrases pour ne garder que les
+**subjectives**, puis ils déterminent la **polarité/valence** de ces
+dernières.
 :::
-
 
 ------------------------------------------------------------------------
 
@@ -322,7 +334,7 @@ C'est l'approche la plus **actionnable** pour le marketing.
 :::
 :::::
 
-------------------------------------------------------------------------
+# Machine learning
 
 ## Deux approches pour automatiser l'analyse : ML vs Deep Learning
 
@@ -330,7 +342,7 @@ C'est l'approche la plus **actionnable** pour le marketing.
 
 ::::: columns
 ::: {.column width="50%" style="font-size:0.478em"}
-###  **Machine Learning "Classique"**
+### **Machine Learning "Classique"**
 
 -   **Principe** : l'humain choisit et prépare les *features*
     (caractéristiques) pertinentes du texte (ex: la présence de certains
@@ -511,12 +523,69 @@ numériques des textes aux étiquettes.
 :::
 ::::::
 
-::: {.callout-tip title="L'adaptation au domaine" style="font-size:1.1em"}
-Avec le ML, on peut **ajuster finement ("finetuner")** un modèle sur un
-domaine spécifique (ex: luxe, automobile, cosmétique). Le modèle apprend
-ainsi le jargon et les nuances propres à ce domaine, là où un
-dictionnaire générique échouerait.
+::: {.callout-tip title="L'adaptation au domaine" style="font-size:1em"}
+Avec le Machine Learning, chaque nouveau domaine (ex : luxe, automobile, cosmétique) nécessite de **réentraîner un modèle** avec des données propres à ce domaine.  
+Le modèle apprend ainsi le vocabulaire et les nuances spécifiques, là où un dictionnaire générique échouerait.
 :::
+
+
+
+## La bonne pratique du ML : séparer les données (Train/Validation/Test) {style="font-size:0.65em"}
+
+Pour évaluer un modèle, on doit mesurer sa capacité à **généraliser**,
+pas à **mémoriser**. La méthode standard est de diviser les données en
+trois ensembles distincts pour simuler un processus d'apprentissage et
+d'évaluation réaliste.
+
+:::::: columns
+::: {.column width="50%"}
+### La division en trois ensembles
+
+Notre "Gold Standard" est scindé pour assigner un rôle unique à chaque
+partie :
+
+
+\
+\
+
+-   **Jeu d'entraînement (Train Set) : \~70%** Le **manuel de cours**.
+    Le modèle utilise ces données pour **apprendre** les règles et les
+    associations. C'est sa seule source de connaissance.
+
+\
+
+-   **Jeu de validation (Validation Set) : \~15%** L'**examen blanc**.
+    On utilise cet ensemble pour **régler** les paramètres du modèle et
+    pour **comparer** différentes versions entre elles. Cela évite la
+    **fuite d'information** (*data leak*) vers le jeu de test.
+    
+\
+
+-   **Jeu de test (Test Set) : \~15%** L'**examen final**, sous scellé.
+    On n'utilise cet ensemble qu'**une seule et unique fois** à la toute
+    fin, pour obtenir la mesure de **performance finale** et objective
+    du modèle choisi.
+:::
+
+:::: {.column width="50%"}
+### Le workflow classique
+
+![](images/clipboard-1060488567.png){fig-align="center" width="75%"}
+
+::: {.callout-tip title="Analogie de la préparation d'un concours"}
+-   Le **Train Set**, ce sont les chapitres que l'étudiant étudie pour
+    **apprendre**.
+
+-   Le **Validation Set**, ce sont les annales et les examens blancs.
+    L'étudiant les utilise pour **ajuster sa méthode de travail** et
+    voir ce qui fonctionne le mieux.
+
+-   Le **Test Set**, c'est le **sujet officiel du concours**, découvert
+    le jour J. La note obtenue est la seule qui compte vraiment pour
+    mesurer son niveau réel.
+:::
+::::
+::::::
 
 ------------------------------------------------------------------------
 
@@ -525,7 +594,7 @@ dictionnaire générique échouerait.
 Tous les modèles n'ont pas la même complexité ni la même performance.
 Voici une vue d'ensemble, du plus simple au plus avancé.
 
-:::::::::: columns
+::::::::: columns
 ::: {.column width="50%" style="font-size: 0.75em"}
 ### 1. ML "Classique" (Supervised Learning)
 
@@ -569,14 +638,13 @@ générale du langage.
     performances** [@hartmannMoreFeelingAccuracy2023].
 :::
 
-:::::::: {.column width="50%"}
+::::::: {.column width="50%"}
 ### L'échelle de la performance
 
-::::: columns
-:::: {.column width="50%"}
-
+:::: columns
+::: {.column width="50%"}
+:::
 ::::
-:::::
 
 ::: {.callout-note title="Accuracy moyenne [@hartmannMoreFeelingAccuracy2023]"}
 Une méta-analyse sur 272 jeux de données montre une hiérarchie claire
@@ -595,11 +663,130 @@ lexiques.
     Idéal pour comprendre le "pourquoi" et pour des analyses
     exploratoires.
 -   **ML / Transfer Learning** : **précision maximale**, mais plus
-    "boîte noire". Idéal pour des systèmes de détection automatique (ex:
-    alertes de crise) où la performance prime.
+    "boîte noire". Idéal pour des systèmes où la performance prime.
 :::
-::::::::
-::::::::::
+:::::::
+:::::::::
+
+## Zoom sur les modèles classiques (1/2) : Naive Bayes {style="font-size:0.57em"}
+
+Le Naive Bayes est un modèle qui fonctionne comme un **détective probabiliste**.  
+Pour classer un avis, il ne cherche pas de règles complexes, mais se pose une question simple :  
+**"Quelle est la probabilité que cet avis soit positif, sachant les mots qu'il contient ?"**
+
+::::: columns
+::: {.column width="50%"}
+### Le principe : le théorème de Bayes
+
+Tout repose sur le théorème de Bayes, qui permet d’inverser une probabilité.  
+On cherche $P(\text{Classe | Mots})$, mais il est plus simple de calculer l’inverse : $P(\text{Mots | Classe})$.
+
+Formule générale :  
+$$
+P(\text{Classe | Mots}) = \frac{P(\text{Mots | Classe}) \times P(\text{Classe})}{P(\text{Mots})}
+$$
+
+Comme $P(\text{Mots})$ est identique pour toutes les classes, on l’ignore et on compare seulement les numérateurs :  
+$$
+\text{Score}(\text{Classe}) \propto P(\text{Classe}) \times \prod_{i=1}^{n} P(\text{mot}_i | \text{Classe})
+$$
+
+-   $P(\text{Classe})$ : **probabilité a priori** = fréquence de base d’une classe.  
+    (ex. : si 80% des avis sont positifs, alors $P(\text{positif}) = 0.8$).  
+-   $P(\text{mot}_i | \text{Classe})$ : **vraisemblance** (*likelihood*) = fréquence d’un mot dans une classe donnée.  
+-   $\prod$ : multiplication des probabilités de chaque mot, selon l’hypothèse **“naïve”** que les mots sont indépendants.  
+
+*(Même si cette hypothèse est fausse dans la réalité, le modèle reste étonnamment efficace en pratique.)*
+:::
+
+::: {.column width="50%"}
+### Exemple concret
+
+Avis : *"service décevant"*  
+
+1. **Score positif :**  
+$$
+\text{Score}(\text{positif}) = P(\text{positif}) \times P(\text{"service"|positif}) \times P(\text{"décevant"|positif})
+$$
+
+2. **Score négatif :**  
+$$
+\text{Score}(\text{négatif}) = P(\text{négatif}) \times P(\text{"service"|négatif}) \times P(\text{"décevant"|négatif})
+$$
+
+Le mot **"décevant"** apparaît très souvent dans les avis négatifs et rarement dans les positifs.  
+Même si **"service"** est neutre, le poids de **"décevant"** fait basculer le score.
+
+\
+\
+
+👉 L’avis est classé dans la catégorie dont le score est le plus élevé.  
+
+::: {.callout-tip title="💡 Analogie du détective"}
+Le Naive Bayes est un détective qui a étudié des milliers de cas :  
+- Le **prior** ($P(\text{Classe})$) = son intuition de base (*"la plupart des crimes ici sont des vols"*).  
+- La **vraisemblance** ($P(\text{mot|Classe})$) = la valeur de chaque indice (*"une empreinte digitale de ce type est très souvent liée au suspect X"*).  
+
+Il combine les indices pour identifier le coupable le plus probable.  
+:::
+:::
+:::::
+
+
+## Zoom sur les modèles classiques (2/2) : La Régression Logistique {style="font-size:0.60em"}
+
+La Régression Logistique est un pilier de la classification. Malgré son nom, son but n'est pas de prédire un chiffre continu, mais de calculer la **probabilité conditionnelle** qu'un avis appartienne à une classe (ex : 75% de chance d'être "positif"), sachant les mots qu'il contient.  
+Elle le fait en transformant un score linéaire grâce à une courbe en "S".
+
+::::: columns
+::: {.column width="50%"}
+### Le principe : du score à la probabilité
+
+1.  **Calculer un score (Logit)** : Le modèle calcule un score en additionnant les "poids" de chaque mot.  
+    Pendant l'entraînement, il apprend que "excellent" a un poids positif élevé, tandis que "décevant" a un poids négatif fort.  
+
+    $$
+    z = b_0 + b_1 x_1 + b_2 x_2 + ... + b_n x_n
+    $$
+
+    -   $x_i$ : la présence ou la fréquence d'un mot dans l'avis.  
+    -   $b_i$ : le poids appris pour ce mot.  
+    -   $z$ : le score total, qui peut aller de $-\infty$ à $+\infty$.  
+
+2.  **Transformer le score en probabilité** : Ce score $z$ est ensuite "écrasé" dans un intervalle [0, 1] grâce à la **fonction sigmoïde (ou logistique)**.  
+    C'est elle qui produit la fameuse courbe en "S".  
+
+    $$
+    P(y=1|x) = \frac{1}{1 + e^{-z}}
+    $$
+
+    -   Si le score $z$ est très grand → la probabilité est proche de 1.  
+    -   Si le score $z$ est très négatif → la probabilité est proche de 0.  
+    -   Si le score $z$ est 0 → la probabilité est de 0.5.  
+:::
+
+::: {.column width="50%"}
+### Le processus de décision
+
+Pour un avis donné :
+
+1.  Le modèle calcule le score $z$ en additionnant les poids des mots présents.  
+2.  Il applique la fonction sigmoïde pour obtenir une probabilité, par exemple $P(\text{positif}) = 0.82$.  
+3.  Il compare cette probabilité à un seuil de décision (par défaut 0.5).  
+    -   Si $0.82 > 0.5 \rightarrow$ l'avis est classé **Positif**.  
+    -   Si $0.21 < 0.5 \rightarrow$ l'avis est classé **Négatif**.  
+
+::: {.callout-tip title="💡 Analogie du score de confiance"}
+La Régression Logistique calcule un **score de confiance** :  
+
+-   Chaque mot ajoute ou retire des points de confiance.  
+-   Un avis plein de mots positifs ("rapide", "parfait", "excellent") obtiendra un score très élevé.  
+-   Un avis avec des mots négatifs ("lent", "cassé", "horrible") aura un score très bas.  
+
+La fonction sigmoïde transforme ce score de confiance en une **probabilité claire et interprétable** — d'où son intérêt en marketing pour comprendre les *drivers* de la satisfaction.  
+:::
+:::
+:::::
 
 # Annotation & évaluation {.transition-slide-ubdyellow}
 
@@ -611,11 +798,9 @@ lus et étiquetés selon des règles précises.
 
 ### Principes d'une bonne annotation
 
--   **Schéma clair** : définir précisément ce qu'on cherche.
-    -   **Unités** : annote-t-on la phrase entière, un segment
-        (**span**), ou une paire (**aspect**, **opinion**) ?
-    -   **Labels** : est-ce une simple polarité (`{-, 0, +}`) ou une
-        échelle d'**intensité** (ex: notes de 1 à 5) ?
+- **Schéma clair** : définir ce qu’on annote  
+  - **Unité** : texte entier, phrase ou extrait spécifique  
+  - **Labels** : polarité simple (positif / négatif / neutre) ou niveau d’intensité (ex : 1 à 5)
 -   **Guide d'annotation** : un document essentiel avec des règles et
     des exemples de cas limites (ironie, conditionnels) pour assurer la
     cohérence.
@@ -953,45 +1138,41 @@ $$
 
 ------------------------------------------------------------------------
 
-## Au-delà des labels : évaluer les scores {style="font-size: 0.60em"}
+## Au-delà des labels : évaluer les scores {style="font-size: 0.75em"}
 
-La plupart des outils (VADER, LIWC) donnent un **score continu** (ex: -0.87), pas un label. Voici comment on évalue cette sortie.
+Beaucoup d’outils (VADER, LIWC) produisent un **score continu** (ex : -0.87) plutôt qu’un label. On peut l’évaluer de deux façons.
 
-:::: {.columns}
-
+:::::: columns
 ::: {.column width="50%"}
-### 1. Le seuil de décision ($\tau$)
+### 1. Seuil de décision ($\tau$)
 
-C'est à nous de transformer ce score en label. On définit une **"zone neutre"**.
+On transforme le score en label via un seuil (souvent avec une **zone neutre**).  
+- Ex. : score > 0.1 → positif ; score < -0.1 → négatif ; sinon neutre.  
+- Seuil bas → rappel ↑ mais précision ↓.  
+- Seuil haut → précision ↑ mais rappel ↓.  
 
--   **Exemple** : si score > `0.1` → positif ; si score < `-0.1` → négatif ; sinon → neutre.
--   Un seuil plus exigeant augmentera la précision mais baissera le rappel.
+### 2. Évaluer le score brut
 
-### 2. Évaluer le score directement
-
--   **Corrélation de Spearman** : compare le **classement** des avis selon le score de l'outil avec le classement des notes humaines (étoiles).
-    -   *La question : "est-ce que l'outil classe bien les avis du pire au meilleur ?"*
--   **MAE (mean absolute error)** : calcule l'erreur moyenne entre le score de l'outil (normalisé) et la note en étoile.
+- **Corrélation (Spearman)** : est-ce que l’outil classe bien les avis du pire au meilleur ?  
+- **MAE** : compare le score normalisé à la note en étoile.  
 :::
 
 ::: {.column width="50%"}
 ### Courbes P-R et ROC
 
-En faisant varier le seuil $\tau$ de 0 à 1, on peut tracer des courbes qui visualisent le compromis entre les erreurs :
+En faisant varier le seuil :  
+- **ROC** : compromis sensibilité vs spécificité.  
+- **P-R** : utile quand la classe positive est rare.  
 
--   **Courbe ROC** : montre le taux de vrais positifs (sensibilité) contre le taux de faux positifs (1-spécificité). C'est la vision la plus complète du compromis.
-
--   **Courbe P-R (precision-recall)** : montre l'évolution de la précision en fonction du rappel. Elle est surtout pertinente quand la classe négative est immense et peu intéressante (ex: trouver l'aiguille dans la botte de foin).
-
-::: {.callout-warning title="Mise en garde sur le déséquilibre"}
-Contrairement à une idée reçue, l'AUPRC (l'aire sous la courbe P-R) n'est pas *toujours* la meilleure métrique en cas de déséquilibre. Des recherches récentes montrent qu'elle peut même **aggraver les biais** et que le choix doit avant tout dépendre de l'objectif métier [@mcdermottCloserLookAUROC2025].
+::: {.callout-warning title="⚠️ Attention au déséquilibre"}
+L’AUPRC n’est pas toujours “meilleure” : le choix de la métrique dépend de l’**objectif métier** [@mcdermottCloserLookAUROC2025].
 :::
 :::
-
-::::
+::::::
 
 ::: {.callout-note title="Quel seuil choisir ?"}
-Le choix du seuil est une **décision stratégique**. Pour la **détection de crise** (ne rien rater), on choisira un seuil bas pour maximiser le **rappel**. Pour une **campagne de fidélisation** ciblant les clients "très heureux" (ne pas se tromper), on choisira un seuil élevé pour maximiser la **précision**.
+- **Crise (ne rien rater)** → seuil bas → rappel ↑.  
+- **Fidélisation (éviter les erreurs)** → seuil haut → précision ↑.  
 :::
 
 
@@ -1048,98 +1229,125 @@ faiblesses de votre système.
 
 ## Pièges à éviter en analyse de sentiment {style="font-size:0.80em"}
 
-Même les meilleurs outils peuvent se tromper. Voici les pièges les plus courants à anticiper :
+Même les meilleurs outils peuvent se tromper. Voici les pièges les plus
+courants à anticiper :
 
-:::: {.columns}
+::::: columns
 ::: {.column width="50%"}
 ### Pièges Linguistiques
 
--   **Ambiguïtés** : l'implicite, l'ironie et le sarcasme peuvent totalement inverser la polarité et sont très difficiles à détecter automatiquement.
--   **Portée des "shifters"** : une négation ou un adversatif ("mais") mal interprété peut fausser l'analyse d'une phrase entière.
+-   **Ambiguïtés** : l'implicite, l'ironie et le sarcasme peuvent
+    totalement inverser la polarité et sont très difficiles à détecter
+    automatiquement.
+-   **Portée des "shifters"** : une négation ou un adversatif ("mais")
+    mal interprété peut fausser l'analyse d'une phrase entière.
 
 ### Pièges Méthodologiques
 
--   **Dépendance au domaine** : un lexique entraîné sur des avis de restaurants sera médiocre pour analyser des tweets financiers. Le vocabulaire et le contexte changent tout.
--   **Biais des lexiques** : un dictionnaire générique peut contenir des biais culturels ou être inadapté au langage spécifique de certaines communautés en ligne (argot, mèmes).
+-   **Dépendance au domaine** : un lexique entraîné sur des avis de
+    restaurants sera médiocre pour analyser des tweets financiers. Le
+    vocabulaire et le contexte changent tout.
+-   **Biais des lexiques** : un dictionnaire générique peut contenir des
+    biais culturels ou être inadapté au langage spécifique de certaines
+    communautés en ligne (argot, mèmes).
 :::
+
 ::: {.column width="50%"}
 ### Pièges liés aux Données et à l'Éthique
 
--   **Spam d'opinion (Fake Reviews)** : la présence d'avis frauduleux (positifs ou négatifs) peut complètement fausser vos KPIs. La détection de spam est un enjeu majeur.
--   **Qualité des données** : des textes très courts, mal écrits ou remplis d'emojis peuvent dégrader la performance de n'importe quel modèle.
+-   **Spam d'opinion (Fake Reviews)** : la présence d'avis frauduleux
+    (positifs ou négatifs) peut complètement fausser vos KPIs. La
+    détection de spam est un enjeu majeur.
+-   **Qualité des données** : des textes très courts, mal écrits ou
+    remplis d'emojis peuvent dégrader la performance de n'importe quel
+    modèle.
 :::
-::::
+:::::
 
-## De la question marketing au rapport final : la checklist d'un projet réussi  {style="font-size:0.50em"}
+## De la question marketing au rapport final : la checklist d'un projet réussi {style="font-size:0.70em"}
 
-Un projet d'analyse de sentiment réussi n'est pas qu'une question d'outils, c'est avant tout une question de méthode. Voici les étapes clés.
+Un projet d'analyse de sentiment réussi repose sur la **méthode** autant que sur les outils. Voici les étapes clés.
 
-### 1. Partir de la question de recherche (cadrage stratégique)
-Tout commence par la traduction d'un objectif métier en une question analytique précise. Cette question va dicter vos choix techniques [@krugmannSentimentAnalysisAge2024a].
+### 1. Cadrer la question
 
-- **Question métier** : *"Le lancement de notre nouveau produit génère-t-il un buzz positif ?"*
-- **Traduction analytique** :
-    - Quel est le volume de mentions ?* → **Monitoring de base**
-    - La polarité globale est-elle positive ou négative ?* → **Classification binaire**
-    - Quels sont les points forts et faibles perçus ?* → **ABSA (analyse par aspect)**
-    - Comment nous situons-nous face au concurrent X ?* → **Analyse comparative**
+Tout part d’un objectif métier traduit en question analytique claire [@krugmannSentimentAnalysisAge2024a].  
 
-### 2. Choisir l'approche méthodologique
-Votre question et vos ressources (temps, données) déterminent la meilleure approche.
+- *Buzz positif autour du lancement ?* → **Classification binaire**  
+- *Points forts et faibles perçus ?* → **Analyse par aspect (ABSA)**  
+- *Comparaison avec un concurrent ?* → **Analyse comparative**  
 
-- **Approche Lexique + Règles** : idéale pour la **transparence** (comprendre le "pourquoi"), la rapidité et l'exploration, au détriment de la performance brute.
-- **Approche Machine Learning** : à privilégier pour la **performance** et l'**adaptation** au domaine. C'est en moyenne +20 points de précision par rapport aux lexiques [@hartmannMoreFeelingAccuracy2023].
+### 2. Choisir l’approche
 
-### 3. Préparer données et outils (rigueur opérationnelle)
-- **Si approche ML** : la priorité est de constituer un **Gold Standard** de qualité via une **annotation** rigoureuse (guide clair, double annotation, calcul de l'**IAA**). La qualité du modèle dépend directement de la qualité de ces données.
-- **Si approche Lexique** : la priorité est d'**adapter le lexique** au domaine (via les techniques corpus-based comme PMI ou l'analyse des conjonctions) et de vérifier manuellement un échantillon pour éviter les contresens.
+- **Lexiques + règles** : transparence, rapidité, exploration.  
+- **Machine Learning** : performance et adaptation (+20 points en moyenne [@hartmannMoreFeelingAccuracy2023]).  
 
-### 4. Analyser et evaluer les résultats
-- **Évaluation quantitative** : ne jamais se fier à l'accuracy seule. Utiliser la **matrice de confusion** et le **F1-macro** pour une mesure juste, surtout si les classes sont déséquilibrées.
-- **Analyse qualitative des erreurs** : examiner les cas où le modèle se trompe (négation, ironie, implicite...). C'est la meilleure source d'inspiration pour l'améliorer.
-- **Test de robustesse** : vérifier si le modèle fonctionne encore sur des données d'une autre plateforme ou d'une autre période (**cross-domaine**, **cross-temporel**).
+### 3. Préparer les données
+
+- **ML** : constituer un **Gold Standard** de qualité (annotation claire, double codage, accord inter-annotateurs).  
+- **Lexiques** : adapter le vocabulaire au domaine et contrôler les contresens.  
+
+### 4. Évaluer et analyser
+
+- **Quantitatif** : préférer matrice de confusion & F1-macro à l’accuracy seule.  
+- **Qualitatif** : analyser les erreurs (négation, ironie, implicite).  
+- **Robustesse** : tester sur d’autres plateformes ou périodes.  
+
 
 ------------------------------------------------------------------------
 
+## Conclusion : de l'artisanat à l'automatisation intelligente {style="font-size:0.62em"}
 
-## Conclusion : de l'artisanat à l'automatisation intelligente {style="font-size:0.65em"}
+L'analyse de sentiment a connu une révolution. Nous sommes passés
+d'approches manuelles à des outils capables de comprendre le langage
+avec une finesse sans précédent.
 
-L'analyse de sentiment a connu une révolution. Nous sommes passés d'approches manuelles à des outils capables de comprendre le langage avec une finesse sans précédent.
-
-:::: {.columns}
+::::: columns
 ::: {.column width="50%"}
-
 ### L’évolution des méthodes
 
-- **Hier : lexiques & règles (artisanat)** :
-Méthodes transparentes et contrôlables, excellentes pour l'exploration et pour tester des hypothèses théoriques [@hartmannMoreFeelingAccuracy2023, p. 84].
+-   **Hier : lexiques & règles (artisanat)** : Méthodes transparentes et
+    contrôlables, excellentes pour l'exploration et pour tester des
+    hypothèses théoriques [@hartmannMoreFeelingAccuracy2023, p. 84].
 
-- **Aujourd’hui : Machine Learning & Deep Learning (industrialisation)** :
-Apprentissage sur données pour une meilleure adaptation au contexte et des performances nettement supérieures [@hartmannMoreFeelingAccuracy2023, p. 76].
+-   **Aujourd’hui : Machine Learning & Deep Learning
+    (industrialisation)** : Apprentissage sur données pour une meilleure
+    adaptation au contexte et des performances nettement supérieures
+    [@hartmannMoreFeelingAccuracy2023, p. 76].
 
-- **Demain (et déjà maintenant) :  LLMs / IA générative** :
-Compréhension contextuelle "sur étagère" (*zero-shot*) qui rivalise avec les modèles spécialisés, posant de nouveaux enjeux de reproductibilité et d'éthique [@krugmannSentimentAnalysisAge2024a, p. 2, 16].
+-   **Demain (et déjà maintenant) : LLMs / IA générative** :
+    Compréhension contextuelle "sur étagère" (*zero-shot*) qui rivalise
+    avec les modèles spécialisés, posant de nouveaux enjeux de
+    reproductibilité et d'éthique
+    [@krugmannSentimentAnalysisAge2024a, p. 2, 16].
 :::
 
 ::: {.column width="50%"}
-
 ### Les implications pour le marketing
 
-- **De la description à la prédiction** :
-Au-delà du comptage pos/neg : anticipation de tendances (ex: cours de la bourse) et détection de signaux faibles de crise (*firestorms*) [@hartmannMoreFeelingAccuracy2023, p. 76].
+-   **De la description à la prédiction** : Au-delà du comptage pos/neg :   anticipation de tendances (ex: cours de la bourse) et détection
+        de signaux faibles de crise [@hartmannMoreFeelingAccuracy2023, p. 76].
 
-- **Connaissance client hyper-granulaire** :
-Les nuances dans des milliers de verbatims permettent d'affiner les personas, de personnaliser les messages et d'identifier des besoins non satisfaits pour l’innovation [@agarwalProminentFeatureExtraction2016, p. 3].
+-   **Connaissance client hyper-granulaire** : Les nuances dans des
+    milliers de verbatims permettent d'affiner les personas, de
+    personnaliser les messages et d'identifier des besoins non
+    satisfaits pour l’innovation
+    [@agarwalProminentFeatureExtraction2016, p. 3].
 
-- **Vigilance stratégique en continu** :
-L'e-réputation devient un **flux** d'information en temps réel qui peut alimenter des tableaux de bord et la prise de décision au quotidien [@ahmadMachineLearningTechniques2017, p. 3].
+-   **Vigilance stratégique en continu** : L'e-réputation devient un
+    **flux** d'information en temps réel qui peut alimenter des tableaux
+    de bord et la prise de décision au quotidien
+    [@ahmadMachineLearningTechniques2017, p. 3].
 :::
-::::
+:::::
 
 ::: {.callout-note title="Le message final"}
-La technologie devient de plus en plus puissante et accessible. Le rôle de l’expert marketing n’est plus de connaître chaque détail technique, mais de **poser les bonnes questions**, d'**interpréter avec esprit critique** et de **décider** à partir d’insights fiables [@hartmannMoreFeelingAccuracy2023].
+La technologie devient de plus en plus puissante et accessible. Le rôle
+de l’expert marketing n’est plus de connaître chaque détail technique,
+mais de **poser les bonnes questions**, d'**interpréter avec esprit
+critique** et de **décider** à partir d’insights fiables
+[@hartmannMoreFeelingAccuracy2023].
 :::
 
------
+------------------------------------------------------------------------
 
 ## Références

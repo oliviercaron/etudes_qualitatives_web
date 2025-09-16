@@ -195,209 +195,28 @@ Olivier Caron
 <h2>Le problème : comment synthétiser 10 000 verbatims ?</h2>
 <p>Imaginez que vous avez collecté 10 000 avis sur votre produit.<br>
 Les lire un par un est impossible. Comment savoir rapidement quels sont les 5 ou 10 grands thèmes de satisfaction ou d’insatisfaction ?</p>
-<p>C’est le rôle du <strong>Topic Modeling</strong>.<br>
-Il s’agit en général d’une méthode d’apprentissage <strong>non supervisé</strong> :<br>
-elle découvre les thèmes <strong>sans qu’on les lui dise à l’avance</strong>.</p>
-<p>L’algorithme le plus célèbre pour cela est le <strong>LDA (Latent Dirichlet Allocation)</strong> <span class="citation" data-cites="bleiLatentDirichletAllocation2003">(<a href="#/références" role="doc-biblioref" onclick="">Blei, Ng, and Jordan 2003</a>)</span>.</p>
-<div class="callout callout-note callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
-<p><strong>Variantes</strong> :<br>
-- <strong>STM (Structural Topic Model)</strong> <span class="citation" data-cites="roberts2013structural">(<a href="#/références" role="doc-biblioref" onclick="">Roberts et al. 2013</a>)</span> permet d’incorporer des <strong>covariables</strong> (ex. date, genre, segment client).<br>
-- <strong>BERTopic</strong> <span class="citation" data-cites="grootendorst2022bertopic">(<a href="#/références" role="doc-biblioref" onclick="">Grootendorst 2022</a>)</span> s’appuie sur les <strong>embeddings modernes</strong> (BERT) et un clustering pour produire des thèmes plus cohérents.<br>
-- <strong>Seeded LDA</strong> : versions guidées où l’on fournit des mots-clés pour orienter les thèmes.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="quest-ce-que-le-lda-lintuition" class="slide level2" style="font-size:0.7em">
-<h2>Qu’est-ce que le LDA ? L’intuition</h2>
-<p>Imaginons que LDA est un <strong>bibliothécaire stagiaire</strong> à qui on demande de classer 10 000 articles en 5 thèmes qu’il doit inventer lui-même.</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="il-crée-les-thèmes-thèmes-mots">1. Il crée les thèmes (Thèmes → Mots)</h3>
-<p>Le stagiaire lit et remarque que certains mots apparaissent souvent ensemble.</p>
-<ul>
-<li>“Planète”, “fusée”, “étoile” ➞ Il crée un post-it <strong>“Thème A”</strong>.</li>
-<li>“But”, “ballon”, “équipe” ➞ Il crée un post-it <strong>“Thème B”</strong>.</li>
-</ul>
-<p>À la fin, un <strong>thème</strong> n’est qu’un “sac de mots” qui ont tendance à cohabiter.</p>
-</div><div class="column" style="width:50%;">
-<h3 id="il-étiquette-les-documents-documents-thèmes">2. Il étiquette les documents (Documents → Thèmes)</h3>
-<p>Maintenant, il prend chaque article et regarde les mots qu’il contient.</p>
-<ul>
-<li>Un article parle de “fusée”, “planète” et un peu de “match”.</li>
-<li>Il l’étiquette avec une “recette” : <strong>70% Thème A, 30% Thème B</strong>.</li>
-</ul>
-<p>À la fin, un <strong>document</strong> est simplement un mélange de ces thèmes.</p>
-</div></div>
-<p><br>
-</p>
+<p>Pour y répondre, nous devons combiner deux approches :</p>
+<ol type="1">
+<li>Une technologie pour comprendre le <strong>sens réel</strong> des mots, au-delà des simples comptes : les <strong>Word Embeddings</strong>.</li>
+<li>Des méthodes pour <strong>regrouper</strong> les avis en grands thèmes : le <strong>Topic Modeling</strong>.</li>
+</ol>
 <div class="callout callout-note callout-titled callout-style-simple">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Ce que LDA donne au final</strong></p>
+<p><strong>Les grandes familles de modèles de thèmes</strong></p>
 </div>
 <div class="callout-content">
-<p>L’algorithme devine automatiquement <strong>les thèmes cachés</strong> dans les textes et <strong>la recette de chaque document</strong>. C’est un trieur automatique ultra-performant.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="comment-fonctionne-le-lda" class="slide level2" style="font-size:0.7em">
-<h2>Comment fonctionne le LDA ?</h2>
-<p>LDA imagine que chaque document est écrit en suivant une recette probabiliste : <strong>documents → thèmes → mots.</strong></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><br>
-<br>
-</p>
-<h3 id="étapes-simplifiées">🔎 Étapes simplifiées</h3>
-<ol type="1">
-<li><p>On choisit une <strong>proportion de thèmes</strong> pour le document (θ).<br>
-→ ex. Avis hôtel : 50% Service, 30% Chambre, 20% Prix.</p></li>
-<li><p>Pour chaque mot du document :</p>
 <ul>
-<li>on <strong>pioche un thème latent</strong> (z),<br>
-</li>
-<li>puis on <strong>pioche un mot</strong> dans le vocabulaire de ce thème (β).</li>
-</ul></li>
-<li><p>Répété des milliers de fois, cela reconstitue le texte.<br>
-En observant beaucoup de textes, l’algorithme “devine” les thèmes.</p></li>
-</ol>
-</div><div class="column" style="font-size:0.7em">
-<p><img data-src="images/clipboard-1866827297.png"></p>
-<h4 id="dictionnaire-des-symboles-lda">Dictionnaire des symboles LDA</h4>
-<ul>
-<li><strong>Contexte du Corpus</strong>
-<ul>
-<li><strong>M</strong> : Le nombre total de <strong>documents</strong> dans votre collection.</li>
-<li><strong>N</strong> : Le nombre de <strong>mots</strong> dans un document donné.</li>
-</ul></li>
-<li><strong>Hyperparamètres (les réglages du modèle)</strong>
-<ul>
-<li><span class="math inline">\(\alpha\)</span> (alpha) : Règle la diversité des <strong>thèmes</strong> par document.</li>
-<li><span class="math inline">\(\eta\)</span> (eta) : Règle la diversité des <strong>mots</strong> par thème.</li>
-</ul></li>
-<li><strong>Paramètres (ce que le modèle apprend)</strong>
-<ul>
-<li><span class="math inline">\(\theta\)</span> (theta) : La “recette” de thèmes pour un document.</li>
-<li><span class="math inline">\(\beta\)</span> (beta) : Les mots typiques d’un thème.</li>
-</ul></li>
-<li><strong>Variables (le processus de génération)</strong>
-<ul>
-<li><span class="math inline">\(z\)</span> : Le thème latent (caché) assigné à un mot.</li>
-<li><span class="math inline">\(w\)</span> : Le mot observé que l’on peut lire.</li>
-</ul></li>
+<li><p><strong>Approches statistiques (ex: LDA)</strong> <span class="citation" data-cites="bleiLatentDirichletAllocation2003">(<a href="#/références" role="doc-biblioref" onclick="">Blei, Ng, and Jordan 2003</a>)</span> : Modèles probabilistes qui identifient les thèmes en se basant sur les co-occurrences de mots.</p></li>
+<li><p><strong>Approches avec métadonnées (ex: STM)</strong> <span class="citation" data-cites="roberts2013structural">(<a href="#/références" role="doc-biblioref" onclick="">Roberts et al. 2013</a>)</span> : Permettent d’expliquer les thèmes par des variables externes (date, segment client…).</p></li>
+<li><p><strong>Approches sémantiques (ex: BERTopic)</strong> <span class="citation" data-cites="grootendorst2022bertopic">(<a href="#/références" role="doc-biblioref" onclick="">Grootendorst 2022</a>)</span> : S’appuient sur le sens des phrases (embeddings) pour créer des thèmes plus cohérents.</p></li>
 </ul>
-</div></div>
-</section>
-<section id="le-topic-modeling-en-marketing" class="slide level2" style="font-size:0.8em">
-<h2>Le Topic Modeling en marketing</h2>
-<p>La littérature marketing montre des usages variés et utiles du topic modeling.<br>
-Une revue de 61 études confirme son adoption et trace des pistes de recherche <span class="citation" data-cites="reisenbichlerTopicModelingMarketing2019">(<a href="#/références" role="doc-biblioref" onclick="">Reisenbichler and Reutterer 2019</a>)</span>.</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="domaines-dapplication">Domaines d’application</h3>
-<ul>
-<li><strong>Segmentation &amp; profiling</strong> (voix client, personas)<br>
-</li>
-<li><strong>Analyse de communautés</strong> (forums, réseaux sociaux)<br>
-</li>
-<li><strong>Systèmes de recommandation</strong><br>
-</li>
-<li><strong>Publicité &amp; ciblage</strong> (mots-clés, messages)<br>
-</li>
-<li><strong>Veille &amp; tendances</strong> (évolution des thèmes)</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<h3 id="opportunités-de-recherche">Opportunités de recherche</h3>
-<ul>
-<li><strong>Données multi-sources &amp; dynamiques</strong> (texte + achats, social, temps)<br>
-</li>
-<li>Coupler LDA avec des <strong>modèles prédictifs</strong> (churn, CLV, ventes)<br>
-</li>
-<li>Mieux évaluer les thèmes (<strong>cohérence, exclusivité, stabilité</strong>)<br>
-</li>
-<li>Explorer des variantes (<strong>STM, BERTopic</strong>) selon le cas d’usage</li>
-</ul>
-</div></div>
-</section>
-<section id="visualiser-les-thèmes-avec-ggplot2-balech2019" class="slide level2" style="font-size:0.8em">
-<h2>Visualiser les thèmes avec ggplot2 <span class="citation" data-cites="balech2019">(<a href="#/références" role="doc-biblioref" onclick="">Balech and Benavent 2019</a>)</span></h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/clipboard-1049051214.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
-</figure>
-</div>
-</section>
-<section id="visualiser-les-thèmes-avec-ldavis" class="slide level2" style="font-size:0.8em">
-<h2>Visualiser les thèmes avec LDAvis</h2>
-<div class="columns">
-<div class="column" style="width:20%;">
-<p>💡 Une fois le modèle entraîné, on peut explorer les thèmes avec des outils interactifs :</p>
-<ul>
-<li><strong>Python :</strong> Gensim + pyLDAvis<br>
-</li>
-<li><strong>R :</strong> LDAvis</li>
-</ul>
-<p>Chaque <strong>bulle</strong> représente un thème.<br>
-Les mots les plus fréquents apparaissent à droite.</p>
-</div><div class="column" style="width:80%;">
-<p><img data-src="images/clipboard-3079638492.gif" style="width:95.0%" alt="Exemple de visualisation interactive des thèmes avec LDAvis"></p>
-</div></div>
-</section>
-<section id="limites-du-topic-modeling-et-quand-aller-plus-loin" class="slide level2" style="font-size:0.8em">
-<h2>Limites du Topic Modeling (et quand aller plus loin)</h2>
-<div class="columns">
-<div class="column" style="width:55%;">
-<h3 id="limites-pratiques">Limites pratiques</h3>
-<ul>
-<li><strong>Choix du nombre de topics (K)</strong> : compromis interprétabilité / granularité<br>
-</li>
-<li><strong>Qualité des thèmes</strong> : dépend du prétraitement &amp; des hyperparamètres<br>
-</li>
-<li><strong>Cohérence sémantique</strong> : certains topics sont “fourre-tout”<br>
-</li>
-<li><strong>Statique</strong> : difficulté à suivre finement l’<strong>évolution</strong> des thèmes<br>
-</li>
-<li><strong>Polysémie</strong> non résolue : un mot = un même rôle selon le topic</li>
-</ul>
-<h3 id="évaluer-améliorer">Évaluer &amp; améliorer</h3>
-<ul>
-<li>Utiliser des métriques de <strong>cohérence de topics</strong> (ex. <em>topic coherence</em>)<br>
-</li>
-<li>Tester plusieurs K et <strong>stabiliser</strong> (bootstrap / réplications)<br>
-</li>
-<li>Ajouter du <strong>guidage</strong> (Seeded/Guided LDA) ou des <strong>covariables</strong> (STM <span class="citation" data-cites="roberts2013structural">(<a href="#/références" role="doc-biblioref" onclick="">Roberts et al. 2013</a>)</span>)</li>
-</ul>
-</div><div class="column" style="width:45%;">
-<h3 id="quand-passer-à-des-approches-récentes">Quand passer à des approches récentes</h3>
-<ul>
-<li><strong>STM</strong> : intégrer <strong>covariables</strong> (temps, segment, campagne) pour expliquer/faire varier les thèmes <span class="citation" data-cites="roberts2013structural">(<a href="#/références" role="doc-biblioref" onclick="">Roberts et al. 2013</a>)</span><br>
-</li>
-<li><strong>BERTopic</strong> : s’appuyer sur des <strong>embeddings (BERT)</strong> + clustering pour des thèmes souvent plus <strong>cohérents</strong> <span class="citation" data-cites="grootendorst2022bertopic">(<a href="#/références" role="doc-biblioref" onclick="">Grootendorst 2022</a>)</span><br>
-</li>
-<li><strong>Embeddings/LLMs</strong> : capter la <strong>sémantique contextuelle</strong>, faire de la <strong>recherche sémantique</strong>, du <strong>résumé</strong> ou de la <strong>Q&amp;A</strong></li>
-</ul>
-<div class="callout callout-note callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
-<p><strong>Message clé</strong> : LDA est excellent pour <strong>cartographier</strong> des thèmes.<br>
-Dès que le <strong>contexte</strong> et la <strong>nuance</strong> deviennent critiques, on gagne à passer vers <strong>STM / BERTopic</strong>, puis <strong>embeddings &amp; LLMs</strong>.</p>
 </div>
 </div>
 </div>
-</div></div>
 </section>
 <section>
 <section id="des-mots-aux-vecteurs-comprendre-les-word-embeddings" class="title-slide slide level1 transition-slide-ubdblue center" style="font-size:0.55em">
@@ -408,7 +227,7 @@ Dès que le <strong>contexte</strong> et la <strong>nuance</strong> deviennent c
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>De nombreuses illustrations de cette section viennent de<br>
+<p>De nombreuses illustrations de cette section proviennent de<br>
 <a href="https://jalammar.github.io/illustrated-word2vec/">Jay Alammar – <em>The Illustrated Word2Vec</em></a>.</p>
 </div>
 </div>
@@ -420,7 +239,7 @@ Dès que le <strong>contexte</strong> et la <strong>nuance</strong> deviennent c
 </p>
 <p>Jusqu’à présent, pour transformer le texte en chiffres, on a surtout compté les mots (approche <strong>Bag-of-Words</strong> ou <strong>TF-IDF</strong>).</p>
 <p><strong>Le problème</strong> : cette approche est “naïve”. Pour elle, les mots “<strong>roi</strong>”, “<strong>reine</strong>” et “<strong>château</strong>” sont aussi différents les uns des autres que les mots “<strong>roi</strong>” et “<strong>camion</strong>”. Elle ne comprend pas que certains mots sont sémantiquement proches.</p>
-<p><strong>La question de recherche</strong> : comment faire pour qu’un ordinateur comprenne que “<strong>excellent</strong>” est plus proche de “<strong>superbe</strong>” que de “<strong>médiocre</strong>” ?</p>
+<p>Comment faire pour qu’un ordinateur comprenne que “<strong>excellent</strong>” est plus proche de “<strong>superbe</strong>” que de “<strong>médiocre</strong>” ?</p>
 </section>
 <section id="lidée-de-lembedding-représenter-des-concepts-par-des-nombres" class="slide level2" style="font-size:0.6em">
 <h2>L’idée de l’embedding : représenter des concepts par des nombres</h2>
@@ -588,6 +407,49 @@ Ce n’est pas magique : la <strong>géométrie des vecteurs</strong> encode des
 </ul>
 </div></div>
 </section>
+<section id="application-le-clustering-sémantique-davis-clients" class="slide level2" style="font-size:0.7em">
+<h2>Application : le clustering sémantique d’avis clients</h2>
+<p>L’usage le plus direct des embeddings pour un projet en marketing par exemple est de regrouper des avis qui se ressemblent par le sens, et non plus par les mots-clés.</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<h3 id="la-méthode-en-3-étapes">La méthode en 3 étapes</h3>
+<ol type="1">
+<li><p><strong>Vectoriser</strong> : chaque avis client est transformé en un vecteur numérique à l’aide d’un modèle pré-entraîné.</p></li>
+<li><p><strong>Clusteriser</strong> : un algorithme de clustering (ex: K-Means, HDBSCAN) est appliqué sur ces vecteurs. Il va créer des groupes où les vecteurs sont proches les uns des autres.</p></li>
+<li><p><strong>Interpréter</strong> : pour comprendre un cluster, on lit quelques avis représentatifs. On découvre ainsi des thématiques très fines.</p></li>
+</ol>
+</div><div class="column" style="width:60%;">
+<h3 id="un-exemple-concret">Un exemple concret</h3>
+<p>Un topic model pourrait créer un thème large sur la “livraison”. Le clustering sémantique pourra, lui, identifier des sous-groupes très distincts :</p>
+<ul>
+<li><strong>Cluster 1 : “Le colis est arrivé en avance, super !”</strong>
+<ul>
+<li><em>“Livraison reçue 2 jours avant la date, je suis ravie.”</em></li>
+<li><em>“Impressionné par la rapidité d’expédition.”</em></li>
+</ul></li>
+<li><strong>Cluster 2 : “Le livreur n’a pas été professionnel.”</strong>
+<ul>
+<li><em>“Le colis a été jeté par-dessus le portail.”</em></li>
+<li><em>“Le livreur n’a même pas sonné et a mis un avis de passage.”</em></li>
+</ul></li>
+<li><strong>Cluster 3 : “Problèmes avec le point relais.”</strong>
+<ul>
+<li><em>“Mon point relais était fermé, j’ai dû faire un détour.”</em></li>
+<li><em>“Impossible de récupérer mon colis, le commerçant ne le trouve pas.”</em></li>
+</ul></li>
+</ul>
+</div></div>
+<div class="callout callout-note callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>Le clustering sur embeddings ne remplace pas le Topic Modeling, il le complète en offrant une granularité sémantique souvent inaccessible avec les modèles de thèmes traditionnels.</p>
+</div>
+</div>
+</div>
+</section>
 <section id="comment-apprend-on-des-embeddings-de-mots" class="slide level2" style="font-size:0.7em">
 <h2>Comment apprend-on des embeddings de mots ?</h2>
 <p>L’idée fondamentale : la <strong>signification d’un mot</strong> se comprend à partir des mots qui apparaissent fréquemment autour de lui.<br>
@@ -703,13 +565,452 @@ le vecteur d’un mot dépend de la phrase.<br>
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="les-applications-modernes" class="title-slide slide level1 center">
+<h1>Les applications modernes</h1>
+
+</section>
+<section id="des-embeddings-aux-thèmes-lapproche-bertopic" class="slide level2" style="font-size:0.7em">
+<h2>Des embeddings aux thèmes : l’approche BERTopic</h2>
+<p>Les embeddings nous donnent la <strong>proximité sémantique</strong>. Un nuage de 10 000 points-vecteurs reste inexploitable pour un décideur.</p>
+<p><strong>Le défi</strong> : comment structurer ce nuage de sens en thèmes clairs et interprétables ?</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><strong>BERTopic</strong> est un <em>pipeline</em> modulaire qui transforme ce nuage en thèmes lisibles <span class="citation" data-cites="eggerTopicModelingComparison2022">(<a href="#/références" role="doc-biblioref" onclick="">Egger and Yu 2022</a>)</span> :</p>
+<ol type="1">
+<li>Il <strong>regroupe</strong> les avis sémantiquement proches (clustering).</li>
+<li>Il <strong>extrait</strong> les mots/expressions qui décrivent le mieux chaque groupe.</li>
+<li>Il produit des <strong>thèmes cohérents</strong> et faciles à nommer.</li>
+</ol>
+<p>C’est une approche “embedding-first” qui privilégie le sens sur la simple co-occurrence de mots.</p>
+</div><div class="column" style="width:60%;">
+<p><br>
+</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/clipboard-2184762329.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="le-workflow-bertopic-en-4-étapes" class="slide level2" style="font-size:0.75em">
+<h2>Le workflow BERTopic en 4 étapes</h2>
+<p>BERTopic n’est pas un monolithe, mais une “recette” intelligente qui combine plusieurs algorithmes <span class="citation" data-cites="anMarketingInsightsReviews2023">(<a href="#/références" role="doc-biblioref" onclick="">An, Oh, and Lee 2023</a>)</span>.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="vectorisation-embeddings">1. Vectorisation (Embeddings)</h3>
+<ul>
+<li><strong>Objectif</strong> : transformer chaque avis en un point dans un “espace sémantique”.</li>
+<li><strong>Outil</strong> : un modèle pré-entraîné (ex: <code>Sentence-BERT</code>) qui comprend déjà le français.</li>
+<li><strong>Résultat</strong> : une liste de vecteurs.</li>
+</ul>
+<h3 id="réduction-de-dimension-umap">2. Réduction de dimension (UMAP)</h3>
+<ul>
+<li><strong>Objectif</strong> : créer une “carte” 2D de ces milliers de points, en préservant les voisinages (les avis proches restent proches).</li>
+<li><strong>Pourquoi ?</strong> facilite grandement le travail de l’algorithme de clustering.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="clustering-hdbscan">3. Clustering (HDBSCAN)</h3>
+<ul>
+<li><strong>Objectif</strong> : identifier automatiquement les “îlots” (clusters) denses sur cette carte.</li>
+<li><strong>Force</strong> : n’oblige pas à choisir le nombre de thèmes à l’avance et identifie les <strong>outliers</strong> (avis uniques ou bruit, classés en <code>-1</code>).</li>
+</ul>
+<h3 id="représentation-des-thèmes-c-tf-idf">4. Représentation des thèmes (c-TF-IDF)</h3>
+<ul>
+<li><strong>Objectif</strong> : pour chaque “îlot”, trouver les mots/expressions les plus caractéristiques.</li>
+<li><strong>Comment ?</strong> une variante de TF-IDF qui traite chaque cluster comme un “document” et le corpus entier comme la “collection”.</li>
+</ul>
+</div></div>
+</section>
+<section id="en-pratique-faut-il-entraîner-ses-propres-embeddings" class="slide level2" style="font-size:0.75em">
+<h2>En pratique : faut-il entraîner ses propres embeddings ?</h2>
+<p>Une fois le principe compris, la question opérationnelle se pose : comment obtenir ces fameux vecteurs ?</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="entraîner-son-propre-modèle-ex-word2vec">1. Entraîner son propre modèle (ex: Word2Vec)</h3>
+<ul>
+<li><strong>Principe</strong> : on apprend les vecteurs de mots à partir de zéro, en utilisant uniquement les textes de son propre corpus (ex: 10 000 avis clients).</li>
+<li><strong>Avantage</strong> : les vecteurs sont parfaitement adaptés au jargon et au contexte spécifique de votre marque.</li>
+<li><strong>Inconvénient majeur</strong> : nécessite <strong>d’énormes volumes de données</strong> (des millions de mots) pour apprendre des relations sémantiques de qualité.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="utiliser-un-modèle-pré-entraîné-bert-camembert">2. Utiliser un modèle pré-entraîné (BERT, CamemBERT…)</h3>
+<ul>
+<li><strong>Principe</strong> : on télécharge un modèle qui a <strong>déjà été entraîné</strong> sur des téraoctets de texte (ex: tout Wikipédia). Ce modèle “sait” déjà comment fonctionne le langage.</li>
+<li><strong>Avantage</strong> : extrêmement puissant et performant, même sur des corpus de petite taille. Il a une compréhension profonde de la sémantique générale.</li>
+<li><strong>Inconvénient</strong> : peut être moins performant sur un jargon très spécifique absent de ses données d’entraînement (rare pour des avis clients).</li>
+</ul>
+</div></div>
+<div title="La bonne pratique">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>La bonne pratique</strong></p>
+</div>
+<div class="callout-content">
+<p>Pour votre projet, ne ré-inventez pas la roue. Utilisez des modèles pré-entraînés (via des librairies comme <code>sentence-transformers</code> en Python) pour transformer vos avis en vecteurs.</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="les-approches-classiques-en-contexte-lda-stm" class="title-slide slide level1 center">
+<h1>Les approches classiques en contexte (LDA, STM…)</h1>
+
+</section>
+<section id="quest-ce-que-le-lda-lintuition" class="slide level2" style="font-size:0.7em">
+<h2>Qu’est-ce que le LDA ? L’intuition</h2>
+<p>Imaginons que LDA est un <strong>bibliothécaire stagiaire</strong> à qui on demande de classer 10 000 articles en 5 thèmes qu’il doit inventer lui-même.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="il-crée-les-thèmes-thèmes-mots">1. Il crée les thèmes (Thèmes → Mots)</h3>
+<p>Le stagiaire lit et remarque que certains mots apparaissent souvent ensemble.</p>
+<ul>
+<li>“Planète”, “fusée”, “étoile” ➞ il crée un post-it <strong>“Thème A”</strong>.</li>
+<li>“But”, “ballon”, “équipe” ➞ il crée un post-it <strong>“Thème B”</strong>.</li>
+</ul>
+<p>À la fin, un <strong>thème</strong> n’est qu’un “sac de mots” qui ont tendance à cohabiter.</p>
+</div><div class="column" style="width:50%;">
+<h3 id="il-étiquette-les-documents-documents-thèmes">2. Il étiquette les documents (Documents → Thèmes)</h3>
+<p>Maintenant, il prend chaque article et regarde les mots qu’il contient.</p>
+<ul>
+<li>Un article parle de “fusée”, “planète” et un peu de “match”.</li>
+<li>Il l’étiquette avec une “recette” : <strong>70% Thème A, 30% Thème B</strong>.</li>
+</ul>
+<p>À la fin, un <strong>document</strong> est simplement un mélange de ces thèmes.</p>
+</div></div>
+<p><br>
+</p>
+<div class="callout callout-note callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Ce que LDA donne au final</strong></p>
+</div>
+<div class="callout-content">
+<p>L’algorithme devine automatiquement <strong>les thèmes cachés</strong> dans les textes et <strong>la recette de chaque document</strong>. C’est un trieur automatique ultra-performant.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="comment-fonctionne-le-lda" class="slide level2" style="font-size:0.7em">
+<h2>Comment fonctionne le LDA ?</h2>
+<p>LDA imagine que chaque document est écrit en suivant une recette probabiliste : <strong>documents → thèmes → mots.</strong></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><br>
+<br>
+</p>
+<h3 id="étapes-simplifiées">🔎 Étapes simplifiées</h3>
+<ol type="1">
+<li><p>On choisit une <strong>proportion de thèmes</strong> pour le document (θ).<br>
+→ ex. Avis hôtel : 50% Service, 30% Chambre, 20% Prix.</p></li>
+<li><p>Pour chaque mot du document :</p>
+<ul>
+<li>on <strong>pioche un thème latent</strong> (z),<br>
+</li>
+<li>puis on <strong>pioche un mot</strong> dans le vocabulaire de ce thème (β).</li>
+</ul></li>
+<li><p>Répété des milliers de fois, cela reconstitue le texte.<br>
+En observant beaucoup de textes, l’algorithme “devine” les thèmes.</p></li>
+</ol>
+</div><div class="column" style="font-size:0.7em">
+<p><img data-src="images/clipboard-1866827297.png"></p>
+<h4 id="dictionnaire-des-symboles-lda">Dictionnaire des symboles LDA</h4>
+<ul>
+<li><strong>Contexte du Corpus</strong>
+<ul>
+<li><strong>M</strong> : le nombre total de <strong>documents</strong> dans votre collection.</li>
+<li><strong>N</strong> : le nombre de <strong>mots</strong> dans un document donné.</li>
+</ul></li>
+<li><strong>Hyperparamètres (les réglages du modèle)</strong>
+<ul>
+<li><span class="math inline">\(\alpha\)</span> (alpha) : règle la diversité des <strong>thèmes</strong> par document.</li>
+<li><span class="math inline">\(\eta\)</span> (eta) : règle la diversité des <strong>mots</strong> par thème.</li>
+</ul></li>
+<li><strong>Paramètres (ce que le modèle apprend)</strong>
+<ul>
+<li><span class="math inline">\(\theta\)</span> (theta) : la “recette” de thèmes pour un document.</li>
+<li><span class="math inline">\(\beta\)</span> (beta) : les mots typiques d’un thème.</li>
+</ul></li>
+<li><strong>Variables (le processus de génération)</strong>
+<ul>
+<li><span class="math inline">\(z\)</span> : le thème latent (caché) assigné à un mot.</li>
+<li><span class="math inline">\(w\)</span> : le mot observé que l’on peut lire.</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section id="le-topic-modeling-en-marketing" class="slide level2" style="font-size:0.8em">
+<h2>Le Topic Modeling en marketing</h2>
+<p>La littérature marketing montre des usages variés et utiles du topic modeling.<br>
+Une revue de 61 études confirme son adoption et trace des pistes de recherche <span class="citation" data-cites="reisenbichlerTopicModelingMarketing2019">(<a href="#/références" role="doc-biblioref" onclick="">Reisenbichler and Reutterer 2019</a>)</span>.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="domaines-dapplication">Domaines d’application</h3>
+<ul>
+<li><strong>Segmentation &amp; profiling</strong> (voix client, personas)<br>
+</li>
+<li><strong>Analyse de communautés</strong> (forums, réseaux sociaux)<br>
+</li>
+<li><strong>Systèmes de recommandation</strong><br>
+</li>
+<li><strong>Publicité &amp; ciblage</strong> (mots-clés, messages)<br>
+</li>
+<li><strong>Veille &amp; tendances</strong> (évolution des thèmes)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="opportunités-de-recherche">Opportunités de recherche</h3>
+<ul>
+<li><strong>Données multi-sources &amp; dynamiques</strong> (texte + achats, social, temps)<br>
+</li>
+<li>Coupler LDA avec des <strong>modèles prédictifs</strong> (churn, CLV, ventes)<br>
+</li>
+<li>Mieux évaluer les thèmes (<strong>cohérence, exclusivité, stabilité</strong>)<br>
+</li>
+<li>Explorer des variantes (<strong>STM, BERTopic</strong>) selon le cas d’usage</li>
+</ul>
+</div></div>
+</section>
+<section id="visualiser-les-thèmes-avec-ggplot2-balech2019" class="slide level2" style="font-size:0.8em">
+<h2>Visualiser les thèmes avec ggplot2 <span class="citation" data-cites="balech2019">(<a href="#/références" role="doc-biblioref" onclick="">Balech and Benavent 2019</a>)</span></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/clipboard-1049051214.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+</section>
+<section id="visualiser-les-thèmes-avec-ldavis" class="slide level2" style="font-size:0.8em">
+<h2>Visualiser les thèmes avec LDAvis</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p>💡 Une fois le modèle entraîné, on peut explorer les thèmes avec des outils interactifs :</p>
+<ul>
+<li><strong>Python :</strong> Gensim + pyLDAvis<br>
+</li>
+<li><strong>R :</strong> LDAvis</li>
+</ul>
+<p>Chaque <strong>bulle</strong> représente un thème.<br>
+Les mots les plus fréquents apparaissent à droite.</p>
+</div><div class="column" style="width:80%;">
+<p><img data-src="images/clipboard-3079638492.gif" style="width:95.0%" alt="Exemple de visualisation interactive des thèmes avec LDAvis"></p>
+</div></div>
+</section>
+<section id="limites-du-topic-modeling-et-quand-aller-plus-loin" class="slide level2" style="font-size:0.8em">
+<h2>Limites du Topic Modeling (et quand aller plus loin)</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<h3 id="limites-pratiques">Limites pratiques</h3>
+<ul>
+<li><strong>Choix du nombre de topics (K)</strong> : compromis interprétabilité / granularité<br>
+</li>
+<li><strong>Qualité des thèmes</strong> : dépend du prétraitement &amp; des hyperparamètres<br>
+</li>
+<li><strong>Cohérence sémantique</strong> : certains topics sont “fourre-tout”<br>
+</li>
+<li><strong>Statique</strong> : difficulté à suivre finement l’<strong>évolution</strong> des thèmes<br>
+</li>
+<li><strong>Polysémie</strong> non résolue : un mot = un même rôle selon le topic</li>
+</ul>
+<h3 id="évaluer-améliorer">Évaluer &amp; améliorer</h3>
+<ul>
+<li>Utiliser des métriques de <strong>cohérence de topics</strong> (ex. <em>topic coherence</em>)<br>
+</li>
+<li>Tester plusieurs K et <strong>stabiliser</strong> (bootstrap / réplications)<br>
+</li>
+<li>Ajouter du <strong>guidage</strong> (Seeded/Guided LDA) ou des <strong>covariables</strong> (STM <span class="citation" data-cites="roberts2013structural">(<a href="#/références" role="doc-biblioref" onclick="">Roberts et al. 2013</a>)</span>)</li>
+</ul>
+</div><div class="column" style="width:45%;">
+<h3 id="quand-passer-à-des-approches-récentes">Quand passer à des approches récentes</h3>
+<ul>
+<li><strong>STM</strong> : intégrer <strong>covariables</strong> (temps, segment, campagne) pour expliquer/faire varier les thèmes <span class="citation" data-cites="roberts2013structural">(<a href="#/références" role="doc-biblioref" onclick="">Roberts et al. 2013</a>)</span><br>
+</li>
+<li><strong>BERTopic</strong> : s’appuyer sur des <strong>embeddings (BERT)</strong> + clustering pour des thèmes souvent plus <strong>cohérents</strong> <span class="citation" data-cites="grootendorst2022bertopic">(<a href="#/références" role="doc-biblioref" onclick="">Grootendorst 2022</a>)</span><br>
+</li>
+<li><strong>Embeddings/LLMs</strong> : capter la <strong>sémantique contextuelle</strong>, faire de la <strong>recherche sémantique</strong>, du <strong>résumé</strong> ou de la <strong>Q&amp;A</strong></li>
+</ul>
+<div class="callout callout-note callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p><strong>LDA</strong> est excellent pour <strong>cartographier</strong> des thèmes.<br>
+Dès que le <strong>contexte</strong> et la <strong>nuance</strong> deviennent critiques, on gagne à passer vers <strong>STM / BERTopic</strong>, puis <strong>embeddings &amp; LLMs</strong>.</p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="limpact-du-pré-traitement-sur-la-qualité-des-thèmes" class="slide level2" style="font-size:0.7em">
+<h2>L’impact du pré-traitement sur la qualité des thèmes</h2>
+<p>La qualité de vos thèmes dépend directement des choix faits lors du nettoyage des données (séance 4). Deux questions sont cruciales pour votre projet :</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="faut-il-garder-le-nom-de-la-marque">Faut-il garder le nom de la marque ?</h3>
+<p>Imaginez analyser des avis sur “Decathlon”.</p>
+<ul>
+<li><strong>Garder “decathlon”</strong> :
+<ul>
+<li><em>Risque</em> : peut créer un thème “bruit” autour de la marque elle-même, captant peu d’informations utiles.</li>
+<li><em>Avantage</em> : permet de voir à quels concepts la marque est le plus souvent associée.</li>
+</ul></li>
+<li><strong>Supprimer “decathlon”</strong> :
+<ul>
+<li><em>Avantage</em> : force le modèle à se concentrer sur les concepts transversaux (livraison, qualité, prix) de manière plus claire.</li>
+<li><em>Risque</em> : peut faire perdre un contexte si les gens comparent (“mieux que decathlon”).</li>
+</ul></li>
+</ul>
+<p>💡 <strong>Recommandation</strong> : Pour une première analyse des thèmes généraux, retirez le nom de la marque et ses variantes.</p>
+</div><div class="column" style="width:50%;">
+<h3 id="pourquoi-utiliser-les-n-grams">Pourquoi utiliser les n-grams ?</h3>
+<p>Le “sac de mots” simple sépare des concepts qui vont ensemble.</p>
+<ul>
+<li><strong>Sans n-grams</strong> :
+<ul>
+<li>“service” et “client” sont deux mots séparés.</li>
+<li>Le thème du SAV risque d’être dilué dans un thème sur les “clients” et un autre sur les “services”.</li>
+</ul></li>
+<li><strong>Avec n-grams (bigrams)</strong> :
+<ul>
+<li>L’entité <code>service_client</code> est traitée comme un seul “mot”.</li>
+<li>Permet de faire émerger des thèmes beaucoup plus précis et actionnables comme : <code>service_client</code>, <code>point_relais</code>, <code>carte_fidélité</code>.</li>
+</ul></li>
+</ul>
+<p>💡 <strong>Recommandation</strong> : toujours identifier les expressions fréquentes (collocations) et les fusionner en n-grams avant de lancer un LDA.</p>
+</div></div>
+</section></section>
+<section>
+<section id="partie-5-synthèse-et-action-pour-votre-projet-quarto" class="title-slide slide level1 center">
+<h1>Partie 5 : Synthèse et action pour votre projet Quarto</h1>
+
+</section>
+<section id="de-la-sortie-brute-à-linsight-lart-de-nommer-les-thèmes" class="slide level2" style="font-size:0.7em">
+<h2>De la sortie brute à l’insight : l’art de nommer les thèmes</h2>
+<p>Un modèle de topic modeling fournit des listes de mots. Le vrai travail de l’analyste marketing commence ici : <strong>traduire ces listes en concepts actionnables</strong>.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="la-sortie-brute-de-lalgorithme">1. La sortie brute de l’algorithme</h3>
+<p>L’outil vous donne des “sacs de mots” statistiquement cohérents.</p>
+<ul>
+<li><strong>Thème A</strong> : <em>livraison, commande, reçu, colis, retard, transporteur, point relais</em></li>
+<li><strong>Thème B</strong> : <em>magasin, vendeur, conseil, passage, caisse, accueil, personnel</em></li>
+<li><strong>Thème C</strong> : <em>qualité, produit, déçu, cassé, retour, remboursement, service client</em></li>
+<li><strong>Thème D</strong> : <em>prix, cher, promotion, réduction, abordable, euros, carte fidélité</em></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="linterprétation-et-le-nommage-marketing">2. L’interprétation et le nommage marketing</h3>
+<p>Votre rôle est de synthétiser chaque thème en un concept métier.</p>
+<ul>
+<li><strong>Thème A ➞ Expérience de Livraison</strong></li>
+<li><strong>Thème B ➞ Relation Client en Point de Vente</strong></li>
+<li><strong>Thème C ➞ Qualité Produit &amp; Service Après-Vente</strong></li>
+<li><strong>Thème D ➞ Perception du Rapport Qualité-Prix</strong></li>
+</ul>
+</div></div>
+<div class="callout callout-note callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>💡 Le nommage est une hypothèse d’analyse</strong></p>
+</div>
+<div class="callout-content">
+<p>Nommer un thème, c’est formuler une hypothèse sur ce dont les clients parlent réellement. C’est cette “étiquette” qui sera utilisée dans vos recommandations managériales, pas la liste de mots. On peut désormais utiliser les LLMs pour nous aider à formuler cette hypothèse.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="ce-quen-dit-la-recherche" class="slide level2" style="font-size:0.6em">
+<h2>Ce qu’en dit la recherche</h2>
+<p>Les articles récents confirment l’évolution des pratiques : des modèles statistiques vers des approches sémantiques basées sur les embeddings.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h4 id="approches-classiques-cartographier-les-thèmes">Approches “classiques” : cartographier les thèmes</h4>
+<ul>
+<li><strong>NMF et LDA</strong> sont des choix fiables pour une première cartographie des sujets, notamment sur des textes courts où <strong>NMF surpasse souvent LDA</strong> <span class="citation" data-cites="eggerTopicModelingComparison2022 albalawiUsingTopicModeling2020">(<a href="#/références" role="doc-biblioref" onclick="">Egger and Yu 2022</a>; <a href="#/références" role="doc-biblioref" onclick="">Albalawi, Yeap, and Benyoucef 2020</a>)</span>.</li>
+<li>Cependant, leur limite est une plus faible nuance sémantique, car ils ne capturent pas le contexte comme les embeddings <span class="citation" data-cites="papadiaComparisonDifferentTopic2023">(<a href="#/références" role="doc-biblioref" onclick="">Papadia et al. 2023</a>)</span>.</li>
+</ul>
+<h4 id="intégrer-le-contexte-client-stm">Intégrer le contexte client : STM</h4>
+<ul>
+<li>Le <strong>Structural Topic Model (STM)</strong> est unique pour sa capacité à intégrer nativement des <strong>métadonnées</strong> (date, segment client, note…).</li>
+<li>Il permet d’expliquer <strong>comment</strong> et <strong>pourquoi</strong> la prévalence des thèmes varie en fonction des caractéristiques des clients, ce que les autres modèles ne font pas directement <span class="citation" data-cites="fresnedaStructuralTopicModelling2021">(<a href="#/références" role="doc-biblioref" onclick="">Fresneda, Burnham, and Hill 2021</a>)</span>.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h4 id="lapproche-sémantique-moderne-bertopic">L’approche sémantique moderne : BERTopic</h4>
+<ul>
+<li><strong>BERTopic</strong> excelle pour découvrir des thèmes <strong>nuancés</strong> en se basant sur le sens des phrases, ce qui est idéal pour les textes courts et bruités comme les avis en ligne ou les posts sur les réseaux sociaux <span class="citation" data-cites="eggerTopicModelingComparison2022">(<a href="#/références" role="doc-biblioref" onclick="">Egger and Yu 2022</a>)</span>.</li>
+<li>Son approche modulaire (Embeddings -&gt; Clustering -&gt; Description) est très efficace.</li>
+</ul>
+<p><br>
+</p>
+<h4 id="un-cas-dusage-marketing-direct">Un cas d’usage marketing direct</h4>
+<ul>
+<li>Une méthode très pratique consiste à <strong>séparer les avis par note</strong> (ex: 1-2★ vs 4-5★) avant d’appliquer <strong>BERTopic</strong> sur chaque groupe.</li>
+<li>Cela permet d’extraire de manière très précise les <strong>arguments spécifiques aux “pour” et aux “contre”</strong> d’un produit, en se basant sur le sens réel des critiques et des éloges <span class="citation" data-cites="anMarketingInsightsReviews2023">(<a href="#/références" role="doc-biblioref" onclick="">An, Oh, and Lee 2023</a>)</span>.</li>
+</ul>
+</div></div>
+</section>
+<section id="synthèse-quelle-méthode-choisir-pour-votre-projet" class="slide level2" style="font-size:0.62em">
+<h2>Synthèse : quelle méthode choisir pour votre projet ?</h2>
+<p>Chaque famille de modèles a ses forces. Le choix dépend de votre question de recherche marketing.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 58%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Besoin Analytique</strong></th>
+<th style="text-align: left;"><strong>Approche Recommandée</strong></th>
+<th style="text-align: left;"><strong>Forces et Limites</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Cartographier les grands sujets</strong> d’un large corpus</td>
+<td style="text-align: left;"><strong>NMF</strong> ou <strong>LDA</strong></td>
+<td style="text-align: left;"><strong>Forces</strong> : rapide, donne une bonne vue d’ensemble. NMF est souvent performant sur textes courts <span class="citation" data-cites="eggerTopicModelingComparison2022 albalawiUsingTopicModeling2020">(<a href="#/références" role="doc-biblioref" onclick="">Egger and Yu 2022</a>; <a href="#/références" role="doc-biblioref" onclick="">Albalawi, Yeap, and Benyoucef 2020</a>)</span>. <br> <strong>Limite</strong> : moins de nuance sémantique (ne capture pas le <strong>contexte</strong>).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Expliquer les thèmes par des métadonnées</strong> (date, segment, note…)</td>
+<td style="text-align: left;"><strong>Structural Topic Model (STM)</strong></td>
+<td style="text-align: left;"><strong>Force</strong> : le seul modèle qui intègre nativement les covariables pour expliquer la prévalence et le contenu des thèmes <span class="citation" data-cites="fresnedaStructuralTopicModelling2021">(<a href="#/références" role="doc-biblioref" onclick="">Fresneda, Burnham, and Hill 2021</a>)</span>. <br> <strong>Limite</strong> : Plus complexe à mettre en œuvre (nécessite des données structurées).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Découvrir des thèmes nuancés</strong> basés sur le sens (paraphrases, synonymes)</td>
+<td style="text-align: left;"><strong>BERTopic</strong></td>
+<td style="text-align: left;"><strong>Force</strong> : capture le sens contextuel, idéal pour les textes courts et bruités (avis, réseaux sociaux) <span class="citation" data-cites="eggerTopicModelingComparison2022">(<a href="#/références" role="doc-biblioref" onclick="">Egger and Yu 2022</a>)</span>. <br> <strong>Limite</strong> : moins direct pour lier les thèmes aux métadonnées (nécessite une analyse post-hoc).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Analyser les “pour” et les “contre”</strong> d’un produit</td>
+<td style="text-align: left;"><strong>BERTopic</strong> (appliqué séparément sur les avis 1-2★ et 4-5★)</td>
+<td style="text-align: left;"><strong>Force</strong> : Pprmet de créer des clusters très spécifiques aux critiques vs.&nbsp;aux éloges, en se basant sur le contenu sémantique des arguments <span class="citation" data-cites="anMarketingInsightsReviews2023">(<a href="#/références" role="doc-biblioref" onclick="">An, Oh, and Lee 2023</a>)</span>.</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="références" class="slide level2 smaller scrollable">
 <h2>Références</h2>
 
-<script> window._input_file = "---\n" + "title: \"Études qualitatives sur le web (netnographie)\"\n" + "subtitle: \"Topic modeling & représentations vectorielles\"\n" + "author:\n" + "  - name: \"Olivier Caron\"\n" + "    affiliations: \"Paris Dauphine - PSL\"\n" + "format:\n" + "  ubd-revealjs:\n" + "    self-contained: false\n" + "    chalkboard: true\n" + "    transition: fade\n" + "    auto-stretch: false\n" + "    width: 1250\n" + "    height: 760\n" + "    toc: false\n" + "    toc-depth: 1\n" + "    code-block-height: 700px\n" + "execute:\n" + "  echo: true\n" + "bibliography: refs.bib\n" + "revealjs-plugins:\n" + "  - editable\n" + "filters:\n" + "  - editable\n" + "editor: \n" + "  markdown: \n" + "    wrap: 72\n" + "---\n" + "\n" + "## Objectifs de la séance {style=\"font-size:0.8em\"}\n" + "\n" + "Aujourd'hui, nous allons au-delà de l'analyse de mots isolés pour\n" + "répondre à deux questions marketing fondamentales :\n" + "\n" + "1.  **De quoi parlent réellement les personnes, consommateurs, clients\n" + "    ?**\n" + "    -   Nous verrons comment le **Topic Modeling** (modélisation de\n" + "        thèmes) peut automatiquement découvrir les grands sujets de\n" + "        discussion (les *topics*) cachés dans des milliers d'avis.\n" + "2.  **Comment la machine peut-elle comprendre le *sens* des mots ?**\n" + "    -   Nous explorerons les **Word Embeddings** (plongements de mots),\n" + "        la technologie révolutionnaire qui permet aux algorithmes de\n" + "        saisir les nuances et les similarités sémantiques.\n" + "\n" + "::: callout-note\n" + "### 💡 L'enjeu\n" + "\n" + "Ces deux approches sont la porte d'entrée vers les analyses les plus\n" + "avancées et les plus puissantes du marketing digital, notamment les\n" + "LLMs.\n" + ":::\n" + "\n" + "## Le problème : comment synthétiser 10 000 verbatims ? {style=\"font-size:0.8em\"}\n" + "\n" + "Imaginez que vous avez collecté 10 000 avis sur votre produit.\\n" + "Les lire un par un est impossible. Comment savoir rapidement quels sont\n" + "les 5 ou 10 grands thèmes de satisfaction ou d'insatisfaction ?\n" + "\n" + "C'est le rôle du **Topic Modeling**.\\n" + "Il s’agit en général d’une méthode d'apprentissage **non supervisé** :\\n" + "elle découvre les thèmes **sans qu’on les lui dise à l’avance**.\n" + "\n" + "L'algorithme le plus célèbre pour cela est le **LDA (Latent Dirichlet\n" + "Allocation)** [@bleiLatentDirichletAllocation2003].\n" + "\n" + "::: {.callout-note appearance=\"simple\"}\n" + "**Variantes** :\\n" + "- **STM (Structural Topic Model)** [@roberts2013structural] permet\n" + "d’incorporer des **covariables** (ex. date, genre, segment client).\\n" + "- **BERTopic** [@grootendorst2022bertopic] s’appuie sur les **embeddings\n" + "modernes** (BERT) et un clustering pour produire des thèmes plus\n" + "cohérents.\\n" + "- **Seeded LDA** : versions guidées où l’on fournit des mots-clés pour\n" + "orienter les thèmes.\n" + ":::\n" + "\n" + "## Qu'est-ce que le LDA ? L'intuition {style=\"font-size:0.7em\"}\n" + "\n" + "Imaginons que LDA est un **bibliothécaire stagiaire** à qui on demande\n" + "de classer 10 000 articles en 5 thèmes qu'il doit inventer lui-même.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### 1. Il crée les thèmes (Thèmes → Mots)\n" + "\n" + "Le stagiaire lit et remarque que certains mots apparaissent souvent\n" + "ensemble.\n" + "\n" + "-   \"Planète\", \"fusée\", \"étoile\" ➞ Il crée un post-it **\"Thème A\"**.\n" + "-   \"But\", \"ballon\", \"équipe\" ➞ Il crée un post-it **\"Thème B\"**.\n" + "\n" + "À la fin, un **thème** n'est qu'un \"sac de mots\" qui ont tendance à\n" + "cohabiter.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### 2. Il étiquette les documents (Documents → Thèmes)\n" + "\n" + "Maintenant, il prend chaque article et regarde les mots qu'il contient.\n" + "\n" + "-   Un article parle de \"fusée\", \"planète\" et un peu de \"match\".\n" + "-   Il l'étiquette avec une \"recette\" : **70% Thème A, 30% Thème B**.\n" + "\n" + "À la fin, un **document** est simplement un mélange de ces thèmes.\n" + ":::\n" + ":::::\n" + "\n" + "\\n" + "\n" + "::: {.callout-note appearance=\"simple\"}\n" + "#### Ce que LDA donne au final\n" + "\n" + "L'algorithme devine automatiquement **les thèmes cachés** dans les\n" + "textes et **la recette de chaque document**. C'est un trieur automatique\n" + "ultra-performant.\n" + ":::\n" + "\n" + "## Comment fonctionne le LDA ? {style=\"font-size:0.7em\"}\n" + "\n" + "LDA imagine que chaque document est écrit en suivant une recette\n" + "probabiliste : **documents → thèmes → mots.**\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "\\n" + "\\n" + "\n" + "### 🔎 Étapes simplifiées\n" + "\n" + "1.  On choisit une **proportion de thèmes** pour le document (θ).\\n" + "    → ex. Avis hôtel : 50% Service, 30% Chambre, 20% Prix.\n" + "\n" + "2.  Pour chaque mot du document :\n" + "\n" + "    -   on **pioche un thème latent** (z),\\n" + "    -   puis on **pioche un mot** dans le vocabulaire de ce thème (β).\n" + "\n" + "3.  Répété des milliers de fois, cela reconstitue le texte.\\n" + "    En observant beaucoup de textes, l’algorithme “devine” les thèmes.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\" style=\"font-size:0.7em\"}\n" + "![](images/clipboard-1866827297.png)\n" + "\n" + "#### Dictionnaire des symboles LDA\n" + "\n" + "-   **Contexte du Corpus**\n" + "    -   **M** : Le nombre total de **documents** dans votre collection.\n" + "    -   **N** : Le nombre de **mots** dans un document donné.\n" + "-   **Hyperparamètres (les réglages du modèle)**\n" + "    -   $\alpha$ (alpha) : Règle la diversité des **thèmes** par\n" + "        document.\n" + "    -   $\eta$ (eta) : Règle la diversité des **mots** par thème.\n" + "-   **Paramètres (ce que le modèle apprend)**\n" + "    -   $\theta$ (theta) : La \"recette\" de thèmes pour un document.\n" + "    -   $\beta$ (beta) : Les mots typiques d'un thème.\n" + "-   **Variables (le processus de génération)**\n" + "    -   $z$ : Le thème latent (caché) assigné à un mot.\n" + "    -   $w$ : Le mot observé que l'on peut lire.\n" + ":::\n" + ":::::\n" + "\n" + "## Le Topic Modeling en marketing {style=\"font-size:0.8em\"}\n" + "\n" + "La littérature marketing montre des usages variés et utiles du topic\n" + "modeling.\\n" + "Une revue de 61 études confirme son adoption et trace des pistes de\n" + "recherche [@reisenbichlerTopicModelingMarketing2019].\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### Domaines d’application\n" + "\n" + "-   **Segmentation & profiling** (voix client, personas)\\n" + "-   **Analyse de communautés** (forums, réseaux sociaux)\\n" + "-   **Systèmes de recommandation**\\n" + "-   **Publicité & ciblage** (mots-clés, messages)\\n" + "-   **Veille & tendances** (évolution des thèmes)\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### Opportunités de recherche\n" + "\n" + "-   **Données multi-sources & dynamiques** (texte + achats, social,\n" + "    temps)\\n" + "-   Coupler LDA avec des **modèles prédictifs** (churn, CLV, ventes)\\n" + "-   Mieux évaluer les thèmes (**cohérence, exclusivité, stabilité**)\\n" + "-   Explorer des variantes (**STM, BERTopic**) selon le cas d’usage\n" + ":::\n" + ":::::\n" + "\n" + "## Visualiser les thèmes avec ggplot2 [@balech2019] {style=\"font-size:0.8em\"}\n" + "\n" + "![](images/clipboard-1049051214.png){fig-align=\"center\" width=\"90%\"}\n" + "\n" + "## Visualiser les thèmes avec LDAvis {style=\"font-size:0.8em\"}\n" + "\n" + "::::: columns\n" + "::: {.column width=\"20%\"}\n" + "💡 Une fois le modèle entraîné, on peut explorer les thèmes avec des\n" + "outils interactifs :\n" + "\n" + "-   **Python :** Gensim + pyLDAvis\\n" + "-   **R :** LDAvis\n" + "\n" + "Chaque **bulle** représente un thème.\\n" + "Les mots les plus fréquents apparaissent à droite.\n" + ":::\n" + "\n" + "::: {.column width=\"80%\"}\n" + "![](images/clipboard-3079638492.gif){width=\"95%\"\n" + "fig-alt=\"Exemple de visualisation interactive des thèmes avec LDAvis\"}\n" + ":::\n" + ":::::\n" + "\n" + "## Limites du Topic Modeling (et quand aller plus loin) {style=\"font-size:0.8em\"}\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"55%\"}\n" + "### Limites pratiques\n" + "\n" + "-   **Choix du nombre de topics (K)** : compromis interprétabilité /\n" + "    granularité\\n" + "-   **Qualité des thèmes** : dépend du prétraitement & des\n" + "    hyperparamètres\\n" + "-   **Cohérence sémantique** : certains topics sont “fourre-tout”\\n" + "-   **Statique** : difficulté à suivre finement l’**évolution** des\n" + "    thèmes\\n" + "-   **Polysémie** non résolue : un mot = un même rôle selon le topic\n" + "\n" + "### Évaluer & améliorer\n" + "\n" + "-   Utiliser des métriques de **cohérence de topics** (ex. *topic\n" + "    coherence*)\\n" + "-   Tester plusieurs K et **stabiliser** (bootstrap / réplications)\\n" + "-   Ajouter du **guidage** (Seeded/Guided LDA) ou des **covariables**\n" + "    (STM [@roberts2013structural])\n" + ":::\n" + "\n" + ":::: {.column width=\"45%\"}\n" + "### Quand passer à des approches récentes\n" + "\n" + "-   **STM** : intégrer **covariables** (temps, segment, campagne) pour\n" + "    expliquer/faire varier les thèmes [@roberts2013structural]\\n" + "-   **BERTopic** : s’appuyer sur des **embeddings (BERT)** + clustering\n" + "    pour des thèmes souvent plus **cohérents**\n" + "    [@grootendorst2022bertopic]\\n" + "-   **Embeddings/LLMs** : capter la **sémantique contextuelle**, faire\n" + "    de la **recherche sémantique**, du **résumé** ou de la **Q&A**\n" + "\n" + "::: {.callout-note appearance=\"simple\"}\n" + "**Message clé** : LDA est excellent pour **cartographier** des thèmes.\\n" + "Dès que le **contexte** et la **nuance** deviennent critiques, on gagne\n" + "à passer vers **STM / BERTopic**, puis **embeddings & LLMs**.\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "# Des mots aux vecteurs : comprendre les Word Embeddings {.transition-slide-ubdblue style=\"font-size:0.55em\"}\n" + "\n" + "::: {.callout-note appearance=\"simple\"}\n" + "De nombreuses illustrations de cette section viennent de\\n" + "[Jay Alammar – *The Illustrated\n" + "Word2Vec*](https://jalammar.github.io/illustrated-word2vec/).\n" + ":::\n" + "\n" + "## La limite du \"sac de mots\" (Bag-of-Words) {style=\"font-size:1em\"}\n" + "\n" + "\\n" + "\n" + "Jusqu'à présent, pour transformer le texte en chiffres, on a surtout\n" + "compté les mots (approche **Bag-of-Words** ou **TF-IDF**).\n" + "\n" + "**Le problème** : cette approche est \"naïve\". Pour elle, les mots\n" + "\"**roi**\", \"**reine**\" et \"**château**\" sont aussi différents les uns\n" + "des autres que les mots \"**roi**\" et \"**camion**\". Elle ne comprend pas\n" + "que certains mots sont sémantiquement proches.\n" + "\n" + "**La question de recherche** : comment faire pour qu'un ordinateur\n" + "comprenne que \"**excellent**\" est plus proche de \"**superbe**\" que de\n" + "\"**médiocre**\" ?\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## L’idée de l’embedding : représenter des concepts par des nombres {style=\"font-size:0.6em\"}\n" + "\n" + "Avant de voir comment une machine comprend les *mots*, imaginons comment\n" + "représenter une *personne* en chiffres.\\n" + "C’est le principe de l’**embedding** (ou \"plongement\").\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"33%\"}\n" + "### **1. Une seule dimension**\n" + "\n" + "Un test peut donner un score unique, par exemple sur l’axe\n" + "introversion/extraversion.\\n" + "Ce score devient la première coordonnée du \"vecteur de personnalité\".\n" + "\n" + "![](images/clipboard-3216074280.png){fig-alt=\"Un seul trait de personnalité représenté sur un axe et comme un vecteur à une dimension.\"}\n" + ":::\n" + "\n" + "::: {.column width=\"33%\"}\n" + "### **2. Ajouter de la complexité**\n" + "\n" + "Une seule dimension est insuffisante. Ajoutons un autre trait, noté de\n" + "-1 (introverti) à +1 (extraverti).\\n" + "On obtient un **vecteur à deux dimensions**, qui a une direction et une\n" + "longueur, et capture plus d’informations.\n" + "\n" + "![](images/clipboard-1397202871.png)\n" + ":::\n" + "\n" + "::: {.column width=\"33%\"}\n" + "### **3. Vers N dimensions**\n" + "\n" + "Les tests comme le *Big Five* utilisent au moins 5 dimensions. En\n" + "machine learning, on peut en avoir des milliers La personnalité devient\n" + "un **vecteur de nombres**, chaque valeur représentant un score.\n" + "\n" + "![](images/clipboard-1397202871.png){fig-alt=\"Résultats d'un test de personnalité Big Five avec cinq scores.\"}\n" + ":::\n" + "::::::\n" + "\n" + "::: {.callout-tip title=\"L'idée fondamentale de l'embedding\"}\n" + "Un concept complexe (une personne, bientôt un mot) peut être représenté\n" + "par un **vecteur numérique**.\n" + "\n" + "**Avantage** : les machines peuvent **mesurer les similarités** en\n" + "comparant ces vecteurs.\n" + ":::\n" + "\n" + "## Comment la machine \"compare\" les personnalités ? {style=\"font-size:0.6em\"}\n" + "\n" + "Maintenant que chaque personne est un vecteur de nombres, on peut\n" + "utiliser un outil mathématique simple pour calculer à quel point elles\n" + "sont \"proches\" en termes de personnalité : la **similarité cosinus**.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### 1. **L'intuition : l'angle** 📐\n" + "\n" + "L'idée n'est pas de mesurer la distance entre les points, mais plutôt\n" + "l'**angle** entre les flèches (vecteurs).\n" + "\n" + "-   **Angle faible** (directions similaires) ➞ **Score de similarité\n" + "    élevé**.\n" + "-   **Angle grand** (directions opposées) ➞ **Score de similarité\n" + "    faible/négatif**.\n" + "\n" + "![](images/clipboard-1326301173.png){fig-alt=\"Vecteurs de personnalité dans un espace à 2 dimensions.\"}\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### 2. **Le calcul en action** 💡\n" + "\n" + "La fonction `cosine_similarity` nous donne un score entre -1 (opposés)\n" + "et 1 (identiques).\n" + "\n" + "![](images/clipboard-139449525.png)\n" + "\n" + "![](images/clipboard-2770573251.png)\n" + "\n" + "On voit que **Jay** est bien plus **similaire** à la **Personne #1**\n" + "qu'à la **Personne #2**, que ce soit avec 2 ou 5 dimensions !\n" + ":::\n" + ":::::\n" + "\n" + "::: {.callout-note appearance=\"simple\"}\n" + "### L'avantage clé\n" + "\n" + "Peu importe le nombre de dimensions (2, 5, plusieurs centaines ou\n" + "milliers pour les modèles de langue !), la **similarité cosinus** nous\n" + "donne un **score unique et fiable** pour quantifier la ressemblance\n" + "entre deux concepts. C’est la base de nombreuses applications : moteurs\n" + "de recommandation, recherche sémantique… et bien plus encore.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## La révolution Word2Vec : le sens par le contexte [@mikolovEfficientEstimationWord2013] {style=\"font-size:0.7em\"}\n" + "\n" + "Au début des années 2010, une équipe de chercheurs chez Google a proposé\n" + "un algorithme révolutionnaire : **Word2Vec**\n" + "[@mikolovEfficientEstimationWord2013].\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "Autrement dit, un mot n’a pas de sens isolé :\\n" + "il prend son sens dans les **contextes où il apparaît**,\\n" + "c’est-à-dire les mots qui l’entourent [@harris1954distributional].\n" + "\n" + "-   Le mot *banque* avec *argent*, *épargne*, *compte* → sens\n" + "    **financier**.\\n" + "-   Le mot *banque* avec *rivière*, *eau*, *berge* → sens\n" + "    **géographique**.\n" + "\n" + "\\n" + "\\n" + "\n" + "On peut exprimer cela simplement par l’idée que la **probabilité d’un\n" + "mot** dépend de ses voisins immédiats :\n" + "\n" + "$$\n" + "P(\text{mot} \mid \text{contexte})\n" + "$$\n" + "\n" + "où le *contexte* est constitué des mots voisins dans la phrase.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "**L'idée fondamentale :**\n" + "\n" + "> *\"You shall know a word by the company it keeps\"* [@firth1957papers].\n" + "\n" + "\\n" + "\n" + "En pratique, Word2Vec entraîne un petit réseau de neurones à **prédire\n" + "les mots du contexte** à partir d’un mot central (ou l’inverse).\n" + "\n" + "\\n" + "\\n" + "\n" + "Les vecteurs associés aux mots s’ajustent pendant l’apprentissage,\n" + "jusqu’à ce que ceux qui apparaissent dans des **contextes similaires**\n" + "se retrouvent proches dans l’espace.\n" + "\n" + "\\n" + "\\n" + "\n" + "Word2Vec ne \"comprend\" pas le sens comme un humain :\\n" + "il exploite uniquement les **régularités statistiques** des\n" + "cooccurrences de mots.\n" + ":::\n" + ":::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Visualiser un embedding {style=\"font-size:0.8em\"}\n" + "\n" + "Chaque mot est représenté par un **vecteur de nombres** (par ex. 50 ou\n" + "300 dimensions).\\n" + "Pris séparément, ces valeurs n’ont pas de sens pour nous.\\n" + "Mais en comparant plusieurs mots, on voit apparaître des **motifs de\n" + "similarité**.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"40%\"}\n" + "-   *man* et *woman* → vecteurs proches.\\n" + "-   *king* et *queen* → partagent des dimensions → idée de **royauté**.\\n" + "-   *boy* et *girl* → proches sur d’autres dimensions → idée de\n" + "    **jeunesse**.\\n" + "-   *water* → se distingue nettement des mots “personnes”.\n" + "\n" + "💡 Les embeddings capturent des **régularités invisibles**, uniquement à\n" + "partir des contextes.\n" + ":::\n" + "\n" + "::: {.column width=\"60%\"}\n" + "![](images/clipboard-1098495211.png)\n" + ":::\n" + ":::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Analogies vectorielles {style=\"font-size:0.6em\"}\n" + "\n" + "Les vecteurs de mots se combinent algébriquement.\\n" + "Ce n’est pas magique : la **géométrie des vecteurs** encode des\n" + "relations sémantiques et syntaxiques.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"40%\"}\n" + "-   *roi – homme + femme ≈ reine*\\n" + "-   *Paris – France + Italie ≈ Rome*\\n" + "-   *marcher – marché + chanter ≈ chanté*\n" + "\n" + "👉 Avec des bibliothèques comme **Gensim en python** ou **word2vec en**\n" + "**R**, on peut réellement calculer ces analogies et retrouver les mots\n" + "les plus proches.\n" + ":::\n" + "\n" + "::: {.column width=\"60%\"}\n" + "![](images/clipboard-4149333522.png)\n" + ":::\n" + ":::::\n" + "\n" + "### **Quelle utilisation dans le marketing ?**\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "-   **Moteurs de recommandation** : si un client a aimé un produit\n" + "    décrit par certains mots, on peut lui recommander des produits\n" + "    décrits par des mots aux vecteurs similaires.\n" + "\n" + "-   **Analyse de sentiment** : regrouper les avis clients exprimés\n" + "    différemment (*super* ≈ *génial* ≈ *excellent*), pour mieux suivre\n" + "    la satisfaction.\n" + "\n" + "-   **Segmentation clients** : utiliser le langage des clients\n" + "    (feedback, SAV, forums) pour créer des clusters basés sur les mots\n" + "    et expressions employés.\\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "-   **Étude de marque et positionnement** : comparer les associations\n" + "    implicites entre marques (*Nike*, *Adidas*, *Puma*) et concepts\n" + "    (*performance*, *lifestyle*, *mode*).\n" + "\n" + "-   **Détection de tendances** : suivre l’évolution de mots-clés\n" + "    (*durable*, *écologique*) pour identifier les thèmes qui montent.\n" + "\n" + "-   **Base des modèles modernes** : transformer les mots en vecteurs est\n" + "    la **fondation** sur laquelle reposent tous les modèles de langage\n" + "    modernes, y compris les LLMs.\\n" + ":::\n" + ":::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Comment apprend-on des embeddings de mots ? {style=\"font-size:0.7em\"}\n" + "\n" + "L’idée fondamentale : la **signification d’un mot** se comprend à partir\n" + "des mots qui apparaissent fréquemment autour de lui.\\n" + "Un petit réseau de neurones est entraîné à résoudre une tâche simple de\n" + "**prédiction**, répétée des millions de fois sur un grand corpus (comme\n" + "Wikipedia).\n" + "\n" + "::::: columns\n" + "::: {.column width=\"40%\"}\n" + "\\n" + "\\n" + "\n" + "-   Le modèle lit chaque phrase et repère les **mots voisins** d’un mot\n" + "    donné.\\n" + "-   Il apprend à associer un mot et son **contexte**.\\n" + "-   En ajustant ses paramètres, il construit des **vecteurs numériques**\n" + "    qui reflètent les régularités du langage (genre, pluriel,\n" + "    royauté…).\\n" + "-   Résultat : des mots qui apparaissent dans des contextes similaires\n" + "    obtiennent des vecteurs proches.\n" + ":::\n" + "\n" + "::: {.column width=\"60%\"}\n" + "![](images/clipboard-3545977823.png)\n" + ":::\n" + ":::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Deux variantes de Word2Vec {style=\"font-size:0.9em\"}\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "-   **CBOW (Continuous Bag of Words)**\\n" + "    Prédit le **mot central** à partir de son **contexte**.\n" + "    -   Avantage : rapide à entraîner.\\n" + "    -   Adapté aux grands corpus.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "-   **Skip-gram**\\n" + "    Prédit les **mots du contexte** à partir du **mot central**.\n" + "    -   Avantage : plus performant pour les mots rares.\\n" + "    -   Capture mieux les relations fines entre mots.\\n" + ":::\n" + ":::::\n" + "\n" + "![](images/clipboard-840659499.png){fig-alt=\"Illustration CBOW vs Skip-gram\"\n" + "fig-align=\"center\" width=\"90%\"}\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Modèles liés et évolutions\n" + "\n" + "-   **GloVe** [@penningtonGloveGlobalVectors2014a]\\n" + "    Basé sur une grande **matrice de cooccurrences** factorisée (SVD).\\n" + "    → Plus “statistique” que neuronal.\n" + "\n" + "-   **FastText** [@bojanowskiEnrichingWordVectors2017]\\n" + "    Améliore Word2Vec en apprenant aussi des vecteurs pour les **n-grams\n" + "    de caractères** (utile pour variations orthographiques).\n" + "\n" + "    -   Très rapide à entraîner.\\n" + "    -   Utilisé par exemple à l’Insee pour la classification\n" + "        automatique.\n" + "\n" + "-   **ELMo** [@petersDeepContextualizedWord2018]\\n" + "    Premier modèle à produire des **vecteurs contextualisés** :\\n" + "    le vecteur d’un mot dépend de la phrase.\\n" + "    → Prépare le terrain pour les **Transformers** (BERT, GPT…).\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Les limites de Word2Vec et des embeddings statiques {style=\"font-size:0.7em\"}\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "-   **Vecteurs statiques** : un mot = un seul vecteur, appris une fois\n" + "    pour toutes.\\n" + "    → *banque* (finance vs rivière) est toujours représenté par le\n" + "    **même vecteur**.\n" + "\n" + "-   **Pas de contexte global** : Word2Vec ne regarde qu’une petite\n" + "    fenêtre (ex. ±5 mots).\\n" + "    → Impossible de capter des dépendances à longue distance.\n" + "\n" + "-   **Pas de prise en compte de l’ordre** : l’embedding ignore la\n" + "    syntaxe exacte d’une phrase.\n" + "\n" + "-   **Peu flexible** : une fois entraînés, les vecteurs ne s’adaptent\n" + "    pas à de nouveaux usages du langage.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "\\n" + "\\n" + "\\n" + "\\n" + "\n" + "💡 Résultat : les embeddings classiques captent des proximités\n" + "sémantiques utiles, mais **ne peuvent pas distinguer les sens multiples\n" + "d’un mot**.\n" + ":::\n" + ":::::\n" + "\n" + "::: {.callout-tip title=\"Vers les Transformers et l'attention\"}\n" + "Les modèles modernes (**Transformers**) introduisent le mécanisme\n" + "d’**attention**, qui permet de :\n" + "\n" + "-   Donner à chaque mot une **représentation contextualisée** (le\n" + "    vecteur de *banque* change selon la phrase).\\n" + "-   Relier un mot à d’autres, même très éloignés dans la phrase.\\n" + "-   Mieux modéliser la **syntaxe et la sémantique** en même temps.\n" + "\n" + "➡️ **Prochaine séance** : comprendre comment l’**attention**\n" + "révolutionne les modèles de langage.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Références\n" + ""</script>
+<script> window._input_file = "---\n" + "title: \"Études qualitatives sur le web (netnographie)\"\n" + "subtitle: \"Topic modeling & représentations vectorielles\"\n" + "author:\n" + "  - name: \"Olivier Caron\"\n" + "    affiliations: \"Paris Dauphine - PSL\"\n" + "format:\n" + "  ubd-revealjs:\n" + "    self-contained: false\n" + "    chalkboard: true\n" + "    transition: fade\n" + "    auto-stretch: false\n" + "    width: 1250\n" + "    height: 760\n" + "    toc: false\n" + "    toc-depth: 1\n" + "    code-block-height: 700px\n" + "execute:\n" + "  echo: true\n" + "bibliography: refs.bib\n" + "revealjs-plugins:\n" + "  - editable\n" + "filters:\n" + "  - editable\n" + "editor: \n" + "  markdown: \n" + "    wrap: 72\n" + "---\n" + "\n" + "## Objectifs de la séance {style=\"font-size:0.8em\"}\n" + "\n" + "Aujourd'hui, nous allons au-delà de l'analyse de mots isolés pour\n" + "répondre à deux questions marketing fondamentales :\n" + "\n" + "1.  **De quoi parlent réellement les personnes, consommateurs, clients\n" + "    ?**\n" + "    -   Nous verrons comment le **Topic Modeling** (modélisation de\n" + "        thèmes) peut automatiquement découvrir les grands sujets de\n" + "        discussion (les *topics*) cachés dans des milliers d'avis.\n" + "2.  **Comment la machine peut-elle comprendre le *sens* des mots ?**\n" + "    -   Nous explorerons les **Word Embeddings** (plongements de mots),\n" + "        la technologie révolutionnaire qui permet aux algorithmes de\n" + "        saisir les nuances et les similarités sémantiques.\n" + "\n" + "::: callout-note\n" + "### 💡 L'enjeu\n" + "\n" + "Ces deux approches sont la porte d'entrée vers les analyses les plus\n" + "avancées et les plus puissantes du marketing digital, notamment les\n" + "LLMs.\n" + ":::\n" + "\n" + "## Le problème : comment synthétiser 10 000 verbatims ? {style=\"font-size:0.8em\"}\n" + "\n" + "Imaginez que vous avez collecté 10 000 avis sur votre produit.\\n" + "Les lire un par un est impossible. Comment savoir rapidement quels sont\n" + "les 5 ou 10 grands thèmes de satisfaction ou d'insatisfaction ?\n" + "\n" + "Pour y répondre, nous devons combiner deux approches :\n" + "\n" + "1.  Une technologie pour comprendre le **sens réel** des mots, au-delà des\n" + "    simples comptes : les **Word Embeddings**.\n" + "2.  Des méthodes pour **regrouper** les avis en grands thèmes : le\n" + "    **Topic Modeling**.\n" + "\n" + "::: {.callout-note appearance=\"simple\"}\n" + "#### Les grandes familles de modèles de thèmes\n" + "\n" + "-   **Approches statistiques (ex: LDA)** [@bleiLatentDirichletAllocation2003] : Modèles probabilistes qui identifient les thèmes en se basant sur les co-occurrences de mots.\n" + "\n" + "-   **Approches avec métadonnées (ex: STM)** [@roberts2013structural] : Permettent d’expliquer les thèmes par des variables externes (date, segment client...).\n" + "\n" + "-   **Approches sémantiques (ex: BERTopic)** [@grootendorst2022bertopic] : S’appuient sur le sens des phrases (embeddings) pour créer des thèmes plus cohérents.\n" + ":::\n" + "\n" + "# Des mots aux vecteurs : comprendre les Word Embeddings {.transition-slide-ubdblue style=\"font-size:0.55em\"}\n" + "\n" + "::: {.callout-note appearance=\"simple\"}\n" + "De nombreuses illustrations de cette section proviennent de\\n" + "[Jay Alammar – *The Illustrated\n" + "Word2Vec*](https://jalammar.github.io/illustrated-word2vec/).\n" + ":::\n" + "\n" + "## La limite du \"sac de mots\" (Bag-of-Words) {style=\"font-size:1em\"}\n" + "\n" + "\\n" + "\n" + "Jusqu'à présent, pour transformer le texte en chiffres, on a surtout\n" + "compté les mots (approche **Bag-of-Words** ou **TF-IDF**).\n" + "\n" + "**Le problème** : cette approche est \"naïve\". Pour elle, les mots\n" + "\"**roi**\", \"**reine**\" et \"**château**\" sont aussi différents les uns\n" + "des autres que les mots \"**roi**\" et \"**camion**\". Elle ne comprend pas\n" + "que certains mots sont sémantiquement proches.\n" + "\n" + "Comment faire pour qu'un ordinateur comprenne que \"**excellent**\" est plus proche de \"**superbe**\" que de\n" + "\"**médiocre**\" ?\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## L’idée de l’embedding : représenter des concepts par des nombres {style=\"font-size:0.6em\"}\n" + "\n" + "Avant de voir comment une machine comprend les *mots*, imaginons comment\n" + "représenter une *personne* en chiffres.\\n" + "C’est le principe de l’**embedding** (ou \"plongement\").\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"33%\"}\n" + "### **1. Une seule dimension**\n" + "\n" + "Un test peut donner un score unique, par exemple sur l’axe\n" + "introversion/extraversion.\\n" + "Ce score devient la première coordonnée du \"vecteur de personnalité\".\n" + "\n" + "![](images/clipboard-3216074280.png){fig-alt=\"Un seul trait de personnalité représenté sur un axe et comme un vecteur à une dimension.\"}\n" + ":::\n" + "\n" + "::: {.column width=\"33%\"}\n" + "### **2. Ajouter de la complexité**\n" + "\n" + "Une seule dimension est insuffisante. Ajoutons un autre trait, noté de\n" + "-1 (introverti) à +1 (extraverti).\\n" + "On obtient un **vecteur à deux dimensions**, qui a une direction et une\n" + "longueur, et capture plus d’informations.\n" + "\n" + "![](images/clipboard-1397202871.png)\n" + ":::\n" + "\n" + "::: {.column width=\"33%\"}\n" + "### **3. Vers N dimensions**\n" + "\n" + "Les tests comme le *Big Five* utilisent au moins 5 dimensions. En\n" + "machine learning, on peut en avoir des milliers La personnalité devient\n" + "un **vecteur de nombres**, chaque valeur représentant un score.\n" + "\n" + "![](images/clipboard-1397202871.png){fig-alt=\"Résultats d'un test de personnalité Big Five avec cinq scores.\"}\n" + ":::\n" + "::::::\n" + "\n" + "::: {.callout-tip title=\"L'idée fondamentale de l'embedding\"}\n" + "Un concept complexe (une personne, bientôt un mot) peut être représenté\n" + "par un **vecteur numérique**.\n" + "\n" + "**Avantage** : les machines peuvent **mesurer les similarités** en\n" + "comparant ces vecteurs.\n" + ":::\n" + "\n" + "## Comment la machine \"compare\" les personnalités ? {style=\"font-size:0.6em\"}\n" + "\n" + "Maintenant que chaque personne est un vecteur de nombres, on peut\n" + "utiliser un outil mathématique simple pour calculer à quel point elles\n" + "sont \"proches\" en termes de personnalité : la **similarité cosinus**.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### 1. **L'intuition : l'angle** 📐\n" + "\n" + "L'idée n'est pas de mesurer la distance entre les points, mais plutôt\n" + "l'**angle** entre les flèches (vecteurs).\n" + "\n" + "-   **Angle faible** (directions similaires) ➞ **Score de similarité\n" + "    élevé**.\n" + "-   **Angle grand** (directions opposées) ➞ **Score de similarité\n" + "    faible/négatif**.\n" + "\n" + "![](images/clipboard-1326301173.png){fig-alt=\"Vecteurs de personnalité dans un espace à 2 dimensions.\"}\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### 2. **Le calcul en action** 💡\n" + "\n" + "La fonction `cosine_similarity` nous donne un score entre -1 (opposés)\n" + "et 1 (identiques).\n" + "\n" + "![](images/clipboard-139449525.png)\n" + "\n" + "![](images/clipboard-2770573251.png)\n" + "\n" + "On voit que **Jay** est bien plus **similaire** à la **Personne #1**\n" + "qu'à la **Personne #2**, que ce soit avec 2 ou 5 dimensions !\n" + ":::\n" + ":::::\n" + "\n" + "::: {.callout-note appearance=\"simple\"}\n" + "### L'avantage clé\n" + "\n" + "Peu importe le nombre de dimensions (2, 5, plusieurs centaines ou\n" + "milliers pour les modèles de langue !), la **similarité cosinus** nous\n" + "donne un **score unique et fiable** pour quantifier la ressemblance\n" + "entre deux concepts. C’est la base de nombreuses applications : moteurs\n" + "de recommandation, recherche sémantique… et bien plus encore.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## La révolution Word2Vec : le sens par le contexte [@mikolovEfficientEstimationWord2013] {style=\"font-size:0.7em\"}\n" + "\n" + "Au début des années 2010, une équipe de chercheurs chez Google a proposé\n" + "un algorithme révolutionnaire : **Word2Vec**\n" + "[@mikolovEfficientEstimationWord2013].\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "Autrement dit, un mot n’a pas de sens isolé :\\n" + "il prend son sens dans les **contextes où il apparaît**,\\n" + "c’est-à-dire les mots qui l’entourent [@harris1954distributional].\n" + "\n" + "-   Le mot *banque* avec *argent*, *épargne*, *compte* → sens\n" + "    **financier**.\\n" + "-   Le mot *banque* avec *rivière*, *eau*, *berge* → sens\n" + "    **géographique**.\n" + "\n" + "\\n" + "\\n" + "\n" + "On peut exprimer cela simplement par l’idée que la **probabilité d’un\n" + "mot** dépend de ses voisins immédiats :\n" + "\n" + "$$\n" + "P(\text{mot} \mid \text{contexte})\n" + "$$\n" + "\n" + "où le *contexte* est constitué des mots voisins dans la phrase.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "**L'idée fondamentale :**\n" + "\n" + "> *\"You shall know a word by the company it keeps\"* [@firth1957papers].\n" + "\n" + "\\n" + "\n" + "En pratique, Word2Vec entraîne un petit réseau de neurones à **prédire\n" + "les mots du contexte** à partir d’un mot central (ou l’inverse).\n" + "\n" + "\\n" + "\\n" + "\n" + "Les vecteurs associés aux mots s’ajustent pendant l’apprentissage,\n" + "jusqu’à ce que ceux qui apparaissent dans des **contextes similaires**\n" + "se retrouvent proches dans l’espace.\n" + "\n" + "\\n" + "\\n" + "\n" + "Word2Vec ne \"comprend\" pas le sens comme un humain :\\n" + "il exploite uniquement les **régularités statistiques** des\n" + "cooccurrences de mots.\n" + ":::\n" + ":::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Visualiser un embedding {style=\"font-size:0.8em\"}\n" + "\n" + "Chaque mot est représenté par un **vecteur de nombres** (par ex. 50 ou\n" + "300 dimensions).\\n" + "Pris séparément, ces valeurs n’ont pas de sens pour nous.\\n" + "Mais en comparant plusieurs mots, on voit apparaître des **motifs de\n" + "similarité**.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"40%\"}\n" + "-   *man* et *woman* → vecteurs proches.\\n" + "-   *king* et *queen* → partagent des dimensions → idée de **royauté**.\\n" + "-   *boy* et *girl* → proches sur d’autres dimensions → idée de\n" + "    **jeunesse**.\\n" + "-   *water* → se distingue nettement des mots “personnes”.\n" + "\n" + "💡 Les embeddings capturent des **régularités invisibles**, uniquement à\n" + "partir des contextes.\n" + ":::\n" + "\n" + "::: {.column width=\"60%\"}\n" + "![](images/clipboard-1098495211.png)\n" + ":::\n" + ":::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Analogies vectorielles {style=\"font-size:0.6em\"}\n" + "\n" + "Les vecteurs de mots se combinent algébriquement.\\n" + "Ce n’est pas magique : la **géométrie des vecteurs** encode des\n" + "relations sémantiques et syntaxiques.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"40%\"}\n" + "-   *roi – homme + femme ≈ reine*\\n" + "-   *Paris – France + Italie ≈ Rome*\\n" + "-   *marcher – marché + chanter ≈ chanté*\n" + "\n" + "👉 Avec des bibliothèques comme **Gensim en python** ou **word2vec en**\n" + "**R**, on peut réellement calculer ces analogies et retrouver les mots\n" + "les plus proches.\n" + ":::\n" + "\n" + "::: {.column width=\"60%\"}\n" + "![](images/clipboard-4149333522.png)\n" + ":::\n" + ":::::\n" + "\n" + "### **Quelle utilisation dans le marketing ?**\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "-   **Moteurs de recommandation** : si un client a aimé un produit\n" + "    décrit par certains mots, on peut lui recommander des produits\n" + "    décrits par des mots aux vecteurs similaires.\n" + "\n" + "-   **Analyse de sentiment** : regrouper les avis clients exprimés\n" + "    différemment (*super* ≈ *génial* ≈ *excellent*), pour mieux suivre\n" + "    la satisfaction.\n" + "\n" + "-   **Segmentation clients** : utiliser le langage des clients\n" + "    (feedback, SAV, forums) pour créer des clusters basés sur les mots\n" + "    et expressions employés.\\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "-   **Étude de marque et positionnement** : comparer les associations\n" + "    implicites entre marques (*Nike*, *Adidas*, *Puma*) et concepts\n" + "    (*performance*, *lifestyle*, *mode*).\n" + "\n" + "-   **Détection de tendances** : suivre l’évolution de mots-clés\n" + "    (*durable*, *écologique*) pour identifier les thèmes qui montent.\n" + "\n" + "-   **Base des modèles modernes** : transformer les mots en vecteurs est\n" + "    la **fondation** sur laquelle reposent tous les modèles de langage\n" + "    modernes, y compris les LLMs.\\n" + ":::\n" + ":::::\n" + "\n" + "## Application : le clustering sémantique d'avis clients {style=\"font-size:0.7em\"}\n" + "\n" + "L'usage le plus direct des embeddings pour un projet en marketing par\n" + "exemple est de regrouper des avis qui se ressemblent par le sens, et non\n" + "plus par les mots-clés.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"40%\"}\n" + "### La méthode en 3 étapes\n" + "\n" + "1.  **Vectoriser** : chaque avis client est transformé en un vecteur\n" + "    numérique à l'aide d'un modèle pré-entraîné.\n" + "\n" + "2.  **Clusteriser** : un algorithme de clustering (ex: K-Means, HDBSCAN)\n" + "    est appliqué sur ces vecteurs. Il va créer des groupes où les\n" + "    vecteurs sont proches les uns des autres.\n" + "\n" + "3.  **Interpréter** : pour comprendre un cluster, on lit quelques avis\n" + "    représentatifs. On découvre ainsi des thématiques très fines.\n" + ":::\n" + "\n" + "::: {.column width=\"60%\"}\n" + "### Un exemple concret\n" + "\n" + "Un topic model pourrait créer un thème large sur la \"livraison\". Le\n" + "clustering sémantique pourra, lui, identifier des sous-groupes très\n" + "distincts :\n" + "\n" + "-   **Cluster 1 : \"Le colis est arrivé en avance, super !\"**\n" + "    -   *\"Livraison reçue 2 jours avant la date, je suis ravie.\"*\n" + "    -   *\"Impressionné par la rapidité d'expédition.\"*\n" + "-   **Cluster 2 : \"Le livreur n'a pas été professionnel.\"**\n" + "    -   *\"Le colis a été jeté par-dessus le portail.\"*\n" + "    -   *\"Le livreur n'a même pas sonné et a mis un avis de passage.\"*\n" + "-   **Cluster 3 : \"Problèmes avec le point relais.\"**\n" + "    -   *\"Mon point relais était fermé, j'ai dû faire un détour.\"*\n" + "    -   *\"Impossible de récupérer mon colis, le commerçant ne le trouve\n" + "        pas.\"*\n" + ":::\n" + ":::::\n" + "\n" + "::: {.callout-note appearance=\"simple\"}\n" + "Le clustering sur embeddings ne remplace pas le Topic Modeling, il le\n" + "complète en offrant une granularité sémantique souvent inaccessible avec\n" + "les modèles de thèmes traditionnels.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Comment apprend-on des embeddings de mots ? {style=\"font-size:0.7em\"}\n" + "\n" + "L’idée fondamentale : la **signification d’un mot** se comprend à partir\n" + "des mots qui apparaissent fréquemment autour de lui.\\n" + "Un petit réseau de neurones est entraîné à résoudre une tâche simple de\n" + "**prédiction**, répétée des millions de fois sur un grand corpus (comme\n" + "Wikipedia).\n" + "\n" + "::::: columns\n" + "::: {.column width=\"40%\"}\n" + "\\n" + "\\n" + "\n" + "-   Le modèle lit chaque phrase et repère les **mots voisins** d’un mot\n" + "    donné.\\n" + "-   Il apprend à associer un mot et son **contexte**.\\n" + "-   En ajustant ses paramètres, il construit des **vecteurs numériques**\n" + "    qui reflètent les régularités du langage (genre, pluriel,\n" + "    royauté…).\\n" + "-   Résultat : des mots qui apparaissent dans des contextes similaires\n" + "    obtiennent des vecteurs proches.\n" + ":::\n" + "\n" + "::: {.column width=\"60%\"}\n" + "![](images/clipboard-3545977823.png)\n" + ":::\n" + ":::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Deux variantes de Word2Vec {style=\"font-size:0.9em\"}\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "-   **CBOW (Continuous Bag of Words)**\\n" + "    Prédit le **mot central** à partir de son **contexte**.\n" + "    -   Avantage : rapide à entraîner.\\n" + "    -   Adapté aux grands corpus.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "-   **Skip-gram**\\n" + "    Prédit les **mots du contexte** à partir du **mot central**.\n" + "    -   Avantage : plus performant pour les mots rares.\\n" + "    -   Capture mieux les relations fines entre mots.\\n" + ":::\n" + ":::::\n" + "\n" + "![](images/clipboard-840659499.png){fig-alt=\"Illustration CBOW vs Skip-gram\"\n" + "fig-align=\"center\" width=\"90%\"}\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Modèles liés et évolutions\n" + "\n" + "-   **GloVe** [@penningtonGloveGlobalVectors2014a]\\n" + "    Basé sur une grande **matrice de cooccurrences** factorisée (SVD).\\n" + "    → Plus “statistique” que neuronal.\n" + "\n" + "-   **FastText** [@bojanowskiEnrichingWordVectors2017]\\n" + "    Améliore Word2Vec en apprenant aussi des vecteurs pour les **n-grams\n" + "    de caractères** (utile pour variations orthographiques).\n" + "\n" + "    -   Très rapide à entraîner.\\n" + "    -   Utilisé par exemple à l’Insee pour la classification\n" + "        automatique.\n" + "\n" + "-   **ELMo** [@petersDeepContextualizedWord2018]\\n" + "    Premier modèle à produire des **vecteurs contextualisés** :\\n" + "    le vecteur d’un mot dépend de la phrase.\\n" + "    → Prépare le terrain pour les **Transformers** (BERT, GPT…).\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Les limites de Word2Vec et des embeddings statiques {style=\"font-size:0.7em\"}\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "-   **Vecteurs statiques** : un mot = un seul vecteur, appris une fois\n" + "    pour toutes.\\n" + "    → *banque* (finance vs rivière) est toujours représenté par le\n" + "    **même vecteur**.\n" + "\n" + "-   **Pas de contexte global** : Word2Vec ne regarde qu’une petite\n" + "    fenêtre (ex. ±5 mots).\\n" + "    → Impossible de capter des dépendances à longue distance.\n" + "\n" + "-   **Pas de prise en compte de l’ordre** : l’embedding ignore la\n" + "    syntaxe exacte d’une phrase.\n" + "\n" + "-   **Peu flexible** : une fois entraînés, les vecteurs ne s’adaptent\n" + "    pas à de nouveaux usages du langage.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "\\n" + "\\n" + "\\n" + "\\n" + "\n" + "💡 Résultat : les embeddings classiques captent des proximités\n" + "sémantiques utiles, mais **ne peuvent pas distinguer les sens multiples\n" + "d’un mot**.\n" + ":::\n" + ":::::\n" + "\n" + "::: {.callout-tip title=\"Vers les Transformers et l'attention\"}\n" + "Les modèles modernes (**Transformers**) introduisent le mécanisme\n" + "d’**attention**, qui permet de :\n" + "\n" + "-   Donner à chaque mot une **représentation contextualisée** (le\n" + "    vecteur de *banque* change selon la phrase).\\n" + "-   Relier un mot à d’autres, même très éloignés dans la phrase.\\n" + "-   Mieux modéliser la **syntaxe et la sémantique** en même temps.\n" + "\n" + "➡️ **Prochaine séance** : comprendre comment l’**attention**\n" + "révolutionne les modèles de langage.\n" + ":::\n" + "\n" + "# Les applications modernes\n" + "\n" + "## Des embeddings aux thèmes : l'approche BERTopic {style=\"font-size:0.7em\"}\n" + "\n" + "Les embeddings nous donnent la **proximité sémantique**. Un nuage de 10\n" + "000 points-vecteurs reste inexploitable pour un décideur.\n" + "\n" + "**Le défi** : comment structurer ce nuage de sens en thèmes clairs et interprétables ?\n" + "\n" + "::::: columns\n" + "::: {.column width=\"40%\"}\n" + "**BERTopic** est un *pipeline* modulaire qui transforme ce nuage en\n" + "thèmes lisibles [@eggerTopicModelingComparison2022] :\n" + "\n" + "1.  Il **regroupe** les avis sémantiquement proches (clustering).\n" + "2.  Il **extrait** les mots/expressions qui décrivent le mieux chaque\n" + "    groupe.\n" + "3.  Il produit des **thèmes cohérents** et faciles à nommer.\n" + "\n" + "C'est une approche \"embedding-first\" qui privilégie le sens sur la\n" + "simple co-occurrence de mots.\n" + ":::\n" + "\n" + "::: {.column width=\"60%\"}\n" + "\n" + "\\n" + "\n" + "![](images/clipboard-2184762329.png){fig-align=\"center\" width=\"50%\"}\n" + ":::\n" + ":::::\n" + "\n" + "## Le workflow BERTopic en 4 étapes {style=\"font-size:0.75em\"}\n" + "\n" + "BERTopic n'est pas un monolithe, mais une \"recette\" intelligente qui\n" + "combine plusieurs algorithmes [@anMarketingInsightsReviews2023].\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### 1. Vectorisation (Embeddings)\n" + "\n" + "-   **Objectif** : transformer chaque avis en un point dans un \"espace\n" + "    sémantique\".\n" + "-   **Outil** : un modèle pré-entraîné (ex: `Sentence-BERT`) qui\n" + "    comprend déjà le français.\n" + "-   **Résultat** : une liste de vecteurs.\n" + "\n" + "### 2. Réduction de dimension (UMAP)\n" + "\n" + "-   **Objectif** : créer une \"carte\" 2D de ces milliers de points, en\n" + "    préservant les voisinages (les avis proches restent proches).\n" + "-   **Pourquoi ?** facilite grandement le travail de l'algorithme de\n" + "    clustering.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### 3. Clustering (HDBSCAN)\n" + "\n" + "-   **Objectif** : identifier automatiquement les \"îlots\" (clusters)\n" + "    denses sur cette carte.\n" + "-   **Force** : n'oblige pas à choisir le nombre de thèmes à l'avance et\n" + "    identifie les **outliers** (avis uniques ou bruit, classés en `-1`).\n" + "\n" + "### 4. Représentation des thèmes (c-TF-IDF)\n" + "\n" + "-   **Objectif** : pour chaque \"îlot\", trouver les mots/expressions les\n" + "    plus caractéristiques.\n" + "-   **Comment ?** une variante de TF-IDF qui traite chaque cluster comme\n" + "    un \"document\" et le corpus entier comme la \"collection\".\n" + ":::\n" + ":::::\n" + "\n" + "## En pratique : faut-il entraîner ses propres embeddings ? {style=\"font-size:0.75em\"}\n" + "\n" + "Une fois le principe compris, la question opérationnelle se pose :\n" + "comment obtenir ces fameux vecteurs ?\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### 1. Entraîner son propre modèle (ex: Word2Vec)\n" + "\n" + "-   **Principe** : on apprend les vecteurs de mots à partir de zéro, en\n" + "    utilisant uniquement les textes de son propre corpus (ex: 10 000\n" + "    avis clients).\n" + "-   **Avantage** : les vecteurs sont parfaitement adaptés au jargon et\n" + "    au contexte spécifique de votre marque.\n" + "-   **Inconvénient majeur** : nécessite **d'énormes volumes de données**\n" + "    (des millions de mots) pour apprendre des relations sémantiques de\n" + "    qualité.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### 2. Utiliser un modèle pré-entraîné (BERT, CamemBERT...)\n" + "\n" + "-   **Principe** : on télécharge un modèle qui a **déjà été entraîné**\n" + "    sur des téraoctets de texte (ex: tout Wikipédia). Ce modèle \"sait\"\n" + "    déjà comment fonctionne le langage.\n" + "-   **Avantage** : extrêmement puissant et performant, même sur des\n" + "    corpus de petite taille. Il a une compréhension profonde de la\n" + "    sémantique générale.\n" + "-   **Inconvénient** : peut être moins performant sur un jargon très\n" + "    spécifique absent de ses données d'entraînement (rare pour des avis\n" + "    clients).\n" + ":::\n" + ":::::\n" + "\n" + "::: {.callout-tip title=\"La bonne pratique\"}\n" + "Pour votre projet, ne ré-inventez pas la roue. Utilisez des modèles\n" + "pré-entraînés (via des librairies comme `sentence-transformers` en\n" + "Python) pour transformer vos avis en vecteurs.\n" + ":::\n" + "\n" + "# Les approches classiques en contexte (LDA, STM...)\n" + "\n" + "## Qu'est-ce que le LDA ? L'intuition {style=\"font-size:0.7em\"}\n" + "\n" + "Imaginons que LDA est un **bibliothécaire stagiaire** à qui on demande\n" + "de classer 10 000 articles en 5 thèmes qu'il doit inventer lui-même.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### 1. Il crée les thèmes (Thèmes → Mots)\n" + "\n" + "Le stagiaire lit et remarque que certains mots apparaissent souvent\n" + "ensemble.\n" + "\n" + "-   \"Planète\", \"fusée\", \"étoile\" ➞  il crée un post-it **\"Thème A\"**.\n" + "-   \"But\", \"ballon\", \"équipe\" ➞  il crée un post-it **\"Thème B\"**.\n" + "\n" + "À la fin, un **thème** n'est qu'un \"sac de mots\" qui ont tendance à\n" + "cohabiter.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### 2. Il étiquette les documents (Documents → Thèmes)\n" + "\n" + "Maintenant, il prend chaque article et regarde les mots qu'il contient.\n" + "\n" + "-   Un article parle de \"fusée\", \"planète\" et un peu de \"match\".\n" + "-   Il l'étiquette avec une \"recette\" : **70% Thème A, 30% Thème B**.\n" + "\n" + "À la fin, un **document** est simplement un mélange de ces thèmes.\n" + ":::\n" + ":::::\n" + "\n" + "\\n" + "\n" + "::: {.callout-note appearance=\"simple\"}\n" + "#### Ce que LDA donne au final\n" + "\n" + "L'algorithme devine automatiquement **les thèmes cachés** dans les\n" + "textes et **la recette de chaque document**. C'est un trieur automatique\n" + "ultra-performant.\n" + ":::\n" + "\n" + "## Comment fonctionne le LDA ? {style=\"font-size:0.7em\"}\n" + "\n" + "LDA imagine que chaque document est écrit en suivant une recette\n" + "probabiliste : **documents → thèmes → mots.**\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "\\n" + "\\n" + "\n" + "### 🔎 Étapes simplifiées\n" + "\n" + "1.  On choisit une **proportion de thèmes** pour le document (θ).\\n" + "    → ex. Avis hôtel : 50% Service, 30% Chambre, 20% Prix.\n" + "\n" + "2.  Pour chaque mot du document :\n" + "\n" + "    -   on **pioche un thème latent** (z),\\n" + "    -   puis on **pioche un mot** dans le vocabulaire de ce thème (β).\n" + "\n" + "3.  Répété des milliers de fois, cela reconstitue le texte.\\n" + "    En observant beaucoup de textes, l’algorithme “devine” les thèmes.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\" style=\"font-size:0.7em\"}\n" + "![](images/clipboard-1866827297.png)\n" + "\n" + "#### Dictionnaire des symboles LDA\n" + "\n" + "-   **Contexte du Corpus**\n" + "    -   **M** : le nombre total de **documents** dans votre collection.\n" + "    -   **N** : le nombre de **mots** dans un document donné.\n" + "-   **Hyperparamètres (les réglages du modèle)**\n" + "    -   $\alpha$ (alpha) : règle la diversité des **thèmes** par\n" + "        document.\n" + "    -   $\eta$ (eta) : règle la diversité des **mots** par thème.\n" + "-   **Paramètres (ce que le modèle apprend)**\n" + "    -   $\theta$ (theta) : la \"recette\" de thèmes pour un document.\n" + "    -   $\beta$ (beta) : les mots typiques d'un thème.\n" + "-   **Variables (le processus de génération)**\n" + "    -   $z$ : le thème latent (caché) assigné à un mot.\n" + "    -   $w$ : le mot observé que l'on peut lire.\n" + ":::\n" + ":::::\n" + "\n" + "## Le Topic Modeling en marketing {style=\"font-size:0.8em\"}\n" + "\n" + "La littérature marketing montre des usages variés et utiles du topic\n" + "modeling.\\n" + "Une revue de 61 études confirme son adoption et trace des pistes de\n" + "recherche [@reisenbichlerTopicModelingMarketing2019].\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### Domaines d’application\n" + "\n" + "-   **Segmentation & profiling** (voix client, personas)\\n" + "-   **Analyse de communautés** (forums, réseaux sociaux)\\n" + "-   **Systèmes de recommandation**\\n" + "-   **Publicité & ciblage** (mots-clés, messages)\\n" + "-   **Veille & tendances** (évolution des thèmes)\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### Opportunités de recherche\n" + "\n" + "-   **Données multi-sources & dynamiques** (texte + achats, social,\n" + "    temps)\\n" + "-   Coupler LDA avec des **modèles prédictifs** (churn, CLV, ventes)\\n" + "-   Mieux évaluer les thèmes (**cohérence, exclusivité, stabilité**)\\n" + "-   Explorer des variantes (**STM, BERTopic**) selon le cas d’usage\n" + ":::\n" + ":::::\n" + "\n" + "## Visualiser les thèmes avec ggplot2 [@balech2019] {style=\"font-size:0.8em\"}\n" + "\n" + "![](images/clipboard-1049051214.png){fig-align=\"center\" width=\"90%\"}\n" + "\n" + "## Visualiser les thèmes avec LDAvis {style=\"font-size:0.8em\"}\n" + "\n" + "::::: columns\n" + "::: {.column width=\"20%\"}\n" + "💡 Une fois le modèle entraîné, on peut explorer les thèmes avec des\n" + "outils interactifs :\n" + "\n" + "-   **Python :** Gensim + pyLDAvis\\n" + "-   **R :** LDAvis\n" + "\n" + "Chaque **bulle** représente un thème.\\n" + "Les mots les plus fréquents apparaissent à droite.\n" + ":::\n" + "\n" + "::: {.column width=\"80%\"}\n" + "![](images/clipboard-3079638492.gif){width=\"95%\"\n" + "fig-alt=\"Exemple de visualisation interactive des thèmes avec LDAvis\"}\n" + ":::\n" + ":::::\n" + "\n" + "## Limites du Topic Modeling (et quand aller plus loin) {style=\"font-size:0.8em\"}\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"55%\"}\n" + "### Limites pratiques\n" + "\n" + "-   **Choix du nombre de topics (K)** : compromis interprétabilité /\n" + "    granularité\\n" + "-   **Qualité des thèmes** : dépend du prétraitement & des\n" + "    hyperparamètres\\n" + "-   **Cohérence sémantique** : certains topics sont “fourre-tout”\\n" + "-   **Statique** : difficulté à suivre finement l’**évolution** des\n" + "    thèmes\\n" + "-   **Polysémie** non résolue : un mot = un même rôle selon le topic\n" + "\n" + "### Évaluer & améliorer\n" + "\n" + "-   Utiliser des métriques de **cohérence de topics** (ex. *topic\n" + "    coherence*)\\n" + "-   Tester plusieurs K et **stabiliser** (bootstrap / réplications)\\n" + "-   Ajouter du **guidage** (Seeded/Guided LDA) ou des **covariables**\n" + "    (STM [@roberts2013structural])\n" + ":::\n" + "\n" + ":::: {.column width=\"45%\"}\n" + "### Quand passer à des approches récentes\n" + "\n" + "-   **STM** : intégrer **covariables** (temps, segment, campagne) pour\n" + "    expliquer/faire varier les thèmes [@roberts2013structural]\\n" + "-   **BERTopic** : s’appuyer sur des **embeddings (BERT)** + clustering\n" + "    pour des thèmes souvent plus **cohérents**\n" + "    [@grootendorst2022bertopic]\\n" + "-   **Embeddings/LLMs** : capter la **sémantique contextuelle**, faire\n" + "    de la **recherche sémantique**, du **résumé** ou de la **Q&A**\n" + "\n" + "::: {.callout-note appearance=\"simple\"}\n" + "**LDA** est excellent pour **cartographier** des thèmes.\\n" + "Dès que le **contexte** et la **nuance** deviennent critiques, on gagne\n" + "à passer vers **STM / BERTopic**, puis **embeddings & LLMs**.\n" + ":::\n" + "::::\n" + "::::::\n" + "\n" + "## L'impact du pré-traitement sur la qualité des thèmes {style=\"font-size:0.7em\"}\n" + "\n" + "La qualité de vos thèmes dépend directement des choix faits lors du\n" + "nettoyage des données (séance 4). Deux questions sont cruciales pour\n" + "votre projet :\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### Faut-il garder le nom de la marque ?\n" + "\n" + "Imaginez analyser des avis sur \"Decathlon\".\n" + "\n" + "-   **Garder \"decathlon\"** :\n" + "    -   *Risque* : peut créer un thème \"bruit\" autour de la marque\n" + "        elle-même, captant peu d'informations utiles.\n" + "    -   *Avantage* : permet de voir à quels concepts la marque est le\n" + "        plus souvent associée.\n" + "-   **Supprimer \"decathlon\"** :\n" + "    -   *Avantage* : force le modèle à se concentrer sur les concepts\n" + "        transversaux (livraison, qualité, prix) de manière plus claire.\n" + "    -   *Risque* : peut faire perdre un contexte si les gens comparent\n" + "        (\"mieux que decathlon\").\n" + "\n" + "💡 **Recommandation** : Pour une première analyse des thèmes généraux,\n" + "retirez le nom de la marque et ses variantes.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### Pourquoi utiliser les n-grams ?\n" + "\n" + "Le \"sac de mots\" simple sépare des concepts qui vont ensemble.\n" + "\n" + "-   **Sans n-grams** :\n" + "    -   \"service\" et \"client\" sont deux mots séparés.\n" + "    -   Le thème du SAV risque d'être dilué dans un thème sur les\n" + "        \"clients\" et un autre sur les \"services\".\n" + "-   **Avec n-grams (bigrams)** :\n" + "    -   L'entité `service_client` est traitée comme un seul \"mot\".\n" + "    -   Permet de faire émerger des thèmes beaucoup plus précis et\n" + "        actionnables comme : `service_client`, `point_relais`,\n" + "        `carte_fidélité`.\n" + "\n" + "💡 **Recommandation** : toujours identifier les expressions fréquentes\n" + "(collocations) et les fusionner en n-grams avant de lancer un LDA.\n" + ":::\n" + ":::::\n" + "\n" + "# Partie 5 : Synthèse et action pour votre projet Quarto\n" + "\n" + "## De la sortie brute à l'insight : l'art de nommer les thèmes {style=\"font-size:0.7em\"}\n" + "\n" + "Un modèle de topic modeling fournit des listes de mots. Le vrai travail\n" + "de l'analyste marketing commence ici : **traduire ces listes en concepts\n" + "actionnables**.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### 1. La sortie brute de l'algorithme\n" + "\n" + "L'outil vous donne des \"sacs de mots\" statistiquement cohérents.\n" + "\n" + "-   **Thème A** : *livraison, commande, reçu, colis, retard,\n" + "    transporteur, point relais*\n" + "-   **Thème B** : *magasin, vendeur, conseil, passage, caisse, accueil,\n" + "    personnel*\n" + "-   **Thème C** : *qualité, produit, déçu, cassé, retour, remboursement,\n" + "    service client*\n" + "-   **Thème D** : *prix, cher, promotion, réduction, abordable, euros,\n" + "    carte fidélité*\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### 2. L'interprétation et le nommage marketing\n" + "\n" + "Votre rôle est de synthétiser chaque thème en un concept métier.\n" + "\n" + "-   **Thème A ➞ Expérience de Livraison**\n" + "-   **Thème B ➞ Relation Client en Point de Vente**\n" + "-   **Thème C ➞ Qualité Produit & Service Après-Vente**\n" + "-   **Thème D ➞ Perception du Rapport Qualité-Prix**\n" + ":::\n" + ":::::\n" + "\n" + "::: {.callout-note appearance=\"simple\"}\n" + "#### 💡 Le nommage est une hypothèse d'analyse\n" + "\n" + "Nommer un thème, c'est formuler une hypothèse sur ce dont les clients\n" + "parlent réellement. C'est cette \"étiquette\" qui sera utilisée dans vos\n" + "recommandations managériales, pas la liste de mots. On peut désormais\n" + "utiliser les LLMs pour nous aider à formuler cette hypothèse.\n" + ":::\n" + "\n" + "## Ce qu'en dit la recherche {style=\"font-size:0.6em\"}\n" + "\n" + "Les articles récents confirment l'évolution des pratiques : des modèles\n" + "statistiques vers des approches sémantiques basées sur les embeddings.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "#### Approches \"classiques\" : cartographier les thèmes\n" + "\n" + "-   **NMF et LDA** sont des choix fiables pour une première cartographie\n" + "    des sujets, notamment sur des textes courts où **NMF surpasse\n" + "    souvent LDA** [@eggerTopicModelingComparison2022;\n" + "    @albalawiUsingTopicModeling2020].\n" + "-   Cependant, leur limite est une plus faible nuance sémantique, car\n" + "    ils ne capturent pas le contexte comme les embeddings\n" + "    [@papadiaComparisonDifferentTopic2023].\n" + "\n" + "#### Intégrer le contexte client : STM\n" + "\n" + "-   Le **Structural Topic Model (STM)** est unique pour sa capacité à\n" + "    intégrer nativement des **métadonnées** (date, segment client,\n" + "    note...).\n" + "-   Il permet d'expliquer **comment** et **pourquoi** la prévalence des\n" + "    thèmes varie en fonction des caractéristiques des clients, ce que\n" + "    les autres modèles ne font pas directement\n" + "    [@fresnedaStructuralTopicModelling2021].\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "#### L'approche sémantique moderne : BERTopic\n" + "\n" + "-   **BERTopic** excelle pour découvrir des thèmes **nuancés** en se\n" + "    basant sur le sens des phrases, ce qui est idéal pour les textes\n" + "    courts et bruités comme les avis en ligne ou les posts sur les\n" + "    réseaux sociaux [@eggerTopicModelingComparison2022].\n" + "-   Son approche modulaire (Embeddings -\> Clustering -\> Description)\n" + "    est très efficace.\n" + "\n" + "\\n" + "\n" + "#### Un cas d'usage marketing direct\n" + "\n" + "-   Une méthode très pratique consiste à **séparer les avis par note**\n" + "    (ex: 1-2★ vs 4-5★) avant d'appliquer **BERTopic** sur chaque groupe.\n" + "-   Cela permet d'extraire de manière très précise les **arguments\n" + "    spécifiques aux \"pour\" et aux \"contre\"** d'un produit, en se basant\n" + "    sur le sens réel des critiques et des éloges\n" + "    [@anMarketingInsightsReviews2023].\n" + ":::\n" + ":::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Synthèse : quelle méthode choisir pour votre projet ? {style=\"font-size:0.62em\"}\n" + "\n" + "Chaque famille de modèles a ses forces. Le choix dépend de votre\n" + "question de recherche marketing.\n" + "\n" + "| **Besoin Analytique** | **Approche Recommandée** | **Forces et Limites** |\n" + "|:--------------|:--------------|:-----------------------------------------|\n" + "| **Cartographier les grands sujets** d'un large corpus | **NMF** ou **LDA** | **Forces** : rapide, donne une bonne vue d'ensemble. NMF est souvent performant sur textes courts [@eggerTopicModelingComparison2022; @albalawiUsingTopicModeling2020]. <br> **Limite** : moins de nuance sémantique (ne capture pas le **contexte**). |\n" + "| **Expliquer les thèmes par des métadonnées** (date, segment, note...) | **Structural Topic Model (STM)** | **Force** : le seul modèle qui intègre nativement les covariables pour expliquer la prévalence et le contenu des thèmes [@fresnedaStructuralTopicModelling2021]. <br> **Limite** : Plus complexe à mettre en œuvre (nécessite des données structurées). |\n" + "| **Découvrir des thèmes nuancés** basés sur le sens (paraphrases, synonymes) | **BERTopic** | **Force** : capture le sens contextuel, idéal pour les textes courts et bruités (avis, réseaux sociaux) [@eggerTopicModelingComparison2022]. <br> **Limite** : moins direct pour lier les thèmes aux métadonnées (nécessite une analyse post-hoc). |\n" + "| **Analyser les \"pour\" et les \"contre\"** d'un produit | **BERTopic** (appliqué séparément sur les avis 1-2★ et 4-5★) | **Force** : Pprmet de créer des clusters très spécifiques aux critiques vs. aux éloges, en se basant sur le contenu sémantique des arguments [@anMarketingInsightsReviews2023]. |\n" + "\n" + "## Références\n" + ""</script>
 <script> window._input_filename = 'C:\Users\Olivier\Documents\GitHub\etudes_qualitatives_web\cours_6\cours_6.qmd'</script>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-albalawiUsingTopicModeling2020" class="csl-entry" role="listitem">
+Albalawi, Rania, Tet Hin Yeap, and Morad Benyoucef. 2020. <span>“Using <span>Topic Modeling Methods</span> for <span>Short-Text Data</span>: <span>A Comparative Analysis</span>.”</span> <em>Frontiers in Artificial Intelligence</em> 3 (July): 42. <a href="https://doi.org/10.3389/frai.2020.00042">https://doi.org/10.3389/frai.2020.00042</a>.
+</div>
+<div id="ref-anMarketingInsightsReviews2023" class="csl-entry" role="listitem">
+An, Yusung, Hayoung Oh, and Joosik Lee. 2023. <span>“Marketing <span>Insights</span> from <span>Reviews Using Topic Modeling</span> with <span>BERTopic</span> and <span>Deep Clustering Network</span>.”</span> <em>Applied Sciences</em> 13 (16): 9443. <a href="https://doi.org/10.3390/app13169443">https://doi.org/10.3390/app13169443</a>.
+</div>
 <div id="ref-balech2019" class="csl-entry" role="listitem">
 Balech, Sophie, and Christophe Benavent. 2019. <span>“NLP Text Mining V4.0 - Une Introduction - Cours Programme Doctoral.”</span> <a href="https://doi.org/10.13140/RG.2.2.34248.06405">https://doi.org/10.13140/RG.2.2.34248.06405</a>.
 </div>
@@ -719,8 +1020,14 @@ Blei, David M., Andrew Y. Ng, and Michael I. Jordan. 2003. <span>“Latent <span
 <div id="ref-bojanowskiEnrichingWordVectors2017" class="csl-entry" role="listitem">
 Bojanowski, Piotr, Edouard Grave, Armand Joulin, and Tomas Mikolov. 2017. <span>“Enriching <span>Word Vectors</span> with <span>Subword Information</span>.”</span> <em>Transactions of the Association for Computational Linguistics</em> 5 (December): 135–46. <a href="https://doi.org/10.1162/tacl_a_00051">https://doi.org/10.1162/tacl_a_00051</a>.
 </div>
+<div id="ref-eggerTopicModelingComparison2022" class="csl-entry" role="listitem">
+Egger, Roman, and Joanne Yu. 2022. <span>“A <span>Topic Modeling Comparison Between LDA</span>, <span>NMF</span>, <span>Top2Vec</span>, and <span>BERTopic</span> to <span>Demystify Twitter Posts</span>.”</span> <em>Frontiers in Sociology</em> 7 (May): 886498. <a href="https://doi.org/10.3389/fsoc.2022.886498">https://doi.org/10.3389/fsoc.2022.886498</a>.
+</div>
 <div id="ref-firth1957papers" class="csl-entry" role="listitem">
 Firth, John Rupert. 1957. <em>Papers in Linguistics 1934–1951</em>. London: Oxford University Press.
+</div>
+<div id="ref-fresnedaStructuralTopicModelling2021" class="csl-entry" role="listitem">
+Fresneda, Jorge E., Thomas A. Burnham, and Chelsey H. Hill. 2021. <span>“Structural Topic Modelling Segmentation: A Segmentation Method Combining Latent Content and Customer Context.”</span> <em>Journal of Marketing Management</em> 37 (7-8): 792–812. <a href="https://doi.org/10.1080/0267257X.2021.1880464">https://doi.org/10.1080/0267257X.2021.1880464</a>.
 </div>
 <div id="ref-grootendorst2022bertopic" class="csl-entry" role="listitem">
 Grootendorst, Maarten. 2022. <span>“BERTopic: Neural Topic Modeling with a Class-Based TF-IDF Procedure.”</span> <em>arXiv Preprint arXiv:2203.05794</em>.
@@ -730,6 +1037,9 @@ Harris, Zellig S. 1954. <span>“Distributional Structure.”</span> <em>Word</e
 </div>
 <div id="ref-mikolovEfficientEstimationWord2013" class="csl-entry" role="listitem">
 Mikolov, Tomas, Kai Chen, Greg Corrado, and Jeff Dean. 2013. <span>“Efficient Estimation of Word Representations in Vector Space.”</span> <em>arXiv Preprint arXiv:1301.3781</em>.
+</div>
+<div id="ref-papadiaComparisonDifferentTopic2023" class="csl-entry" role="listitem">
+Papadia, Gabriele, Massimo Pacella, Massimiliano Perrone, and Vincenzo Giliberti. 2023. <span>“A <span>Comparison</span> of <span>Different Topic Modeling Methods</span> Through a <span>Real Case Study</span> of <span>Italian Customer Care</span>.”</span> <em>Algorithms</em> 16 (2): 94. <a href="https://doi.org/10.3390/a16020094">https://doi.org/10.3390/a16020094</a>.
 </div>
 <div id="ref-penningtonGloveGlobalVectors2014a" class="csl-entry" role="listitem">
 Pennington, Jeffrey, Richard Socher, and Christopher Manning. 2014. <span>“Glove: <span>Global Vectors</span> for <span>Word Representation</span>.”</span> In <em>Proceedings of the 2014 <span>Conference</span> on <span>Empirical Methods</span> in <span>Natural Language Processing</span> (<span>EMNLP</span>)</em>, 1532–43. Doha, Qatar: Association for Computational Linguistics. <a href="https://doi.org/10.3115/v1/D14-1162">https://doi.org/10.3115/v1/D14-1162</a>.

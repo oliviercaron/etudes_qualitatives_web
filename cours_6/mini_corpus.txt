@@ -1,8 +1,0 @@
-le roi est un homme
-la reine est une femme
-Paris est la capitale de la France
-Rome est la capitale de l Italie
-il aime marcher
-hier il a marché
-elle aime chanter
-hier elle a chanté

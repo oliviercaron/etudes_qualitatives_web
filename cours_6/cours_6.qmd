@@ -56,210 +56,27 @@ Imaginez que vous avez collecté 10 000 avis sur votre produit.\
 Les lire un par un est impossible. Comment savoir rapidement quels sont
 les 5 ou 10 grands thèmes de satisfaction ou d'insatisfaction ?
 
-C'est le rôle du **Topic Modeling**.\
-Il s’agit en général d’une méthode d'apprentissage **non supervisé** :\
-elle découvre les thèmes **sans qu’on les lui dise à l’avance**.
+Pour y répondre, nous devons combiner deux approches :
 
-L'algorithme le plus célèbre pour cela est le **LDA (Latent Dirichlet
-Allocation)** [@bleiLatentDirichletAllocation2003].
-
-::: {.callout-note appearance="simple"}
-**Variantes** :\
-- **STM (Structural Topic Model)** [@roberts2013structural] permet
-d’incorporer des **covariables** (ex. date, genre, segment client).\
-- **BERTopic** [@grootendorst2022bertopic] s’appuie sur les **embeddings
-modernes** (BERT) et un clustering pour produire des thèmes plus
-cohérents.\
-- **Seeded LDA** : versions guidées où l’on fournit des mots-clés pour
-orienter les thèmes.
-:::
-
-## Qu'est-ce que le LDA ? L'intuition {style="font-size:0.7em"}
-
-Imaginons que LDA est un **bibliothécaire stagiaire** à qui on demande
-de classer 10 000 articles en 5 thèmes qu'il doit inventer lui-même.
-
-::::: columns
-::: {.column width="50%"}
-### 1. Il crée les thèmes (Thèmes → Mots)
-
-Le stagiaire lit et remarque que certains mots apparaissent souvent
-ensemble.
-
--   "Planète", "fusée", "étoile" ➞ Il crée un post-it **"Thème A"**.
--   "But", "ballon", "équipe" ➞ Il crée un post-it **"Thème B"**.
-
-À la fin, un **thème** n'est qu'un "sac de mots" qui ont tendance à
-cohabiter.
-:::
-
-::: {.column width="50%"}
-### 2. Il étiquette les documents (Documents → Thèmes)
-
-Maintenant, il prend chaque article et regarde les mots qu'il contient.
-
--   Un article parle de "fusée", "planète" et un peu de "match".
--   Il l'étiquette avec une "recette" : **70% Thème A, 30% Thème B**.
-
-À la fin, un **document** est simplement un mélange de ces thèmes.
-:::
-:::::
-
-\
+1.  Une technologie pour comprendre le **sens réel** des mots, au-delà des
+    simples comptes : les **Word Embeddings**.
+2.  Des méthodes pour **regrouper** les avis en grands thèmes : le
+    **Topic Modeling**.
 
 ::: {.callout-note appearance="simple"}
-#### Ce que LDA donne au final
+#### Les grandes familles de modèles de thèmes
 
-L'algorithme devine automatiquement **les thèmes cachés** dans les
-textes et **la recette de chaque document**. C'est un trieur automatique
-ultra-performant.
+-   **Approches statistiques (ex: LDA)** [@bleiLatentDirichletAllocation2003] : Modèles probabilistes qui identifient les thèmes en se basant sur les co-occurrences de mots.
+
+-   **Approches avec métadonnées (ex: STM)** [@roberts2013structural] : Permettent d’expliquer les thèmes par des variables externes (date, segment client...).
+
+-   **Approches sémantiques (ex: BERTopic)** [@grootendorst2022bertopic] : S’appuient sur le sens des phrases (embeddings) pour créer des thèmes plus cohérents.
 :::
-
-## Comment fonctionne le LDA ? {style="font-size:0.7em"}
-
-LDA imagine que chaque document est écrit en suivant une recette
-probabiliste : **documents → thèmes → mots.**
-
-::::: columns
-::: {.column width="50%"}
-\
-\
-
-### 🔎 Étapes simplifiées
-
-1.  On choisit une **proportion de thèmes** pour le document (θ).\
-    → ex. Avis hôtel : 50% Service, 30% Chambre, 20% Prix.
-
-2.  Pour chaque mot du document :
-
-    -   on **pioche un thème latent** (z),\
-    -   puis on **pioche un mot** dans le vocabulaire de ce thème (β).
-
-3.  Répété des milliers de fois, cela reconstitue le texte.\
-    En observant beaucoup de textes, l’algorithme “devine” les thèmes.
-:::
-
-::: {.column width="50%" style="font-size:0.7em"}
-![](images/clipboard-1866827297.png)
-
-#### Dictionnaire des symboles LDA
-
--   **Contexte du Corpus**
-    -   **M** : Le nombre total de **documents** dans votre collection.
-    -   **N** : Le nombre de **mots** dans un document donné.
--   **Hyperparamètres (les réglages du modèle)**
-    -   $\alpha$ (alpha) : Règle la diversité des **thèmes** par
-        document.
-    -   $\eta$ (eta) : Règle la diversité des **mots** par thème.
--   **Paramètres (ce que le modèle apprend)**
-    -   $\theta$ (theta) : La "recette" de thèmes pour un document.
-    -   $\beta$ (beta) : Les mots typiques d'un thème.
--   **Variables (le processus de génération)**
-    -   $z$ : Le thème latent (caché) assigné à un mot.
-    -   $w$ : Le mot observé que l'on peut lire.
-:::
-:::::
-
-## Le Topic Modeling en marketing {style="font-size:0.8em"}
-
-La littérature marketing montre des usages variés et utiles du topic
-modeling.\
-Une revue de 61 études confirme son adoption et trace des pistes de
-recherche [@reisenbichlerTopicModelingMarketing2019].
-
-::::: columns
-::: {.column width="50%"}
-### Domaines d’application
-
--   **Segmentation & profiling** (voix client, personas)\
--   **Analyse de communautés** (forums, réseaux sociaux)\
--   **Systèmes de recommandation**\
--   **Publicité & ciblage** (mots-clés, messages)\
--   **Veille & tendances** (évolution des thèmes)
-:::
-
-::: {.column width="50%"}
-### Opportunités de recherche
-
--   **Données multi-sources & dynamiques** (texte + achats, social,
-    temps)\
--   Coupler LDA avec des **modèles prédictifs** (churn, CLV, ventes)\
--   Mieux évaluer les thèmes (**cohérence, exclusivité, stabilité**)\
--   Explorer des variantes (**STM, BERTopic**) selon le cas d’usage
-:::
-:::::
-
-## Visualiser les thèmes avec ggplot2 [@balech2019] {style="font-size:0.8em"}
-
-![](images/clipboard-1049051214.png){fig-align="center" width="90%"}
-
-## Visualiser les thèmes avec LDAvis {style="font-size:0.8em"}
-
-::::: columns
-::: {.column width="20%"}
-💡 Une fois le modèle entraîné, on peut explorer les thèmes avec des
-outils interactifs :
-
--   **Python :** Gensim + pyLDAvis\
--   **R :** LDAvis
-
-Chaque **bulle** représente un thème.\
-Les mots les plus fréquents apparaissent à droite.
-:::
-
-::: {.column width="80%"}
-![](images/clipboard-3079638492.gif){width="95%"
-fig-alt="Exemple de visualisation interactive des thèmes avec LDAvis"}
-:::
-:::::
-
-## Limites du Topic Modeling (et quand aller plus loin) {style="font-size:0.8em"}
-
-:::::: columns
-::: {.column width="55%"}
-### Limites pratiques
-
--   **Choix du nombre de topics (K)** : compromis interprétabilité /
-    granularité\
--   **Qualité des thèmes** : dépend du prétraitement & des
-    hyperparamètres\
--   **Cohérence sémantique** : certains topics sont “fourre-tout”\
--   **Statique** : difficulté à suivre finement l’**évolution** des
-    thèmes\
--   **Polysémie** non résolue : un mot = un même rôle selon le topic
-
-### Évaluer & améliorer
-
--   Utiliser des métriques de **cohérence de topics** (ex. *topic
-    coherence*)\
--   Tester plusieurs K et **stabiliser** (bootstrap / réplications)\
--   Ajouter du **guidage** (Seeded/Guided LDA) ou des **covariables**
-    (STM [@roberts2013structural])
-:::
-
-:::: {.column width="45%"}
-### Quand passer à des approches récentes
-
--   **STM** : intégrer **covariables** (temps, segment, campagne) pour
-    expliquer/faire varier les thèmes [@roberts2013structural]\
--   **BERTopic** : s’appuyer sur des **embeddings (BERT)** + clustering
-    pour des thèmes souvent plus **cohérents**
-    [@grootendorst2022bertopic]\
--   **Embeddings/LLMs** : capter la **sémantique contextuelle**, faire
-    de la **recherche sémantique**, du **résumé** ou de la **Q&A**
-
-::: {.callout-note appearance="simple"}
-**Message clé** : LDA est excellent pour **cartographier** des thèmes.\
-Dès que le **contexte** et la **nuance** deviennent critiques, on gagne
-à passer vers **STM / BERTopic**, puis **embeddings & LLMs**.
-:::
-::::
-::::::
 
 # Des mots aux vecteurs : comprendre les Word Embeddings {.transition-slide-ubdblue style="font-size:0.55em"}
 
 ::: {.callout-note appearance="simple"}
-De nombreuses illustrations de cette section viennent de\
+De nombreuses illustrations de cette section proviennent de\
 [Jay Alammar – *The Illustrated
 Word2Vec*](https://jalammar.github.io/illustrated-word2vec/).
 :::
@@ -276,8 +93,7 @@ compté les mots (approche **Bag-of-Words** ou **TF-IDF**).
 des autres que les mots "**roi**" et "**camion**". Elle ne comprend pas
 que certains mots sont sémantiquement proches.
 
-**La question de recherche** : comment faire pour qu'un ordinateur
-comprenne que "**excellent**" est plus proche de "**superbe**" que de
+Comment faire pour qu'un ordinateur comprenne que "**excellent**" est plus proche de "**superbe**" que de
 "**médiocre**" ?
 
 ------------------------------------------------------------------------
@@ -515,6 +331,53 @@ les plus proches.
 :::
 :::::
 
+## Application : le clustering sémantique d'avis clients {style="font-size:0.7em"}
+
+L'usage le plus direct des embeddings pour un projet en marketing par
+exemple est de regrouper des avis qui se ressemblent par le sens, et non
+plus par les mots-clés.
+
+::::: columns
+::: {.column width="40%"}
+### La méthode en 3 étapes
+
+1.  **Vectoriser** : chaque avis client est transformé en un vecteur
+    numérique à l'aide d'un modèle pré-entraîné.
+
+2.  **Clusteriser** : un algorithme de clustering (ex: K-Means, HDBSCAN)
+    est appliqué sur ces vecteurs. Il va créer des groupes où les
+    vecteurs sont proches les uns des autres.
+
+3.  **Interpréter** : pour comprendre un cluster, on lit quelques avis
+    représentatifs. On découvre ainsi des thématiques très fines.
+:::
+
+::: {.column width="60%"}
+### Un exemple concret
+
+Un topic model pourrait créer un thème large sur la "livraison". Le
+clustering sémantique pourra, lui, identifier des sous-groupes très
+distincts :
+
+-   **Cluster 1 : "Le colis est arrivé en avance, super !"**
+    -   *"Livraison reçue 2 jours avant la date, je suis ravie."*
+    -   *"Impressionné par la rapidité d'expédition."*
+-   **Cluster 2 : "Le livreur n'a pas été professionnel."**
+    -   *"Le colis a été jeté par-dessus le portail."*
+    -   *"Le livreur n'a même pas sonné et a mis un avis de passage."*
+-   **Cluster 3 : "Problèmes avec le point relais."**
+    -   *"Mon point relais était fermé, j'ai dû faire un détour."*
+    -   *"Impossible de récupérer mon colis, le commerçant ne le trouve
+        pas."*
+:::
+:::::
+
+::: {.callout-note appearance="simple"}
+Le clustering sur embeddings ne remplace pas le Topic Modeling, il le
+complète en offrant une granularité sémantique souvent inaccessible avec
+les modèles de thèmes traditionnels.
+:::
+
 ------------------------------------------------------------------------
 
 ## Comment apprend-on des embeddings de mots ? {style="font-size:0.7em"}
@@ -636,6 +499,456 @@ d’**attention**, qui permet de :
 révolutionne les modèles de langage.
 :::
 
+# Les applications modernes
+
+## Des embeddings aux thèmes : l'approche BERTopic {style="font-size:0.7em"}
+
+Les embeddings nous donnent la **proximité sémantique**. Un nuage de 10
+000 points-vecteurs reste inexploitable pour un décideur.
+
+**Le défi** : comment structurer ce nuage de sens en thèmes clairs et interprétables ?
+
+::::: columns
+::: {.column width="40%"}
+**BERTopic** est un *pipeline* modulaire qui transforme ce nuage en
+thèmes lisibles [@eggerTopicModelingComparison2022] :
+
+1.  Il **regroupe** les avis sémantiquement proches (clustering).
+2.  Il **extrait** les mots/expressions qui décrivent le mieux chaque
+    groupe.
+3.  Il produit des **thèmes cohérents** et faciles à nommer.
+
+C'est une approche "embedding-first" qui privilégie le sens sur la
+simple co-occurrence de mots.
+:::
+
+::: {.column width="60%"}
+
+\
+
+![](images/clipboard-2184762329.png){fig-align="center" width="50%"}
+:::
+:::::
+
+## Le workflow BERTopic en 4 étapes {style="font-size:0.75em"}
+
+BERTopic n'est pas un monolithe, mais une "recette" intelligente qui
+combine plusieurs algorithmes [@anMarketingInsightsReviews2023].
+
+::::: columns
+::: {.column width="50%"}
+### 1. Vectorisation (Embeddings)
+
+-   **Objectif** : transformer chaque avis en un point dans un "espace
+    sémantique".
+-   **Outil** : un modèle pré-entraîné (ex: `Sentence-BERT`) qui
+    comprend déjà le français.
+-   **Résultat** : une liste de vecteurs.
+
+### 2. Réduction de dimension (UMAP)
+
+-   **Objectif** : créer une "carte" 2D de ces milliers de points, en
+    préservant les voisinages (les avis proches restent proches).
+-   **Pourquoi ?** facilite grandement le travail de l'algorithme de
+    clustering.
+:::
+
+::: {.column width="50%"}
+### 3. Clustering (HDBSCAN)
+
+-   **Objectif** : identifier automatiquement les "îlots" (clusters)
+    denses sur cette carte.
+-   **Force** : n'oblige pas à choisir le nombre de thèmes à l'avance et
+    identifie les **outliers** (avis uniques ou bruit, classés en `-1`).
+
+### 4. Représentation des thèmes (c-TF-IDF)
+
+-   **Objectif** : pour chaque "îlot", trouver les mots/expressions les
+    plus caractéristiques.
+-   **Comment ?** une variante de TF-IDF qui traite chaque cluster comme
+    un "document" et le corpus entier comme la "collection".
+:::
+:::::
+
+## En pratique : faut-il entraîner ses propres embeddings ? {style="font-size:0.75em"}
+
+Une fois le principe compris, la question opérationnelle se pose :
+comment obtenir ces fameux vecteurs ?
+
+::::: columns
+::: {.column width="50%"}
+### 1. Entraîner son propre modèle (ex: Word2Vec)
+
+-   **Principe** : on apprend les vecteurs de mots à partir de zéro, en
+    utilisant uniquement les textes de son propre corpus (ex: 10 000
+    avis clients).
+-   **Avantage** : les vecteurs sont parfaitement adaptés au jargon et
+    au contexte spécifique de votre marque.
+-   **Inconvénient majeur** : nécessite **d'énormes volumes de données**
+    (des millions de mots) pour apprendre des relations sémantiques de
+    qualité.
+:::
+
+::: {.column width="50%"}
+### 2. Utiliser un modèle pré-entraîné (BERT, CamemBERT...)
+
+-   **Principe** : on télécharge un modèle qui a **déjà été entraîné**
+    sur des téraoctets de texte (ex: tout Wikipédia). Ce modèle "sait"
+    déjà comment fonctionne le langage.
+-   **Avantage** : extrêmement puissant et performant, même sur des
+    corpus de petite taille. Il a une compréhension profonde de la
+    sémantique générale.
+-   **Inconvénient** : peut être moins performant sur un jargon très
+    spécifique absent de ses données d'entraînement (rare pour des avis
+    clients).
+:::
+:::::
+
+::: {.callout-tip title="La bonne pratique"}
+Pour votre projet, ne ré-inventez pas la roue. Utilisez des modèles
+pré-entraînés (via des librairies comme `sentence-transformers` en
+Python) pour transformer vos avis en vecteurs.
+:::
+
+# Les approches classiques en contexte (LDA, STM...)
+
+## Qu'est-ce que le LDA ? L'intuition {style="font-size:0.7em"}
+
+Imaginons que LDA est un **bibliothécaire stagiaire** à qui on demande
+de classer 10 000 articles en 5 thèmes qu'il doit inventer lui-même.
+
+::::: columns
+::: {.column width="50%"}
+### 1. Il crée les thèmes (Thèmes → Mots)
+
+Le stagiaire lit et remarque que certains mots apparaissent souvent
+ensemble.
+
+-   "Planète", "fusée", "étoile" ➞  il crée un post-it **"Thème A"**.
+-   "But", "ballon", "équipe" ➞  il crée un post-it **"Thème B"**.
+
+À la fin, un **thème** n'est qu'un "sac de mots" qui ont tendance à
+cohabiter.
+:::
+
+::: {.column width="50%"}
+### 2. Il étiquette les documents (Documents → Thèmes)
+
+Maintenant, il prend chaque article et regarde les mots qu'il contient.
+
+-   Un article parle de "fusée", "planète" et un peu de "match".
+-   Il l'étiquette avec une "recette" : **70% Thème A, 30% Thème B**.
+
+À la fin, un **document** est simplement un mélange de ces thèmes.
+:::
+:::::
+
+\
+
+::: {.callout-note appearance="simple"}
+#### Ce que LDA donne au final
+
+L'algorithme devine automatiquement **les thèmes cachés** dans les
+textes et **la recette de chaque document**. C'est un trieur automatique
+ultra-performant.
+:::
+
+## Comment fonctionne le LDA ? {style="font-size:0.7em"}
+
+LDA imagine que chaque document est écrit en suivant une recette
+probabiliste : **documents → thèmes → mots.**
+
+::::: columns
+::: {.column width="50%"}
+\
+\
+
+### 🔎 Étapes simplifiées
+
+1.  On choisit une **proportion de thèmes** pour le document (θ).\
+    → ex. Avis hôtel : 50% Service, 30% Chambre, 20% Prix.
+
+2.  Pour chaque mot du document :
+
+    -   on **pioche un thème latent** (z),\
+    -   puis on **pioche un mot** dans le vocabulaire de ce thème (β).
+
+3.  Répété des milliers de fois, cela reconstitue le texte.\
+    En observant beaucoup de textes, l’algorithme “devine” les thèmes.
+:::
+
+::: {.column width="50%" style="font-size:0.7em"}
+![](images/clipboard-1866827297.png)
+
+#### Dictionnaire des symboles LDA
+
+-   **Contexte du Corpus**
+    -   **M** : le nombre total de **documents** dans votre collection.
+    -   **N** : le nombre de **mots** dans un document donné.
+-   **Hyperparamètres (les réglages du modèle)**
+    -   $\alpha$ (alpha) : règle la diversité des **thèmes** par
+        document.
+    -   $\eta$ (eta) : règle la diversité des **mots** par thème.
+-   **Paramètres (ce que le modèle apprend)**
+    -   $\theta$ (theta) : la "recette" de thèmes pour un document.
+    -   $\beta$ (beta) : les mots typiques d'un thème.
+-   **Variables (le processus de génération)**
+    -   $z$ : le thème latent (caché) assigné à un mot.
+    -   $w$ : le mot observé que l'on peut lire.
+:::
+:::::
+
+## Le Topic Modeling en marketing {style="font-size:0.8em"}
+
+La littérature marketing montre des usages variés et utiles du topic
+modeling.\
+Une revue de 61 études confirme son adoption et trace des pistes de
+recherche [@reisenbichlerTopicModelingMarketing2019].
+
+::::: columns
+::: {.column width="50%"}
+### Domaines d’application
+
+-   **Segmentation & profiling** (voix client, personas)\
+-   **Analyse de communautés** (forums, réseaux sociaux)\
+-   **Systèmes de recommandation**\
+-   **Publicité & ciblage** (mots-clés, messages)\
+-   **Veille & tendances** (évolution des thèmes)
+:::
+
+::: {.column width="50%"}
+### Opportunités de recherche
+
+-   **Données multi-sources & dynamiques** (texte + achats, social,
+    temps)\
+-   Coupler LDA avec des **modèles prédictifs** (churn, CLV, ventes)\
+-   Mieux évaluer les thèmes (**cohérence, exclusivité, stabilité**)\
+-   Explorer des variantes (**STM, BERTopic**) selon le cas d’usage
+:::
+:::::
+
+## Visualiser les thèmes avec ggplot2 [@balech2019] {style="font-size:0.8em"}
+
+![](images/clipboard-1049051214.png){fig-align="center" width="90%"}
+
+## Visualiser les thèmes avec LDAvis {style="font-size:0.8em"}
+
+::::: columns
+::: {.column width="20%"}
+💡 Une fois le modèle entraîné, on peut explorer les thèmes avec des
+outils interactifs :
+
+-   **Python :** Gensim + pyLDAvis\
+-   **R :** LDAvis
+
+Chaque **bulle** représente un thème.\
+Les mots les plus fréquents apparaissent à droite.
+:::
+
+::: {.column width="80%"}
+![](images/clipboard-3079638492.gif){width="95%"
+fig-alt="Exemple de visualisation interactive des thèmes avec LDAvis"}
+:::
+:::::
+
+## Limites du Topic Modeling (et quand aller plus loin) {style="font-size:0.8em"}
+
+:::::: columns
+::: {.column width="55%"}
+### Limites pratiques
+
+-   **Choix du nombre de topics (K)** : compromis interprétabilité /
+    granularité\
+-   **Qualité des thèmes** : dépend du prétraitement & des
+    hyperparamètres\
+-   **Cohérence sémantique** : certains topics sont “fourre-tout”\
+-   **Statique** : difficulté à suivre finement l’**évolution** des
+    thèmes\
+-   **Polysémie** non résolue : un mot = un même rôle selon le topic
+
+### Évaluer & améliorer
+
+-   Utiliser des métriques de **cohérence de topics** (ex. *topic
+    coherence*)\
+-   Tester plusieurs K et **stabiliser** (bootstrap / réplications)\
+-   Ajouter du **guidage** (Seeded/Guided LDA) ou des **covariables**
+    (STM [@roberts2013structural])
+:::
+
+:::: {.column width="45%"}
+### Quand passer à des approches récentes
+
+-   **STM** : intégrer **covariables** (temps, segment, campagne) pour
+    expliquer/faire varier les thèmes [@roberts2013structural]\
+-   **BERTopic** : s’appuyer sur des **embeddings (BERT)** + clustering
+    pour des thèmes souvent plus **cohérents**
+    [@grootendorst2022bertopic]\
+-   **Embeddings/LLMs** : capter la **sémantique contextuelle**, faire
+    de la **recherche sémantique**, du **résumé** ou de la **Q&A**
+
+::: {.callout-note appearance="simple"}
+**LDA** est excellent pour **cartographier** des thèmes.\
+Dès que le **contexte** et la **nuance** deviennent critiques, on gagne
+à passer vers **STM / BERTopic**, puis **embeddings & LLMs**.
+:::
+::::
+::::::
+
+## L'impact du pré-traitement sur la qualité des thèmes {style="font-size:0.7em"}
+
+La qualité de vos thèmes dépend directement des choix faits lors du
+nettoyage des données (séance 4). Deux questions sont cruciales pour
+votre projet :
+
+::::: columns
+::: {.column width="50%"}
+### Faut-il garder le nom de la marque ?
+
+Imaginez analyser des avis sur "Decathlon".
+
+-   **Garder "decathlon"** :
+    -   *Risque* : peut créer un thème "bruit" autour de la marque
+        elle-même, captant peu d'informations utiles.
+    -   *Avantage* : permet de voir à quels concepts la marque est le
+        plus souvent associée.
+-   **Supprimer "decathlon"** :
+    -   *Avantage* : force le modèle à se concentrer sur les concepts
+        transversaux (livraison, qualité, prix) de manière plus claire.
+    -   *Risque* : peut faire perdre un contexte si les gens comparent
+        ("mieux que decathlon").
+
+💡 **Recommandation** : Pour une première analyse des thèmes généraux,
+retirez le nom de la marque et ses variantes.
+:::
+
+::: {.column width="50%"}
+### Pourquoi utiliser les n-grams ?
+
+Le "sac de mots" simple sépare des concepts qui vont ensemble.
+
+-   **Sans n-grams** :
+    -   "service" et "client" sont deux mots séparés.
+    -   Le thème du SAV risque d'être dilué dans un thème sur les
+        "clients" et un autre sur les "services".
+-   **Avec n-grams (bigrams)** :
+    -   L'entité `service_client` est traitée comme un seul "mot".
+    -   Permet de faire émerger des thèmes beaucoup plus précis et
+        actionnables comme : `service_client`, `point_relais`,
+        `carte_fidélité`.
+
+💡 **Recommandation** : toujours identifier les expressions fréquentes
+(collocations) et les fusionner en n-grams avant de lancer un LDA.
+:::
+:::::
+
+# Partie 5 : Synthèse et action pour votre projet Quarto
+
+## De la sortie brute à l'insight : l'art de nommer les thèmes {style="font-size:0.7em"}
+
+Un modèle de topic modeling fournit des listes de mots. Le vrai travail
+de l'analyste marketing commence ici : **traduire ces listes en concepts
+actionnables**.
+
+::::: columns
+::: {.column width="50%"}
+### 1. La sortie brute de l'algorithme
+
+L'outil vous donne des "sacs de mots" statistiquement cohérents.
+
+-   **Thème A** : *livraison, commande, reçu, colis, retard,
+    transporteur, point relais*
+-   **Thème B** : *magasin, vendeur, conseil, passage, caisse, accueil,
+    personnel*
+-   **Thème C** : *qualité, produit, déçu, cassé, retour, remboursement,
+    service client*
+-   **Thème D** : *prix, cher, promotion, réduction, abordable, euros,
+    carte fidélité*
+:::
+
+::: {.column width="50%"}
+### 2. L'interprétation et le nommage marketing
+
+Votre rôle est de synthétiser chaque thème en un concept métier.
+
+-   **Thème A ➞ Expérience de Livraison**
+-   **Thème B ➞ Relation Client en Point de Vente**
+-   **Thème C ➞ Qualité Produit & Service Après-Vente**
+-   **Thème D ➞ Perception du Rapport Qualité-Prix**
+:::
+:::::
+
+::: {.callout-note appearance="simple"}
+#### 💡 Le nommage est une hypothèse d'analyse
+
+Nommer un thème, c'est formuler une hypothèse sur ce dont les clients
+parlent réellement. C'est cette "étiquette" qui sera utilisée dans vos
+recommandations managériales, pas la liste de mots. On peut désormais
+utiliser les LLMs pour nous aider à formuler cette hypothèse.
+:::
+
+## Ce qu'en dit la recherche {style="font-size:0.6em"}
+
+Les articles récents confirment l'évolution des pratiques : des modèles
+statistiques vers des approches sémantiques basées sur les embeddings.
+
+::::: columns
+::: {.column width="50%"}
+#### Approches "classiques" : cartographier les thèmes
+
+-   **NMF et LDA** sont des choix fiables pour une première cartographie
+    des sujets, notamment sur des textes courts où **NMF surpasse
+    souvent LDA** [@eggerTopicModelingComparison2022;
+    @albalawiUsingTopicModeling2020].
+-   Cependant, leur limite est une plus faible nuance sémantique, car
+    ils ne capturent pas le contexte comme les embeddings
+    [@papadiaComparisonDifferentTopic2023].
+
+#### Intégrer le contexte client : STM
+
+-   Le **Structural Topic Model (STM)** est unique pour sa capacité à
+    intégrer nativement des **métadonnées** (date, segment client,
+    note...).
+-   Il permet d'expliquer **comment** et **pourquoi** la prévalence des
+    thèmes varie en fonction des caractéristiques des clients, ce que
+    les autres modèles ne font pas directement
+    [@fresnedaStructuralTopicModelling2021].
+:::
+
+::: {.column width="50%"}
+#### L'approche sémantique moderne : BERTopic
+
+-   **BERTopic** excelle pour découvrir des thèmes **nuancés** en se
+    basant sur le sens des phrases, ce qui est idéal pour les textes
+    courts et bruités comme les avis en ligne ou les posts sur les
+    réseaux sociaux [@eggerTopicModelingComparison2022].
+-   Son approche modulaire (Embeddings -\> Clustering -\> Description)
+    est très efficace.
+
+\
+
+#### Un cas d'usage marketing direct
+
+-   Une méthode très pratique consiste à **séparer les avis par note**
+    (ex: 1-2★ vs 4-5★) avant d'appliquer **BERTopic** sur chaque groupe.
+-   Cela permet d'extraire de manière très précise les **arguments
+    spécifiques aux "pour" et aux "contre"** d'un produit, en se basant
+    sur le sens réel des critiques et des éloges
+    [@anMarketingInsightsReviews2023].
+:::
+:::::
+
 ------------------------------------------------------------------------
+
+## Synthèse : quelle méthode choisir pour votre projet ? {style="font-size:0.62em"}
+
+Chaque famille de modèles a ses forces. Le choix dépend de votre
+question de recherche marketing.
+
+| **Besoin Analytique** | **Approche Recommandée** | **Forces et Limites** |
+|:--------------|:--------------|:-----------------------------------------|
+| **Cartographier les grands sujets** d'un large corpus | **NMF** ou **LDA** | **Forces** : rapide, donne une bonne vue d'ensemble. NMF est souvent performant sur textes courts [@eggerTopicModelingComparison2022; @albalawiUsingTopicModeling2020]. <br> **Limite** : moins de nuance sémantique (ne capture pas le **contexte**). |
+| **Expliquer les thèmes par des métadonnées** (date, segment, note...) | **Structural Topic Model (STM)** | **Force** : le seul modèle qui intègre nativement les covariables pour expliquer la prévalence et le contenu des thèmes [@fresnedaStructuralTopicModelling2021]. <br> **Limite** : Plus complexe à mettre en œuvre (nécessite des données structurées). |
+| **Découvrir des thèmes nuancés** basés sur le sens (paraphrases, synonymes) | **BERTopic** | **Force** : capture le sens contextuel, idéal pour les textes courts et bruités (avis, réseaux sociaux) [@eggerTopicModelingComparison2022]. <br> **Limite** : moins direct pour lier les thèmes aux métadonnées (nécessite une analyse post-hoc). |
+| **Analyser les "pour" et les "contre"** d'un produit | **BERTopic** (appliqué séparément sur les avis 1-2★ et 4-5★) | **Force** : Pprmet de créer des clusters très spécifiques aux critiques vs. aux éloges, en se basant sur le contenu sémantique des arguments [@anMarketingInsightsReviews2023]. |
 
 ## Références

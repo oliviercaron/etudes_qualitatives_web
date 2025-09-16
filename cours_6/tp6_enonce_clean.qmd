@@ -1,0 +1,103 @@
+---
+title: "TP6 (light) — Topic Modeling & Embeddings"
+subtitle: "M2 Marketing Digital — Netnographie (TP6 énoncé)"
+author:
+  - name: "Vos noms et prénoms"
+    affiliations: "IAE Paris-Est"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    toc-depth: 2
+    number-sections: false
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: false
+---
+
+> **But du TP** : sur un petit corpus FR (Trustpilot Carrefour ou vos données), tester **une** méthode de topic modeling (LDA **ou** embeddings type BERTopic) et dire **ce que ça permet d’apprendre** pour le marketing.
+
+---
+
+## 1) Chargement des données *TrustPilot Carrefour*
+
+```{r}
+# Charger les données TrustPilot Carrefour
+# Vérifier que la colonne 'review' est présente
+# Nettoyer minimalement : enlever NA, supprimer espaces, garder textes > 2 caractères
+```
+
+---
+
+## 2) Inspection & **question de recherche**
+
+```{r}
+# Inspecter la structure des données (glimpse, table des notes si dispo)
+# Calculer par exemple la longueur médiane des reviews
+```
+
+> Écrivez ici votre **question de recherche** (2–3 phrases max).
+
+---
+
+## 3) Topic modeling — **méthodo au choix**
+
+### Option A — LDA
+
+```{r}
+# Construire un corpus (quanteda)
+# Nettoyer : stopwords FR + stopwords personnalisés
+# (optionnel) créer des n-grams
+# Construire une matrice documents-termes (DTM)
+# Entraîner un modèle LDA (choisir K)
+# Afficher les top mots par topic
+```
+
+### Option B — BERTopic
+
+```{python}
+# Charger les textes depuis le CSV
+# Sélectionner un modèle d'embeddings multilingue sur Hugging Face
+# Encoder les textes en embeddings
+# Créer et entraîner un modèle BERTopic (ajuster min_topic_size si besoin)
+# Afficher les informations sur les topics générés
+```
+
+---
+
+## 4) Embeddings — autres usages rapides
+
+```{python}
+# Démonstration : recherche sémantique
+# Écrire une requête exemple (ex. "retard de livraison")
+# Encoder la requête en embedding
+# Calculer similarité cosinus avec les reviews
+# Afficher les 3 reviews les plus proches
+```
+
+# D'autres idées ?
+
+## Analyse temporelle des conversations
+## Segmentation des clients par style d'expression
+## Segmentation des clients par irritant..
+## Comparaison des avis clients d'une marque sur plusieurs plateformes
+## Comparaison des clients de deux marques concurrentes
+## Cartographie (graphes avec igraph en R ou networkx en python)
+## Détection de tendances émergentes dans les avis (quels sont les nouveaux mots, nouvelles expressions)
+## Détection d'arguments (création de dictionnaires concernant une composante des 4P)
+## Etude RSE
+## Se placer avant et après une crise (bad buzz) ou autre...
+
+
+---
+
+## Pensez à rédiger
+
+Entraînez-vous à essayer de décrire et justifier votre question de recherche / vos choix techniques comme vous devrez le faire dans votre rapport Quarto.
+
+- Méthode retenue et 2 paramètres testés  
+- 3–5 thèmes + insights  
+- 1–2 actions marketing prioritaires  
+- Limite majeure + piste d’amélioration
