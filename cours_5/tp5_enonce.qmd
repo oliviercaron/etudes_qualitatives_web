@@ -20,13 +20,15 @@ execute:
 ---
 
 
-> Objectif
+> Objectif :
+
 > Utiliser des méthodes classiques marketing d'analyse des sentiments/émotions/psycholinguistiique (LIWC, NRC, VADER pour l'anglais ou autre.)
 > Construire un pipeline d'analyse de sentiment sur des avis en français puis entraîner un modèle de classification binaire. Les consignes sont ouvertes: vous êtes libres des bibliothèques et fonctions. Documentez brièvement vos choix.
 
-**Règles**
-- Chaque section ci-dessous contient un chunk R avec un label. Écrivez votre code dans ce chunk.
-- Lorsque plusieurs approches existent, choisissez-en une et expliquez-la en commentaire.
+**Consignes**
+
+-  Chaque section ci-dessous contient un chunk R avec un label. Écrivez votre code dans ce chunk.
+-  Lorsque plusieurs approches existent, choisissez-en une et expliquez-la en commentaire.
 
 ## Quelques informations :
 
