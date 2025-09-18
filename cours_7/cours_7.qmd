@@ -1,6 +1,6 @@
 ---
-title: "Transformers & LLMs"
-subtitle: "La Révolution du Langage Appliquée au Marketing"
+title: "Études qualitatives sur le web (netnographie)"
+subtitle: "Transformers & LLMs"
 author:
   - name: "Olivier Caron"
     affiliations: "Paris Dauphine - PSL"
@@ -27,10 +27,144 @@ editor:
     wrap: 72
 ---
 
-## Rappel : Les limites des embeddings statiques {style="font-size:0.7em"}
+------------------------------------------------------------------------
+
+## L'explosion ChatGPT [@chatterjiHowPeopleUse] {style="font-size:0.7em"}
+
+Pour comprendre l'impact (marketing), il faut saisir deux dimensions :
+la **vitesse** de l'adoption et l'**échelle** actuelle du phénomène.
+
+::::: columns
+::: {.column width="45%"}
+### La vitesse : une croissance explosive en 1 année
+
+*(Juin 2024 vs Juin 2025)*
+
+-   **Utilisateurs actifs** : près de **x3**
+
+-   **Volume de messages quotidiens** : **x5,8** (de 451 M à 2,6
+    Milliards / jour)
+
+-   **Part de l'usage personnel** : passe de 53% à **73%**, devenant
+    l'usage majoritaire.
+
+Cette dynamique de croissance est inédite pour une nouvelle technologie.
+:::
+
+::: {.column width="55%"}
+### L'échelle : un canal de masse en juillet 2025
+
+\
+
+| Indicateur                        | Valeur                      |
+|:----------------------------------|:----------------------------|
+| **Utilisateurs actifs / semaine** | **700 millions**            |
+| **Messages échangés / semaine**   | **18 milliards**            |
+| **Âge des utilisateurs**          | **46%** ont entre 18-25 ans |
+| **Genre**                         | Quasi-parité                |
+:::
+:::::
+
+\
+
+::: {.callout-tip title="L'Implication Marketing"}
+En un an, ChatGPT est passé d'un outil d'initiés à un **canal de
+communication et de recherche grand public**, particulièrement sur la
+cible jeune.
+:::
+
+------------------------------------------------------------------------
+
+## L'évolution des usages : de la création à la recherche [@chatterjiHowPeopleUse] {style="font-size:0.7em"}
+
+Plus important encore que la photo à un instant T, la **tendance de
+fond** révèle une mutation du rôle de l'IA dans le quotidien des
+utilisateurs.
+
+<br>
+
+### En un an, ChatGPT est devenu un concurrent de Google
+
+L'analyse de l'évolution des conversations entre 2024 et 2025 montre un
+basculement clair :
+
+-   ✍️ **L'ecriture** (créer, résumer, traduire) a vu sa part **baisser
+    de 36% à 24%**.
+-   🔎 **La recherche d'informations** (trouver des faits, des produits)
+    a **explosé, passant de 14% à 24%**.
+
+<br>
+
+::: {.callout-note appearance="simple" title="Que signifie cette évolution ?"}
+Les utilisateurs se sont approprié l'outil non plus seulement pour
+**produire du contenu**, mais pour **accéder à l'information**. Pour le
+marketing, cela signifie que de plus en plus de parcours clients et de
+recherches de produits ne commencent plus sur un moteur de recherche,
+mais dans la fenêtre d'un chatbot.
+:::
+
+------------------------------------------------------------------------
+
+## Anatomie des usages en 2025 (ChatGPT) [@chatterjiHowPeopleUse] {style="font-size:0.7em"}
+
+Loin des clichés, près de 80% des conversations se concentrent sur trois
+grands besoins très concrets. Voici le détail de ce que les utilisateurs
+font réellement.
+
+:::::: columns
+::: {.column width="33%"}
+### 📚 1. Guide pratique (29%)
+
+**L'IA comme coach personnel.** Les utilisateurs cherchent un
+accompagnement pour agir ou apprendre.
+
+-   **Tutorat & Éducation (10.2%)** : Expliquer des concepts, aider aux
+    devoirs.
+-   **Conseils & "How-To" (8.5%)** : Obtenir des plans d'action, des
+    tutoriels.
+-   **Idées & Créativité (3.8%)** : Brainstormer des noms ou des idées
+    de projets.
+:::
+
+::: {.column width="33%"}
+### ✍️ 2. Écriture (24%)
+
+**L'IA comme assistant éditorial.** Fait clé : **2/3 de cet usage
+consistent à modifier un texte existant**.
+
+-   **Édition & Critique (10.6%)** : Corriger ou reformuler un texte
+    fourni.
+-   **Rédaction personnelle (8.0%)** : Rédiger des emails ou lettres de
+    motivation.
+-   **Traduction & Résumé (8.1%)** : Synthétiser des documents ou
+    traduire.
+:::
+
+::: {.column width="33%"}
+### 🔎 3. Recherche d'infos (24%)
+
+**L'IA comme moteur de recherche conversationnel.** Un substitut direct
+à la recherche web.
+
+-   **Recherche de faits (18.3%)** : Informations sur des personnes,
+    lieux, événements.
+-   **Recherche de produits (2.1%)** : Se renseigner sur des produits
+    avant un achat.
+:::
+::::::
+
+::: {.callout-note appearance="simple" style="font-size:0.7em"}
+### Les usages "surprenants" restent marginaux
+
+-   Programmation = **4.2%**
+-   Compagnonnage / relations = **1.9%**
+-   Jeux de rôle = **0.4%**
+:::
+
+## Rappel : les limites des embeddings statiques {style="font-size:0.8em"}
 
 Dans la séance précédente, nous avons vu la puissance des embeddings
-comme Word2Vec. Cependant, ils ont une limite majeure.
+comme Word2Vec et leurs limites.
 
 ::::: columns
 ::: {.column width="50%"}
@@ -40,9 +174,17 @@ Avec Word2Vec, un mot = un seul vecteur, appris une fois pour toutes. Le
 mot "**avocat**" aura donc le même vecteur, qu'on parle du fruit ou de
 la profession.
 
+\
+
 `"J'aime manger un avocat avec du citron."`
 
+\
+\
+
 `"Je vais consulter mon avocat pour ce litige."`
+
+\
+\
 
 Pour ces modèles, le sens est **statique**.
 :::
@@ -54,38 +196,82 @@ Pour un humain, le sens d'un mot dépend de la **phrase entière** qui
 l'entoure. Word2Vec ne regarde qu'une petite fenêtre de mots voisins, ce
 qui est insuffisant pour lever les ambiguïtés.
 
-💡 **Le défi** : Comment créer un modèle qui, comme nous, lit toute la
+\
+\
+
+**Le défi** : comment créer un modèle qui, comme nous, lit toute la
 phrase pour comprendre le sens **contextualisé** de chaque mot ?
+:::
+:::::
+
+## Word2Vec vs CamemBERT : "avocat" - VOIR DÉMO
+
+::::: columns
+::: {.column width="50%"}
+### Word2Vec (statique)
+
+-   **Dim. vecteur** : 50\
+-   *Un seul vecteur* pour **tous les contextes**\
+-   Cosinus(*avocat fruit*, *avocat métier*) = **1.0**\
+-   Cosinus(*phrase fruit*, *phrase métier*) = 0.44
+
+👉 **Limite** : un mot = un vecteur, pas de contexte.
+:::
+
+::: {.column width="50%"}
+### CamemBERT (contextuel)
+
+-   **Dim. vecteur** : 768\
+-   *Vecteur différent* selon la phrase\
+-   Cosinus(*avocat fruit*, *avocat métier*) = **0.66**
+
+👉 **Avantage** : vecteurs qui capturent le **sens contextualisé**.
 :::
 :::::
 
 ------------------------------------------------------------------------
 
-## Le mécanisme d'Attention 🧠 {style="font-size:0.8em"}
+## Le mécanisme d'attention [@vaswani2017attention] VOIR DÉMO {style="font-size:0.70em"}
 
 ::::: columns
 ::: {.column width="60%"}
+L'idée fondamentale des Transformers est simple : pour comprendre un
+mot, le modèle doit **porter son attention** sur les autres mots
+importants de la phrase.
 
-L'idée fondamentale des Transformers est simple : pour comprendre un mot, le modèle doit **porter son attention** sur les autres mots importants de la phrase.
+Imaginez que pour chaque mot, vous mettiez un "spotlight" 🔦 sur les
+autres termes qui lui donnent son sens.
 
-Imaginez que pour chaque mot, vous mettiez un "spotlight" 🔦 sur les autres termes qui lui donnent son sens.
+\
+\
 
 **Exemple :**
+
 > `"Le livreur a déposé le colis devant la porte, car il était trop lourd."`
 
-Pour comprendre le mot **"il"**, le modèle va apprendre à porter son attention sur :
--   **"colis"** (très forte attention : c'est l'antécédent le plus probable !)
--   **"livreur"** (un peu d'attention : c'est un autre acteur, mais moins pertinent pour "il")
--   **"lourd"** (attention moyenne : c'est une caractéristique qui justifie le "il")
+\
+
+Pour comprendre le mot **"il"**, le modèle va apprendre à porter son
+attention sur :
+
+-   **"colis"** (très forte attention : c'est l'antécédent le plus
+    probable !)
+-   **"livreur"** (un peu d'attention : c'est un autre acteur, mais
+    moins pertinent pour "il")
+-   **"lourd"** (attention moyenne : c'est une caractéristique qui
+    justifie le "il")
 :::
 
 ::: {.column width="40%"}
-![](images/clipboard-3690532316.png){fig-align="center" width="100%"}
+![](images/clipboard-3690532316.png){width="100%"}\[\@\]
 :::
 :::::
 
 ::: {.callout-tip title="La grande différence"}
-Contrairement à Word2Vec qui regarde une petite fenêtre fixe, l'**attention** permet de créer des liens sémantiques entre des mots **même très éloignés** dans la phrase. Le modèle apprend quelles parties du contexte sont les plus pertinentes.
+Contrairement à Word2Vec qui regarde une petite fenêtre fixe,
+l'**attention** permet de créer des liens sémantiques entre des mots
+**même très éloignés** dans la phrase. Le modèle apprend quelles parties
+du contexte sont les plus pertinentes.
 :::
 
 ------------------------------------------------------------------------
@@ -96,7 +282,7 @@ Cette première vidéo offre une vue d'ensemble de l'architecture
 Transformer, le moteur qui fait fonctionner tous les grands modèles de
 langage modernes.
 
-{{< video https://www.youtube.com/watch?v=wjZofJX0v4M width="1000" height="550" >}}
+{{< video https://www.youtube.com/watch?v=wjZofJX0v4M fig-align="center" width="1000" height="550" >}}
 
 ------------------------------------------------------------------------
 
@@ -114,7 +300,7 @@ Alors, comment un modèle apprend-il à faire ça ? L'idée est
 incroyablement simple dans son principe. On lui donne une tâche unique,
 répétée des milliards de fois.
 
-**La tâche : Prédire le mot le plus probable.**
+**La tâche : prédire le mot le plus probable.**
 
 On prend une quantité astronomique de texte (tout Wikipédia, des livres,
 des articles...) et on entraîne le modèle sur ce jeu :
@@ -144,7 +330,7 @@ synthèse...).
 
 ------------------------------------------------------------------------
 
-## L'Écosystème Hugging Face 🤗 : Le Supermarché des Modèles d'IA {style="font-size:0.7em"}
+## L'Écosystème Hugging Face 🤗 : le Supermarché des modèles d'IA - VOIR DEMO {style="font-size:0.7em"}
 
 Heureusement, vous n'avez pas besoin d'entraîner ces modèles vous-mêmes
 ! Une communauté immense partage des modèles prêts à l'emploi.
@@ -174,28 +360,78 @@ l'analyse de sentiment, la classification de textes, la synthèse...
 :::
 :::::
 
-## Applications Concrètes pour le Marketing Digital {style="font-size:0.60em"}
+## Applications concrètes pour le marketing digital {style="font-size:0.55em"}
 
-Maintenant que les modèles comprennent le contexte et la nuance, de
-nouvelles possibilités s'ouvrent.
+Maintenant que les modèles comprennent le contexte, de nouvelles
+possibilités s'ouvrent, validées par l'analyse de milliards de messages.
 
-| Application & Besoin | Avant (Word2Vec / LDA) | Maintenant (Transformers / LLMs) |
-|:-----------------------|:-----------------------|:-----------------------|
-| **Analyse de sentiment** <br> *Aller au-delà des mots-clés* | Détectait les mots positifs/négatifs ("super", "nul"). <br> **Limite** : Ne comprenait pas le sarcasme. | Comprend la **nuance** et le **sarcasme**. <br> `"Ce service client est d'une lenteur absolument remarquable."` → Sentiment négatif. |
-| **Synthèse d'avis clients** <br> *Obtenir un résumé actionnable* | Créait des thèmes (topics) basés sur la co-occurrence de mots. <br> **Limite** : Nécessite une interprétation humaine forte. | **Résume** 10 000 avis en un paragraphe qui identifie les 3 problèmes principaux et les 2 points forts. |
-| **Génération de contenu** <br> *Aider à la création* | Impossible. | **Rédige des brouillons** de descriptions de produits, des posts pour les réseaux sociaux, des emails marketing, etc. |
-| **Chatbots & Service Client** <br> *Améliorer l'interaction* | Suivait des scénarios rigides basés sur des mots-clés. <br> **Limite** : Se "bloquait" si la question sortait du cadre. | Comprend l'**intention** de l'utilisateur et peut avoir une **conversation fluide et naturelle** pour résoudre des problèmes. |
-| **Recherche sémantique** <br> *Comprendre la vraie question* | Cherchait les mots exacts du produit. <br> **Limite** : Ne trouvait rien si le client utilisait des synonymes. | Un client cherche `"chaussures pour courir quand il pleut"` et le moteur trouve des `"baskets de running imperméables"`. |
+| Application & Besoin | Avant (Word2Vec / LDA) | Maintenant (Transformers / LLMs) | Données & Exemples Clés |
+|:-----------------|:-----------------|:-----------------|:-----------------|
+| **Génération de Contenu** <br> *Aider à la création* | Impossible. | **Rédige des brouillons** de descriptions de produits, posts, emails... | **L'écriture est le 1er cas d'usage professionnel** (40% des messages de travail). <br> **Fait clé** : 2/3 de cet usage consistent à **modifier un texte existant** (résumer, traduire, critiquer). |
+| **Analyse de sentiment** <br> *Aller au-delà des mots-clés* | Détectait "super", "nul". <br> **Limite** : Ne comprenait pas le sarcasme. | Comprend la **nuance** et le **sarcasme**. <br> `"Ce service client est d'une lenteur absolument remarquable."` → Sentiment négatif. | Les interactions jugées "bonnes" par les utilisateurs sont **plus de 4 fois plus nombreuses** que les "mauvaises" en 2025, montrant une satisfaction croissante. |
+| **Synthèse d'avis clients** <br> *Obtenir un résumé actionnable* | Créait des thèmes (topics). <br> **Limite** : Interprétation humaine forte. | **Résume** 10 000 avis en un paragraphe identifiant les 3 problèmes principaux et les 2 points forts. | Une tâche clé identifiée est "Interpréter le sens de l'information pour les autres", représentant 13.1% de tous les messages. |
+| **Chatbots & Service Client** <br> *Améliorer l'interaction* | Suivait des scénarios rigides. <br> **Limite** : Se "bloquait" facilement. | Comprend l'**intention** et peut avoir une **conversation fluide et naturelle**. | L'usage pour le "Guide Pratique" (conseils, tutoriels) représente **29% de toutes les conversations**, un pilier du service client moderne. |
 
 ------------------------------------------------------------------------
 
-## Synthèse : Ce qu'il faut retenir pour votre projet {style="font-size:0.7em"}
+## Garder un esprit critique : limites & ethique - VOIR DÉMO Ollama {style="font-size:0.65em"}
+
+Utiliser les LLMs en marketing impose de connaître leurs faiblesses pour
+éviter les erreurs stratégiques et de réputation.
+
+::::: columns
+::: {.column width="50%"}
+### Le problème des "hallucinations"
+
+Un LLM est un "générateur de texte plausible", pas un moteur de vérité.
+Il peut **inventer des faits, des sources ou des chiffres** avec une
+assurance déconcertante pour que sa phrase soit cohérente.
+
+-   **Risque** : Diffuser une fausse information, citer une étude qui
+    n'existe pas, faire une promesse produit erronée.
+-   **Solution** : Le **"Human in the loop"** (validation humaine) est
+    non négociable pour tout contenu public.
+
+### Les biais du modèle
+
+\
+
+Le modèle apprend sur un vaste corpus de textes issus d'Internet. Il
+**reproduit donc les biais et stéréotypes** (culturels, sociaux, de
+genre...) présents dans ces textes.
+
+\
+
+-   **Risque** : Générer du contenu maladroit, voire offensant, qui ne
+    correspond pas aux valeurs de la marque.
+-   **Solution** : Définir des **directives claires** (prompts) et
+    **auditer** régulièrement les contenus générés.
+:::
+
+::: {.column width="50%"}
+### Confidentialité des données (privacy)
+
+Les versions grand public de ces outils (comme ChatGPT gratuit) peuvent
+utiliser les conversations pour entraîner leurs futurs modèles.
+
+-   **Risque** : fuite d'informations stratégiques (plans de lancement,
+    données clients anonymisées, etc.) si les équipes les utilisent sans
+    précaution.
+
+-   **Solution** :
+
+-   Utiliser les LLMs pour des informations non sensibles. Donner des
+    instructions en décrivant les données, pas en les uploadant sur les
+    plateformes.
+
+-   Utiliser des LLMs locaux (LLMstudio, Ollama, etc.)
+:::
+:::::
+
+## Synthèse
 
 1.  **Le Contexte est la clé** 🔑
-    -   Les Transformers ont révolutionné l'IA en analysant la phrase
-        entière grâce au **mécanisme d'attention**.
-    -   Le sens d'un mot n'est plus statique, il est **dynamique** et
-        dépend du contexte.
+    -   Les Transformers surpassent les anciens modèles en comprenant le **sens dynamique** des mots dans une phrase grâce au mécanisme d'**attention**.
 2.  **Un entraînement simple, des capacités complexes** 🚀
     -   Les LLMs sont principalement entraînés à **prédire le mot
         suivant**.
@@ -215,33 +451,36 @@ nouvelles possibilités s'ouvrent.
 
 ------------------------------------------------------------------------
 
-## Au-delà de la génération : Vers les Agents IA 🤖 {style="font-size:0.7em"}
+## Au-delà de la génération : vers les agents IA 🤖 {style="font-size:0.6em"}
 
 Maintenant que les LLMs peuvent "comprendre" et "raisonner", la
 prochaine étape est de leur permettre d'**agir**. C'est le concept
 d'**Agent IA**.
 
-**L'idée :** On ne se contente plus de demander au LLM de *rédiger un
+**L'idée :** on ne se contente plus de demander au LLM de *rédiger un
 email*. On lui donne un **objectif** et des **outils**.
 
-**Exemple : L'Agent Marketing Autonome** Imaginez que vous donniez cet
+**Exemple : l'Agent Marketing Autonome** Imaginez que vous donniez cet
 objectif à un agent :
 
 > *"Analyse les ventes de notre produit X sur les 30 derniers jours,
 > identifie le segment client le moins performant, et rédige une
 > campagne d'emailing ciblée avec un code promo pour le réactiver."*
 
-L'agent va alors utiliser ses outils en autonomie : 1. 🧠 **Raisonnement
-:** "Ok, je dois décomposer le problème." 2. 🛠️ **Outil 1 (Base de
-données) :** Il se connecte à la base de données des ventes pour
-exécuter une requête. 3. 🧠 **Raisonnement :** "J'ai les chiffres. Le
-segment des 25-35 ans est en baisse." 4. 🛠️ **Outil 2 (Génération de
-texte) :** Il rédige 3 variantes d'emails persuasifs adaptés à cette
-cible. 5. 🧠 **Raisonnement :** "L'email A est le plus direct. Je vais
-proposer de l'envoyer." 6. ✅ **Action finale :** Il vous présente la
-campagne pour validation.
+L'agent va alors utiliser ses outils en autonomie :
 
-::: {.callout-tip title="Ce qu'il faut retenir"}
+1.  🧠 **Raisonnement :** "Ok, je dois décomposer le problème."
+2.  🛠️ **Outil 1 (Base de données) :** Il se connecte à la base de
+    données des ventes pou rexécuter une requête.
+3.  🧠 **Raisonnement :** "J'ai les chiffres. Le segment des 25-35 ans
+    est en baisse."
+4.  🛠️ **Outil 2 (Génération de texte) :** Il rédige 3 variantes
+    d'emails persuasifs adaptés à cette cible.
+5.  🧠 **Raisonnement :** "L'email A est le plus direct. Je vais
+    proposer de l'envoyer."
+6.  ✅ **Action finale :** Il vous présente la campagne pour validation.
+
+::: {.callout-tip title="L'agent"}
 Un agent est un **LLM (le cerveau 🧠)** augmenté avec une **boîte à
 outils (APIs, bases de données, recherche web 🛠️)** qui peut planifier
 et exécuter des tâches complexes pour atteindre un objectif.

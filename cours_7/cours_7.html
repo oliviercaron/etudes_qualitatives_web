@@ -6,11 +6,11 @@
 <script src="cours_7_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="cours_7_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="cours_7_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="cours_7_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.40">
+<link href="cours_7_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Olivier Caron">
-  <title>Transformers &amp; LLMs</title>
+  <title>Études qualitatives sur le web (netnographie)</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,8 +28,28 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
-  <link rel="stylesheet" href="cours_7_files/libs/revealjs/dist/theme/quarto-a140f12d155dd7929f96c13f5f9c13dc.css">
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="cours_7_files/libs/revealjs/dist/theme/quarto-7305b09eb733fa85903ef661c69bedac.css">
   <link href="cours_7_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="cours_7_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="cours_7_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -129,8 +149,8 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="ubd_bg1.png" data-background-position="center" data-background-size="cover" class="quarto-title-block center">
-  <h1 class="title">Transformers &amp; LLMs</h1>
-  <p class="subtitle">La Révolution du Langage Appliquée au Marketing</p>
+  <h1 class="title">Études qualitatives sur le web (netnographie)</h1>
+  <p class="subtitle">Transformers &amp; LLMs</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -144,36 +164,220 @@ Olivier Caron
 </div>
 
 </section>
-<section id="rappel-les-limites-des-embeddings-statiques" class="slide level2" style="font-size:0.7em">
-<h2>Rappel : Les limites des embeddings statiques</h2>
-<p>Dans la séance précédente, nous avons vu la puissance des embeddings comme Word2Vec. Cependant, ils ont une limite majeure.</p>
+<section id="lexplosion-chatgpt-chatterjihowpeopleuse" class="slide level2" style="font-size:0.7em">
+<h2>L’explosion ChatGPT <span class="citation" data-cites="chatterjiHowPeopleUse">(<a href="#/au-delà-de-la-génération-vers-les-agents-ia" role="doc-biblioref" onclick="">Chatterji et al. 2025</a>)</span></h2>
+<p>Pour comprendre l’impact (marketing), il faut saisir deux dimensions : la <strong>vitesse</strong> de l’adoption et l’<strong>échelle</strong> actuelle du phénomène.</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<h3 id="la-vitesse-une-croissance-explosive-en-1-année">La vitesse : une croissance explosive en 1 année</h3>
+<p><em>(Juin 2024 vs Juin 2025)</em></p>
+<ul>
+<li><p><strong>Utilisateurs actifs</strong> : près de <strong>x3</strong></p></li>
+<li><p><strong>Volume de messages quotidiens</strong> : <strong>x5,8</strong> (de 451 M à 2,6 Milliards / jour)</p></li>
+<li><p><strong>Part de l’usage personnel</strong> : passe de 53% à <strong>73%</strong>, devenant l’usage majoritaire.</p></li>
+</ul>
+<p>Cette dynamique de croissance est inédite pour une nouvelle technologie.</p>
+</div><div class="column" style="width:55%;">
+<h3 id="léchelle-un-canal-de-masse-en-juillet-2025">L’échelle : un canal de masse en juillet 2025</h3>
+<p><br>
+</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Indicateur</th>
+<th style="text-align: left;">Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Utilisateurs actifs / semaine</strong></td>
+<td style="text-align: left;"><strong>700 millions</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Messages échangés / semaine</strong></td>
+<td style="text-align: left;"><strong>18 milliards</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Âge des utilisateurs</strong></td>
+<td style="text-align: left;"><strong>46%</strong> ont entre 18-25 ans</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Genre</strong></td>
+<td style="text-align: left;">Quasi-parité</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+<p><br>
+</p>
+<div title="L'Implication Marketing">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>L’Implication Marketing</strong></p>
+</div>
+<div class="callout-content">
+<p>En un an, ChatGPT est passé d’un outil d’initiés à un <strong>canal de communication et de recherche grand public</strong>, particulièrement sur la cible jeune.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lévolution-des-usages-de-la-création-à-la-recherche-chatterjihowpeopleuse" class="slide level2" style="font-size:0.7em">
+<h2>L’évolution des usages : de la création à la recherche <span class="citation" data-cites="chatterjiHowPeopleUse">(<a href="#/au-delà-de-la-génération-vers-les-agents-ia" role="doc-biblioref" onclick="">Chatterji et al. 2025</a>)</span></h2>
+<p>Plus important encore que la photo à un instant T, la <strong>tendance de fond</strong> révèle une mutation du rôle de l’IA dans le quotidien des utilisateurs.</p>
+<p><br></p>
+<h3 id="en-un-an-chatgpt-est-devenu-un-concurrent-de-google">En un an, ChatGPT est devenu un concurrent de Google</h3>
+<p>L’analyse de l’évolution des conversations entre 2024 et 2025 montre un basculement clair :</p>
+<ul>
+<li>✍️ <strong>L’ecriture</strong> (créer, résumer, traduire) a vu sa part <strong>baisser de 36% à 24%</strong>.</li>
+<li>🔎 <strong>La recherche d’informations</strong> (trouver des faits, des produits) a <strong>explosé, passant de 14% à 24%</strong>.</li>
+</ul>
+<p><br></p>
+<div title="Que signifie cette évolution ?">
+<div class="callout callout-note callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Que signifie cette évolution ?</strong></p>
+</div>
+<div class="callout-content">
+<p>Les utilisateurs se sont approprié l’outil non plus seulement pour <strong>produire du contenu</strong>, mais pour <strong>accéder à l’information</strong>. Pour le marketing, cela signifie que de plus en plus de parcours clients et de recherches de produits ne commencent plus sur un moteur de recherche, mais dans la fenêtre d’un chatbot.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="anatomie-des-usages-en-2025-chatgpt-chatterjihowpeopleuse" class="slide level2" style="font-size:0.7em">
+<h2>Anatomie des usages en 2025 (ChatGPT) <span class="citation" data-cites="chatterjiHowPeopleUse">(<a href="#/au-delà-de-la-génération-vers-les-agents-ia" role="doc-biblioref" onclick="">Chatterji et al. 2025</a>)</span></h2>
+<p>Loin des clichés, près de 80% des conversations se concentrent sur trois grands besoins très concrets. Voici le détail de ce que les utilisateurs font réellement.</p>
+<div class="columns">
+<div class="column" style="width:33%;">
+<h3 id="guide-pratique-29">📚 1. Guide pratique (29%)</h3>
+<p><strong>L’IA comme coach personnel.</strong> Les utilisateurs cherchent un accompagnement pour agir ou apprendre.</p>
+<ul>
+<li><strong>Tutorat &amp; Éducation (10.2%)</strong> : Expliquer des concepts, aider aux devoirs.</li>
+<li><strong>Conseils &amp; “How-To” (8.5%)</strong> : Obtenir des plans d’action, des tutoriels.</li>
+<li><strong>Idées &amp; Créativité (3.8%)</strong> : Brainstormer des noms ou des idées de projets.</li>
+</ul>
+</div><div class="column" style="width:33%;">
+<h3 id="écriture-24">✍️ 2. Écriture (24%)</h3>
+<p><strong>L’IA comme assistant éditorial.</strong> Fait clé : <strong>2/3 de cet usage consistent à modifier un texte existant</strong>.</p>
+<ul>
+<li><strong>Édition &amp; Critique (10.6%)</strong> : Corriger ou reformuler un texte fourni.</li>
+<li><strong>Rédaction personnelle (8.0%)</strong> : Rédiger des emails ou lettres de motivation.</li>
+<li><strong>Traduction &amp; Résumé (8.1%)</strong> : Synthétiser des documents ou traduire.</li>
+</ul>
+</div><div class="column" style="width:33%;">
+<h3 id="recherche-dinfos-24">🔎 3. Recherche d’infos (24%)</h3>
+<p><strong>L’IA comme moteur de recherche conversationnel.</strong> Un substitut direct à la recherche web.</p>
+<ul>
+<li><strong>Recherche de faits (18.3%)</strong> : Informations sur des personnes, lieux, événements.</li>
+<li><strong>Recherche de produits (2.1%)</strong> : Se renseigner sur des produits avant un achat.</li>
+</ul>
+</div></div>
+<div style="font-size:0.7em">
+<div class="callout callout-note callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Les usages “surprenants” restent marginaux</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Programmation = <strong>4.2%</strong></li>
+<li>Compagnonnage / relations = <strong>1.9%</strong></li>
+<li>Jeux de rôle = <strong>0.4%</strong></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="rappel-les-limites-des-embeddings-statiques" class="slide level2" style="font-size:0.8em">
+<h2>Rappel : les limites des embeddings statiques</h2>
+<p>Dans la séance précédente, nous avons vu la puissance des embeddings comme Word2Vec et leurs limites.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <h3 id="le-problème-du-sens-unique">Le problème du sens unique</h3>
 <p>Avec Word2Vec, un mot = un seul vecteur, appris une fois pour toutes. Le mot “<strong>avocat</strong>” aura donc le même vecteur, qu’on parle du fruit ou de la profession.</p>
+<p><br>
+</p>
 <p><code>"J'aime manger un avocat avec du citron."</code></p>
+<p><br>
+<br>
+</p>
 <p><code>"Je vais consulter mon avocat pour ce litige."</code></p>
+<p><br>
+<br>
+</p>
 <p>Pour ces modèles, le sens est <strong>statique</strong>.</p>
 </div><div class="column" style="width:50%;">
 <h3 id="le-besoin-de-contexte">Le besoin de contexte</h3>
 <p>Pour un humain, le sens d’un mot dépend de la <strong>phrase entière</strong> qui l’entoure. Word2Vec ne regarde qu’une petite fenêtre de mots voisins, ce qui est insuffisant pour lever les ambiguïtés.</p>
-<p>💡 <strong>Le défi</strong> : Comment créer un modèle qui, comme nous, lit toute la phrase pour comprendre le sens <strong>contextualisé</strong> de chaque mot ?</p>
+<p><br>
+<br>
+</p>
+<p><strong>Le défi</strong> : comment créer un modèle qui, comme nous, lit toute la phrase pour comprendre le sens <strong>contextualisé</strong> de chaque mot ?</p>
 </div></div>
 </section>
-<section id="le-mécanisme-dattention" class="slide level2" style="font-size:0.8em">
-<h2>Le mécanisme d’Attention 🧠</h2>
+<section id="word2vec-vs-camembert-avocat---voir-démo" class="slide level2">
+<h2>Word2Vec vs CamemBERT : “avocat” - VOIR DÉMO</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="word2vec-statique">Word2Vec (statique)</h3>
+<ul>
+<li><strong>Dim. vecteur</strong> : 50<br>
+</li>
+<li><em>Un seul vecteur</em> pour <strong>tous les contextes</strong><br>
+</li>
+<li>Cosinus(<em>avocat fruit</em>, <em>avocat métier</em>) = <strong>1.0</strong><br>
+</li>
+<li>Cosinus(<em>phrase fruit</em>, <em>phrase métier</em>) = 0.44</li>
+</ul>
+<p>👉 <strong>Limite</strong> : un mot = un vecteur, pas de contexte.</p>
+</div><div class="column" style="width:50%;">
+<h3 id="camembert-contextuel">CamemBERT (contextuel)</h3>
+<ul>
+<li><strong>Dim. vecteur</strong> : 768<br>
+</li>
+<li><em>Vecteur différent</em> selon la phrase<br>
+</li>
+<li>Cosinus(<em>avocat fruit</em>, <em>avocat métier</em>) = <strong>0.66</strong></li>
+</ul>
+<p>👉 <strong>Avantage</strong> : vecteurs qui capturent le <strong>sens contextualisé</strong>.</p>
+</div></div>
+</section>
+<section id="le-mécanisme-dattention-vaswani2017attention-voir-démo" class="slide level2" style="font-size:0.70em">
+<h2>Le mécanisme d’attention <span class="citation" data-cites="vaswani2017attention">(<a href="#/au-delà-de-la-génération-vers-les-agents-ia" role="doc-biblioref" onclick="">Vaswani et al. 2017</a>)</span> VOIR DÉMO</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <p>L’idée fondamentale des Transformers est simple : pour comprendre un mot, le modèle doit <strong>porter son attention</strong> sur les autres mots importants de la phrase.</p>
 <p>Imaginez que pour chaque mot, vous mettiez un “spotlight” 🔦 sur les autres termes qui lui donnent son sens.</p>
-<p><strong>Exemple :</strong> &gt; <code>"Le livreur a déposé le colis devant la porte, car il était trop lourd."</code></p>
-<p>Pour comprendre le mot <strong>“il”</strong>, le modèle va apprendre à porter son attention sur : - <strong>“colis”</strong> (très forte attention : c’est l’antécédent le plus probable !) - <strong>“livreur”</strong> (un peu d’attention : c’est un autre acteur, mais moins pertinent pour “il”) - <strong>“lourd”</strong> (attention moyenne : c’est une caractéristique qui justifie le “il”)</p>
+<p><br>
+<br>
+</p>
+<p><strong>Exemple :</strong></p>
+<blockquote>
+<p><code>"Le livreur a déposé le colis devant la porte, car il était trop lourd."</code></p>
+</blockquote>
+<p><br>
+</p>
+<p>Pour comprendre le mot <strong>“il”</strong>, le modèle va apprendre à porter son attention sur :</p>
+<ul>
+<li><strong>“colis”</strong> (très forte attention : c’est l’antécédent le plus probable !)</li>
+<li><strong>“livreur”</strong> (un peu d’attention : c’est un autre acteur, mais moins pertinent pour “il”)</li>
+<li><strong>“lourd”</strong> (attention moyenne : c’est une caractéristique qui justifie le “il”)</li>
+</ul>
 </div><div class="column" style="width:40%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/clipboard-3690532316.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
+<p><img data-src="images/clipboard-3690532316.png" style="width:100.0%">[@]</p>
 </div></div>
 <div title="La grande différence">
 <div class="callout callout-tip callout-titled callout-style-default">
@@ -204,7 +408,7 @@ Olivier Caron
 <section id="comment-un-llm-apprend-il-le-jeu-du-mot-suivant" class="slide level2" style="font-size:0.7em">
 <h2>Comment un LLM apprend-il ? Le jeu du mot suivant</h2>
 <p>Alors, comment un modèle apprend-il à faire ça ? L’idée est incroyablement simple dans son principe. On lui donne une tâche unique, répétée des milliards de fois.</p>
-<p><strong>La tâche : Prédire le mot le plus probable.</strong></p>
+<p><strong>La tâche : prédire le mot le plus probable.</strong></p>
 <p>On prend une quantité astronomique de texte (tout Wikipédia, des livres, des articles…) et on entraîne le modèle sur ce jeu :</p>
 <ol type="1">
 <li><p>On lui donne un début de phrase : <code>"Le client a contacté le service après-vente car son produit était..."</code></p></li>
@@ -231,8 +435,8 @@ Olivier Caron
 </div>
 </div>
 </section>
-<section id="lécosystème-hugging-face-le-supermarché-des-modèles-dia" class="slide level2" style="font-size:0.7em">
-<h2>L’Écosystème Hugging Face 🤗 : Le Supermarché des Modèles d’IA</h2>
+<section id="lécosystème-hugging-face-le-supermarché-des-modèles-dia---voir-demo" class="slide level2" style="font-size:0.7em">
+<h2>L’Écosystème Hugging Face 🤗 : le Supermarché des modèles d’IA - VOIR DEMO</h2>
 <p>Heureusement, vous n’avez pas besoin d’entraîner ces modèles vous-mêmes ! Une communauté immense partage des modèles prêts à l’emploi.</p>
 <p><strong>Hugging Face, c’est quoi ?</strong> C’est une plateforme qui est devenue le point central pour trouver, utiliser et partager des modèles de Machine Learning. C’est un peu le <strong>GitHub de l’IA</strong>.</p>
 <div class="columns">
@@ -248,58 +452,90 @@ Olivier Caron
 <p><img data-src="images/clipboard-1516076689.png"></p>
 </div></div>
 </section>
-<section id="applications-concrètes-pour-le-marketing-digital" class="slide level2" style="font-size:0.60em">
-<h2>Applications Concrètes pour le Marketing Digital</h2>
-<p>Maintenant que les modèles comprennent le contexte et la nuance, de nouvelles possibilités s’ouvrent.</p>
+<section id="applications-concrètes-pour-le-marketing-digital" class="slide level2" style="font-size:0.55em">
+<h2>Applications concrètes pour le marketing digital</h2>
+<p>Maintenant que les modèles comprennent le contexte, de nouvelles possibilités s’ouvrent, validées par l’analyse de milliards de messages.</p>
 <table class="caption-top">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Application &amp; Besoin</th>
 <th style="text-align: left;">Avant (Word2Vec / LDA)</th>
 <th style="text-align: left;">Maintenant (Transformers / LLMs)</th>
+<th style="text-align: left;">Données &amp; Exemples Clés</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><strong>Analyse de sentiment</strong> <br> <em>Aller au-delà des mots-clés</em></td>
-<td style="text-align: left;">Détectait les mots positifs/négatifs (“super”, “nul”). <br> <strong>Limite</strong> : Ne comprenait pas le sarcasme.</td>
-<td style="text-align: left;">Comprend la <strong>nuance</strong> et le <strong>sarcasme</strong>. <br> <code>"Ce service client est d'une lenteur absolument remarquable."</code> → Sentiment négatif.</td>
+<td style="text-align: left;"><strong>Génération de Contenu</strong> <br> <em>Aider à la création</em></td>
+<td style="text-align: left;">Impossible.</td>
+<td style="text-align: left;"><strong>Rédige des brouillons</strong> de descriptions de produits, posts, emails…</td>
+<td style="text-align: left;"><strong>L’écriture est le 1er cas d’usage professionnel</strong> (40% des messages de travail). <br> <strong>Fait clé</strong> : 2/3 de cet usage consistent à <strong>modifier un texte existant</strong> (résumer, traduire, critiquer).</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Synthèse d’avis clients</strong> <br> <em>Obtenir un résumé actionnable</em></td>
-<td style="text-align: left;">Créait des thèmes (topics) basés sur la co-occurrence de mots. <br> <strong>Limite</strong> : Nécessite une interprétation humaine forte.</td>
-<td style="text-align: left;"><strong>Résume</strong> 10 000 avis en un paragraphe qui identifie les 3 problèmes principaux et les 2 points forts.</td>
+<td style="text-align: left;"><strong>Analyse de sentiment</strong> <br> <em>Aller au-delà des mots-clés</em></td>
+<td style="text-align: left;">Détectait “super”, “nul”. <br> <strong>Limite</strong> : Ne comprenait pas le sarcasme.</td>
+<td style="text-align: left;">Comprend la <strong>nuance</strong> et le <strong>sarcasme</strong>. <br> <code>"Ce service client est d'une lenteur absolument remarquable."</code> → Sentiment négatif.</td>
+<td style="text-align: left;">Les interactions jugées “bonnes” par les utilisateurs sont <strong>plus de 4 fois plus nombreuses</strong> que les “mauvaises” en 2025, montrant une satisfaction croissante.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Génération de contenu</strong> <br> <em>Aider à la création</em></td>
-<td style="text-align: left;">Impossible.</td>
-<td style="text-align: left;"><strong>Rédige des brouillons</strong> de descriptions de produits, des posts pour les réseaux sociaux, des emails marketing, etc.</td>
+<td style="text-align: left;"><strong>Synthèse d’avis clients</strong> <br> <em>Obtenir un résumé actionnable</em></td>
+<td style="text-align: left;">Créait des thèmes (topics). <br> <strong>Limite</strong> : Interprétation humaine forte.</td>
+<td style="text-align: left;"><strong>Résume</strong> 10 000 avis en un paragraphe identifiant les 3 problèmes principaux et les 2 points forts.</td>
+<td style="text-align: left;">Une tâche clé identifiée est “Interpréter le sens de l’information pour les autres”, représentant 13.1% de tous les messages.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Chatbots &amp; Service Client</strong> <br> <em>Améliorer l’interaction</em></td>
-<td style="text-align: left;">Suivait des scénarios rigides basés sur des mots-clés. <br> <strong>Limite</strong> : Se “bloquait” si la question sortait du cadre.</td>
-<td style="text-align: left;">Comprend l’<strong>intention</strong> de l’utilisateur et peut avoir une <strong>conversation fluide et naturelle</strong> pour résoudre des problèmes.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Recherche sémantique</strong> <br> <em>Comprendre la vraie question</em></td>
-<td style="text-align: left;">Cherchait les mots exacts du produit. <br> <strong>Limite</strong> : Ne trouvait rien si le client utilisait des synonymes.</td>
-<td style="text-align: left;">Un client cherche <code>"chaussures pour courir quand il pleut"</code> et le moteur trouve des <code>"baskets de running imperméables"</code>.</td>
+<td style="text-align: left;">Suivait des scénarios rigides. <br> <strong>Limite</strong> : Se “bloquait” facilement.</td>
+<td style="text-align: left;">Comprend l’<strong>intention</strong> et peut avoir une <strong>conversation fluide et naturelle</strong>.</td>
+<td style="text-align: left;">L’usage pour le “Guide Pratique” (conseils, tutoriels) représente <strong>29% de toutes les conversations</strong>, un pilier du service client moderne.</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="synthèse-ce-quil-faut-retenir-pour-votre-projet" class="slide level2" style="font-size:0.7em">
-<h2>Synthèse : Ce qu’il faut retenir pour votre projet</h2>
+<section id="garder-un-esprit-critique-limites-ethique---voir-démo-ollama" class="slide level2" style="font-size:0.65em">
+<h2>Garder un esprit critique : limites &amp; ethique - VOIR DÉMO Ollama</h2>
+<p>Utiliser les LLMs en marketing impose de connaître leurs faiblesses pour éviter les erreurs stratégiques et de réputation.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="le-problème-des-hallucinations">Le problème des “hallucinations”</h3>
+<p>Un LLM est un “générateur de texte plausible”, pas un moteur de vérité. Il peut <strong>inventer des faits, des sources ou des chiffres</strong> avec une assurance déconcertante pour que sa phrase soit cohérente.</p>
+<ul>
+<li><strong>Risque</strong> : Diffuser une fausse information, citer une étude qui n’existe pas, faire une promesse produit erronée.</li>
+<li><strong>Solution</strong> : Le <strong>“Human in the loop”</strong> (validation humaine) est non négociable pour tout contenu public.</li>
+</ul>
+<h3 id="les-biais-du-modèle">Les biais du modèle</h3>
+<p><br>
+</p>
+<p>Le modèle apprend sur un vaste corpus de textes issus d’Internet. Il <strong>reproduit donc les biais et stéréotypes</strong> (culturels, sociaux, de genre…) présents dans ces textes.</p>
+<p><br>
+</p>
+<ul>
+<li><strong>Risque</strong> : Générer du contenu maladroit, voire offensant, qui ne correspond pas aux valeurs de la marque.</li>
+<li><strong>Solution</strong> : Définir des <strong>directives claires</strong> (prompts) et <strong>auditer</strong> régulièrement les contenus générés.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="confidentialité-des-données-privacy">Confidentialité des données (privacy)</h3>
+<p>Les versions grand public de ces outils (comme ChatGPT gratuit) peuvent utiliser les conversations pour entraîner leurs futurs modèles.</p>
+<ul>
+<li><p><strong>Risque</strong> : fuite d’informations stratégiques (plans de lancement, données clients anonymisées, etc.) si les équipes les utilisent sans précaution.</p></li>
+<li><p><strong>Solution</strong> :</p></li>
+<li><p>Utiliser les LLMs pour des informations non sensibles. Donner des instructions en décrivant les données, pas en les uploadant sur les plateformes.</p></li>
+<li><p>Utiliser des LLMs locaux (LLMstudio, Ollama, etc.)</p></li>
+</ul>
+</div></div>
+</section>
+<section id="synthèse" class="slide level2">
+<h2>Synthèse</h2>
 <ol type="1">
 <li><strong>Le Contexte est la clé</strong> 🔑
 <ul>
-<li>Les Transformers ont révolutionné l’IA en analysant la phrase entière grâce au <strong>mécanisme d’attention</strong>.</li>
-<li>Le sens d’un mot n’est plus statique, il est <strong>dynamique</strong> et dépend du contexte.</li>
+<li>Les Transformers surpassent les anciens modèles en comprenant le <strong>sens dynamique</strong> des mots dans une phrase grâce au mécanisme d’<strong>attention</strong>.</li>
 </ul></li>
 <li><strong>Un entraînement simple, des capacités complexes</strong> 🚀
 <ul>
@@ -318,23 +554,31 @@ Olivier Caron
 </ul></li>
 </ol>
 </section>
-<section id="au-delà-de-la-génération-vers-les-agents-ia" class="slide level2" style="font-size:0.7em">
-<h2>Au-delà de la génération : Vers les Agents IA 🤖</h2>
+<section id="au-delà-de-la-génération-vers-les-agents-ia" class="slide level2 smaller scrollable" style="font-size:0.6em">
+<h2>Au-delà de la génération : vers les agents IA 🤖</h2>
 <p>Maintenant que les LLMs peuvent “comprendre” et “raisonner”, la prochaine étape est de leur permettre d’<strong>agir</strong>. C’est le concept d’<strong>Agent IA</strong>.</p>
-<p><strong>L’idée :</strong> On ne se contente plus de demander au LLM de <em>rédiger un email</em>. On lui donne un <strong>objectif</strong> et des <strong>outils</strong>.</p>
-<p><strong>Exemple : L’Agent Marketing Autonome</strong> Imaginez que vous donniez cet objectif à un agent :</p>
+<p><strong>L’idée :</strong> on ne se contente plus de demander au LLM de <em>rédiger un email</em>. On lui donne un <strong>objectif</strong> et des <strong>outils</strong>.</p>
+<p><strong>Exemple : l’Agent Marketing Autonome</strong> Imaginez que vous donniez cet objectif à un agent :</p>
 <blockquote>
 <p><em>“Analyse les ventes de notre produit X sur les 30 derniers jours, identifie le segment client le moins performant, et rédige une campagne d’emailing ciblée avec un code promo pour le réactiver.”</em></p>
 </blockquote>
-<p>L’agent va alors utiliser ses outils en autonomie : 1. 🧠 <strong>Raisonnement :</strong> “Ok, je dois décomposer le problème.” 2. 🛠️ <strong>Outil 1 (Base de données) :</strong> Il se connecte à la base de données des ventes pour exécuter une requête. 3. 🧠 <strong>Raisonnement :</strong> “J’ai les chiffres. Le segment des 25-35 ans est en baisse.” 4. 🛠️ <strong>Outil 2 (Génération de texte) :</strong> Il rédige 3 variantes d’emails persuasifs adaptés à cette cible. 5. 🧠 <strong>Raisonnement :</strong> “L’email A est le plus direct. Je vais proposer de l’envoyer.” 6. ✅ <strong>Action finale :</strong> Il vous présente la campagne pour validation.</p>
-<div title="Ce qu'il faut retenir">
+<p>L’agent va alors utiliser ses outils en autonomie :</p>
+<ol type="1">
+<li>🧠 <strong>Raisonnement :</strong> “Ok, je dois décomposer le problème.”</li>
+<li>🛠️ <strong>Outil 1 (Base de données) :</strong> Il se connecte à la base de données des ventes pou rexécuter une requête.</li>
+<li>🧠 <strong>Raisonnement :</strong> “J’ai les chiffres. Le segment des 25-35 ans est en baisse.”</li>
+<li>🛠️ <strong>Outil 2 (Génération de texte) :</strong> Il rédige 3 variantes d’emails persuasifs adaptés à cette cible.</li>
+<li>🧠 <strong>Raisonnement :</strong> “L’email A est le plus direct. Je vais proposer de l’envoyer.”</li>
+<li>✅ <strong>Action finale :</strong> Il vous présente la campagne pour validation.</li>
+</ol>
+<div title="L'agent">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Ce qu’il faut retenir</strong></p>
+<p><strong>L’agent</strong></p>
 </div>
 <div class="callout-content">
 <p>Un agent est un <strong>LLM (le cerveau 🧠)</strong> augmenté avec une <strong>boîte à outils (APIs, bases de données, recherche web 🛠️)</strong> qui peut planifier et exécuter des tâches complexes pour atteindre un objectif.</p>
@@ -343,8 +587,16 @@ Olivier Caron
 </div>
 </div>
 
-<script> window._input_file = "---\n" + "title: \"Transformers & LLMs\"\n" + "subtitle: \"La Révolution du Langage Appliquée au Marketing\"\n" + "author:\n" + "  - name: \"Olivier Caron\"\n" + "    affiliations: \"Paris Dauphine - PSL\"\n" + "format:\n" + "  ubd-revealjs:\n" + "    self-contained: false\n" + "    chalkboard: true\n" + "    transition: fade\n" + "    auto-stretch: false\n" + "    width: 1250\n" + "    height: 760\n" + "    toc: false\n" + "    toc-depth: 1\n" + "    code-block-height: 700px\n" + "execute:\n" + "  echo: true\n" + "bibliography: refs.bib\n" + "revealjs-plugins:\n" + "  - editable\n" + "filters:\n" + "  - editable\n" + "editor: \n" + "  markdown: \n" + "    wrap: 72\n" + "---\n" + "\n" + "## Rappel : Les limites des embeddings statiques {style=\"font-size:0.7em\"}\n" + "\n" + "Dans la séance précédente, nous avons vu la puissance des embeddings\n" + "comme Word2Vec. Cependant, ils ont une limite majeure.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### Le problème du sens unique\n" + "\n" + "Avec Word2Vec, un mot = un seul vecteur, appris une fois pour toutes. Le\n" + "mot \"**avocat**\" aura donc le même vecteur, qu'on parle du fruit ou de\n" + "la profession.\n" + "\n" + "`\"J'aime manger un avocat avec du citron.\"`\n" + "\n" + "`\"Je vais consulter mon avocat pour ce litige.\"`\n" + "\n" + "Pour ces modèles, le sens est **statique**.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### Le besoin de contexte\n" + "\n" + "Pour un humain, le sens d'un mot dépend de la **phrase entière** qui\n" + "l'entoure. Word2Vec ne regarde qu'une petite fenêtre de mots voisins, ce\n" + "qui est insuffisant pour lever les ambiguïtés.\n" + "\n" + "💡 **Le défi** : Comment créer un modèle qui, comme nous, lit toute la\n" + "phrase pour comprendre le sens **contextualisé** de chaque mot ?\n" + ":::\n" + ":::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Le mécanisme d'Attention 🧠 {style=\"font-size:0.8em\"}\n" + "\n" + "::::: columns\n" + "::: {.column width=\"60%\"}\n" + "\n" + "L'idée fondamentale des Transformers est simple : pour comprendre un mot, le modèle doit **porter son attention** sur les autres mots importants de la phrase.\n" + "\n" + "Imaginez que pour chaque mot, vous mettiez un \"spotlight\" 🔦 sur les autres termes qui lui donnent son sens.\n" + "\n" + "**Exemple :**\n" + "> `\"Le livreur a déposé le colis devant la porte, car il était trop lourd.\"`\n" + "\n" + "Pour comprendre le mot **\"il\"**, le modèle va apprendre à porter son attention sur :\n" + "-   **\"colis\"** (très forte attention : c'est l'antécédent le plus probable !)\n" + "-   **\"livreur\"** (un peu d'attention : c'est un autre acteur, mais moins pertinent pour \"il\")\n" + "-   **\"lourd\"** (attention moyenne : c'est une caractéristique qui justifie le \"il\")\n" + ":::\n" + "\n" + "::: {.column width=\"40%\"}\n" + "![](images/clipboard-3690532316.png){fig-align=\"center\" width=\"100%\"}\n" + ":::\n" + ":::::\n" + "\n" + "::: {.callout-tip title=\"La grande différence\"}\n" + "Contrairement à Word2Vec qui regarde une petite fenêtre fixe, l'**attention** permet de créer des liens sémantiques entre des mots **même très éloignés** dans la phrase. Le modèle apprend quelles parties du contexte sont les plus pertinentes.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Les Transformers : la technologie derrière les LLMs (par 3Blue1Brown) {style=\"font-size:0.7em\"}\n" + "\n" + "Cette première vidéo offre une vue d'ensemble de l'architecture\n" + "Transformer, le moteur qui fait fonctionner tous les grands modèles de\n" + "langage modernes.\n" + "\n" + "\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Zoom sur le mécanisme d'Attention (par 3Blue1Brown) {style=\"font-size:0.7em\"}\n" + "\n" + "Cette seconde vidéo se concentre sur le concept important au coeur des\n" + "Transformers : le mécanisme d'attention, qui permet au modèle de\n" + "\"comprendre\" le contexte.\n" + "\n" + "\n" + "\n" + "## Comment un LLM apprend-il ? Le jeu du mot suivant {style=\"font-size:0.7em\"}\n" + "\n" + "Alors, comment un modèle apprend-il à faire ça ? L'idée est\n" + "incroyablement simple dans son principe. On lui donne une tâche unique,\n" + "répétée des milliards de fois.\n" + "\n" + "**La tâche : Prédire le mot le plus probable.**\n" + "\n" + "On prend une quantité astronomique de texte (tout Wikipédia, des livres,\n" + "des articles...) et on entraîne le modèle sur ce jeu :\n" + "\n" + "1.  On lui donne un début de phrase :\n" + "    `\"Le client a contacté le service après-vente car son produit était...\"`\n" + "\n" + "2.  Le modèle doit \"deviner\" le mot le plus probable qui vient après.\n" + "\n" + "    -   *cassé* ? (forte probabilité)\n" + "    -   *défectueux* ? (forte probabilité)\n" + "    -   *incroyable* ? (probabilité moyenne)\n" + "    -   *manger* ? (probabilité quasi nulle)\n" + "\n" + "::: {.callout-note appearance=\"simple\"}\n" + "### De la prédiction à la \"compréhension\"\n" + "\n" + "En s'entraînant à ce jeu des milliards de fois, le modèle est obligé de\n" + "développer une compréhension profonde de la grammaire, du style, des\n" + "concepts et même des connaissances factuelles sur le monde pour pouvoir\n" + "bien prédire.\n" + "\n" + "C'est la magie des LLMs : une tâche très simple, à très grande échelle,\n" + "fait **émerger** des capacités complexes (raisonnement, génération,\n" + "synthèse...).\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## L'Écosystème Hugging Face 🤗 : Le Supermarché des Modèles d'IA {style=\"font-size:0.7em\"}\n" + "\n" + "Heureusement, vous n'avez pas besoin d'entraîner ces modèles vous-mêmes\n" + "! Une communauté immense partage des modèles prêts à l'emploi.\n" + "\n" + "**Hugging Face, c'est quoi ?** C'est une plateforme qui est devenue le\n" + "point central pour trouver, utiliser et partager des modèles de Machine\n" + "Learning. C'est un peu le **GitHub de l'IA**.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"40%\"}\n" + "### Ce que vous y trouvez\n" + "\n" + "1.  **Des milliers de modèles pré-entraînés** : Pour des dizaines de\n" + "    langues, dont le français. Un des plus connus est **CamemBERT**, un\n" + "    modèle puissant entraîné spécifiquement sur du texte français.\n" + "2.  **Des datasets** : Pour entraîner ou spécialiser des modèles sur des\n" + "    tâches précises.\n" + "3.  **Des outils (librairies `transformers`)** : Pour utiliser ces\n" + "    modèles en quelques lignes de code Python.\n" + "\n" + "**Pour votre projet :** C'est une véritable boîte à outils pour\n" + "l'analyse de sentiment, la classification de textes, la synthèse...\n" + ":::\n" + "\n" + "::: {.column width=\"60%\"}\n" + "![](images/clipboard-1516076689.png)\n" + ":::\n" + ":::::\n" + "\n" + "## Applications Concrètes pour le Marketing Digital {style=\"font-size:0.60em\"}\n" + "\n" + "Maintenant que les modèles comprennent le contexte et la nuance, de\n" + "nouvelles possibilités s'ouvrent.\n" + "\n" + "| Application & Besoin | Avant (Word2Vec / LDA) | Maintenant (Transformers / LLMs) |\n" + "|:-----------------------|:-----------------------|:-----------------------|\n" + "| **Analyse de sentiment** <br> *Aller au-delà des mots-clés* | Détectait les mots positifs/négatifs (\"super\", \"nul\"). <br> **Limite** : Ne comprenait pas le sarcasme. | Comprend la **nuance** et le **sarcasme**. <br> `\"Ce service client est d'une lenteur absolument remarquable.\"` → Sentiment négatif. |\n" + "| **Synthèse d'avis clients** <br> *Obtenir un résumé actionnable* | Créait des thèmes (topics) basés sur la co-occurrence de mots. <br> **Limite** : Nécessite une interprétation humaine forte. | **Résume** 10 000 avis en un paragraphe qui identifie les 3 problèmes principaux et les 2 points forts. |\n" + "| **Génération de contenu** <br> *Aider à la création* | Impossible. | **Rédige des brouillons** de descriptions de produits, des posts pour les réseaux sociaux, des emails marketing, etc. |\n" + "| **Chatbots & Service Client** <br> *Améliorer l'interaction* | Suivait des scénarios rigides basés sur des mots-clés. <br> **Limite** : Se \"bloquait\" si la question sortait du cadre. | Comprend l'**intention** de l'utilisateur et peut avoir une **conversation fluide et naturelle** pour résoudre des problèmes. |\n" + "| **Recherche sémantique** <br> *Comprendre la vraie question* | Cherchait les mots exacts du produit. <br> **Limite** : Ne trouvait rien si le client utilisait des synonymes. | Un client cherche `\"chaussures pour courir quand il pleut\"` et le moteur trouve des `\"baskets de running imperméables\"`. |\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Synthèse : Ce qu'il faut retenir pour votre projet {style=\"font-size:0.7em\"}\n" + "\n" + "1.  **Le Contexte est la clé** 🔑\n" + "    -   Les Transformers ont révolutionné l'IA en analysant la phrase\n" + "        entière grâce au **mécanisme d'attention**.\n" + "    -   Le sens d'un mot n'est plus statique, il est **dynamique** et\n" + "        dépend du contexte.\n" + "2.  **Un entraînement simple, des capacités complexes** 🚀\n" + "    -   Les LLMs sont principalement entraînés à **prédire le mot\n" + "        suivant**.\n" + "    -   Cette tâche, à très grande échelle, leur permet de \"comprendre\"\n" + "        le langage bien au-delà de la simple statistique.\n" + "3.  **Les outils sont accessibles et prêts à l'emploi** 🧰\n" + "    -   Pas besoin d'être un chercheur de Google pour les utiliser.\n" + "    -   Des plateformes comme **Hugging Face 🤗** démocratisent l'accès\n" + "        à des modèles surpuissants via des librairies comme\n" + "        `sentence-transformers`.\n" + "4.  **De nouvelles applications marketing** 💡\n" + "    -   On passe de l'**analyse** (comprendre ce qui a été dit) à la\n" + "        **génération** (créer du contenu) et à l'**interaction**\n" + "        (dialoguer).\n" + "    -   C'est un changement majeur pour l'analyse de la voix du client,\n" + "        le SEO, et la gestion de la relation client.\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Au-delà de la génération : Vers les Agents IA 🤖 {style=\"font-size:0.7em\"}\n" + "\n" + "Maintenant que les LLMs peuvent \"comprendre\" et \"raisonner\", la\n" + "prochaine étape est de leur permettre d'**agir**. C'est le concept\n" + "d'**Agent IA**.\n" + "\n" + "**L'idée :** On ne se contente plus de demander au LLM de *rédiger un\n" + "email*. On lui donne un **objectif** et des **outils**.\n" + "\n" + "**Exemple : L'Agent Marketing Autonome** Imaginez que vous donniez cet\n" + "objectif à un agent :\n" + "\n" + "> *\"Analyse les ventes de notre produit X sur les 30 derniers jours,\n" + "> identifie le segment client le moins performant, et rédige une\n" + "> campagne d'emailing ciblée avec un code promo pour le réactiver.\"*\n" + "\n" + "L'agent va alors utiliser ses outils en autonomie : 1. 🧠 **Raisonnement\n" + ":** \"Ok, je dois décomposer le problème.\" 2. 🛠️ **Outil 1 (Base de\n" + "données) :** Il se connecte à la base de données des ventes pour\n" + "exécuter une requête. 3. 🧠 **Raisonnement :** \"J'ai les chiffres. Le\n" + "segment des 25-35 ans est en baisse.\" 4. 🛠️ **Outil 2 (Génération de\n" + "texte) :** Il rédige 3 variantes d'emails persuasifs adaptés à cette\n" + "cible. 5. 🧠 **Raisonnement :** \"L'email A est le plus direct. Je vais\n" + "proposer de l'envoyer.\" 6. ✅ **Action finale :** Il vous présente la\n" + "campagne pour validation.\n" + "\n" + "::: {.callout-tip title=\"Ce qu'il faut retenir\"}\n" + "Un agent est un **LLM (le cerveau 🧠)** augmenté avec une **boîte à\n" + "outils (APIs, bases de données, recherche web 🛠️)** qui peut planifier\n" + "et exécuter des tâches complexes pour atteindre un objectif.\n" + ":::\n" + ""</script>
-<script> window._input_filename = 'C:\Users\ocaron\Documents\Github\etudes_qualitatives_web\cours_7\cours_7.qmd'</script>
+<script> window._input_file = "---\n" + "title: \"Études qualitatives sur le web (netnographie)\"\n" + "subtitle: \"Transformers & LLMs\"\n" + "author:\n" + "  - name: \"Olivier Caron\"\n" + "    affiliations: \"Paris Dauphine - PSL\"\n" + "format:\n" + "  ubd-revealjs:\n" + "    self-contained: false\n" + "    chalkboard: true\n" + "    transition: fade\n" + "    auto-stretch: false\n" + "    width: 1250\n" + "    height: 760\n" + "    toc: false\n" + "    toc-depth: 1\n" + "    code-block-height: 700px\n" + "execute:\n" + "  echo: true\n" + "bibliography: refs.bib\n" + "revealjs-plugins:\n" + "  - editable\n" + "filters:\n" + "  - editable\n" + "editor: \n" + "  markdown: \n" + "    wrap: 72\n" + "---\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## L'explosion ChatGPT [@chatterjiHowPeopleUse] {style=\"font-size:0.7em\"}\n" + "\n" + "Pour comprendre l'impact (marketing), il faut saisir deux dimensions :\n" + "la **vitesse** de l'adoption et l'**échelle** actuelle du phénomène.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"45%\"}\n" + "### La vitesse : une croissance explosive en 1 année\n" + "\n" + "*(Juin 2024 vs Juin 2025)*\n" + "\n" + "-   **Utilisateurs actifs** : près de **x3**\n" + "\n" + "-   **Volume de messages quotidiens** : **x5,8** (de 451 M à 2,6\n" + "    Milliards / jour)\n" + "\n" + "-   **Part de l'usage personnel** : passe de 53% à **73%**, devenant\n" + "    l'usage majoritaire.\n" + "\n" + "Cette dynamique de croissance est inédite pour une nouvelle technologie.\n" + ":::\n" + "\n" + "::: {.column width=\"55%\"}\n" + "### L'échelle : un canal de masse en juillet 2025\n" + "\n" + "\\n" + "\n" + "| Indicateur                        | Valeur                      |\n" + "|:----------------------------------|:----------------------------|\n" + "| **Utilisateurs actifs / semaine** | **700 millions**            |\n" + "| **Messages échangés / semaine**   | **18 milliards**            |\n" + "| **Âge des utilisateurs**          | **46%** ont entre 18-25 ans |\n" + "| **Genre**                         | Quasi-parité                |\n" + ":::\n" + ":::::\n" + "\n" + "\\n" + "\n" + "::: {.callout-tip title=\"L'Implication Marketing\"}\n" + "En un an, ChatGPT est passé d'un outil d'initiés à un **canal de\n" + "communication et de recherche grand public**, particulièrement sur la\n" + "cible jeune.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## L'évolution des usages : de la création à la recherche [@chatterjiHowPeopleUse] {style=\"font-size:0.7em\"}\n" + "\n" + "Plus important encore que la photo à un instant T, la **tendance de\n" + "fond** révèle une mutation du rôle de l'IA dans le quotidien des\n" + "utilisateurs.\n" + "\n" + "<br>\n" + "\n" + "### En un an, ChatGPT est devenu un concurrent de Google\n" + "\n" + "L'analyse de l'évolution des conversations entre 2024 et 2025 montre un\n" + "basculement clair :\n" + "\n" + "-   ✍️ **L'ecriture** (créer, résumer, traduire) a vu sa part **baisser\n" + "    de 36% à 24%**.\n" + "-   🔎 **La recherche d'informations** (trouver des faits, des produits)\n" + "    a **explosé, passant de 14% à 24%**.\n" + "\n" + "<br>\n" + "\n" + "::: {.callout-note appearance=\"simple\" title=\"Que signifie cette évolution ?\"}\n" + "Les utilisateurs se sont approprié l'outil non plus seulement pour\n" + "**produire du contenu**, mais pour **accéder à l'information**. Pour le\n" + "marketing, cela signifie que de plus en plus de parcours clients et de\n" + "recherches de produits ne commencent plus sur un moteur de recherche,\n" + "mais dans la fenêtre d'un chatbot.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Anatomie des usages en 2025 (ChatGPT) [@chatterjiHowPeopleUse] {style=\"font-size:0.7em\"}\n" + "\n" + "Loin des clichés, près de 80% des conversations se concentrent sur trois\n" + "grands besoins très concrets. Voici le détail de ce que les utilisateurs\n" + "font réellement.\n" + "\n" + ":::::: columns\n" + "::: {.column width=\"33%\"}\n" + "### 📚 1. Guide pratique (29%)\n" + "\n" + "**L'IA comme coach personnel.** Les utilisateurs cherchent un\n" + "accompagnement pour agir ou apprendre.\n" + "\n" + "-   **Tutorat & Éducation (10.2%)** : Expliquer des concepts, aider aux\n" + "    devoirs.\n" + "-   **Conseils & \"How-To\" (8.5%)** : Obtenir des plans d'action, des\n" + "    tutoriels.\n" + "-   **Idées & Créativité (3.8%)** : Brainstormer des noms ou des idées\n" + "    de projets.\n" + ":::\n" + "\n" + "::: {.column width=\"33%\"}\n" + "### ✍️ 2. Écriture (24%)\n" + "\n" + "**L'IA comme assistant éditorial.** Fait clé : **2/3 de cet usage\n" + "consistent à modifier un texte existant**.\n" + "\n" + "-   **Édition & Critique (10.6%)** : Corriger ou reformuler un texte\n" + "    fourni.\n" + "-   **Rédaction personnelle (8.0%)** : Rédiger des emails ou lettres de\n" + "    motivation.\n" + "-   **Traduction & Résumé (8.1%)** : Synthétiser des documents ou\n" + "    traduire.\n" + ":::\n" + "\n" + "::: {.column width=\"33%\"}\n" + "### 🔎 3. Recherche d'infos (24%)\n" + "\n" + "**L'IA comme moteur de recherche conversationnel.** Un substitut direct\n" + "à la recherche web.\n" + "\n" + "-   **Recherche de faits (18.3%)** : Informations sur des personnes,\n" + "    lieux, événements.\n" + "-   **Recherche de produits (2.1%)** : Se renseigner sur des produits\n" + "    avant un achat.\n" + ":::\n" + "::::::\n" + "\n" + "::: {.callout-note appearance=\"simple\" style=\"font-size:0.7em\"}\n" + "### Les usages \"surprenants\" restent marginaux\n" + "\n" + "-   Programmation = **4.2%**\n" + "-   Compagnonnage / relations = **1.9%**\n" + "-   Jeux de rôle = **0.4%**\n" + ":::\n" + "\n" + "## Rappel : les limites des embeddings statiques {style=\"font-size:0.8em\"}\n" + "\n" + "Dans la séance précédente, nous avons vu la puissance des embeddings\n" + "comme Word2Vec et leurs limites.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### Le problème du sens unique\n" + "\n" + "Avec Word2Vec, un mot = un seul vecteur, appris une fois pour toutes. Le\n" + "mot \"**avocat**\" aura donc le même vecteur, qu'on parle du fruit ou de\n" + "la profession.\n" + "\n" + "\\n" + "\n" + "`\"J'aime manger un avocat avec du citron.\"`\n" + "\n" + "\\n" + "\\n" + "\n" + "`\"Je vais consulter mon avocat pour ce litige.\"`\n" + "\n" + "\\n" + "\\n" + "\n" + "Pour ces modèles, le sens est **statique**.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### Le besoin de contexte\n" + "\n" + "Pour un humain, le sens d'un mot dépend de la **phrase entière** qui\n" + "l'entoure. Word2Vec ne regarde qu'une petite fenêtre de mots voisins, ce\n" + "qui est insuffisant pour lever les ambiguïtés.\n" + "\n" + "\\n" + "\\n" + "\n" + "**Le défi** : comment créer un modèle qui, comme nous, lit toute la\n" + "phrase pour comprendre le sens **contextualisé** de chaque mot ?\n" + ":::\n" + ":::::\n" + "\n" + "## Word2Vec vs CamemBERT : \"avocat\" - VOIR DÉMO\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### Word2Vec (statique)\n" + "\n" + "-   **Dim. vecteur** : 50\\n" + "-   *Un seul vecteur* pour **tous les contextes**\\n" + "-   Cosinus(*avocat fruit*, *avocat métier*) = **1.0**\\n" + "-   Cosinus(*phrase fruit*, *phrase métier*) = 0.44\n" + "\n" + "👉 **Limite** : un mot = un vecteur, pas de contexte.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### CamemBERT (contextuel)\n" + "\n" + "-   **Dim. vecteur** : 768\\n" + "-   *Vecteur différent* selon la phrase\\n" + "-   Cosinus(*avocat fruit*, *avocat métier*) = **0.66**\n" + "\n" + "👉 **Avantage** : vecteurs qui capturent le **sens contextualisé**.\n" + ":::\n" + ":::::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Le mécanisme d'attention [@vaswani2017attention] VOIR DÉMO {style=\"font-size:0.70em\"}\n" + "\n" + "::::: columns\n" + "::: {.column width=\"60%\"}\n" + "L'idée fondamentale des Transformers est simple : pour comprendre un\n" + "mot, le modèle doit **porter son attention** sur les autres mots\n" + "importants de la phrase.\n" + "\n" + "Imaginez que pour chaque mot, vous mettiez un \"spotlight\" 🔦 sur les\n" + "autres termes qui lui donnent son sens.\n" + "\n" + "\\n" + "\\n" + "\n" + "**Exemple :**\n" + "\n" + "> `\"Le livreur a déposé le colis devant la porte, car il était trop lourd.\"`\n" + "\n" + "\\n" + "\n" + "Pour comprendre le mot **\"il\"**, le modèle va apprendre à porter son\n" + "attention sur :\n" + "\n" + "-   **\"colis\"** (très forte attention : c'est l'antécédent le plus\n" + "    probable !)\n" + "-   **\"livreur\"** (un peu d'attention : c'est un autre acteur, mais\n" + "    moins pertinent pour \"il\")\n" + "-   **\"lourd\"** (attention moyenne : c'est une caractéristique qui\n" + "    justifie le \"il\")\n" + ":::\n" + "\n" + "::: {.column width=\"40%\"}\n" + "![](images/clipboard-3690532316.png){width=\"100%\"}\[\@\]\n" + ":::\n" + ":::::\n" + "\n" + "::: {.callout-tip title=\"La grande différence\"}\n" + "Contrairement à Word2Vec qui regarde une petite fenêtre fixe,\n" + "l'**attention** permet de créer des liens sémantiques entre des mots\n" + "**même très éloignés** dans la phrase. Le modèle apprend quelles parties\n" + "du contexte sont les plus pertinentes.\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Les Transformers : la technologie derrière les LLMs (par 3Blue1Brown) {style=\"font-size:0.7em\"}\n" + "\n" + "Cette première vidéo offre une vue d'ensemble de l'architecture\n" + "Transformer, le moteur qui fait fonctionner tous les grands modèles de\n" + "langage modernes.\n" + "\n" + "\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Zoom sur le mécanisme d'Attention (par 3Blue1Brown) {style=\"font-size:0.7em\"}\n" + "\n" + "Cette seconde vidéo se concentre sur le concept important au coeur des\n" + "Transformers : le mécanisme d'attention, qui permet au modèle de\n" + "\"comprendre\" le contexte.\n" + "\n" + "\n" + "\n" + "## Comment un LLM apprend-il ? Le jeu du mot suivant {style=\"font-size:0.7em\"}\n" + "\n" + "Alors, comment un modèle apprend-il à faire ça ? L'idée est\n" + "incroyablement simple dans son principe. On lui donne une tâche unique,\n" + "répétée des milliards de fois.\n" + "\n" + "**La tâche : prédire le mot le plus probable.**\n" + "\n" + "On prend une quantité astronomique de texte (tout Wikipédia, des livres,\n" + "des articles...) et on entraîne le modèle sur ce jeu :\n" + "\n" + "1.  On lui donne un début de phrase :\n" + "    `\"Le client a contacté le service après-vente car son produit était...\"`\n" + "\n" + "2.  Le modèle doit \"deviner\" le mot le plus probable qui vient après.\n" + "\n" + "    -   *cassé* ? (forte probabilité)\n" + "    -   *défectueux* ? (forte probabilité)\n" + "    -   *incroyable* ? (probabilité moyenne)\n" + "    -   *manger* ? (probabilité quasi nulle)\n" + "\n" + "::: {.callout-note appearance=\"simple\"}\n" + "### De la prédiction à la \"compréhension\"\n" + "\n" + "En s'entraînant à ce jeu des milliards de fois, le modèle est obligé de\n" + "développer une compréhension profonde de la grammaire, du style, des\n" + "concepts et même des connaissances factuelles sur le monde pour pouvoir\n" + "bien prédire.\n" + "\n" + "C'est la magie des LLMs : une tâche très simple, à très grande échelle,\n" + "fait **émerger** des capacités complexes (raisonnement, génération,\n" + "synthèse...).\n" + ":::\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## L'Écosystème Hugging Face 🤗 : le Supermarché des modèles d'IA - VOIR DEMO {style=\"font-size:0.7em\"}\n" + "\n" + "Heureusement, vous n'avez pas besoin d'entraîner ces modèles vous-mêmes\n" + "! Une communauté immense partage des modèles prêts à l'emploi.\n" + "\n" + "**Hugging Face, c'est quoi ?** C'est une plateforme qui est devenue le\n" + "point central pour trouver, utiliser et partager des modèles de Machine\n" + "Learning. C'est un peu le **GitHub de l'IA**.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"40%\"}\n" + "### Ce que vous y trouvez\n" + "\n" + "1.  **Des milliers de modèles pré-entraînés** : Pour des dizaines de\n" + "    langues, dont le français. Un des plus connus est **CamemBERT**, un\n" + "    modèle puissant entraîné spécifiquement sur du texte français.\n" + "2.  **Des datasets** : Pour entraîner ou spécialiser des modèles sur des\n" + "    tâches précises.\n" + "3.  **Des outils (librairies `transformers`)** : Pour utiliser ces\n" + "    modèles en quelques lignes de code Python.\n" + "\n" + "**Pour votre projet :** C'est une véritable boîte à outils pour\n" + "l'analyse de sentiment, la classification de textes, la synthèse...\n" + ":::\n" + "\n" + "::: {.column width=\"60%\"}\n" + "![](images/clipboard-1516076689.png)\n" + ":::\n" + ":::::\n" + "\n" + "## Applications concrètes pour le marketing digital {style=\"font-size:0.55em\"}\n" + "\n" + "Maintenant que les modèles comprennent le contexte, de nouvelles\n" + "possibilités s'ouvrent, validées par l'analyse de milliards de messages.\n" + "\n" + "| Application & Besoin | Avant (Word2Vec / LDA) | Maintenant (Transformers / LLMs) | Données & Exemples Clés |\n" + "|:-----------------|:-----------------|:-----------------|:-----------------|\n" + "| **Génération de Contenu** <br> *Aider à la création* | Impossible. | **Rédige des brouillons** de descriptions de produits, posts, emails... | **L'écriture est le 1er cas d'usage professionnel** (40% des messages de travail). <br> **Fait clé** : 2/3 de cet usage consistent à **modifier un texte existant** (résumer, traduire, critiquer). |\n" + "| **Analyse de sentiment** <br> *Aller au-delà des mots-clés* | Détectait \"super\", \"nul\". <br> **Limite** : Ne comprenait pas le sarcasme. | Comprend la **nuance** et le **sarcasme**. <br> `\"Ce service client est d'une lenteur absolument remarquable.\"` → Sentiment négatif. | Les interactions jugées \"bonnes\" par les utilisateurs sont **plus de 4 fois plus nombreuses** que les \"mauvaises\" en 2025, montrant une satisfaction croissante. |\n" + "| **Synthèse d'avis clients** <br> *Obtenir un résumé actionnable* | Créait des thèmes (topics). <br> **Limite** : Interprétation humaine forte. | **Résume** 10 000 avis en un paragraphe identifiant les 3 problèmes principaux et les 2 points forts. | Une tâche clé identifiée est \"Interpréter le sens de l'information pour les autres\", représentant 13.1% de tous les messages. |\n" + "| **Chatbots & Service Client** <br> *Améliorer l'interaction* | Suivait des scénarios rigides. <br> **Limite** : Se \"bloquait\" facilement. | Comprend l'**intention** et peut avoir une **conversation fluide et naturelle**. | L'usage pour le \"Guide Pratique\" (conseils, tutoriels) représente **29% de toutes les conversations**, un pilier du service client moderne. |\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Garder un esprit critique : limites & ethique - VOIR DÉMO Ollama {style=\"font-size:0.65em\"}\n" + "\n" + "Utiliser les LLMs en marketing impose de connaître leurs faiblesses pour\n" + "éviter les erreurs stratégiques et de réputation.\n" + "\n" + "::::: columns\n" + "::: {.column width=\"50%\"}\n" + "### Le problème des \"hallucinations\"\n" + "\n" + "Un LLM est un \"générateur de texte plausible\", pas un moteur de vérité.\n" + "Il peut **inventer des faits, des sources ou des chiffres** avec une\n" + "assurance déconcertante pour que sa phrase soit cohérente.\n" + "\n" + "-   **Risque** : Diffuser une fausse information, citer une étude qui\n" + "    n'existe pas, faire une promesse produit erronée.\n" + "-   **Solution** : Le **\"Human in the loop\"** (validation humaine) est\n" + "    non négociable pour tout contenu public.\n" + "\n" + "### Les biais du modèle\n" + "\n" + "\\n" + "\n" + "Le modèle apprend sur un vaste corpus de textes issus d'Internet. Il\n" + "**reproduit donc les biais et stéréotypes** (culturels, sociaux, de\n" + "genre...) présents dans ces textes.\n" + "\n" + "\\n" + "\n" + "-   **Risque** : Générer du contenu maladroit, voire offensant, qui ne\n" + "    correspond pas aux valeurs de la marque.\n" + "-   **Solution** : Définir des **directives claires** (prompts) et\n" + "    **auditer** régulièrement les contenus générés.\n" + ":::\n" + "\n" + "::: {.column width=\"50%\"}\n" + "### Confidentialité des données (privacy)\n" + "\n" + "Les versions grand public de ces outils (comme ChatGPT gratuit) peuvent\n" + "utiliser les conversations pour entraîner leurs futurs modèles.\n" + "\n" + "-   **Risque** : fuite d'informations stratégiques (plans de lancement,\n" + "    données clients anonymisées, etc.) si les équipes les utilisent sans\n" + "    précaution.\n" + "\n" + "-   **Solution** :\n" + "\n" + "-   Utiliser les LLMs pour des informations non sensibles. Donner des\n" + "    instructions en décrivant les données, pas en les uploadant sur les\n" + "    plateformes.\n" + "\n" + "-   Utiliser des LLMs locaux (LLMstudio, Ollama, etc.)\n" + ":::\n" + ":::::\n" + "\n" + "## Synthèse\n" + "\n" + "1.  **Le Contexte est la clé** 🔑\n" + "    -   Les Transformers surpassent les anciens modèles en comprenant le **sens dynamique** des mots dans une phrase grâce au mécanisme d'**attention**.\n" + "2.  **Un entraînement simple, des capacités complexes** 🚀\n" + "    -   Les LLMs sont principalement entraînés à **prédire le mot\n" + "        suivant**.\n" + "    -   Cette tâche, à très grande échelle, leur permet de \"comprendre\"\n" + "        le langage bien au-delà de la simple statistique.\n" + "3.  **Les outils sont accessibles et prêts à l'emploi** 🧰\n" + "    -   Pas besoin d'être un chercheur de Google pour les utiliser.\n" + "    -   Des plateformes comme **Hugging Face 🤗** démocratisent l'accès\n" + "        à des modèles surpuissants via des librairies comme\n" + "        `sentence-transformers`.\n" + "4.  **De nouvelles applications marketing** 💡\n" + "    -   On passe de l'**analyse** (comprendre ce qui a été dit) à la\n" + "        **génération** (créer du contenu) et à l'**interaction**\n" + "        (dialoguer).\n" + "    -   C'est un changement majeur pour l'analyse de la voix du client,\n" + "        le SEO, et la gestion de la relation client.\n" + "\n" + "------------------------------------------------------------------------\n" + "\n" + "## Au-delà de la génération : vers les agents IA 🤖 {style=\"font-size:0.6em\"}\n" + "\n" + "Maintenant que les LLMs peuvent \"comprendre\" et \"raisonner\", la\n" + "prochaine étape est de leur permettre d'**agir**. C'est le concept\n" + "d'**Agent IA**.\n" + "\n" + "**L'idée :** on ne se contente plus de demander au LLM de *rédiger un\n" + "email*. On lui donne un **objectif** et des **outils**.\n" + "\n" + "**Exemple : l'Agent Marketing Autonome** Imaginez que vous donniez cet\n" + "objectif à un agent :\n" + "\n" + "> *\"Analyse les ventes de notre produit X sur les 30 derniers jours,\n" + "> identifie le segment client le moins performant, et rédige une\n" + "> campagne d'emailing ciblée avec un code promo pour le réactiver.\"*\n" + "\n" + "L'agent va alors utiliser ses outils en autonomie :\n" + "\n" + "1.  🧠 **Raisonnement :** \"Ok, je dois décomposer le problème.\"\n" + "2.  🛠️ **Outil 1 (Base de données) :** Il se connecte à la base de\n" + "    données des ventes pou rexécuter une requête.\n" + "3.  🧠 **Raisonnement :** \"J'ai les chiffres. Le segment des 25-35 ans\n" + "    est en baisse.\"\n" + "4.  🛠️ **Outil 2 (Génération de texte) :** Il rédige 3 variantes\n" + "    d'emails persuasifs adaptés à cette cible.\n" + "5.  🧠 **Raisonnement :** \"L'email A est le plus direct. Je vais\n" + "    proposer de l'envoyer.\"\n" + "6.  ✅ **Action finale :** Il vous présente la campagne pour validation.\n" + "\n" + "::: {.callout-tip title=\"L'agent\"}\n" + "Un agent est un **LLM (le cerveau 🧠)** augmenté avec une **boîte à\n" + "outils (APIs, bases de données, recherche web 🛠️)** qui peut planifier\n" + "et exécuter des tâches complexes pour atteindre un objectif.\n" + ":::\n" + ""</script>
+<script> window._input_filename = 'C:\Users\Olivier\Documents\GitHub\etudes_qualitatives_web\cours_7\cours_7.qmd'</script>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-chatterjiHowPeopleUse" class="csl-entry" role="listitem">
+Chatterji, Aaron, Tom Cunningham, David Deming, Zoe Hitzig, Christopher Ong, Carl Shan, and Kevin Wadman. 2025. <span>“How <span>People Use ChatGPT</span>.”</span>
+</div>
+<div id="ref-vaswani2017attention" class="csl-entry" role="listitem">
+Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. <span>“Attention Is All You Need.”</span> <em>Advances in Neural Information Processing Systems</em> 30.
+</div>
+</div>
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
