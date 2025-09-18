@@ -239,7 +239,7 @@ L'idée fondamentale des Transformers est simple : pour comprendre un
 mot, le modèle doit **porter son attention** sur les autres mots
 importants de la phrase.
 
-Imaginez que pour chaque mot, vous mettiez un "spotlight" 🔦 sur les
+Imaginez que pour chaque mot, on fasse un éclairage 🔦 sur les
 autres termes qui lui donnent son sens.
 
 \
@@ -332,8 +332,8 @@ synthèse...).
 
 ## L'Écosystème Hugging Face 🤗 : le Supermarché des modèles d'IA - VOIR DEMO {style="font-size:0.7em"}
 
-Heureusement, vous n'avez pas besoin d'entraîner ces modèles vous-mêmes
-! Une communauté immense partage des modèles prêts à l'emploi.
+Heureusement, il n'est pas forcément nécessaire d'entraîner ces modèles pour nous-mêmes! 
+Une communauté immense partage des modèles prêts à l'emploi.
 
 **Hugging Face, c'est quoi ?** C'est une plateforme qui est devenue le
 point central pour trouver, utiliser et partager des modèles de Machine
@@ -367,7 +367,7 @@ possibilités s'ouvrent, validées par l'analyse de milliards de messages.
 
 | Application & Besoin | Avant (Word2Vec / LDA) | Maintenant (Transformers / LLMs) | Données & Exemples Clés |
 |:-----------------|:-----------------|:-----------------|:-----------------|
-| **Génération de Contenu** <br> *Aider à la création* | Impossible. | **Rédige des brouillons** de descriptions de produits, posts, emails... | **L'écriture est le 1er cas d'usage professionnel** (40% des messages de travail). <br> **Fait clé** : 2/3 de cet usage consistent à **modifier un texte existant** (résumer, traduire, critiquer). |
+| **Génération de contenu** <br> *Aider à la création* | Impossible. | **Rédige des brouillons** de descriptions de produits, posts, emails... | **L'écriture est le 1er cas d'usage professionnel** (40% des messages de travail). <br> **Fait clé** : 2/3 de cet usage consistent à **modifier un texte existant** (résumer, traduire, critiquer). |
 | **Analyse de sentiment** <br> *Aller au-delà des mots-clés* | Détectait "super", "nul". <br> **Limite** : Ne comprenait pas le sarcasme. | Comprend la **nuance** et le **sarcasme**. <br> `"Ce service client est d'une lenteur absolument remarquable."` → Sentiment négatif. | Les interactions jugées "bonnes" par les utilisateurs sont **plus de 4 fois plus nombreuses** que les "mauvaises" en 2025, montrant une satisfaction croissante. |
 | **Synthèse d'avis clients** <br> *Obtenir un résumé actionnable* | Créait des thèmes (topics). <br> **Limite** : Interprétation humaine forte. | **Résume** 10 000 avis en un paragraphe identifiant les 3 problèmes principaux et les 2 points forts. | Une tâche clé identifiée est "Interpréter le sens de l'information pour les autres", représentant 13.1% de tous les messages. |
 | **Chatbots & Service Client** <br> *Améliorer l'interaction* | Suivait des scénarios rigides. <br> **Limite** : Se "bloquait" facilement. | Comprend l'**intention** et peut avoir une **conversation fluide et naturelle**. | L'usage pour le "Guide Pratique" (conseils, tutoriels) représente **29% de toutes les conversations**, un pilier du service client moderne. |
@@ -428,7 +428,7 @@ utiliser les conversations pour entraîner leurs futurs modèles.
 :::
 :::::
 
-## Synthèse
+## Synthèse {style="font-size:0.80em"}
 
 1.  **Le Contexte est la clé** 🔑
     -   Les Transformers surpassent les anciens modèles en comprenant le **sens dynamique** des mots dans une phrase grâce au mécanisme d'**attention**.
@@ -453,35 +453,51 @@ utiliser les conversations pour entraîner leurs futurs modèles.
 
 ## Au-delà de la génération : vers les agents IA 🤖 {style="font-size:0.6em"}
 
-Maintenant que les LLMs peuvent "comprendre" et "raisonner", la
-prochaine étape est de leur permettre d'**agir**. C'est le concept
-d'**Agent IA**.
+::::: columns
+::: {.column width="45%"}
+**Exemples d'agents IA :**
 
-**L'idée :** on ne se contente plus de demander au LLM de *rédiger un
-email*. On lui donne un **objectif** et des **outils**.
+* *Open-source :*
+    -   [browser-use](https://github.com/browser-use/browser-use)
+    -   [web-ui](https://github.com/browser-use/web-ui)
+* *Propriétaire :*
+    -   [Assistants OpenAI](https://openai.com/fr-FR/index/introducing-chatgpt-agent/)
 
-**Exemple : l'Agent Marketing Autonome** Imaginez que vous donniez cet
-objectif à un agent :
+\
+Maintenant que les LLMs peuvent "comprendre" et "raisonner", la prochaine étape est de leur permettre d'**agir**. C'est le concept d'**Agent IA**.
 
-> *"Analyse les ventes de notre produit X sur les 30 derniers jours,
-> identifie le segment client le moins performant, et rédige une
-> campagne d'emailing ciblée avec un code promo pour le réactiver."*
+\
+**L'idée :** on ne se contente plus de demander au LLM de *rédiger un email*. On lui donne un **objectif** et des **outils**.
+:::
+
+::: {.column width="55%"}
+**Exemple : l'Agent marketing autonome**
+
+Imaginons que l'on donne cet objectif à un agent :
+
+\
+
+> *"Analyse les ventes de notre produit X sur les 30 derniers jours, identifie le segment client le moins performant, et rédige une campagne d'emailing ciblée avec un code promo pour le réactiver."*
+
+\
 
 L'agent va alors utiliser ses outils en autonomie :
 
+\
+
 1.  🧠 **Raisonnement :** "Ok, je dois décomposer le problème."
-2.  🛠️ **Outil 1 (Base de données) :** Il se connecte à la base de
-    données des ventes pou rexécuter une requête.
-3.  🧠 **Raisonnement :** "J'ai les chiffres. Le segment des 25-35 ans
-    est en baisse."
-4.  🛠️ **Outil 2 (Génération de texte) :** Il rédige 3 variantes
-    d'emails persuasifs adaptés à cette cible.
-5.  🧠 **Raisonnement :** "L'email A est le plus direct. Je vais
-    proposer de l'envoyer."
-6.  ✅ **Action finale :** Il vous présente la campagne pour validation.
+2.  🛠️ **Outil 1 (Base de données) :** il se connecte à la base de données des ventes pour exécuter une requête.
+3.  🧠 **Raisonnement :** "J'ai les chiffres. Le segment des 25-35 ans est en baisse."
+4.  🛠️ **Outil 2 (Génération de texte) :** il rédige 3 variantes d'emails persuasifs.
+5.  🧠 **Raisonnement :** "L'email A est le plus direct. Je vais proposer de l'envoyer."
+6.  ✅ **Action finale :** Il présente la campagne pour validation.
+:::
+:::::
+
+\
 
 ::: {.callout-tip title="L'agent"}
-Un agent est un **LLM (le cerveau 🧠)** augmenté avec une **boîte à
-outils (APIs, bases de données, recherche web 🛠️)** qui peut planifier
-et exécuter des tâches complexes pour atteindre un objectif.
+Un agent est un **LLM (le cerveau 🧠)** augmenté avec une **boîte à outils (APIs, bases de données, recherche web 🛠️)** qui peut planifier et exécuter des tâches complexes pour atteindre un objectif.
 :::
+
+## Références
